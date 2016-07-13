@@ -21,15 +21,12 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            <div class="portlet box purple">
+            <div class="portlet box green">
                 <div class="portlet-title">
-                    <div class="caption">
-                        <i class="fa fa-gift"></i>Basic Validation
-                    </div>
                 </div>
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'/user/cpw', 'id' => 'form-changepass', 'class'=>'form-horizontal form-validate']) !!}
+                    {!! Form::open(['url'=>'/change-password', 'id' => 'form-changepass', 'class'=>'form-horizontal form-validate']) !!}
                         <div class="form-body">
 
                             <div class="form-group">
@@ -96,16 +93,9 @@
                     },
                     success: function (respond) {
                         if(respond != 'ok'){
-                            //toastr('Mật khẩu không đúng!');
                             toastr.error("Bạn cần nhập lại mật khẩu", "Mật khẩu nhập vào không đúng");
                             $('input[name="current-password"]').val('');
                             $('input[name="current-password"]').focus();
-
-                            $('input[name="current-password"]').removeClass('valid').addClass('invalid')
-                                    .parent().removeClass('state-success').addClass('state-error');
-                        }else {
-                            $('input[name="current-password"]').removeClass('invalid').addClass('valid')
-                                    .parent().removeClass('state-error').addClass('state-success');
                         }
                     }
 

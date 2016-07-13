@@ -70,6 +70,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="{{url('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/additional-methods.min.js')}}"></script>
     <script src="{{url('assets/global/plugins/jqvmap/jqvmap/jquery.vmap.js')}}" type="text/javascript"></script>
     <script src="{{url('assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.russia.js')}}" type="text/javascript"></script>
     <script src="{{url('assets/global/plugins/jqvmap/jqvmap/maps/jquery.vmap.world.js')}}" type="text/javascript"></script>
@@ -105,16 +107,6 @@ License: You must have a valid license purchased only from themeforest(the above
             Layout.init(); // init layout
             QuickSidebar.init(); // init quick sidebar
             Demo.init(); // init demo features
-            //TableAdvanced.init();
-            //Index.init();
-            //Index.initDashboardDaterange();
-            //Index.initJQVMAP(); // init index page's custom scripts
-            //Index.initCalendar(); // init index page's custom scripts
-            //Index.initCharts(); // init index page's custom scripts
-            //Index.initChat();
-            //Index.initMiniCharts();
-            //Tasks.initDashboardWidget();
-            //TableManaged.init();
         });
     </script>
     <script type="text/javascript">
@@ -278,82 +270,77 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li>
                     <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
-                        <span class="title">Manage</span>
+                        <span class="title">Thẩm định giá</span>
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="{{url('/datatable')}}">Datatable</a>
+                            <a href="{{url('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ thẩm định</a>
                         </li>
 
                         <li>
                             <a href="">
-                                ND2</a>
+                                Tìm kiếm thông tin tài sản</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="javascript:;">
-                        <i class="icon-folder"></i>
-                        <span class="title">Multi Level Menu</span>
+                        <i class="fa fa-laptop"></i>
+                        <span class="title">Công bố giá</span>
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="javascript:;">
-                                <i class="icon-settings"></i> Item 1 <span class="arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="javascript:;">
-                                        <i class="icon-user"></i>
-                                        Sample Link 1 <span class="arrow"></span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li>
-                                            <a href="#"><i class="icon-power"></i> Sample Link 1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon-paper-plane"></i> Sample Link 1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon-star"></i> Sample Link 1</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="icon-camera"></i> Sample Link 1</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="icon-link"></i> Sample Link 2</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="icon-pointer"></i> Sample Link 3</a>
-                                </li>
-                            </ul>
+                            <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ công bố</a>
                         </li>
 
+                        <li>
+                            <a href="">
+                                Tìm kiếm thông tin tài sản</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:;">
+                    <a href="">
+                        <i class="fa fa-laptop"></i>
+                        <span class="title">Thông tư quyết định</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{url('thongtu-quyetdinh-tw/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">Thông tư quyết định nhà nước</a>
+                        </li>
+
+                        <li>
+                            <a href="{{url('thongtu-quyetdinh-tinh/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">Thông tư quyết định của tỉnh</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="fa fa-laptop"></i>
+                        <span class="title">Báo cáo thống kê</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{url('reports/bctkkhac')}}">Báo cáo thống kê khác</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">
                         <i class="icon-settings"></i>
                         <span class="title">Quản trị hệ thống</span>
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
-                        <li>
-                            <a href="{{url('users')}}">
-                                Quản lý tài khoản</a>
-                        </li>
-                        <li>
-                            <a href="{{url('register')}}">
-                                Cấu hình hệ thống</a>
-                        </li>
-
+                        <li><a href="{{url('phong-ban')}}">Thông tin phòng ban</a></li>
+                        <li><a href="{{url('users/pl=quan-ly')}}"> Quản lý tài khoản</a></li>
+                        <li><a href="{{url('cau-hinh-he-thong')}}">Cấu hình hệ thống</a></li>
                     </ul>
                 </li>
-
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>

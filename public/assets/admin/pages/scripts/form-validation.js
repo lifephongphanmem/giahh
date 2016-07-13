@@ -298,9 +298,9 @@ var FormValidation = function () {
             // initialize select2 tags
             $("#select2_tags").change(function() {
                 form3.validate().element($(this)); //revalidate the chosen dropdown value and show error or success message for the input 
-            }).select2({
+            })/*.select2({
                 tags: ["red", "green", "blue", "yellow", "pink"]
-            });
+            });*/
 
             //initialize datepicker
             $('.date-picker').datepicker({

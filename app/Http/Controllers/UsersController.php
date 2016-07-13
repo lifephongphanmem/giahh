@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TtPhongBan;
 use App\Users;
 use Illuminate\Http\Request;
 
@@ -16,15 +17,23 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($pl)
     {
         if (Session::has('admin')) {
+            if($pl == 'quan-ly')
+                $model =  Users::where('level','H')
+                    ->get();
+            elseif($pl == 'su-dung')
+                $model = Users::where('level','X')
+                    ->get();
 
-            $model = Users::where('sadmin','<>','ssa')
-                ->get();
+            $modelpb = TtPhongBan::all();
 
             return view('system.users.index')
                 ->with('model',$model)
+                ->with('pl',$pl)
+                ->with('modelpb',$modelpb)
+                ->with('dvct','all')
                 ->with('pageTitle','Quản lý tài khoản');
 
         }else
@@ -32,33 +41,34 @@ class UsersController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($pl)
+    public function view($dvct)
     {
         if (Session::has('admin')) {
-            if($pl== 'quan-ly'){
-                return view('system.users.createql')
-                    ->with('pageTitle','Thêm mới tài khoản');
 
-            }elseif($pl == 'dich-vu-luu-tru'){
-                $modeldn = DnDvLt::where('trangthai','Kích hoạt')
-                    ->get();
-                return view('system.users.createdvlt')
-                    ->with('modeldn',$modeldn)
-                    ->with('pageTitle','Thêm mới tài khoản');
+            $model = Users::where('level','X')
+                ->where('mahuyen',$dvct)
+                ->get();
+            $modelpb = TtPhongBan::all();
 
+            return view('system.users.index')
+                ->with('model',$model)
+                ->with('pl','su-dung')
+                ->with('modelpb',$modelpb)
+                ->with('dvct',$dvct)
+                ->with('pageTitle','Quản lý tài khoản');
 
-            }elseif($pl == 'dich-vu-van-tai'){
-                $modeldn = DonViDvVt::where('trangthai','Kích hoạt')
-                    ->get();
-                return view('system.users.createdvvt')
-                    ->with('modeldn',$modeldn)
+        }else
+            return view('errors.notlogin');
+
+    }
+
+    public function create()
+    {
+        if (Session::has('admin')) {
+            $modelpb = TtPhongBan::all();
+                return view('system.users.create')
+                    ->with('modelpb',$modelpb)
                     ->with('pageTitle','Thêm mới tài khoản');
-            }
 
         }else
             return view('errors.notlogin');
@@ -73,122 +83,35 @@ class UsersController extends Controller
             $model->name = $insert['name'];
             $model->phone = $insert['phone'];
             $model->email = $insert['email'];
-            $model->username = $insert['user'];
+            $model->username = $insert['username'];
             $model->password = md5($insert['password']);
             $model->status = $insert['status'];
-            $model->level = 'H';
+            $model->level = 'X';
             $model->mahuyen = $insert['mahuyen'];
             $model->save();
 
-            return redirect('user');
+            return redirect('users/pl=su-dung');
 
         }else
             return view('errors.notlogin');
     }
 
-    public function storeql(Request $request){
-        if (Session::has('admin')) {
-
-            $insert = $request->all();
-            $model = new Users();
-            $model->name = $insert['name'];
-            $model->phone = $insert['phone'];
-            $model->email = $insert['email'];
-            $model->username = $insert['user'];
-            $model->password = md5($insert['password']);
-            $model->status = $insert['status'];
-            $model->level = 'T';
-            $model->status = $insert['status'];
-            $model->save();
-
-            return redirect('user/quan-ly');
-
-        }else
-            return view('errors.notlogin');
-    }
-
-    public function storedvlt(Request $request){
-        if (Session::has('admin')) {
-
-            $insert = $request->all();
-            $model = new Users();
-            $model->name = $insert['name'];
-            $model->phone = $insert['phone'];
-            $model->email = $insert['email'];
-            $model->username = $insert['user'];
-            $model->password = md5($insert['password']);
-            $model->status = $insert['status'];
-            $model->level = 'H';
-            $model->mahuyen = $insert['mahuyen'];
-            $model->status = $insert['status'];
-            $model->pldv = 'DVLT';
-            $model->save();
-
-            return redirect('user/dich-vu-luu-tru');
-
-        }else
-            return view('errors.notlogin');
-    }
-    public function storedvvt(Request $request){
-        if (Session::has('admin')) {
-
-            $insert = $request->all();
-            $model = new Users();
-            $model->name = $insert['name'];
-            $model->phone = $insert['phone'];
-            $model->email = $insert['email'];
-            $model->username = $insert['user'];
-            $model->password = md5($insert['password']);
-            $model->status = $insert['status'];
-            $model->level = 'H';
-            $model->mahuyen = $insert['mahuyen'];
-            $model->status = $insert['status'];
-            $model->pldv = 'DVVT';
-            $model->save();
-
-            return redirect('user/dich-vu-van-tai');
-
-        }else
-            return view('errors.notlogin');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         if (Session::has('admin')) {
 
             $model = Users::findOrFail($id);
+            //dd($model);
+            $modelpb = TtPhongBan::all();
             return view('system.users.edit')
                 ->with('model',$model)
+                ->with('modelpb',$modelpb)
                 ->with('pageTitle','Chỉnh sửa thông tin tài khoản');
 
         }else
             return view('errors.notlogin');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         if (Session::has('admin')) {
@@ -199,19 +122,18 @@ class UsersController extends Controller
             $model->phone = $update['phone'];
             $model->email = $update['email'];
             $model->status = $update['status'];
-            //$model->mahuyen = $update['mahuyen'];
+            $model->mahuyen = $update['mahuyen'];
             //$model->level = $update['level'];
 
             $model->save();
 
             if($model->level == 'T')
                 $pl = 'quan-ly';
-            elseif($model->pldv == 'DVLT')
-                $pl='dich-vu-luu-tru';
-            else
-                $pl='dich-vu-van-tai';
 
-            return redirect('user/'.$pl);
+            else
+                $pl='su-dung';
+
+            return redirect('users/pl='.$pl);
 
         }else
             return view('errors.notlogin');
@@ -229,13 +151,8 @@ class UsersController extends Controller
 
             $model = Users::findOrFail($id);
             $model->delete();
-            if($model->level == 'T')
-                $pl = 'quan-ly';
-            elseif($model->pldv == 'DVLT')
-                $pl='dich-vu-luu-tru';
-            else
-                $pl='dich-vu-van-tai';
-            return redirect('user/'.$pl);
+
+            return redirect('users');
 
         }else
             return view('errors.notlogin');
@@ -268,34 +185,28 @@ class UsersController extends Controller
             return view('errors.invalid-pass');
     }
 
-    public function lockuser($id){
+    public function lock($ids){
 
-        $arrayid = explode('-', $id);
-        foreach ($arrayid as $ids) {
-            $model = Users::findOrFail($ids);
-            if($model->status != "Chưa kích hoạt") {
-                $model->status = "Vô hiệu";
-                $model->save();
-            }
+        $arrayid = explode('-', $ids);
+        foreach ($arrayid as $id) {
+            $model = Users::findOrFail($id);
+            $model->status = "Vô hiệu";
+            $model->save();
         }
-        return redirect('user/quan-ly');
+        return redirect('users');
 
     }
 
-    public function unlockuser($id){
+    public function unlock($ids){
 
-        $arrayid = explode('-', $id);
+        $arrayid = explode('-', $ids);
 
-        foreach ($arrayid as $ids) {
-            $model = Users::findOrFail($ids);
-
-            if($model->status != "Chưa kích hoạt") {
-
-                $model->status = "Kích hoạt";
-                $model->save();
-            }
+        foreach ($arrayid as $id) {
+            $model = Users::findOrFail($id);
+            $model->status = "Kích hoạt";
+            $model->save();
         }
-        return redirect('user/quan-ly');
+        return redirect('users');
 
     }
 
@@ -336,11 +247,11 @@ class UsersController extends Controller
         $currentPassword = $update['current-password'];
 
         if(md5($currentPassword) == $password){
-            $ttuser = Users::where('username','=',$username)->first();
+            $ttuser = Users::where('username',$username)->first();
             $ttuser->password = md5($newpass2);
             if($ttuser->save()){
                 Session::flush();
-                return redirect('/login');
+                return view('errors.changepassword-success');
             }
         }else{
             dd('Mật khẩu cũ không đúng???');
@@ -376,7 +287,11 @@ class UsersController extends Controller
                 $update['roles'] = isset($update['roles']) ? $update['roles'] : null;
                 $model->permission = json_encode($update['roles']);
                 $model->save();
-                return redirect('user');
+                if($model->level == 'H')
+                    $pl = 'quan-ly';
+                elseif($model->level == 'X')
+                    $pl = 'su-dung';
+                return redirect('users/pl='.$pl);
 
             }else
                 dd('Tài khoản không tồn tại');
@@ -384,16 +299,6 @@ class UsersController extends Controller
         }else
             return view('errors.notlogin');
 
-    }
-
-    public function checkuser($user){
-
-        $model = Users::where('username',$user)->first();
-        if(isset($model)){
-            echo 'duplicate';
-        }else {
-            echo 'ok';
-        }
     }
 
     public function checkpass(Request $request){
@@ -407,7 +312,16 @@ class UsersController extends Controller
         }
     }
 
-
-
+    public function checkuser(Request $request){
+        $input = $request->all();
+        $newusser = $input['user'];
+        $model = Users::where('username',$newusser)
+            ->first();
+        if(isset($model)){
+            echo 'cancel';
+        }else {
+            echo 'ok';
+        }
+    }
 
 }
