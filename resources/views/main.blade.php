@@ -259,13 +259,28 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div-->
                     </form>
                     <!-- END RESPONSIVE QUICK SEARCH FORM -->
-                </li-->
                 <li class="start active open">
                     <a href="javascript:;">
-                        <i class="fa fa-file-o fa-fw"></i>
+                        <i class="fa fa-folder-open-o"></i>
                         <span class="title">{{$pageTitle}}</span>
                         <span class="selected"></span>
                     </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-laptop"></i>
+                        <span class="title">Giá hàng hóa- Dịch vụ</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="{{url('giahhdv-trongnuoc')}}">Giá hàng hóa- dịch vụ trong nước</a>
+                        </li>
+
+                        <li>
+                            <a href="">Giá hàng hóa xuất nhập khẩu</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="javascript:;">
@@ -292,7 +307,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ công bố</a>
+                            <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ công bố</a>
                         </li>
 
                         <li>
@@ -319,11 +334,17 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
                 <li>
                     <a href="">
-                        <i class="fa fa-laptop"></i>
+                        <i class="fa fa-file-o fa-fw"></i>
                         <span class="title">Báo cáo thống kê</span>
-                        <span class="arrow "></span>
+                        <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
+                        <li>
+                            <a href="{{url('')}}">Thông tư 142/2015-TT-BTC</a>
+                        </li>
+                        <li>
+                            <a href="{{url('')}}">Thông tư 55/2011-TT-BTC</a>
+                        </li>
                         <li>
                             <a href="{{url('reports/bctkkhac')}}">Báo cáo thống kê khác</a>
                         </li>
@@ -336,9 +357,30 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
+                        <li>
+                            <a href="">Thông tin hàng hóa <span class="arrow"></span> </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="{{url('dmthoidiem')}}"> Danh mục thời điểm</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('dmloaigia')}}"> Danh mục loại giá</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('dmloaihh')}}"> Danh mục loại hàng hóa</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('dmhanghoa-trongnuoc')}}">Mặt hàng trong nước</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('dmhanghoa-xuatnhapkhau')}}"> Mặt hàng xuất nhập khẩu</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li><a href="{{url('phong-ban')}}">Thông tin phòng ban</a></li>
                         <li><a href="{{url('users/pl=quan-ly')}}"> Quản lý tài khoản</a></li>
                         <li><a href="{{url('cau-hinh-he-thong')}}">Cấu hình hệ thống</a></li>
+
                     </ul>
                 </li>
             </ul>

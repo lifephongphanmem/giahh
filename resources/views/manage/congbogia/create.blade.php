@@ -12,7 +12,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/thamdinhgiadefault/edit',
+                url: '/congbogiadefault/edit',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -35,7 +35,7 @@
             //alert('vcl');
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/thamdinhgiadefault/update',
+                url: '/congbogiadefault/update',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -65,10 +65,11 @@
                 }
             })
         }
+
         function deleteRow(id){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/thamdinhgiadefault/delete',
+                url: '/congbogiadefault/delete',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -368,7 +369,7 @@
                 //alert($('input[name="tents"]').val());
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
-                    url: '/thamdinhgiadefault/store',
+                    url: '/congbogiadefault/store',
                     type: 'GET',
                     data: {
                         _token: CSRF_TOKEN,

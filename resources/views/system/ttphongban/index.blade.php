@@ -85,10 +85,10 @@
                             <td>{{$tt->fax}}</td>
                             <td>{{$tt->email}}</td>
                             <td>
-                                <a href="{{url('phong-ban/'.$tt->id.'/edit')}}" class="btn default btn-xs black">
+                                <a href="{{url('phong-ban/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs">
                                     <i class="fa fa-edit"></i> Chỉnh sửa </a>
 
-                                <button type="button" class="btn default btn-xs black" data-target="#delete-modal-confirm" data-toggle="modal" onclick="getId('{{$tt->id}}')">
+                                <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" onclick="getId('{{$tt->id}}')">
                                     <i class="fa fa-trash-o"></i>&nbsp; Xóa</button>
 
                             </td>

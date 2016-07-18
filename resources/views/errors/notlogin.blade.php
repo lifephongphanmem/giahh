@@ -19,7 +19,7 @@
 <body id="error-page" class="animated bounceInLeft">
 <div id="error-page-content"><h1>Lỗi!</h1><h2>Bạn chưa đăng nhập hoặc không có quyền thực hiện chức năng này!</h2>
     <p><a href='{{ url('/login') }}'>Bấm vào đây</a> để đăng nhập vào hệ thống.</p>
-    <p><a href='{{ url('/logout') }}'>Bấm vào đây</a> để đăng nhập với tài khoản khác.</p>
+    <!--p><a href='{{ url('/logout') }}'>Bấm vào đây</a> để đăng nhập với tài khoản khác.</p-->
 </div>
 <script src="{{ url('js/jquery-1.9.1.js') }}"></script>
 <script src="{{ url('js/jquery-migrate-1.2.1.min.js') }}"></script>

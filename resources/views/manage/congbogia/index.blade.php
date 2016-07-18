@@ -19,10 +19,16 @@
             TableManaged.init();
         });
         $(function(){
-
             $('#namhs').change(function() {
                 var namhs = $('#namhs').val();
-                var url = '/hoso-congbogia/nam='+namhs;
+                var url = '/hoso-congbogia/nam='+namhs+'&pb=all';
+
+                window.location.href = url;
+            });
+            $('#ttpb').change(function() {
+                var namhs = $('#namhs').val();
+                var ttpb = $('#ttpb').val();
+                var url = '/hoso-congbogia/nam='+namhs+'&pb='+ttpb;
 
                 window.location.href = url;
             });
@@ -46,6 +52,16 @@
                     @for($i = $nam_start; $i <= $nam_stop; $i++)
                         <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>{{$i}}</option>
                     @endfor
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <select class="form-control select2me" id="ttpb" name="ttpb">
+                    <option value="all">--Tất cả phòng ban--</option>
+                    @foreach($modelpb as $ttpb)
+                        <option value="{{$ttpb->ma}}" {{($pb == $ttpb->ma) ? 'selected' : ''}}>{{$ttpb->ten}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -87,7 +103,12 @@
                                 <td>{{$tt->sohs}}</td>
                                 <td>{{$tt->sotbkl}}</td>
                                 <td>{{getDayVn($tt->ngaynhap)}}</td>
-                                <td></td>
+                                <td>
+                                    <a href="{{url('hoso-congbogia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                    <a href="{{url('hoso-congbogia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                    <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                        Xóa</button>
+                                </td>
                             </tr>
 
                         @endforeach
@@ -106,7 +127,7 @@
     </div>
     <!--Modal Delete-->
     <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'hoso-thamdinhgia/delete','id' => 'frm_delete'])!!}
+        {!! Form::open(['url'=>'hoso-congbogia/delete','id' => 'frm_delete'])!!}
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header modal-header-primary">

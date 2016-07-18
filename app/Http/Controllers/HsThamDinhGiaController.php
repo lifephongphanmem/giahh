@@ -83,7 +83,7 @@ class HsThamDinhGiaController extends Controller
                 $this->createts($mahs);
             }
 
-            return redirect('thamdinhgia/nam='.date_format($date,'Y').'&pb=all');
+            return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y').'&pb=all');
 
         }else
             return view('errors.notlogin');

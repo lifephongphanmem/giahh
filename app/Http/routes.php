@@ -3,7 +3,7 @@
 Route::get('/', 'HomeController@index');
 
 // <editor-fold defaultstate="collapsed" desc="--system--">
-    //user
+//user
 Route::get('/login','UsersController@login');
 Route::post('/signin','UsersController@signin');
 Route::get('/change-password','UsersController@cp');
@@ -22,18 +22,85 @@ Route::get('users/{id}/edit','UsersController@edit');
 Route::patch('users/{id}','UsersController@update');
 Route::get('users/phan-quyen/{id}','UsersController@permission');
 Route::post('users/phan-quyen','UsersController@uppermission');
+//End User
 
-    //general
+//general
 Route::resource('cau-hinh-he-thong','GeneralConfigsController');
-    //Phòng-ban
+//End General
+
+// TT Phòng-ban
 Route::resource('phong-ban','TtPhongBanController');
 Route::post('phong-ban/delete','TtPhongBanController@destroy');
+//End TT PHòng ban
+
+//Thông tin hàng hóa
+    //Danh mục thời điểm báo cáo
+Route::resource('dmthoidiem','DmThoiDiemController');
+Route::get('/checkmathoidiem','DmThoiDiemController@checkmathoidiem');
+Route::post('dmthoidiem/delete','DmThoiDiemController@destroy');
+    //End danh mục thời điểm báo cáo
+
+    //Danh mục loại giá
+Route::resource('dmloaigia','DmLoaiGiaController');
+Route::get('/checkmaloaigia','DmLoaiGiaController@checkmaloaigia');
+Route::post('dmloaigia/delete','DmLoaiGiaController@destroy');
+    //End danh mục loại giá
+
+    //Danh mục loại mặt hàng
+Route::resource('dmloaihh','DmLoaiHhController');
+Route::get('/checkmaloaihh','DmLoaiHhController@checkmaloaihh');
+Route::post('dmloaihh/delete','DmLoaiHhController@destroy');
+    //End dnah mục loại mặt hàng
+
+    //Hàng hóa trong nước
+Route::get('dmhanghoa-trongnuoc','DmHhTnController@nhom');
+Route::get('dmhanghoa-trongnuoc/nhom={nhom}','DmHhTnController@pnhom');
+Route::get('dmhanghoa-trongnuoc/nhom={nhom}/pnhom={pnhom}','DmHhTnController@hanghoa');
+Route::get('dmhanghoa-trongnuoc/nhom={nhom}/pnhom={pnhom}/create','DmHhTnController@create');
+Route::get('/checkmahhtn','DmHhTnController@checkmahhtn');
+Route::post('dmhanghoa-trongnuoc','DmHhTnController@store');
+Route::get('dmhanghoa-trongnuoc/{id}/edit','DmHhTnController@edit');
+Route::patch('dmhanghoa-trongnuoc/{id}','DmHhTnController@update');
+Route::post('dmhanghoa-trongnuoc/delete','DmHhTnController@destroy');
+    //End hàng hóa trong nước
+
+    //Hàng hóa xuất nhập khẩu
+Route::get('dmhanghoa-xuatnhapkhau','DmHhXnkController@nhom');
+    //End hàng hóa xuất nhập khẩu
+
+//End Thông tin hàng hóa
+
+
 
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="--Manage--">
-//TTQĐ
-    //TW
+    //Giá hàng hóa dv
+//Giá HH-DV trong nước
+Route::get('giahhdv-trongnuoc','HsGiaHhTnController@thoidiem');
+Route::get('giahhdv-trongnuoc/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHhTnController@index');
+Route::get('giahhdv-trongnuoc/thoidiem={thoidiem}/create','HsGiaHhTnController@create');
+Route::post('giahhdv-trongnuoc','HsGiaHhTnController@store');
+Route::get('giahhdv-trongnuoc/{id}/show','HsGiaHhTnController@show');
+Route::get('giahhdv-trongnuoc/{id}/edit','HsGiaHhTnController@edit');
+Route::patch('giahhdv-trongnuoc/{id}','HsGiaHhTnController@update');
+Route::post('giahhdv-trongnuoc/delete','HsGiaHhTnController@destroy');
+
+Route::get('/giahhtndefault/getpnhom','GiaHhTnDefaultController@getpnhomhh');
+Route::get('/giahhtndefault/gettthh','GiaHhTnDefaultController@gettthh');
+Route::get('/giahhtndefault/store','GiaHhTnDefaultController@store');
+Route::get('/giahhtndefault/edit','GiaHhTnDefaultController@edit');
+Route::get('/giahhtndefault/update','GiaHhTnDefaultController@update');
+Route::get('/giahhtndefault/delete','GiaHhTnDefaultController@destroy');
+
+Route::get('/giahhtn/store','GiaHhTnController@store');
+Route::get('/giahhtn/edit','GiaHhTnController@edit');
+Route::get('/giahhtn/update','GiaHhTnController@update');
+Route::get('/giahhtn/delete','GiaHhTnController@destroy');
+//End Giá HH-DV trong nước
+    //End giá hàng hóa dv
+    //TTQĐ
+//TW
 Route::get('thongtu-quyetdinh-tw/nam={nam}&pl={pl}','TtQdController@tw');
 Route::get('thongtu-quyetdinh-tw/create','TtQdController@twcreate');
 Route::get('checkkhvb','TtQdController@checkkhvb');
@@ -48,6 +115,7 @@ Route::post('thongtu-quyetdinh-tinh','TtQdController@tinhstore');
 Route::get('thongtu-quyetdinh-tinh/{id}/edit','TtQdController@tinhedit');
 Route::patch('thongtu-quyetdinh-tinh/{id}','TtQdController@tinhupdate');
 Route::post('thongtu-quyetdinh-tinh/delete','TtQdController@tinhdelete');
+//End TTQĐ
 
 //Thẩm định giá
 Route::get('hoso-thamdinhgia/nam={nam}&pb={pb}','HsThamDinhGiaController@index');
@@ -67,13 +135,37 @@ Route::get('thamdinhgia/store','ThamDinhGiaController@store');
 Route::get('thamdinhgia/edit','ThamDinhGiaController@edit');
 Route::get('thamdinhgia/update','ThamDinhGiaController@update');
 Route::get('thamdinhgia/delete','ThamDinhGiaController@destroy');
+//End Thẩm định giá
 
-//Công bố gia
-Route::get('hoso-congbogia/nam={nam}','HsCongBoGiaController@index');
+//Công bố giá
+Route::get('hoso-congbogia/nam={nam}&pb={pb}','HsCongBoGiaController@index');
 Route::get('hoso-congbogia/create','HsCongBoGiaController@create');
+Route::post('hoso-congbogia','HsCongBoGiaController@store');
+Route::post('hoso-congbogia/delete','HsCongBoGiaController@destroy');
+Route::get('hoso-congbogia/{id}/show','HsCongBoGiaController@show');
+Route::get('hoso-congbogia/{id}/edit','HsCongBoGiaController@edit');
+Route::patch('hoso-congbogia/{id}','HsCongBoGiaController@update');
+
+Route::get('congbogiadefault/store','CongBoGiaDefaultController@store');
+Route::get('congbogiadefault/edit','CongBoGiaDefaultController@edit');
+Route::get('congbogiadefault/update','CongBoGiaDefaultController@update');
+Route::get('congbogiadefault/delete','CongBoGiaDefaultController@destroy');
+
+Route::get('congbogia/store','CongBoGiaController@store');
+Route::get('congbogia/edit','CongBoGiaController@edit');
+Route::get('congbogia/update','CongBoGiaController@update');
+Route::get('congbogia/delete','CongBoGiaController@destroy');
+//End Công bố giá
 
 //Reports
+    //BCTK khác
 Route::get('reports/bctkkhac','BcTkKhacController@index');
+Route::post('reports/bctkkhac/BC1','BcTkKhacController@BC1');
+Route::post('reports/bctkkhac/BC2','BcTkKhacController@BC2');
+Route::post('reports/bctkkhac/BC3','BcTkKhacController@BC3');
+Route::post('reports/bctkkhac/BC4','BcTkKhacController@BC4');
+
+//End Reports
 
 
 // </editor-fold>

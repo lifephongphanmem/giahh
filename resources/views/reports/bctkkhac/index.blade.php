@@ -37,4 +37,5 @@
             </div>
         </div>
     </div>
+    @include('reports.bctkkhac.laocai.thoai.modal-thoai')
 @stop

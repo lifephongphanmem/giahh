@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CongBoGia;
+use App\HsCongBoGia;
+use App\HsThamDinhGia;
+use App\ThamDinhGia;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,6 +20,123 @@ class BcTkKhacController extends Controller
         if(Session::has('admin')){
             return view('reports.bctkkhac.index')
                 ->with('pageTitle','Báo cáo thống kê khác');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function BC1(Request $request){
+        if (Session::has('admin')) {
+            $input = $request->all();
+            $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
+                ->get();
+            //dd($model);
+            foreach($model as $hs){
+                $giadenghi = ThamDinhGia::where('mahs',$hs->mahs)->get();
+                $giathamdinh = ThamDinhGia::where('mahs',$hs->mahs)->get();
+
+                $hs->sumgiadenghi = $giadenghi->sum('giadenghi');
+                $hs->sumgiathamdinh = $giathamdinh->sum('giatritstd');
+                $hs->sumkthamdinh = $giadenghi->sum('giadenghi')-$giathamdinh->sum('giatritstd');
+                if($giadenghi->sum('giadenghi')>0 && $giathamdinh->sum('giatritstd')>0)
+                    $hs->phantram = $giathamdinh->sum('giatritstd') * 100/($giadenghi->sum('giadenghi'));
+            }
+
+            return view('reports.bctkkhac.laocai.thamdinhgia.BC1')
+                ->with('model',$model)
+                ->with('pageTitle','Kết quả thẩm đinh giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function BC2(Request $request){
+        if (Session::has('admin')) {
+            $input = $request->all();
+
+            $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
+                ->groupBy('thang')
+                ->get();
+            foreach($model as $thangs){
+                $idhss = HsThamDinhGia::where('thang',$thangs->thang)
+                    ->get();
+                $tshs = count($idhss);
+                $arrayidhs = '';
+                foreach($idhss as $idhs){
+                    $arrayidhs = $arrayidhs. $idhs->mahs.',';
+                }
+                $giadenghi = ThamDinhGia::wherein('mahs',explode(',',$arrayidhs))->sum('giadenghi');
+                $giathamdinh = ThamDinhGia::wherein('mahs',explode(',',$arrayidhs))->sum('giatritstd');
+                $thangs->counthoso = $tshs;
+                $thangs->sumgiadenghi = $giadenghi;
+                $thangs->sumgiathamdinh = $giathamdinh;
+                $thangs->sumkthamdinh = $giadenghi-$giathamdinh;
+                if($giadenghi>0 && $giathamdinh >0)
+                    $thangs->phantram = round($giathamdinh * 100/($giadenghi),1);
+            }
+
+            return view('reports.bctkkhac.laocai.thamdinhgia.BC2')
+                ->with('model',$model)
+                ->with('pageTitle','Kết quả thẩm đinh giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function BC3(Request $request){
+        if (Session::has('admin')) {
+            $input = $request->all();
+
+            $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
+                ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                ->get();
+            foreach($model as $hs){
+                $giadenghi = CongBoGia::where('mahs',$hs->mahs)->sum('giadenghi');
+                $giathamdinh = CongBoGia::where('mahs',$hs->mahs)->sum('giatritstd');
+                $hs->sumgiadenghi = $giadenghi;
+                $hs->sumgiathamdinh = $giathamdinh;
+                $hs->sumkthamdinh = $giadenghi-$giathamdinh;
+                if($giadenghi>0 && $giathamdinh >0)
+                    $hs->phantram = round($giathamdinh * 100/($giadenghi),1);
+            }
+
+            return view('reports.bctkkhac.laocai.congbogia.BC3')
+                ->with('model',$model)
+                ->with('pageTitle','Báo cáo chi tiết');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function BC4(Request $request){
+        if (Session::has('admin')) {
+            $input = $request->all();
+
+            $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
+                ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
+                ->groupBy('thang')
+                ->get();
+            foreach($model as $thangs){
+                $idhss = HsCongBoGia::where('thang',$thangs->thang)
+                    ->get();
+                $tshs = count($idhss);
+                $arrayidhs = '';
+                foreach($idhss as $idhs){
+                    $arrayidhs = $arrayidhs. $idhs->mahs.',';
+                }
+                $giadenghi = CongBoGia::wherein('mahs',explode(',',$arrayidhs))->sum('giadenghi');
+                $giathamdinh = CongBoGia::wherein('mahs',explode(',',$arrayidhs))->sum('giatritstd');
+                $thangs->counths = $tshs;
+                $thangs->sumgiadenghi = $giadenghi;
+                $thangs->sumgiathamdinh =$giathamdinh;
+                $thangs->sumkthamdinh = $giadenghi-$giathamdinh;
+                if($giadenghi>0 && $giathamdinh >0)
+                    $thangs->phantram = round($giathamdinh * 100/($giadenghi),1);
+            }
+
+            return view('reports.bctkkhac.laocai.congbogia.BC4')
+                ->with('model',$model)
+                ->with('pageTitle','Báo cáo tổng hợp');
+
         }else
             return view('errors.notlogin');
     }

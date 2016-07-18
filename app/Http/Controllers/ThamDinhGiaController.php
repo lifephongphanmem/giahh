@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Session;
 
 class ThamDinhGiaController extends Controller
 {
-
     public function store(Request $request)
     {
         $result = array(
