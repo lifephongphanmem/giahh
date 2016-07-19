@@ -13,12 +13,11 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/giahhtn/edit',
+                url: '/giahhxnkdefault/edit',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    id: id,
-                    mahs: $('#mahs').val()
+                    id: id
                 },
                 dataType: 'JSON',
                 success: function (data) {
@@ -28,7 +27,7 @@
                         InputMask();
                     }
                     else
-                        toastr.error("Không thể chỉnh sửa thông tin hàng hóa dịch vụ!", "Lỗi!");
+                        toastr.error("Không thể chỉnh sửa thông tin hàng hóa xuất nhập khẩu!", "Lỗi!");
                 }
             })
         }
@@ -36,28 +35,24 @@
         function updatets(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giahhtn/update',
+                url: '/giahhxnkdefault/update',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
                     id:$('input[name="idedit"]').val(),
-                    masopnhom: $('input[name="masopnhomedit"]').val(),
+                    masoloai: $('input[name="masoloaiedit"]').val(),
                     mahh: $('input[name="mahhedit"]').val(),
                     giatu: $('input[name="giatuedit"]').val(),
                     giaden: $('input[name="giadenedit"]').val(),
                     soluong: $('input[name ="soluongedit"]').val(),
                     nguontin: $('input[name="nguontinedit"]').val(),
-                    gc: $('textarea[name="gcedit"]').val(),
-                    mahs: $('#mahs').val()
+                    gc: $('textarea[name="gcedit"]').val()
                 },
                 dataType: 'JSON',
                 success: function (data) {
-                    //$('#modal-wide-width').dialog('close');
                     if(data.status == 'success') {
-                        toastr.success("Chỉnh sửa thông tin hàng hóa dịch vụ thành công", "Thành công!");
+                        toastr.success("Chỉnh sửa thông tin hàng hóa xuất nhập khẩu thành công", "Thành công!");
                         $('#ttts').replaceWith(data.message);
-                        //$("#modal-wide-width").dialog("close");
-                        //$('#modal-wide-width').fadeOut();
                         $('#modal-wide-width').modal("hide");
 
                     }else
@@ -69,17 +64,16 @@
         function deleteRow(id){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giahhtn/delete',
+                url: '/giahhxnkdefault/delete',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
-                    id: id,
-                    mahs: $('#mahs').val()
+                    id: id
                 },
                 dataType: 'JSON',
                 success: function (data) {
                     //if(data.status == 'success') {
-                    toastr.success("Bạn đã xóa thông tin hàng hóa dịch vụ thành công!", "Thành công!");
+                    toastr.success("Bạn đã xóa thông tin hàng hóa xuất nhập khẩu thành công!", "Thành công!");
                     $('#ttts').replaceWith(data.message);
 
                     //}
@@ -119,7 +113,6 @@
                         case "rcurrency":
 
                             var sign = attrDefault($this, 'sign', '$');
-                            ;
 
                             mask = "999,999,999.99";
 
@@ -165,7 +158,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin giá hàng hóa dịch vụ trong nước<small>chỉnh sửa</small>
+        Thông tin giá hàng hóa xuất nhập khẩu<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -176,61 +169,39 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                        {!! Form::model($model, ['method' => 'PATCH', 'url'=>'giahhdv-trongnuoc/'. $model->id, 'class'=>'horizontal-form','id'=>'update_ttgiahhdvtn']) !!}
+                        {!! Form::open(['url'=>'giahh-xuatnhapkhau', 'id' => 'create_ttgiahhxnk', 'class'=>'horizontal-form']) !!}
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời gian nhập<span class="require">*</span></label>
-                                        <input type="date" id="tgnhap" name="tgnhap" class="form-control required" autofocus value="{{$model->tgnhap}}">
+                                        <input type="date" id="tgnhap" name="tgnhap" class="form-control required" autofocus>
                                     </div>
                                 </div>
                                 <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Thị trường<span class="require">*</span></label>
-                                        {!!Form::text('thitruong', null, array('id' => 'thitruong','class' => 'form-control required'))!!}
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-
-                            <!--/row-->
-                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Loại hàng hóa<span class="require">*</span></label>
-                                        <select class="form-control" id="maloaihh" name="maloaihh">
-                                            @foreach($loaihh as $hh)
-                                                <option value="{{$hh->maloaihh}}" {{($hh->maloaihh == $model->maloaihh) ? 'selected' : ''}}>{{$hh->tenloaihh}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Loại giá</label>
+                                        <label class="control-label">Loại giá<span class="require">*</span></label>
                                         <select class="form-control" id="maloaigia" name="maloaigia">
-                                            @foreach($loaigia as $gia)
-                                                <option value="{{$gia->maloaigia}}" {{($gia->maloaigia == $model->maloaigia) ? 'selected' : ''}}>{{$gia->tenloaigia}}</option>
+                                            @foreach($loaigia as $hh)
+                                                <option value="{{$hh->maloaigia}}">{{$hh->tenloaigia}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <!--/span-->
                             </div>
-                            <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}"
+                            <input type="hidden" name="mathoidiem" id="mathoidiem" value="{{$mathoidiem}}">
 
                             <!--/row-->
                             <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label">Nhóm hàng hóa- dịch vụ<span class="require">*</span></label>
-                                        <select class="form-control" id="manhom" name="manhom">
-                                            <option value="">--Chọn nhóm hàng hóa- dịch vụ--</option>
+                                        <label class="control-label">Nhóm hàng hóa<span class="require">*</span></label>
+                                        <select class="form-control select2me" id="manhom" name="manhom">
+                                            <option value="">--Chọn nhóm hàng hóa--</option>
                                             @foreach($nhomhh as $nhom)
                                                 <option value="{{$nhom->manhom}}">{{$nhom->tennhom}}</option>
                                             @endforeach
@@ -241,15 +212,12 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label">Phân nhóm hàng hóa- dịch vụ</label>
+                                        <label class="control-label">Phân nhóm hàng hóa<span class="require">*</span></label>
                                         <div id="ttpnhom">
-                                            <!--select class="form-control select2me" name="mapnhom" id="mapnhom">
-                                                <option value="">--Chọn phân nhóm hàng hóa- dịch vụ--</option>
-                                            </select-->
                                             {!! Form::select(
                                             'mapnhom',
                                             array(
-                                            '' => '--Chọn phân nhóm hàng hóa- dịch vụ--',
+                                            '' => '--Chọn phân nhóm hàng hóa--',
                                             ),null,
                                             array('id' => 'mapnhom', 'class' => 'form-control select2me'))
                                             !!}
@@ -260,10 +228,26 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="control-label">Tên hàng hóa-dịch vụ<span class="require">*</span></label>
+                                        <label class="control-label">Loại hàng hóa<span class="require">*</span></label>
+                                        <div id="ttloai">
+                                            {!! Form::select(
+                                            'maloai',
+                                            array(
+                                            '' => '--Chọn loại hàng hóa--',
+                                            ),null,
+                                            array('id' => 'maloai', 'class' => 'form-control select2me'))
+                                            !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
                                         <div id="tthh">
                                             <select class="form-control select2me" name="mahh" id="mahh">
-                                                <option value="">--Chọn hàng hóa- dịch vụ--</option>
+                                                <option value="">--Chọn hàng hóa--</option>
                                             </select>
                                         </div>
                                     </div>
@@ -332,25 +316,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="ttts">
-                                        @if($modeltthh)
-                                            @foreach($modeltthh as $key=>$tt)
-                                                <tr>
-                                                    <td style="text-align: center">{{$key +1}}</td>
-                                                    <td class="active">{{$tt->mahh}}</td>
-                                                    <td style="text-align: right">{{number_format($tt->giatu)}}</td>
-                                                    <td style="text-align: right">{{number_format($tt->giaden)}}</td>
-                                                    <td style="text-align: center">{{number_format($tt->soluong)}}</td>
-                                                    <td>{{$tt->nguontin}}</td>
-                                                    <td>{{$tt->gc}}</td>
-                                                    <td>
-                                                        <button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}});"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
-                                                        <button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow({{$tt->id}})" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @else
                                             <td colspan="9" style="text-align: center">Chưa có thông tin</td>
-                                        @endif
                                         </tbody>
                                         </table>
                                     </div>
@@ -371,7 +337,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#create_ttgiahhdvtn").validate({
+            var validator = $("#create_ttgiahhxnk").validate({
                 rules: {
                     ten :"required"
                 },
@@ -387,18 +353,17 @@
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
                 $.ajax({
-                    url: '/giahhtn/store',
+                    url: '/giahhxnkdefault/store',
                     type: 'GET',
                     data: {
                         _token: CSRF_TOKEN,
-                        masopnhom: $('#mapnhom').val(),
+                        masoloai: $('#maloai').val(),
                         mahh: $('#mahh').val(),
                         giatu: $('#giatu').val(),
                         giaden: $('#giaden').val(),
                         soluong: $('#soluong').val(),
                         nguontin: $('#nguontin').val(),
-                        gc: $('textarea[name="gc"]').val(),
-                        mahs: $('#mahs').val()
+                        gc: $('textarea[name="gc"]').val()
 
                     },
                     dataType: 'JSON',
@@ -406,14 +371,18 @@
                         if(data.status == 'success') {
                             toastr.success("Cập nhật thông tin giá hàng hóa dịch vụ thành công", "Thành công!");
                             $('#ttts').replaceWith(data.message);
-                            $('#manhom').val('');
-                            $('#mapnhom').children().remove().end().append('<option selected value="">--Chọn phân nhóm hàng hóa- dịch vụ--</option>') ;
+                            $('#manhom').children().end().append('<option selected value="">--Chọn nhóm hàng hóa--</option>') ;
+                            $('#manhom').select2({
+                                placeholder: '--Chọn nhóm hàng hóa--'});
+                            $('#mapnhom').children().remove().end().append('<option selected value="">--Chọn phân nhóm hàng hóa--</option>') ;
                             $('#mapnhom').select2({
-                                placeholder: '--Chọn phân nhóm hàng hóa- dịch vụ--'});
-                            $('#mahh').val('');
-                            $('#mahh').children().remove().end().append('<option selected value="">--Chọn hàng hóa- dịch vụ--</option>') ;
+                                placeholder: '--Chọn phân nhóm hàng hóa--'});
+                            $('#maloai').children().remove().end().append('<option selected value="">--Chọn loại hàng hóa--</option>') ;
+                            $('#maloai').select2({
+                                placeholder: '--Chọn loại hàng hóa--'});
+                            $('#mahh').children().remove().end().append('<option selected value="">--Chọn hàng hóa--</option>') ;
                             $('#mahh').select2({
-                                placeholder: '--Chọn hàng hóa- dịch vụ--'});
+                                placeholder: '--Chọn hàng hóa--'});
                             $('#giatu').val('0');
                             $('#giaden').val('0');
                             $('#soluong').val('1');
@@ -438,7 +407,7 @@
             $('#manhom').change(function(){
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
-                    url: '/giahhtndefault/getpnhom',
+                    url: '/giahhxnkdefault/getpnhom',
                     type: 'GET',
                     data: {
                         _token: CSRF_TOKEN,
@@ -448,7 +417,7 @@
                     dataType: 'JSON',
                     success: function (data) {
                         if(data.status == 'success') {
-                            toastr.success("Chọn nhóm hàng hóa dịch vụ thành công - Bạn cần chọn tiếp phân nhóm hàng hóa dịch vụ", "Thành công!");
+                            toastr.success("Chọn nhóm hàng hóa thành công - Bạn cần chọn tiếp phân nhóm hàng hóa", "Thành công!");
                             $('#ttpnhom').replaceWith(data.message);
                             $('#mapnhom').select2();
                             //alert(data.message);
@@ -464,17 +433,42 @@
                 $('#mapnhom').change(function () {
                     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: '/giahhtndefault/gettthh',
+                        url: '/giahhxnkdefault/getloai',
                         type: 'GET',
                         data: {
                             _token: CSRF_TOKEN,
-                            mapnhom: $('#mapnhom').val()
+                            masopnhom: $('#mapnhom').val()
 
                         },
                         dataType: 'JSON',
                         success: function (data) {
                             if(data.status == 'success') {
-                                toastr.success("Chọn phân nhóm hàng hóa dịch vụ thành công - Bạn cần chọn tiếp hàng hóa dịch vụ", "Thành công!");
+                                toastr.success("Chọn phân nhóm hàng hóa thành công - Bạn cần chọn tiếp loại hàng hóa ", "Thành công!");
+                                $('#ttloai').replaceWith(data.message);
+                                $('#maloai').select2();
+                                gethh();
+                            }
+                            else
+                                toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
+                        }
+                    })
+                });
+            }
+            function gethh() {
+                $('#maloai').change(function () {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        url: '/giahhxnkdefault/gethh',
+                        type: 'GET',
+                        data: {
+                            _token: CSRF_TOKEN,
+                            masoloai: $('#maloai').val()
+
+                        },
+                        dataType: 'JSON',
+                        success: function (data) {
+                            if (data.status == 'success') {
+                                toastr.success("Chọn loại hàng hóa thành công - Bạn cần chọn tiếp hàng hóa ", "Thành công!");
                                 $('#tthh').replaceWith(data.message);
                                 $('#mahh').select2();
                             }
@@ -484,6 +478,7 @@
                     })
                 });
             }
+
         }(jQuery));
     </script>
 

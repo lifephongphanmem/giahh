@@ -66,6 +66,15 @@ Route::post('dmhanghoa-trongnuoc/delete','DmHhTnController@destroy');
 
     //Hàng hóa xuất nhập khẩu
 Route::get('dmhanghoa-xuatnhapkhau','DmHhXnkController@nhom');
+Route::get('dmhanghoa-xuatnhapkhau/nhom={nhom}','DmHhXnkController@pnhom');
+Route::get('dmhanghoa-xuatnhapkhau/nhom={nhom}/pnhom={pnhom}','DmHhXnkController@loai');
+Route::get('dmhanghoa-xuatnhapkhau/nhom={nhom}/pnhom={pnhom}/loai={loai}','DmHhXnkController@hanghoa');
+Route::get('dmhanghoa-xuatnhapkhau/nhom={nhom}/pnhom={pnhom}/loai={loai}/create','DmHhXnkController@create');
+Route::get('/checkmahhxnk','DmHhXnkController@checkmahhxnk');
+Route::post('dmhanghoa-xuatnhapkhau','DmHhXnkController@store');
+Route::get('dmhanghoa-xuatnhapkhau/{id}/edit','DmHhXnkController@edit');
+Route::patch('dmhanghoa-xuatnhapkhau/{id}','DmHhXnkController@update');
+Route::post('dmhanghoa-xuatnhapkhau/delete','DmHhXnkController@destroy');
     //End hàng hóa xuất nhập khẩu
 
 //End Thông tin hàng hóa
@@ -98,6 +107,30 @@ Route::get('/giahhtn/edit','GiaHhTnController@edit');
 Route::get('/giahhtn/update','GiaHhTnController@update');
 Route::get('/giahhtn/delete','GiaHhTnController@destroy');
 //End Giá HH-DV trong nước
+//Giá HH xuất nhập khẩu
+Route::get('giahh-xuatnhapkhau','HsGiaHhXnkController@thoidiem');
+Route::get('giahh-xuatnhapkhau/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHhXnkController@index');
+Route::get('giahh-xuatnhapkhau/thoidiem={thoidiem}/create','HsGiaHhXnkController@create');
+Route::post('giahh-xuatnhapkhau','HsGiaHhXnkController@store');
+Route::get('giahh-xuatnhapkhau/{id}/show','HsGiaHhXnkController@show');
+Route::get('giahh-xuatnhapkhau/{id}/edit','HsGiaHhXnkController@edit');
+Route::patch('giahh-xuatnhapkhau/{id}','HsGiaHhXnkController@update');
+Route::post('giahh-xuatnhapkhau/delete','HsGiaHhXnkController@destroy');
+
+
+Route::get('/giahhxnkdefault/getpnhom','GiaHhXnkDefaultController@getpnhomhh');
+Route::get('/giahhxnkdefault/getloai','GiaHhXnkDefaultController@getloai');
+Route::get('/giahhxnkdefault/gethh','GiaHhXnkDefaultController@gethh');
+Route::get('/giahhxnkdefault/store','GiaHhXnkDefaultController@store');
+Route::get('/giahhxnkdefault/edit','GiaHhXnkDefaultController@edit');
+Route::get('/giahhxnkdefault/update','GiaHhXnkDefaultController@update');
+Route::get('/giahhxnkdefault/delete','GiaHhXnkDefaultController@destroy');
+
+Route::get('/giahhxnk/store','GiaHhXnkController@store');
+Route::get('/giahhxnk/edit','GiaHhXnkController@edit');
+Route::get('/giahhxnk/update','GiaHhXnkController@update');
+Route::get('/giahhxnk/delete','GiaHhXnkController@destroy');
+//End Giá hh xuất nhập khẩu
     //End giá hàng hóa dv
     //TTQĐ
 //TW

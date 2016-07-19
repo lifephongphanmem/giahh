@@ -278,7 +278,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </li>
 
                         <li>
-                            <a href="">Giá hàng hóa xuất nhập khẩu</a>
+                            <a href="{{url('giahh-xuatnhapkhau')}}">Giá hàng hóa xuất nhập khẩu</a>
                         </li>
                     </ul>
                 </li>

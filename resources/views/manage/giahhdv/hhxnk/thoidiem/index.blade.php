@@ -23,7 +23,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Chọn thời điểm nhập<small>&nbsp;báo cáo giá hàng hóa dịch vụ trong nước</small>
+        Chọn thời điểm nhập<small>&nbsp;báo cáo giá hàng hóa xuất nhập khẩu</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -65,7 +65,7 @@
                             <td>{{$tt->denngay}}</td>
                             <td>{{$tt->nhom}}</td>
                             <td>
-                                <a href="{{url('giahhdv-trongnuoc/thoidiem='.$tt->mathoidiem.'/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}" class="btn btn-default btn-xs mbs">
+                                <a href="{{url('giahh-xuatnhapkhau/thoidiem='.$tt->mathoidiem.'/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}" class="btn btn-default btn-xs mbs">
                                     <i class="fa fa-edit"></i> Nhập báo cáo</a>
                             </td>
                         </tr>
