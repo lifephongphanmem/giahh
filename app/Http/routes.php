@@ -1,6 +1,8 @@
 <?php
 // DEFAULT
 Route::get('/', 'HomeController@index');
+Route::get('setting','HomeController@setting');
+Route::post('setting','HomeController@upsetting');
 
 // <editor-fold defaultstate="collapsed" desc="--system--">
 //user
@@ -192,8 +194,8 @@ Route::get('congbogia/delete','CongBoGiaController@destroy');
 
 // </editor-fold>
 
-    //Reports
-//TT142/2015/BTC
+// <editor-fold defaultstate="collapsed" desc="--Reports--">
+    //TT142/2015/BTC
 Route::get('reports/tt142-2015-BTC','TT1422015BtcController@index');
 Route::post('reports/tt142-2015-BTC/PL2','TT1422015BtcController@PL2');
 Route::post('reports/tt142-2015-BTC/PL3','TT1422015BtcController@PL3');
@@ -201,21 +203,21 @@ Route::post('reports/tt142-2015-BTC/PL4','TT1422015BtcController@PL4');
 Route::post('reports/tt142-2015-BTC/PL5','TT1422015BtcController@PL5');
 Route::get('reports/tt142-2015-BTC/PL6','TT1422015BtcController@PL6');
 Route::get('reports/tt142-2015-BTC/PL7','TT1422015BtcController@PL7');
-//End TT142/2015/BTC
+    //End TT142/2015/BTC
 
-//TT55/2011/BTC
+    //TT55/2011/BTC
 Route::get('reports/tt55-2011-BTC','TT552011BtcController@index');
 Route::post('reports/tt55-2011-BTC/PL1','TT552011BtcController@PL1');
 Route::get('reports/tt55-2011-BTC/PL2','TT552011BtcController@PL2');
-//End TT55/2011/BTC
+    //End TT55/2011/BTC
 
 
-//BCTK khác
+    //BCTK khác
 Route::get('reports/bctkkhac','BcTkKhacController@index');
 Route::post('reports/bctkkhac/BC1','BcTkKhacController@BC1');
 Route::post('reports/bctkkhac/BC2','BcTkKhacController@BC2');
 Route::post('reports/bctkkhac/BC3','BcTkKhacController@BC3');
 Route::post('reports/bctkkhac/BC4','BcTkKhacController@BC4');
-//End BCTK khác
-    //End Reports
+    //End BCTK khác
+// </editor-fold>
 ?>

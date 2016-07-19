@@ -15,6 +15,7 @@ class GeneralConfigs extends Model
         'thutruong',
         'ketoan',
         'nguoilapbieu',
-        'namhethong'
+        'namhethong',
+        'setting'
     ];
 }

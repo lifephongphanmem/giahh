@@ -266,6 +266,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="selected"></span>
                     </a>
                 </li>
+                @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk'))
                 <li>
                     <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
@@ -273,15 +274,20 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
+                        @if(canGeneral('hhdv','hhdvtn'))
                         <li>
                             <a href="{{url('giahhdv-trongnuoc')}}">Giá hàng hóa- dịch vụ trong nước</a>
                         </li>
-
+                        @endif
+                        @if(canGeneral('hhdv','hhxnk'))
                         <li>
                             <a href="{{url('giahh-xuatnhapkhau')}}">Giá hàng hóa xuất nhập khẩu</a>
                         </li>
+                        @endif
                     </ul>
                 </li>
+                @endif
+                @if(canGeneral('thamdinhgia','thamdinhgia'))
                 <li>
                     <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
@@ -299,6 +305,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         </li>
                     </ul>
                 </li>
+                @endif
+                @if(canGeneral('congbogia','congbogia'))
                 <li>
                     <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
@@ -316,6 +324,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         </li>
                     </ul>
                 </li>
+                @endif
+                @if(canGeneral('ttqd','ttqd'))
                 <li>
                     <a href="">
                         <i class="fa fa-laptop"></i>
@@ -332,6 +342,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </li>
                     </ul>
                 </li>
+                @endif
                 <li>
                     <a href="">
                         <i class="fa fa-file-o fa-fw"></i>
@@ -340,16 +351,23 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="{{url('reports/tt142-2015-BTC')}}">Thông tư 142/2015-TT-BTC</a>
+                            <a href="">Hàng hóa dịch vụ<span class="arrow"></span> </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="{{url('reports/tt142-2015-BTC')}}">Thông tư 142/2015-TT-BTC</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('reports/tt55-2011-BTC')}}">Thông tư 55/2011-TT-BTC</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('reports/bctkkhac')}}">Báo cáo thống kê khác</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="{{url('reports/tt55-2011-BTC')}}">Thông tư 55/2011-TT-BTC</a>
-                        </li>
-                        <li>
-                            <a href="{{url('reports/bctkkhac')}}">Báo cáo thống kê khác</a>
-                        </li>
+
                     </ul>
                 </li>
+                @if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa')
                 <li>
                     <a href="">
                         <i class="icon-settings"></i>
@@ -357,8 +375,9 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
+                        @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk'))
                         <li>
-                            <a href="">Thông tin hàng hóa <span class="arrow"></span> </a>
+                            <a href="">Giá hàng hóa <span class="arrow"></span> </a>
                             <ul class="sub-menu">
                                 <li>
                                     <a href="{{url('dmthoidiem')}}"> Danh mục thời điểm</a>
@@ -369,21 +388,30 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <li>
                                     <a href="{{url('dmloaihh')}}"> Danh mục loại hàng hóa</a>
                                 </li>
+                                @if(canGeneral('hhdv','hhdvtn'))
                                 <li>
                                     <a href="{{url('dmhanghoa-trongnuoc')}}">Mặt hàng trong nước</a>
                                 </li>
+                                @endif
+                                @if(canGeneral('hhdv','hhxnk'))
                                 <li>
                                     <a href="{{url('dmhanghoa-xuatnhapkhau')}}"> Mặt hàng xuất nhập khẩu</a>
                                 </li>
+                                @endif
+
                             </ul>
                         </li>
+                        @endif
                         <li><a href="{{url('phong-ban')}}">Thông tin phòng ban</a></li>
                         <li><a href="{{url('users/pl=quan-ly')}}"> Quản lý tài khoản</a></li>
+
                         <li><a href="{{url('cau-hinh-he-thong')}}">Cấu hình hệ thống</a></li>
 
                     </ul>
                 </li>
+                @endif
             </ul>
+
             <!-- END SIDEBAR MENU -->
         </div>
     </div>

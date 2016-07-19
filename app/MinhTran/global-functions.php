@@ -104,6 +104,17 @@ function can($module = null, $action = null)
 
 }
 
+function canGeneral($module = null, $action =null)
+{
+    $model = \App\GeneralConfigs::first();
+    $setting = json_decode($model->setting, true);
+
+    if(isset($setting[$module][$action]) && $setting[$module][$action] ==1 )
+        return true;
+    else
+        return false;
+}
+
 function canDvCc($module = null, $action = null)
 {
     $permission = !empty(session('ttdnvt')->dvcc) ? session('ttdnvt')->dvcc : getDvCcDefault('T');

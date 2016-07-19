@@ -23,7 +23,7 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            <div class="portlet box">
+            <div class="portlet box blue">
                 <!--div class="portlet-title">
                 </div-->
                 <div class="portlet-body form">

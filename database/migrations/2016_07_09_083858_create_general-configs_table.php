@@ -21,6 +21,7 @@ class CreateGeneralConfigsTable extends Migration
             $table->string('ketoan');
             $table->string('nguoilapbieu');
             $table->string('namhethong');
+            $table->string('setting');
             $table->timestamps();
         });
     }
