@@ -78,7 +78,7 @@
                                     <div class="form-group">
                                         <label class="control-label">Phân loại báo cáo</label>
                                         <select class="form-control" id="plbc" name="plbc">
-                                            <option value="Hàng hóa, dịch vụ">Hàng hóa, dịch vụ</option>
+                                            <option value="Hàng hóa,dịch vụ">Hàng hóa,dịch vụ</option>
                                             <option value="Hàng hóa xuất nhập khẩu">Hàng hóa xuất nhập khẩu</option>
                                         </select>
                                     </div>

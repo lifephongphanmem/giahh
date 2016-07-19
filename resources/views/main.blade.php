@@ -340,10 +340,10 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="{{url('')}}">Thông tư 142/2015-TT-BTC</a>
+                            <a href="{{url('reports/tt142-2015-BTC')}}">Thông tư 142/2015-TT-BTC</a>
                         </li>
                         <li>
-                            <a href="{{url('')}}">Thông tư 55/2011-TT-BTC</a>
+                            <a href="{{url('reports/tt55-2011-BTC')}}">Thông tư 55/2011-TT-BTC</a>
                         </li>
                         <li>
                             <a href="{{url('reports/bctkkhac')}}">Báo cáo thống kê khác</a>
