@@ -73,6 +73,7 @@
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
                 @if(session('admin')->level == 'T')
+                    @if(can('ttqd','create'))
                 <div class="portlet-title">
                     <div class="caption">
                     </div>
@@ -80,10 +81,12 @@
 
                         <a href="{{url('thongtu-quyetdinh-tinh/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+
                         <a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a>
                     </div>
                 </div>
+                    @endif
                 @endif
                 <div class="portlet-body">
                     <!--div class="table-toolbar">
@@ -136,12 +139,16 @@
                                 <td class="success">{{$tt->tieude}}</td>
                                 <td>{{$tt->ghichu}}</td>
                                 <td>
+                                    @if(can('ttqd','edit'))
                                     <a href="{{url('thongtu-quyetdinh-tinh/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                    @endif
                                     @if($tt->tailieu)
                                     <a href="{{url('/data/uploads/ttqd/'.$tt->tailieu)}}"><span class="btn btn-default btn-xs mbs"><i class="fa fa-download"></i> Tải tệp</span></a>
                                     @endif
+                                    @if(can('ttqd','delete'))
                                     <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                         Xóa</button>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

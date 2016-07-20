@@ -275,19 +275,24 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                     <ul class="sub-menu">
                         @if(canGeneral('hhdv','hhdvtn'))
+                            @if(can('hhdvtn','index'))
                         <li>
                             <a href="{{url('giahhdv-trongnuoc')}}">Giá hàng hóa- dịch vụ trong nước</a>
                         </li>
+                            @endif
                         @endif
                         @if(canGeneral('hhdv','hhxnk'))
+                            @if(can('hhxnk','index'))
                         <li>
                             <a href="{{url('giahh-xuatnhapkhau')}}">Giá hàng hóa xuất nhập khẩu</a>
                         </li>
+                            @endif
                         @endif
                     </ul>
                 </li>
                 @endif
                 @if(canGeneral('thamdinhgia','thamdinhgia'))
+                    @if(can('thamdinhgia','index'))
                 <li>
                     <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
@@ -295,6 +300,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
+
                         <li>
                             <a href="{{url('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ thẩm định</a>
                         </li>
@@ -303,10 +309,13 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="">
                                 Tìm kiếm thông tin tài sản</a>
                         </li>
+
                     </ul>
                 </li>
+                    @endif
                 @endif
                 @if(canGeneral('congbogia','congbogia'))
+                    @if(can('congbogia','index'))
                 <li>
                     <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
@@ -314,6 +323,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
+
                         <li>
                             <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ công bố</a>
                         </li>
@@ -322,10 +332,13 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="">
                                 Tìm kiếm thông tin tài sản</a>
                         </li>
+
                     </ul>
                 </li>
+                    @endif
                 @endif
                 @if(canGeneral('ttqd','ttqd'))
+                    @if(can('ttqd','index'))
                 <li>
                     <a href="">
                         <i class="fa fa-laptop"></i>
@@ -342,6 +355,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </li>
                     </ul>
                 </li>
+                    @endif
                 @endif
                 <li>
                     <a href="">
@@ -350,6 +364,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
+                        @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk') || canGeneral('thamdinhgia','thamdinhgia') || canGeneral('congbogia','congbogia'))
                         <li>
                             <a href="">Hàng hóa dịch vụ<span class="arrow"></span> </a>
                             <ul class="sub-menu">
@@ -364,6 +379,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </li>
                             </ul>
                         </li>
+                        @endif
 
                     </ul>
                 </li>

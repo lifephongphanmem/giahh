@@ -73,39 +73,21 @@
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
                 @if(session('admin')->level == 'T')
+                    @if(can('ttqd','create'))
                 <div class="portlet-title">
                     <div class="caption">
                     </div>
                     <div class="actions">
-
+                        @
                         <a href="{{url('thongtu-quyetdinh-tw/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
                         <a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a>
                     </div>
                 </div>
+                    @endif
                 @endif
                 <div class="portlet-body">
-                    <!--div class="table-toolbar">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label>Ngày ban hành</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Áp dụng từ ngày</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <label></label>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-search"></i> Tìm kiếm</button>
-                                </div>
-                            </div>
-                    </div-->
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
@@ -136,12 +118,16 @@
                                 <td class="success">{{$tt->tieude}}</td>
                                 <td>{{$tt->ghichu}}</td>
                                 <td>
+                                    @if(can('ttqd','edit'))
                                     <a href="{{url('thongtu-quyetdinh-tw/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                    @endif
                                     @if($tt->tailieu)
                                     <a href="{{url('/data/uploads/ttqd/'.$tt->tailieu)}}"><span class="btn btn-default btn-xs mbs"><i class="fa fa-download"></i> Tải tệp</span></a>
                                     @endif
+                                    @if(can('ttqd','delete'))
                                     <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                         Xóa</button>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach

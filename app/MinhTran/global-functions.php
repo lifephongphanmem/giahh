@@ -3,6 +3,18 @@ function getPermissionDefault($level) {
     $roles = array();
 
     $roles['T'] = array(
+        'hhdvtn' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
+        'hhxnk' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
         'tdgia' => array(
             'index' => 1,
             'create' => 1,
@@ -15,7 +27,7 @@ function getPermissionDefault($level) {
             'edit' => 1,
             'delete' => 1
         ),
-        'vbpl' => array(
+        'ttqd' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
@@ -23,6 +35,18 @@ function getPermissionDefault($level) {
         ),
     );
     $roles['H'] = array(
+        'hhdvtn' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
+        'hhxnk' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
         'tdgia' => array(
             'index' => 1,
             'create' => 1,
@@ -35,7 +59,7 @@ function getPermissionDefault($level) {
             'edit' => 1,
             'delete' => 1
         ),
-        'vbpl' => array(
+        'ttqd' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
@@ -43,19 +67,31 @@ function getPermissionDefault($level) {
         ),
     );
     $roles['X'] = array(
+        'hhdvtn' => array(
+            'index' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
+        ),
+        'hhxnk' => array(
+            'index' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
+        ),
         'tdgia' => array(
             'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
         ),
         'congbogia' => array(
             'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
         ),
-        'vbpl' => array(
+        'ttqd' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,

@@ -73,8 +73,10 @@
             <div class="portlet box">
                 <div class="portlet-title">
                     <div class="actions">
+                        @if(can('congbogia','create'))
                         <a href="{{url('hoso-congbogia/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+                        @endif
                         <a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a>
                     </div>
@@ -105,9 +107,13 @@
                                 <td>{{getDayVn($tt->ngaynhap)}}</td>
                                 <td>
                                     <a href="{{url('hoso-congbogia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                    @if(can('congbogia','edit') && $tt->mahuyen == session('admin')->mahuyen)
                                     <a href="{{url('hoso-congbogia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                    @endif
+                                    @if(can('congbogia','delete') && $tt->mahuyen == session('admin')->mahuyen)
                                     <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                         Xóa</button>
+                                    @endif
                                 </td>
                             </tr>
 

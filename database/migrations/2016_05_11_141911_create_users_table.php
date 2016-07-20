@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('mahuyen')->nullable();
             $table->string('level')->nullable();
             $table->string('sadmin')->nullable();
-            $table->string('permission')->nullable();
+            $table->text('permission')->nullable();
             $table->timestamps();
         });
     }

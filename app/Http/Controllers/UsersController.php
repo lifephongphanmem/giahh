@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index($pl)
     {
         if (Session::has('admin')) {
@@ -139,12 +135,6 @@ class UsersController extends Controller
             return view('errors.notlogin');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         if (Session::has('admin')) {
@@ -265,7 +255,7 @@ class UsersController extends Controller
 
             //$permission = $model->permission;
             $permission = !empty($model->permission)  ? $model->permission : getPermissionDefault($model->level);
-            //dd(json_decode($permission));
+            //dd($model->permission);
             return view('system.users.perms')
                 ->with('permission',json_decode($permission))
                 ->with('model',$model)

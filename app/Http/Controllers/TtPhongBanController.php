@@ -28,7 +28,10 @@ class TtPhongBanController extends Controller
     {
         if(Session::has('admin')){
 
+            $permission = getPermissionDefault('H');
+
             return view('system.ttphongban.create')
+                ->with('permission',json_decode($permission))
                 ->with('pageTitle','Thêm mới phòng ban');
 
         }else
@@ -48,6 +51,7 @@ class TtPhongBanController extends Controller
             $model->fax = $insert['fax'];
             $model->email = $insert['email'];
             if($model->save()){
+                $insert['roles'] = isset($insert['roles']) ? $insert['roles'] : null;
                 $modeluser = new Users();
                 $modeluser->name = $insert['ten'];
                 $modeluser->username = $insert['username'];
@@ -57,6 +61,7 @@ class TtPhongBanController extends Controller
                 $modeluser->status = 'Kích hoạt';
                 $modeluser->phone = $insert['dienthoai'];
                 $modeluser->email = $insert['email'];
+                $model->permission = json_encode($insert['roles']);
                 $modeluser->save();
             }
 
