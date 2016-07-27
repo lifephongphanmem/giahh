@@ -40,7 +40,7 @@
     <br>
     <br>
     <br>
-    <h1><b>DEMO METRONIC</b></h1>
+    <h1><b>GIẢI PHÁP QUẢN LÝ CƠ SỞ DỮ LIỆU VỀ GIÁ</b></h1>
 
     <br>
 </div>
