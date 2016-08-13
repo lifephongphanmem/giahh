@@ -47,7 +47,7 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; font-size: 14px; text-transform: uppercase;">
-            <b>(NĂM.....)</b>
+            <b>(NĂM..{{$nam}}..)</b>
         </td>
     </tr>
     <tr>
@@ -63,25 +63,33 @@
 </table>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
-        <th>TT</th>
-        <th>Tài sản</th>
-        <th>Số lượng tài sản</th>
-        <th>Số tầng</th>
-        <th>Diện tích</th>
-        <th>Tỷ lệ chất lượng còn lại(%)</th>
-        <th>Nguyên giá</th>
-        <th>Giá trị còn lại</th>
+        <th width="5">TT</th>
+        <th width="30%">Tài sản</th>
+        <th width="10%">Số lượng tài sản</th>
+        <th width="5%">Số tầng</th>
+        <th width="5%">Diện tích</th>
+        <th width="8%">Tỷ lệ chất lượng còn lại (%)</th>
+        <th width="20%">Nguyên giá</th>
+        <th width="20%">Giá trị còn lại</th>
     </tr>
+    @if(count($model)>0)
+    @foreach($model as $key=>$tt)
     <tr>
-        <th></th>
-        <th>Đất</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th style="text-align: center">{{$key+1}}</th>
+        <th style="text-align: left">{{$tt->tents}}</th>
+        <th style="text-align: center">{{number_format($tt->slts)}}</th>
+        <th style="text-align: center">{{number_format($tt->sotang)}}</th>
+        <th style="text-align: center">{{number_format($tt->dientich)}}</th>
+        <th style="text-align: center">{{number_format($tt->tyleclcl)}}</th>
+        <th style="text-align: right">{{number_format($tt->nguyengia)}}</th>
+        <th style="text-align: right">{{number_format($tt->giatricl)}}</th>
     </tr>
+    @endforeach
+    @else
+        <tr>
+            <td colspan="8">Không có thông tin về tài sản</td>
+        </tr>
+    @endif
 </table>
 </body>
 </html>

@@ -165,6 +165,8 @@ Route::get('thamdinhgiadefault/store','ThamDinhgiaDefaultController@store');
 Route::get('thamdinhgiadefault/edit','ThamDinhgiaDefaultController@edit');
 Route::get('thamdinhgiadefault/update','ThamDinhgiaDefaultController@update');
 Route::get('thamdinhgiadefault/delete','ThamDinhgiaDefaultController@destroy');
+Route::get('thamdinhgiadefault/importExcel','ThamDinhgiaDefaultController@importExcel');
+
 
 Route::get('thamdinhgia/store','ThamDinhGiaController@store');
 Route::get('thamdinhgia/edit','ThamDinhGiaController@edit');
@@ -192,6 +194,29 @@ Route::get('congbogia/update','CongBoGiaController@update');
 Route::get('congbogia/delete','CongBoGiaController@destroy');
 //End Công bố giá
 
+//Tài sản nhà nước
+    //Tài sản nhà đất
+Route::get('taisan-nhadat/nam={nam}&pb={pl}','TsNhaDatController@index');
+Route::get('taisan-nhadat/create','TsNhaDatController@create');
+Route::post('taisan-nhadat','TsNhaDatController@store');
+Route::get('taisan-nhadat/{id}/show','TsNhaDatController@show');
+Route::get('taisan-nhadat/{id}/edit','TsNhaDatController@edit');
+Route::patch('taisan-nhadat/{id}','TsNhaDatController@update');
+Route::post('taisan-nhadat/delete','TsNhaDatController@destroy');
+
+
+Route::get('tttsnhadatdefault/store','TtTsNhaDatDefaultController@store');
+Route::get('tttsnhadatdefault/edit','TtTsNhaDatDefaultController@edit');
+Route::get('tttsnhadatdefault/update','TtTsNhaDatDefaultController@update');
+Route::get('tttsnhadatdefault/delete','TtTsNhaDatDefaultController@destroy');
+
+Route::get('tttsnhadat/store','TtTsNhaDatController@store');
+Route::get('tttsnhadat/edit','TtTsNhaDatController@edit');
+Route::get('tttsnhadat/update','TtTsNhaDatController@update');
+Route::get('tttsnhadat/delete','TtTsNhaDatController@destroy');
+    //End Tài sản nhà đất
+//End Tài sản nhà nước
+
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="--Reports--">
@@ -201,7 +226,7 @@ Route::post('reports/tt142-2015-BTC/PL2','TT1422015BtcController@PL2');
 Route::post('reports/tt142-2015-BTC/PL3','TT1422015BtcController@PL3');
 Route::post('reports/tt142-2015-BTC/PL4','TT1422015BtcController@PL4');
 Route::post('reports/tt142-2015-BTC/PL5','TT1422015BtcController@PL5');
-Route::get('reports/tt142-2015-BTC/PL6','TT1422015BtcController@PL6');
+Route::post('reports/tt142-2015-BTC/PL6','TT1422015BtcController@PL6');
 Route::get('reports/tt142-2015-BTC/PL7','TT1422015BtcController@PL7');
     //End TT142/2015/BTC
 

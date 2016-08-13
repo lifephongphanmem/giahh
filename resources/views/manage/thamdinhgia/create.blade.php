@@ -179,6 +179,7 @@
             <!-- BEGIN VALIDATION STATES-->
             <div class="portlet box blue">
                 <div class="portlet-body form">
+                    <meta name="csrf_token" content="{{ csrf_token() }}" />
                     <!-- BEGIN FORM-->
                         {!! Form::open(['url'=>'hoso-thamdinhgia', 'id' => 'create_tthstd', 'class'=>'horizontal-form']) !!}
                         <div class="form-body">
@@ -259,7 +260,6 @@
                                         <input type="text" id="tents" name="tents" class="form-control">
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Đặc điểm pháp lý</label>
@@ -274,14 +274,12 @@
                                         <input type="text" name="thongsokt" id="thongsokt" class="form-control">
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Nguồn gốc</label>
                                         <input type="text" name="nguongoc" id="nguongoc" class="form-control">
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -290,14 +288,12 @@
                                         <input type="text" name="dvt" id="dvt" class="form-control">
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Số lượng<span class="require">*</span></label>
                                         <input type="text" name="sl" id="sl" class="form-control" data-mask="fdecimal" value="1">
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -306,14 +302,12 @@
                                         <input type="text" name="giadenghi" id="giadenghi" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Giá trị tài sản thẩm định<span class="require">*</span></label>
                                         <input type="text" name="giatritstd" id="giatritstd" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -331,6 +325,197 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--div class="row">
+                                <div class="col-md-12">
+                                    <div class="tabbable-line boxless tabbable-reversed">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a href="#tab_0" data-toggle="tab" aria-expanded="true" style="color: #ff0000">
+                                                    Nhập tài sản</a>
+                                            </li>
+                                            <li class="">
+                                                <a href="#tab_1" data-toggle="tab" aria-expanded="false" style="color: #ff0000">
+                                                    Import tài sản trên Excel</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade in active" id="tab_0">
+                                                <div class="portlet box">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Tên tài sản<span class="require">*</span></label>
+                                                                <input type="text" id="tents" name="tents" class="form-control" autofocus>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group has-error">
+                                                                <label class="control-label">Đặc điểm pháp lý</label>
+                                                                <input type="text" id="dacdiempl" name="dacdiempl" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Thông số kỹ thuật</label>
+                                                                <input type="text" name="thongsokt" id="thongsokt" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group has-error">
+                                                                <label class="control-label">Nguồn gốc</label>
+                                                                <input type="text" name="nguongoc" id="nguongoc" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Đơn vị tính<span class="require">*</span></label>
+                                                                <input type="text" name="dvt" id="dvt" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group has-error">
+                                                                <label class="control-label">Số lượng<span class="require">*</span></label>
+                                                                <input type="text" name="sl" id="sl" class="form-control" data-mask="fdecimal" value="1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Giá đề nghị<span class="require">*</span></label>
+                                                                <input type="text" name="giadenghi" id="giadenghi" class="form-control" data-mask="fdecimal" value="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group has-error">
+                                                                <label class="control-label">Giá trị tài sản thẩm định<span class="require">*</span></label>
+                                                                <input type="text" name="giatritstd" id="giatritstd" class="form-control" data-mask="fdecimal" value="0">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Ghi chú</label>
+                                                                <textarea id="gc" class="form-control" name="gc" cols="30" rows="3"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <button type="button" id="capnhatts" name="capnhatts" class="btn btn-primary">Cập nhật</button>
+                                                                &nbsp;
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane" id="tab_1">
+                                                <div class="portlet box">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label"> Cột tên tài sản<span class="require">*</span></label>
+                                                                <input type="text" id="coltents" name="coltents" class="form-control" value="Tên tài sản">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group has-error">
+                                                                <label class="control-label">Cột đặc điểm pháp lý</label>
+                                                                <input type="text" id="coldacdiempl" name="coldacdiempl" class="form-control" value="Đặc điểm pháp lý">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label"> Cột Thông số kỹ thuật</label>
+                                                                <input type="text" name="colthongsokt" id="colthongsokt" class="form-control" value="Thông số kỹ thuật">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group has-error">
+                                                                <label class="control-label"> Cột Nguồn gốc</label>
+                                                                <input type="text" name="colnguongoc" id="colnguongoc" class="form-control" value="Nguồn gốc xuất xứ">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label"> Cột Đơn vị tính<span class="require">*</span></label>
+                                                                <input type="text" name="coldvt" id="coldvt" class="form-control" value="ĐVT">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group has-error">
+                                                                <label class="control-label"> Côt Số lượng<span class="require">*</span></label>
+                                                                <input type="text" name="colsl" id="colsl" class="form-control" value="Số lượng">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label"> Cột Giá đề nghị<span class="require">*</span></label>
+                                                                <input type="text" name="colgiadenghi" id="colgiadenghi" class="form-control" value="Giá đề nghị TĐ">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group has-error">
+                                                                <label class="control-label"> Cột Giá trị tài sản thẩm định<span class="require">*</span></label>
+                                                                <input type="text" name="colgiatritstd" id="colgiatritstd" class="form-control" value="Giá thẩm định">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label"> Nhận từ dòng<span class="require">*</span></label>
+                                                                <input type="text" name="dongnhan" id="dongnhan" class="form-control" data-mask="fdecimal" value="2" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group has-error">
+                                                                <label class="control-label"> Đến dòng<span class="require">*</span></label>
+                                                                <input type="text" name="dendong" id="dendong" class="form-control" value="1000" data-mask="fdecimal">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label"> File Excel mẫu</label><br>
+                                                                <a href="" class="btn btn-success btn-xs"><i class="fa fa-download"></i> Tải file Excel mẫu</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="control-label"> File Import</label>
+                                                                <input name="fexcel" id="fexcel" type="file">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <button type="button" id="importExcel" name="importExcel" class="btn btn-primary">Import</button>
+                                                                &nbsp;
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div-->
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
@@ -383,7 +568,6 @@
     <script>
         jQuery(document).ready(function($) {
             $('button[name="capnhatts"]').click(function(){
-                //alert($('input[name="tents"]').val());
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     url: '/thamdinhgiadefault/store',
@@ -399,7 +583,6 @@
                         giadenghi: $('input[name = "giadenghi"]').val(),
                         giatritstd:$('input[name="giatritstd"]').val(),
                         gc: $('textarea[name="gc"]').val()
-
                     },
                     dataType: 'JSON',
                     success: function (data) {

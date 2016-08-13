@@ -35,7 +35,7 @@ class CongBoGiaDefaultController extends Controller
         $inputs['giatritstd'] = str_replace(',','',$inputs['giatritstd']);
         $inputs['giatritstd'] = str_replace('.','',$inputs['giatritstd']);
 
-        if(isset($inputs['tents'])){
+        if(isset($inputs['tents']) && $inputs['tents']!= ''){
             $modelts = new CongBoGiaDefault();
             $modelts->tents = $inputs['tents'];
             $modelts->dacdiempl = $inputs['dacdiempl'];

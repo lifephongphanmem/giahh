@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 class ThamDinhGiaDefaultController extends Controller
 {
@@ -35,7 +36,7 @@ class ThamDinhGiaDefaultController extends Controller
         $inputs['giatritstd'] = str_replace(',','',$inputs['giatritstd']);
         $inputs['giatritstd'] = str_replace('.','',$inputs['giatritstd']);
 
-        if(isset($inputs['tents'])){
+        if(isset($inputs['tents']) &&  $inputs['tents']!=''){
             $modelts = new ThamDinhGiaDefault();
             $modelts->tents = $inputs['tents'];
             $modelts->dacdiempl = $inputs['dacdiempl'];
@@ -292,5 +293,16 @@ class ThamDinhGiaDefaultController extends Controller
             }
         }
         die(json_encode($result));
+    }
+
+    public function importExcel(Request $request)
+    {
+        dd($request);
+        if ( !Input::hasFile('file')) {
+            echo 'cancel';
+        }else
+            echo 'ok';
+
+
     }
 }

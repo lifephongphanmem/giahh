@@ -8,6 +8,7 @@ class TtPhongBan extends Model
 {
     protected $table = 'ttphongban';
     protected $fillable = [
+        'id',
         'ma',
         'ten',
         'diachi',

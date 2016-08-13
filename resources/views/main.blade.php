@@ -267,7 +267,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </form>
                     <!-- END RESPONSIVE QUICK SEARCH FORM -->
                 <li class="start active open">
-                    <a href="javascript:;">
+                    <a href="">
                         <i class="fa fa-folder-open-o"></i>
                         <span class="title">{{$pageTitle}}</span>
                         <span class="selected"></span>
@@ -275,7 +275,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
                 @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk'))
                 <li>
-                    <a href="javascript:;">
+                    <a href="">
                         <i class="fa fa-laptop"></i>
                         <span class="title">Giá hàng hóa- Dịch vụ</span>
                         <span class="arrow "></span>
@@ -301,7 +301,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 @if(canGeneral('thamdinhgia','thamdinhgia'))
                     @if(can('thamdinhgia','index'))
                 <li>
-                    <a href="javascript:;">
+                    <a href="">
                         <i class="fa fa-laptop"></i>
                         <span class="title">Thẩm định giá</span>
                         <span class="arrow "></span>
@@ -312,10 +312,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="{{url('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ thẩm định</a>
                         </li>
 
-                        <li>
+                        <!--li>
                             <a href="">
                                 Tìm kiếm thông tin tài sản</a>
-                        </li>
+                        </li-->
 
                     </ul>
                 </li>
@@ -323,27 +323,50 @@ License: You must have a valid license purchased only from themeforest(the above
                 @endif
                 @if(canGeneral('congbogia','congbogia'))
                     @if(can('congbogia','index'))
-                <li>
-                    <a href="javascript:;">
-                        <i class="fa fa-laptop"></i>
-                        <span class="title">Công bố giá</span>
-                        <span class="arrow "></span>
-                    </a>
-                    <ul class="sub-menu">
-
                         <li>
-                            <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ công bố</a>
+                            <a href="">
+                                <i class="fa fa-laptop"></i>
+                                <span class="title">Công bố giá</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+
+                                <li>
+                                    <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ công bố</a>
+                                </li>
+
+                                <!--li>
+                                    <a href="">
+                                        Tìm kiếm thông tin tài sản</a>
+                                </li-->
+
+                            </ul>
                         </li>
+                    @endif
+                @endif
+
 
                         <li>
                             <a href="">
-                                Tìm kiếm thông tin tài sản</a>
+                                <i class="fa fa-laptop"></i>
+                                <span class="title">Tài sản nhà nước</span>
+                                <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+
+                                <li>
+                                    <a href="{{url('taisan-nhadat/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Tài sản nhà và đất</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{url('taisan-otokhac/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                                        Tài sản ôtô- tài sản khác</a>
+                                </li>
+
+                            </ul>
                         </li>
 
-                    </ul>
-                </li>
-                    @endif
-                @endif
+
                 @if(canGeneral('ttqd','ttqd'))
                     @if(can('ttqd','index'))
                 <li>
