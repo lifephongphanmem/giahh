@@ -248,7 +248,7 @@ Route::post('reports/tt142-2015-BTC/PL3','TT1422015BtcController@PL3');
 Route::post('reports/tt142-2015-BTC/PL4','TT1422015BtcController@PL4');
 Route::post('reports/tt142-2015-BTC/PL5','TT1422015BtcController@PL5');
 Route::post('reports/tt142-2015-BTC/PL6','TT1422015BtcController@PL6');
-Route::get('reports/tt142-2015-BTC/PL7','TT1422015BtcController@PL7');
+Route::post('reports/tt142-2015-BTC/PL7','TT1422015BtcController@PL7');
     //End TT142/2015/BTC
 
     //TT55/2011/BTC

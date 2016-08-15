@@ -15,7 +15,9 @@ use App\HsGiaHhXnk;
 use App\HsThamDinhGia;
 use App\ThamDinhGia;
 use App\TsNhaDat;
+use App\TsOtoKhac;
 use App\TtTsNhaDat;
+use App\TtTsOtoKhac;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -278,8 +280,19 @@ class TT1422015BtcController extends Controller
     //Phụ lục 7
     public function PL7(Request $request){
         if (Session::has('admin')) {
-
+            $input = $request->all();
+            $nam = $input['nam'];
+            $modelhs = TsOtoKhac::where('nam',$nam)
+                ->get();
+            $arrayid ='';
+            foreach($modelhs as $hs){
+                $arrayid = $arrayid.$hs->mahs.',';
+            }
+            $model = TtTsOtoKhac::wherein('mahs',explode(',',$arrayid))
+                ->get();
             return view('reports.TT142-2015-BTC.PL7')
+                ->with('nam',$nam)
+                ->with('model',$model)
                 ->with('pageTitle','Phụ lục 7');
         }else
             return view('errors.notlogin');

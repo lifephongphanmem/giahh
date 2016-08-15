@@ -47,7 +47,7 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; font-size: 14px; text-transform: uppercase;">
-            <b>(NĂM.....)</b>
+            <b>(NĂM..{{$nam}}..)</b>
         </td>
     </tr>
     <tr>
@@ -71,16 +71,23 @@
         <th>Nguyên giá</th>
         <th>Giá trị còn lại</th>
     </tr>
-    <tr>
-        <th></th>
-        <th>Ô tô</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-
-    </tr>
+    @if(count($model)>0)
+        @foreach($model as $key=>$tt)
+            <tr>
+                <th style="text-align: center">{{$key+1}}</th>
+                <th style="text-align: left">{{$tt->tents}}</th>
+                <th style="text-align: center">{{number_format($tt->slts)}}</th>
+                <th style="text-align: left">{{$tt->tskt}}</th>
+                <th style="text-align: center">{{number_format($tt->tyleclcl)}}</th>
+                <th style="text-align: right">{{number_format($tt->nguyengia)}}</th>
+                <th style="text-align: right">{{number_format($tt->giatricl)}}</th>
+            </tr>
+        @endforeach
+    @else
+        <tr>
+            <td colspan="7">Không có thông tin về tài sản</td>
+        </tr>
+    @endif
 </table>
 </body>
 </html>
