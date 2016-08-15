@@ -215,6 +215,27 @@ Route::get('tttsnhadat/edit','TtTsNhaDatController@edit');
 Route::get('tttsnhadat/update','TtTsNhaDatController@update');
 Route::get('tttsnhadat/delete','TtTsNhaDatController@destroy');
     //End Tài sản nhà đất
+    //Tài sản ôtô khác
+Route::get('taisan-otokhac/nam={nam}&pb={pl}','TsOtoKhacController@index');
+Route::get('taisan-otokhac/create','TsOtoKhacController@create');
+Route::post('taisan-otokhac','TsOtoKhacController@store');
+Route::get('taisan-otokhac/{id}/show','TsOtoKhacController@show');
+Route::get('taisan-otokhac/{id}/edit','TsOtoKhacController@edit');
+Route::patch('taisan-otokhac/{id}','TsOtoKhacController@update');
+Route::post('taisan-otokhac/delete','TsOtoKhacController@destroy');
+
+
+Route::get('tttsotokhacdefault/store','TtTsOtoKhacDefaultController@store');
+Route::get('tttsotokhacdefault/edit','TtTsOtoKhacDefaultController@edit');
+Route::get('tttsotokhacdefault/update','TtTsOtoKhacDefaultController@update');
+Route::get('tttsotokhacdefault/delete','TtTsOtoKhacDefaultController@destroy');
+
+Route::get('tttsotokhac/store','TtTsOtoKhacController@store');
+Route::get('tttsotokhac/edit','TtTsOtoKhacController@edit');
+Route::get('tttsotokhac/update','TtTsOtoKhacController@update');
+Route::get('tttsotokhac/delete','TtTsOtoKhacController@destroy');
+
+    //End Tài sản ôtô khác
 //End Tài sản nhà nước
 
 // </editor-fold>
