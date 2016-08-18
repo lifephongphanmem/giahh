@@ -13,7 +13,7 @@
 
             <!-- BEGIN CONTENT -->
             <h3 class="page-title">
-                Dashboard <small>reports & statistics</small>
+                Màn hình<small> điều khiển và thống kê</small>
             </h3>
             <!-- END PAGE HEADER-->
             <!-- BEGIN DASHBOARD STATS -->
