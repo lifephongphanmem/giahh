@@ -179,7 +179,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Thời gian nhập<span class="require">*</span></label>
+                                        <label class="control-label">Thời gian nhập</label>
                                         <input type="date" id="tgnhap" name="tgnhap" class="form-control required" autofocus>
                                     </div>
                                 </div>

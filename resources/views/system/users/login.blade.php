@@ -74,18 +74,18 @@ License: You must have a valid license purchased only from themeforest(the above
 			<label class="control-label visible-ie8 visible-ie9">Username</label>
 			<div class="input-icon">
 				<i class="fa fa-user"></i>
-				<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" autofocus/ >
+				<input class="form-control required type="text" autocomplete="off" placeholder="Username" name="username" id="username" autofocus/  >
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="control-label visible-ie8 visible-ie9">Password</label>
 			<div class="input-icon">
 				<i class="fa fa-lock"></i>
-				<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="password" id="password"/>
+				<input class="form-control required" type="password" autocomplete="off" placeholder="Password" name="password" id="password"/>
 			</div>
 		</div>
 		<div class="form-actions">
-			<button type="submit" class="btn blue pull-right" id="login_button">
+			<button type="submit" class="btn blue pull-right" id="login_button" onclick="validatePassword();">
 				Login <i class="m-icon-swapright m-icon-white"></i>
 			</button>
 			<br>
@@ -186,6 +186,22 @@ License: You must have a valid license purchased only from themeforest(the above
 			$("#login_button").click();
 		}
 	});
+</script>
+<script type="text/javascript">
+	function validatePassword(){
+
+		var validator = $("#form-login").validate({
+			rules: {
+				username :"required",
+				password :"required"
+
+			},
+			messages: {
+				username :" Nhập username truy cập",
+				password :" Nhập mật khẩu truy cập"
+			}
+		});
+	}
 </script>
 </body>
 <!-- END BODY -->

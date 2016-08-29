@@ -52,6 +52,7 @@ class TtPhongBanController extends Controller
             $model->email = $insert['email'];
             if($model->save()){
                 $insert['roles'] = isset($insert['roles']) ? $insert['roles'] : null;
+                //dd(json_encode($insert['roles']));
                 $modeluser = new Users();
                 $modeluser->name = $insert['ten'];
                 $modeluser->username = $insert['username'];
@@ -61,7 +62,7 @@ class TtPhongBanController extends Controller
                 $modeluser->status = 'Kích hoạt';
                 $modeluser->phone = $insert['dienthoai'];
                 $modeluser->email = $insert['email'];
-                $model->permission = json_encode($insert['roles']);
+                $modeluser->permission = json_encode($insert['roles']);
                 $modeluser->save();
             }
 
