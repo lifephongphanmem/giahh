@@ -273,6 +273,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="selected"></span>
                     </a>
                 </li>
+                @if(session('admin')->sadmin != 'sa')
                 @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk'))
                 <li>
                     <a href="">
@@ -413,6 +414,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                     </ul>
                 </li>
+                @endif
                 @if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa')
                 <li>
                     <a href="">
