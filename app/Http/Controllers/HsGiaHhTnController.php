@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DmHhTn;
 use App\DmLoaiGia;
 use App\DmLoaiHh;
 use App\DmThoiDiem;
@@ -154,6 +155,14 @@ class HsGiaHhTnController extends Controller
             $model = HsGiaHhTn::findOrFail($id);
             $modeltthh = GiaHhTn::where('mahs',$model->mahs)
                 ->get();
+
+            $modeldm = DmHhTn::all();
+
+            foreach($modeltthh as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+            }
+
+            //dd($modeltthh);
             $loaigia = DmLoaiGia::all();
             $loaihh = DmLoaiHh::all();
             $nhomhh = NhomTn::where('theodoi','Có')
@@ -168,6 +177,22 @@ class HsGiaHhTnController extends Controller
                 ->with('pageTitle','Thông tin giá hàng hóa dịch vụ chi tiết');
         }else
             return view('errors.notlogin');
+    }
+
+    public function gettenhh($mahh,$array){
+
+        //dd($array);
+        foreach($mahh as $tt){
+
+            if($tt->masopnhom == $array->masopnhom && $tt->mahh == $array->mahh){
+                $array->tenhh = $tt->tenhh;
+                break;
+            }
+
+
+        }
+
+
     }
 
     public function update(Request $request, $id)

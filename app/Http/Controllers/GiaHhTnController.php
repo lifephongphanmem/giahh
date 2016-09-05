@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DmHhTn;
 use App\GiaHhTn;
 use Illuminate\Http\Request;
 
@@ -49,13 +50,18 @@ class GiaHhTnController extends Controller
 
             $model = GiaHhTn::where('mahs',$inputs['mahs'])
                 ->get();
+            $modeldm = DmHhTn::all();
+
+            foreach($model as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+            }
 
             $result['message'] = '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->mahh.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tenhh.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatu).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giaden).'</td>';
                     $result['message'] .= '<td style="text-align: center">'.number_format($tents->soluong).'</td>';
@@ -194,12 +200,17 @@ class GiaHhTnController extends Controller
 
             $model = GiaHhTn::where('mahs',$inputs['mahs'])
                 ->get();
+            $modeldm = DmHhTn::all();
+
+            foreach($model as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+            }
             $result['message'] = '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key+1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->mahh.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tenhh.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatu).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giaden).'</td>';
                     $result['message'] .= '<td style="text-align: center">'.number_format($tents->soluong).'</td>';
@@ -243,12 +254,17 @@ class GiaHhTnController extends Controller
 
             $model = GiaHhTn::where('mahs',$inputs['mahs'])
                 ->get();
+            $modeldm = DmHhTn::all();
+
+            foreach($model as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+            }
             $result['message'] = '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td>'.($key+1).'</td>';
-                    $result['message'] .= '<td>'.$tents->mahh.'</td>';
+                    $result['message'] .= '<td>'.$tents->tenhh.'</td>';
                     $result['message'] .= '<td>'.number_format($tents->giatu).'</td>';
                     $result['message'] .= '<td>'.number_format($tents->giaden).'</td>';
                     $result['message'] .= '<td>'.number_format($tents->soluong).'</td>';
@@ -273,5 +289,16 @@ class GiaHhTnController extends Controller
             }
         }
         die(json_encode($result));
+    }
+
+    public function gettenhh($mahh,$array){
+        foreach($mahh as $tt){
+            if($tt->masopnhom == $array->masopnhom && $tt->mahh == $array->mahh){
+                $array->tenhh = $tt->tenhh;
+                break;
+            }
+        }
+
+
     }
 }
