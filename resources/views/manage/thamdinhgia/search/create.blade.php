@@ -107,48 +107,5 @@
             <!-- END VALIDATION STATES-->
         </div>
     </div>
-    <script type="text/javascript">
-        function validateForm(){
 
-            var validator = $("#create_ttphong_ban").validate({
-                rules: {
-                    ten :"required",
-                    diachi :"required",
-                    username :"required",
-                    password :"required"
-
-                },
-                messages: {
-                    ten :"Chưa nhập dữ liệu",
-                    diachi :"Chưa nhập dữ liệu",
-                    username :"Chưa nhập dữ liệu",
-                    password :"Chưa nhập dữ liệu"
-                }
-            });
-        }
-    </script>
-    <script>
-        jQuery(document).ready(function($) {
-            $('input[name="username"]').change(function(){
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    type: 'GET',
-                    url: '/checkuser',
-                    data: {
-                        _token: CSRF_TOKEN,
-                        user:$(this).val()
-
-                    },
-                    success: function (respond) {
-                        if(respond != 'ok'){
-                            toastr.error("Bạn cần nhập tài khoản khác", "Tài khoản nhập vào đã tồn tại!!!");
-                            $('input[name="username"]').val('');
-                            $('input[name="username"]').focus();
-                        }
-                    }
-
-                });
-            })
-        }(jQuery));
-    </script>
 @stop

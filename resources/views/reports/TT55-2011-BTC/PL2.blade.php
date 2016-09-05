@@ -44,7 +44,7 @@
         <td colspan="2" style="text-align: center; font-size: 14px;">
             (Ban hành kèm thông tư số 55/2011/TT-BTC ngày 29/4/2011 của Bộ tài chính hướng dẫn chế độ báo cáo giá cả thị trường
             <br>dùng cho báo cáo giá 15 ngày, tháng, quý, năm)
-            <br>Từ ngày.../../.... đến hết ngày ../../....
+            <br>Từ ngày {{getDayVn($ngaytu)}} đến hết ngày {{getDayVn($ngayden)}}
         </td>
     </tr>
 </table>
@@ -86,12 +86,13 @@
         <th>13=12/8</th>
         <th>14</th>
     </tr>
+    @foreach($model as $key=>$tt)
     <tr>
-        <th>1</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>{{$key+1}}</th>
+        <th>{{$tt->masopnhom}}</th>
+        <th>{{$tt->mahh}}</th>
+        <th>{{$tt->nsx}}</th>
+        <th>{{$tt->dvt}}</th>
         <th></th>
         <th></th>
         <th></th>
@@ -102,6 +103,7 @@
         <th></th>
         <th></th>
     </tr>
+    @endforeach
 </table>
 </body>
 </html>

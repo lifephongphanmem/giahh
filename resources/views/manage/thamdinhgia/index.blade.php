@@ -82,6 +82,8 @@
                         @if(can('thamdinhgia','create'))
                         <a href="{{url('hoso-thamdinhgia/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+                        <a href="{{url('hoso-thamdinhgia/import')}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Import file</a>
                         @endif
                         <a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a>

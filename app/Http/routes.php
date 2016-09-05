@@ -172,9 +172,11 @@ Route::get('thamdinhgia/store','ThamDinhGiaController@store');
 Route::get('thamdinhgia/edit','ThamDinhGiaController@edit');
 Route::get('thamdinhgia/update','ThamDinhGiaController@update');
 Route::get('thamdinhgia/delete','ThamDinhGiaController@destroy');
-
+        //Search Thảm định giá
 Route::get('timkiem-thamdinhgia','ThamDinhGiaController@search');
 Route::post('timkiem-thamdinhgia','ThamDinhGiaController@viewsearch');
+        //import THẩm định giá
+Route::get('hoso-thamdinhgia/import','ThamDinhGiaController@import');
 //End Thẩm định giá
 
 //Công bố giá
@@ -257,7 +259,7 @@ Route::post('reports/tt142-2015-BTC/PL7','TT1422015BtcController@PL7');
     //TT55/2011/BTC
 Route::get('reports/tt55-2011-BTC','TT552011BtcController@index');
 Route::post('reports/tt55-2011-BTC/PL1','TT552011BtcController@PL1');
-Route::get('reports/tt55-2011-BTC/PL2','TT552011BtcController@PL2');
+Route::post('reports/tt55-2011-BTC/PL2','TT552011BtcController@PL2');
     //End TT55/2011/BTC
 
 
