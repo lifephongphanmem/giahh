@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Giải pháp quản lý nhập xuất hàng hóa</title>
+    <title>Giải pháp quản lý CSDL về giá</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +40,7 @@
     <br>
     <br>
     <br>
-    <h1><b>GIẢI PHÁP QUẢN LÝ NHẬP XUẤT HÀNG HÓA</b></h1>
+    <h1><b>GIẢI PHÁP QUẢN LÝ CƠ SƠ DỮ LIỆU VỀ GIÁ</b></h1>
 
     <br>
 </div>

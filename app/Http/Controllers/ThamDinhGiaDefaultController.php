@@ -57,7 +57,7 @@ class ThamDinhGiaDefaultController extends Controller
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td>'.($key +1).'</td>';
-                    $result['message'] .= '<td>'.$tents->tents.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
                     $result['message'] .= '<td>'.$tents->thongsokt.'</td>';
                     $result['message'] .= '<td>'.$tents->nguongoc.'</td>';
                     $result['message'] .= '<td>'.$tents->dvt.'</td>';
@@ -217,7 +217,7 @@ class ThamDinhGiaDefaultController extends Controller
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td>'.($key+1).'</td>';
-                    $result['message'] .= '<td>'.$tents->tents.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
                     $result['message'] .= '<td>'.$tents->thongsokt.'</td>';
                     $result['message'] .= '<td>'.$tents->nguongoc.'</td>';
                     $result['message'] .= '<td>'.$tents->dvt.'</td>';
@@ -267,7 +267,7 @@ class ThamDinhGiaDefaultController extends Controller
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td>'.($key +1).'</td>';
-                    $result['message'] .= '<td>'.$tents->tents.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
                     $result['message'] .= '<td>'.$tents->thongsokt.'</td>';
                     $result['message'] .= '<td>'.$tents->nguongoc.'</td>';
                     $result['message'] .= '<td>'.$tents->dvt.'</td>';

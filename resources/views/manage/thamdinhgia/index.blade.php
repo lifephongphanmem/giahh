@@ -105,7 +105,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <td>{{$tt->mahuyen}}</td>
+                                <td class="active">{{$tt->tenpb}}</td>
                                 <td style="text-align: center">{{$tt->hosotdgia}}</td>
                                 <td style="text-align: center">{{$tt->sotbkl}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
