@@ -44,6 +44,11 @@ class HsGiaHhTnController extends Controller
                     ->where('mahuyen',$pb)
                     ->get();
             $modelpb = TtPhongBan::all();
+
+            foreach($model as $tt){
+                $this->getTtPhongBan($modelpb,$tt);
+            }
+
             return view('manage.giahhdv.hhdvtn.index')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
@@ -53,6 +58,13 @@ class HsGiaHhTnController extends Controller
                 ->with('pageTitle','Thông tin hồ sơ giá hàng hóa dịch vụ trong nước');
         }else
             return view('errors.notlogin');
+    }
+
+    public function getTtPhongBan($pbs,$array){
+            foreach($pbs as $pb){
+                if($pb->ma == $array->mahuyen)
+                    $array->tenpb = $pb->ten;
+            }
     }
 
     public function create($thoidiem)
