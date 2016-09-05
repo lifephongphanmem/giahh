@@ -313,10 +313,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="{{url('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ thẩm định</a>
                         </li>
 
-                        <!--li>
-                            <a href="">
-                                Tìm kiếm thông tin tài sản</a>
-                        </li-->
+                        <li>
+                            <a href="{{url('timkiem-thamdinhgia')}}">
+                                Tìm kiếm thông tin thẩm định giá</a>
+                        </li>
 
                     </ul>
                 </li>

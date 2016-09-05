@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class ThamDinhGiaController extends Controller
@@ -294,5 +295,57 @@ class ThamDinhGiaController extends Controller
             }
         }
         die(json_encode($result));
+    }
+
+    public function search(){
+        if(Session::has('admin')){
+            return view('manage.thamdinhgia.search.create')
+                ->with('pageTitle','Tìm kiếm thông tin thẩm định giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function viewsearch(Request $request){
+        if (Session::has('admin')) {
+
+            $_sql="select hsthamdinhgia.thoidiem, hsthamdinhgia.diadiem,thamdinhgia.tents,thamdinhgia.dvt,thamdinhgia.sl,thamdinhgia.giatritstd
+                                        from hsthamdinhgia, thamdinhgia
+                                        Where hsthamdinhgia.mahs=thamdinhgia.mahs";
+            $input=$request->all();
+
+            //Thời gian nhập
+            //Từ
+            if($input['thoidiemtu']!=null){
+                $_sql=$_sql." and hsthamdinhgia.thoidiem >='".date('Y-m-d',strtotime($input['thoidiemtu']))."'";
+            }
+            //Đến
+            if($input['thoidiemden']!=null){
+                $_sql=$_sql." and hsthamdinhgia.thoidiem <='".date('Y-m-d',strtotime($input['thoidiemden']))."'";
+            }
+
+            //Tên tài sản
+            $_sql=$input['tents']!=null? $_sql." and thamdinhgia.tents Like '".$input['tents']."%'":$_sql;
+            //Phương pháp thẩm định
+            $_sql=$input['ppthamdinh']!=null? $_sql." and hsthamdinhgia.ppthamdinh Like '".$input['ppthamdinh']."%'":$_sql;
+            //Địa điểm thẩm định
+            $_sql=$input['diadiem']!=null? $_sql." and hsthamdinhgia.diadiem Like '".$input['diadiem']."%'":$_sql;
+            //Số thông báo
+            $_sql=$input['sotbkl']!=null? $_sql." and hsthamdinhgia.sotbkl Like '".$input['sotbkl']."%'":$_sql;
+            //Giá trị tài sản
+            //Từ
+            if(getDouble($input['giatritu'])>0)
+                $_sql=$_sql." and thamdinhgia.giatritstd >= ".getDouble($input['giatritu']);
+            //Đến
+            if(getDouble($input['giatriden'])>0)
+                $_sql=$_sql." and thamdinhgia.giatritstd <= ".getDouble($input['giatriden']);
+
+            $model =  DB::select(DB::raw($_sql));
+            //dd($model);
+            return view('manage.thamdinhgia.search.index')
+                ->with('model',$model)
+                ->with('pageTitle','Thông tin tài sản thẩm định giá');
+        }else
+            return view('errors.notlogin');
     }
 }

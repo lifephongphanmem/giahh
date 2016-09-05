@@ -172,6 +172,9 @@ Route::get('thamdinhgia/store','ThamDinhGiaController@store');
 Route::get('thamdinhgia/edit','ThamDinhGiaController@edit');
 Route::get('thamdinhgia/update','ThamDinhGiaController@update');
 Route::get('thamdinhgia/delete','ThamDinhGiaController@destroy');
+
+Route::get('timkiem-thamdinhgia','ThamDinhGiaController@search');
+Route::post('timkiem-thamdinhgia','ThamDinhGiaController@viewsearch');
 //End Thẩm định giá
 
 //Công bố giá
