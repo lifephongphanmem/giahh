@@ -139,6 +139,11 @@ class HsGiaHhTnController extends Controller
             $loaigia = DmLoaiGia::all();
             $loaihh = DmLoaiHh::all();
             //dd($modeltthh);
+            $modeldm = DmHhTn::all();
+
+            foreach($modeltthh as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+            }
             return view('manage.giahhdv.hhdvtn.show')
                 ->with('model',$model)
                 ->with('modeltthh',$modeltthh)
