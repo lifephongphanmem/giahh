@@ -68,8 +68,8 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Thời điểm thẩm định</th>
                             <th style="text-align: center" width="10%">Địa điểm thẩm định</th>
-                            <th style="text-align: center" width="10%">Đơn vị tính</th>
                             <th style="text-align: center" width="15%">Tên tài sản</th>
+                            <th style="text-align: center" width="10%">Đơn vị tính</th>
                             <th style="text-align: center">Đơn vị tính</th>
                             <th style="text-align: center">Giá thẩm đinh</th>
                         </tr>
