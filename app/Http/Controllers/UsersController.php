@@ -123,7 +123,7 @@ class UsersController extends Controller
 
             $model->save();
 
-            if($model->level == 'T')
+            if($model->level == 'T'|| $model->level== 'H')
                 $pl = 'quan-ly';
 
             else
@@ -135,14 +135,19 @@ class UsersController extends Controller
             return view('errors.notlogin');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         if (Session::has('admin')) {
-
-            $model = Users::findOrFail($id);
+            $input=$request->all();
+            $model = Users::where('id',$input['iddelete'])->first();
             $model->delete();
 
-            return redirect('users');
+            if($model->level == 'T' || $model->level== 'H')
+                $pl = 'quan-ly';
+            else
+                $pl='su-dung';
+
+            return redirect('users/pl='.$pl);
 
         }else
             return view('errors.notlogin');

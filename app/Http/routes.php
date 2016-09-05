@@ -17,7 +17,7 @@ Route::get('users/pl={pl}','UsersController@index');
 Route::get('users/pl=su-dung/dv={dvct}','UsersController@view');
 Route::get('users/lock/{ids}','UsersController@lock');
 Route::get('users/unlock/{ids}','UsersController@unlock');
-Route::get('users/delete/{id}','UsersController@destroy');
+Route::post('users/delete','UsersController@destroy');
 Route::get('users/create','UsersController@create');
 Route::post('users','UsersController@store');
 Route::get('users/{id}/edit','UsersController@edit');
