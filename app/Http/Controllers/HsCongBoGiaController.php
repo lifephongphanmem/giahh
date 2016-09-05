@@ -26,6 +26,10 @@ class HsCongBoGiaController extends Controller
                     ->where('mahuyen',$pb)
                     ->get();
             $modelpb = TtPhongBan::all();
+
+            foreach($model as $tt){
+                $this->getTtPhongBan($modelpb,$tt);
+            }
             return view('manage.congbogia.index')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
@@ -35,6 +39,13 @@ class HsCongBoGiaController extends Controller
 
         }else
             return view('errors.notlogin');
+    }
+
+    public function getTtPhongBan($pbs,$array){
+        foreach($pbs as $pb){
+            if($pb->ma == $array->mahuyen)
+                $array->tenpb = $pb->ten;
+        }
     }
 
     public function create()

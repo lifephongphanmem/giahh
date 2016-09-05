@@ -99,7 +99,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td>{{$key +1}}</td>
-                                <td>{{$tt->mahuyen}}</td>
+                                <td class="active">{{$tt->tenpb}}</td>
                                 <td>{{$tt->plhs}}</td>
                                 <td>{{$tt->nguonvon}}</td>
                                 <td>{{$tt->sohs}}</td>
