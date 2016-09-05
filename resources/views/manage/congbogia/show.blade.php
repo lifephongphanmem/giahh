@@ -72,7 +72,7 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
-                                        <label class="control-label">Số thông báo kết luận<span class="require">*</span></label>
+                                        <label class="control-label">Số công bố giá<span class="require">*</span></label>
                                         <input type="text" id="sotbkl" name="sotbkl" class="form-control" value="{{$model->sotbkl}}" readonly>
                                     </div>
                                 </div>
