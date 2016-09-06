@@ -357,4 +357,13 @@ class ThamDinhGiaController extends Controller
         }else
             return view('errors.notlogin');
     }
+
+    public function showimport(Request $request){
+        if(Session::has('admin')){
+            return view('manage.thamdinhgia.importexcel.index')
+                ->with('pageTitle','Thông tin thẩm định giá');
+
+        }else
+            return view('errors.notlogin');
+    }
 }
