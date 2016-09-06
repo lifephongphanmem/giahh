@@ -177,7 +177,9 @@ Route::get('timkiem-thamdinhgia','ThamDinhGiaController@search');
 Route::post('timkiem-thamdinhgia','ThamDinhGiaController@viewsearch');
         //import THẩm định giá
 Route::get('hoso-thamdinhgia/import','ThamDinhGiaController@import');
-Route::post('hoso-thamdinhgia/import','ThamDinhGiaController@showimport');
+Route::resource('hoso-thamdinhgia/import-view','ThamDinhGiaController@showimport');
+Route::post('import-thamdinhgia','ThamDinhGiaController@create_import');
+Route::get('mauexceltdg','ThamDinhGiaController@getDownload');
 //End Thẩm định giá
 
 //Công bố giá

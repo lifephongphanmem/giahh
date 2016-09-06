@@ -29,77 +29,9 @@
                 <div class="portlet-body form">
 
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'hoso-thamdinhgia/import', 'id' => 'import_thamdinhgia', 'class'=>'horizontal-form']) !!}
+                    {!! Form::open(['url'=>'hoso-thamdinhgia/import-view', 'id' => 'import_thamdinhgia', 'class'=>'horizontal-form','enctype'=>'multipart/form-data']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
-                            <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Số hồ sơ thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="hosotdgia" name="hosotdgia" class="form-control required" autofocus>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Thời điểm thẩm định<span class="require">*</span></label>
-                                        <input type="date" id="thoidiem" name="thoidiem" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-
-                            <!--/row-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Địa điểm thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="diadiem" name="diadiem" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Phương pháp thẩm định thẩm định</label>
-                                        <input type="text" id="ppthamdinh" name="ppthamdinh" class="form-control">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Mục đích thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="mucdich" name="mucdich" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Đơn vị yêu cầu thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="dvyeucau" name="dvyeucau" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
-                                        <input type="date" id="thoihan" name="thoihan" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Số thông báo kết luận<span class="require">*</span></label>
-                                        <input type="text" id="sotbkl" name="sotbkl" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-
                             <h4 class="form-section" style="color: #0000ff">Thông tin dữ liệu import</h4>
                             <div class="row">
                                 <div class="col-md-6">

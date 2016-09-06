@@ -37,12 +37,20 @@ class HsGiaHhTnController extends Controller
             if($pb == 'all')
                 $model = HsGiaHhTn::where('mathoidiem',$thoidiem)
                     ->where('nam',$nam)
+                    ->where('trangthai','Công bố')
                     ->get();
             else
-                $model = HsGiaHhTn::where('mathoidiem',$thoidiem)
-                    ->where('nam',$nam)
-                    ->where('mahuyen',$pb)
-                    ->get();
+                if($pb == session('admin')->mahuyen)
+                    $model = HsGiaHhTn::where('mathoidiem',$thoidiem)
+                        ->where('nam',$nam)
+                        ->where('mahuyen',$pb)
+                        ->get();
+                else
+                    $model = HsGiaHhTn::where('mathoidiem',$thoidiem)
+                        ->where('nam',$nam)
+                        ->where('mahuyen',$pb)
+                        ->where('trangthai','Công bố')
+                        ->get();
 
             $modelpb = TtPhongBan::all();
 

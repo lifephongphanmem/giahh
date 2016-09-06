@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\ThamDinhGia;
+use App\ThamDinhGiaDefault;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ThamDinhGiaController extends Controller
 {
@@ -360,8 +364,69 @@ class ThamDinhGiaController extends Controller
 
     public function showimport(Request $request){
         if(Session::has('admin')){
+            $madv=session('admin')->mahuyen;
+            ThamDinhGiaDefault::where('mahuyen', $madv)->delete();
+
+            $tents = chuanhoatruong($request->tents);
+            $dacdiempl = chuanhoatruong($request->dacdiempl);
+            $thongsokt = chuanhoatruong($request->thongsokt);
+            $nguongoc = chuanhoatruong($request->nguongoc);
+            $dvt = chuanhoatruong($request->dvt);
+            $sl = chuanhoatruong($request->sl);
+            $giadenghi = chuanhoatruong($request->giadenghi);
+            if (isset($request->giatritstd) && $request->giatritstd != '') {
+                $giatritstd = chuanhoatruong($request->giatritstd);
+                $filename = $madv . date('YmdHis');
+                $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+                $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+                $data = Excel::selectSheetsByIndex(0)->load($path, function ($sheet) {
+                    $sheet->get();
+                })->get()->toarray();
+
+                //Kiểm tra tên tài sản rỗng => bỏ qua ko chạy
+                foreach ($data as $row) {
+                    if ($row[$tents] == '') {
+                        continue;
+                    }
+                    $model = new ThamDinhGiaDefault();
+                    $model->mahuyen = $madv;
+                    $model->tents = $row[$tents];
+                    $model->thongsokt = isset($row[$thongsokt]) ? $row[$thongsokt] : '';
+                    $model->nguongoc = isset($row[$nguongoc]) ? $row[$nguongoc] : '';
+                    $model->dvt = isset($row[$dvt]) ? $row[$dvt] : '';
+                    $model->sl = isset($row[$sl]) ? $row[$sl] : 1;
+                    $model->giadenghi = isset($row[$giadenghi]) ? $row[$giadenghi] : 0;
+                    $model->giatritstd = isset($row[$giatritstd]) ? $row[$giatritstd] : 0;
+                    $model->dacdiempl = isset($row[$dacdiempl]) ? $row[$dacdiempl] : '';
+                    $model->save();
+                }
+            }
+            File::Delete($path);
+            $m_ts=ThamDinhGiaDefault::where('mahuyen', $madv)->get();
+            //dd($m_ts);
             return view('manage.thamdinhgia.importexcel.index')
+                ->with('m_ts',$m_ts)
                 ->with('pageTitle','Thông tin thẩm định giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    //Tải file excel mẫu
+    public function getDownload(){
+        $file = public_path() . '/data/uploads/excels/FILEMAU.xls';
+        $headers = array(
+            'Content-Type: application/xls',
+        );
+        return Response::download($file, 'THAMDINHGIA.xls', $headers);
+    }
+
+    public function create_import(Request $request){
+        if(Session::has('admin')){
+            if(session('admin') == 'T')
+                return redirect('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all');
+            else
+                return redirect('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb='.session('admin')->mahuyen);
 
         }else
             return view('errors.notlogin');

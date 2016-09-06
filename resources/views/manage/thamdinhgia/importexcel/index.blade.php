@@ -119,7 +119,26 @@
                                             </tr>
                                             </thead>
                                             <tbody id="ttts">
-                                            <td colspan="9" style="text-align: center">Chưa có thông tin</td>
+                                            @if(!isset($m_ts))
+                                                <td colspan="9" style="text-align: center">Chưa có thông tin</td>
+                                            @else
+
+                                                @foreach($m_ts as $key=>$ct)
+                                                    <tr>
+                                                        <td style="text-align: center">{{$key+1}}</td>
+                                                        <td class="active">{{$ct->tents}}</td>
+                                                        <td>{{$ct->dacdiempl}}</td>
+                                                        <td>{{$ct->nguongoc}}</td>
+                                                        <td>{{$ct->dvt}}</td>
+                                                        <td>{{$ct->sl}}</td>
+                                                        <td>{{$ct->giadenghi}}</td>
+                                                        <td>{{$ct->giatritstd}}</td>
+                                                        <td><button type="button" onclick="confirmDelete('{{$ct->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                                Xóa</button></td>
+                                                    </tr>
+                                                @endforeach
+                                            @endif
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -143,19 +162,12 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#create_ttphong_ban").validate({
+            var validator = $("#import_thamdinhgia").validate({
                 rules: {
-                    ten :"required",
-                    diachi :"required",
-                    username :"required",
-                    password :"required"
-
+                    ten :"required"
                 },
                 messages: {
-                    ten :"Chưa nhập dữ liệu",
-                    diachi :"Chưa nhập dữ liệu",
-                    username :"Chưa nhập dữ liệu",
-                    password :"Chưa nhập dữ liệu"
+                    ten :"Chưa nhập dữ liệu"
                 }
             });
         }

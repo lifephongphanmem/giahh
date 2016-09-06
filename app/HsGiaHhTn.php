@@ -18,6 +18,7 @@ class HsGiaHhTn extends Model
         'nam',
         'thang',
         'quy',
-        'mahuyen'
+        'mahuyen',
+        'trangthai'
     ];
 }

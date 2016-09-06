@@ -24,6 +24,7 @@ class CreateHsgiahhtnTable extends Migration
             $table->string('thang');
             $table->string('quy');
             $table->string('mahuyen');
+            $table->string('trangthai');
             $table->timestamps();
         });
     }

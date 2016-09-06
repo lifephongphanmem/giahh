@@ -101,6 +101,7 @@
                             <th style="text-align: center" width="15%">Thị trường</th>
                             <th style="text-align: center">Loại giá</th>
                             <th style="text-align: center">Loại hàng hóa</th>
+                            <th style="text-align: center">Trạng thái</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
@@ -113,6 +114,15 @@
                                 <td>{{$tt->thitruong}}</td>
                                 <td>{{$tt->maloaigia}}</td>
                                 <td>{{$tt->maloaihh}}</td>
+                                <td style="text-align: center">
+                                    @if($tt->trangthai == 'Công bố')
+                                        <span class="label label-sm label-success">
+									    Công bố </span>
+                                    @else
+                                        <span class="label label-sm label-danger">
+										Chưa công bố </span>
+                                    @endif
+                                </td>
                                 <td>
                                     <a href="{{url('giahhdv-trongnuoc/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                     @if(can('hhdvtn','edit') && $tt->mahuyen == session('admin')->mahuyen)
