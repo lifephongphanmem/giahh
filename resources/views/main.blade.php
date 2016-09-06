@@ -299,6 +299,25 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
                 @endif
+                    <li>
+                        <a href="">
+                            <i class="fa fa-laptop"></i>
+                            <span class="title">Tài sản nhà nước</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+
+                            <li>
+                                <a href="{{url('taisan-nhadat/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Tài sản nhà và đất</a>
+                            </li>
+
+                            <li>
+                                <a href="{{url('taisan-otokhac/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                                    Tài sản ôtô- tài sản khác</a>
+                            </li>
+
+                        </ul>
+                    </li>
                 @if(canGeneral('thamdinhgia','thamdinhgia'))
                     @if(can('thamdinhgia','index'))
                 <li>
@@ -347,25 +366,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 @endif
 
 
-                        <li>
-                            <a href="">
-                                <i class="fa fa-laptop"></i>
-                                <span class="title">Tài sản nhà nước</span>
-                                <span class="arrow "></span>
-                            </a>
-                            <ul class="sub-menu">
 
-                                <li>
-                                    <a href="{{url('taisan-nhadat/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Tài sản nhà và đất</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{url('taisan-otokhac/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
-                                        Tài sản ôtô- tài sản khác</a>
-                                </li>
-
-                            </ul>
-                        </li>
 
 
                 @if(canGeneral('ttqd','ttqd'))
