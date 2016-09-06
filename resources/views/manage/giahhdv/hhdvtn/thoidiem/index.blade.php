@@ -65,8 +65,13 @@
                             <td>{{$tt->denngay}}</td>
                             <td>{{$tt->nhom}}</td>
                             <td>
+                                @if(session('admin')->level == 'T')
                                 <a href="{{url('giahhdv-trongnuoc/thoidiem='.$tt->mathoidiem.'/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}" class="btn btn-default btn-xs mbs">
                                     <i class="fa fa-edit"></i> Nhập báo cáo</a>
+                                @else
+                                    <a href="{{url('giahhdv-trongnuoc/thoidiem='.$tt->mathoidiem.'/nam='.getGeneralConfigs()['namhethong'].'&pb='.session('admin')->mahuyen)}}" class="btn btn-default btn-xs mbs">
+                                        <i class="fa fa-edit"></i> Nhập báo cáo</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

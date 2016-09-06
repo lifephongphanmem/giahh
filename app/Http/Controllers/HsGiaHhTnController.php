@@ -43,6 +43,7 @@ class HsGiaHhTnController extends Controller
                     ->where('nam',$nam)
                     ->where('mahuyen',$pb)
                     ->get();
+
             $modelpb = TtPhongBan::all();
 
             foreach($model as $tt){

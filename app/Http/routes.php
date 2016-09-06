@@ -198,6 +198,11 @@ Route::get('congbogia/store','CongBoGiaController@store');
 Route::get('congbogia/edit','CongBoGiaController@edit');
 Route::get('congbogia/update','CongBoGiaController@update');
 Route::get('congbogia/delete','CongBoGiaController@destroy');
+
+    //Search Công bố giá
+Route::get('timkiem-congbogia','CongBoGiaController@search');
+Route::post('timkiem-congbogia','CongBoGiaController@viewsearch');
+
 //End Công bố giá
 
 //Tài sản nhà nước

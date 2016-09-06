@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class CongBoGiaController extends Controller
@@ -294,5 +295,50 @@ class CongBoGiaController extends Controller
             }
         }
         die(json_encode($result));
+    }
+
+    public function search(){
+        if(Session::has('admin')){
+            return view('manage.congbogia.search.create')
+                ->with('pageTitle','Tìm kiếm thông tin công bố giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function viewsearch(Request $request){
+        if(Session::has('admin')){
+            $_sql="select hscongbogia.ngaynhap, hscongbogia.plhs,hscongbogia.nguonvon,congbogia.tents,congbogia.dvt,congbogia.sl,congbogia.giatritstd
+                                        from hscongbogia, congbogia
+                                        Where hscongbogia.mahs=congbogia.mahs";
+            $input=$request->all();
+
+            //Thời gian nhập
+            //Từ
+            if($input['ngaynhaptu']!=null){
+                $_sql=$_sql." and hscongbogia.ngaynhap >='".date('Y-m-d',strtotime($input['ngaynhaptu']))."'";
+            }
+            //Đến
+            if($input['ngaynhapden']!=null){
+                $_sql=$_sql." and hscongbogia.ngaynhap <='".date('Y-m-d',strtotime($input['ngaynhapden']))."'";
+            }
+
+            //Tên tài sản
+            $_sql=$input['tents']!=null? $_sql." and congbogia.tents Like '".$input['tents']."%'":$_sql;
+
+            //Từ
+            if(getDouble($input['giatritu'])>0)
+                $_sql=$_sql." and congbogia.giatritstd >= ".getDouble($input['giatritu']);
+            //Đến
+            if(getDouble($input['giatriden'])>0)
+                $_sql=$_sql." and congbogia.giatritstd <= ".getDouble($input['giatriden']);
+
+            $model =  DB::select(DB::raw($_sql));
+            return view('manage.congbogia.search.index')
+                ->with('model',$model)
+                ->with('pageTitle','Thông tin công bố giá');
+
+        }else
+            return view('errors.notlogin');
     }
 }

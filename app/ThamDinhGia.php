@@ -16,7 +16,9 @@ class ThamDinhGia extends Model
         'nguongoc',
         'dvt',
         'sl',
+        'nguyengiadenghi',
         'giadenghi',
+        'nguyengiathamdinh',
         'giatritstd',
         'gc',
         'mahs'

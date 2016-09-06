@@ -21,7 +21,9 @@ class CreateThamdinhgiaTable extends Migration
             $table->string('nguongoc');
             $table->string('dvt');
             $table->string('sl');
+            $table->string('nguyengiadenghi');
             $table->string('giadenghi');
+            $table->string('nguyengiathamdinh');
             $table->string('giatritstd');
             $table->string('gc');
             $table->string('mahs');

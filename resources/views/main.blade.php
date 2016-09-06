@@ -336,10 +336,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ công bố</a>
                                 </li>
 
-                                <!--li>
-                                    <a href="">
-                                        Tìm kiếm thông tin tài sản</a>
-                                </li-->
+                                <li>
+                                    <a href="{{url('timkiem-congbogia')}}">
+                                        Tìm kiếm thông tin công bố giá</a>
+                                </li>
 
                             </ul>
                         </li>
