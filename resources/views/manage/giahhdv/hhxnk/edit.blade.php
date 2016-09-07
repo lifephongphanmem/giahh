@@ -321,7 +321,7 @@
                                             @foreach($modeltthh as $key=>$tt)
                                                 <tr>
                                                     <td style="text-align: center">{{$key+1}}</td>
-                                                    <td class="active">{{$tt->mahh}}</td>
+                                                    <td class="active">{{$tt->tenhh}}</td>
                                                     <td style="text-align: right">{{number_format($tt->giatu)}}</td>
                                                     <td style="text-align: right">{{number_format($tt->giaden)}}</td>
                                                     <td style="text-align: right">{{number_format($tt->soluong)}}</td>

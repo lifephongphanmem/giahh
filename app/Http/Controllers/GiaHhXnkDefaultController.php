@@ -34,6 +34,7 @@ class GiaHhXnkDefaultController extends Controller
 
             $model = PNhomxnk::where('manhom',$inputs['manhom'])
                 ->get();
+
             //dd($model);
             $result['message'] = '<div id="ttpnhom">';
             if(count($model) > 0){
@@ -161,13 +162,17 @@ class GiaHhXnkDefaultController extends Controller
 
             $model = GiaHhXnkDefault::where('mahuyen',session('admin')->mahuyen)
                 ->get();
+            $modeldm = DmHhXnk::all();
+            foreach($model as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+            }
 
             $result['message'] = '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->mahh.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tenhh.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatu).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giaden).'</td>';
                     $result['message'] .= '<td style="text-align: center">'.number_format($tents->soluong).'</td>';
@@ -306,12 +311,16 @@ class GiaHhXnkDefaultController extends Controller
 
             $model = GiaHhXnkDefault::where('mahuyen',session('admin')->mahuyen)
                 ->get();
+            $modeldm = DmHhXnk::all();
+            foreach($model as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+            }
             $result['message'] = '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key+1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->mahh.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tenhh.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatu).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giaden).'</td>';
                     $result['message'] .= '<td style="text-align: center">'.number_format($tents->soluong).'</td>';
@@ -355,12 +364,16 @@ class GiaHhXnkDefaultController extends Controller
 
             $model = GiaHhXnkDefault::where('mahuyen',session('admin')->mahuyen)
                 ->get();
+            $modeldm = DmHhXnk::all();
+            foreach($model as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+            }
             $result['message'] = '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td>'.($key+1).'</td>';
-                    $result['message'] .= '<td>'.$tents->mahh.'</td>';
+                    $result['message'] .= '<td>'.$tents->tenhh.'</td>';
                     $result['message'] .= '<td>'.number_format($tents->giatu).'</td>';
                     $result['message'] .= '<td>'.number_format($tents->giaden).'</td>';
                     $result['message'] .= '<td>'.number_format($tents->soluong).'</td>';
@@ -387,4 +400,15 @@ class GiaHhXnkDefaultController extends Controller
         die(json_encode($result));
     }
 
+    public function gettenhh($mahh,$array){
+
+        //dd($array);
+        foreach($mahh as $tt){
+
+            if($tt->masoloai == $array->masoloai && $tt->mahh == $array->mahh){
+                $array->tenhh = $tt->tenhh;
+                break;
+            }
+        }
+    }
 }

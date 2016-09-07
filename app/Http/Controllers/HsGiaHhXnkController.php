@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DmHhXnk;
 use App\DmLoaiGia;
 use App\DmThoiDiem;
 use App\GiaHhXnk;
@@ -43,6 +44,10 @@ class HsGiaHhXnkController extends Controller
                     ->where('mahuyen',$pb)
                     ->get();
             $modelpb = TtPhongBan::all();
+
+            foreach($model as $tt){
+                $this->getTtPhongBan($modelpb,$tt);
+            }
             return view('manage.giahhdv.hhxnk.index')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
@@ -52,6 +57,13 @@ class HsGiaHhXnkController extends Controller
                 ->with('pageTitle','Thông tin hồ sơ giá hàng hóa xuất nhập khẩu');
         }else
             return view('errors.notlogin');
+    }
+
+    public function getTtPhongBan($pbs,$array){
+        foreach($pbs as $pb){
+            if($pb->ma == $array->mahuyen)
+                $array->tenpb = $pb->ten;
+        }
     }
 
     public function create($thoidiem)
@@ -132,6 +144,10 @@ class HsGiaHhXnkController extends Controller
             $model = HsGiaHhXnk::findOrFail($id);
             $modeltthh = GiaHhXnk::where('mahs',$model->mahs)
                 ->get();
+            $modeldm = DmHhXnk::all();
+            foreach($modeltthh as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+            }
             $loaigia = DmLoaiGia::all();
 
             return view('manage.giahhdv.hhxnk.show')
@@ -143,12 +159,28 @@ class HsGiaHhXnkController extends Controller
             return view('errors.notlogin');
     }
 
+    public function gettenhh($mahh,$array){
+
+        //dd($array);
+        foreach($mahh as $tt){
+
+            if($tt->masoloai == $array->masoloai && $tt->mahh == $array->mahh){
+                $array->tenhh = $tt->tenhh;
+                break;
+            }
+        }
+    }
+
     public function edit($id)
     {
         if(Session::has('admin')){
             $model = HsGiaHhXnk::findOrFail($id);
             $modeltthh = GiaHhXnk::where('mahs',$model->mahs)
                 ->get();
+            $modeldm = DmHhXnk::all();
+            foreach($modeltthh as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+            }
             $nhomhh = Nhomxnk::where('theodoi','Có')
                 ->get();
             $loaigia = DmLoaiGia::all();

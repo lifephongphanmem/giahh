@@ -27,6 +27,9 @@ class TsOtoKhacController extends Controller
                     ->get();
             }
             $modelpb = TtPhongBan::all();
+            foreach($model as $tt){
+                $this->getTtPhongBan($modelpb,$tt);
+            }
             return view('manage.taisannn.otokhac.index')
                 ->with('model', $model)
                 ->with('nam', $nam)
@@ -36,6 +39,13 @@ class TsOtoKhacController extends Controller
 
         } else
             return view('errors.notlogin');
+    }
+
+    public function getTtPhongBan($pbs,$array){
+        foreach($pbs as $pb){
+            if($pb->ma == $array->mahuyen)
+                $array->tenpb = $pb->ten;
+        }
     }
 
     public function create()
