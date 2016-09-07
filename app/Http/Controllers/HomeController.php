@@ -24,8 +24,7 @@ class HomeController extends Controller
     {
         if (Session::has('admin')) {
             if(session('admin')->username == 'sa')
-                return view('system.general.index')
-                    ->with('pageTitle','Cấu hình hệ thống');
+                return redirect('cau-hinh-he-thong');
             else
                 return view('dashboard')
                     ->with('pageTitle','Tổng quan');
