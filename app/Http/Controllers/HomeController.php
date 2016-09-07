@@ -23,8 +23,12 @@ class HomeController extends Controller
     public function index()
     {
         if (Session::has('admin')) {
-            return view('dashboard')
-                ->with('pageTitle','Tổng quan');
+            if(session('admin')->username == 'sa')
+                return view('system.general.index')
+                    ->with('pageTitle','Cấu hình hệ thống');
+            else
+                return view('dashboard')
+                    ->with('pageTitle','Tổng quan');
         }else
             return view('welcome');
     }

@@ -266,6 +266,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div-->
                     </form>
                     <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                @if(session('admin')->sadmin != 'sa')
                 <li class="start active open">
                     <a href="">
                         <i class="fa fa-folder-open-o"></i>
@@ -273,7 +274,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="selected"></span>
                     </a>
                 </li>
-                @if(session('admin')->sadmin != 'sa')
+
                 @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk'))
                 <li>
                     <a href="">
