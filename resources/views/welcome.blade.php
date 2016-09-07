@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Cơ sở dữ liệu về giá</title>
+    <title>CSDL về giá</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +40,7 @@
     <br>
     <br>
     <br>
-    <h1><b>CƠ SỞ DỮ LIỆU VỀ GIÁ</b></h1>
+    <h1><b>PHẦM MỀM CƠ SỞ DỮ LIỆU VỀ GIÁ</b></h1>
 
     <br>
 </div>
