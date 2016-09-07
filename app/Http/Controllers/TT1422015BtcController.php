@@ -55,6 +55,7 @@ class TT1422015BtcController extends Controller
             //dd($input);
             $thoigian = HsGiaHhTn::where('mathoidiem',$input['mathoidiem'])
                 ->get();
+
             $arrayidtg = '';
             foreach($thoigian as $tg){
                 $arrayidtg = $arrayidtg.$tg->mahs.',';

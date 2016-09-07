@@ -47,7 +47,7 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Mã thời điểm</th>
+                            <!--th style="text-align: center">Mã thời điểm</th-->
                             <th style="text-align: center">Thời điểm</th>
                             <th style="text-align: center">Từ ngày</th>
                             <th style="text-align: center">Đến ngày</th>
@@ -59,7 +59,7 @@
                         @foreach($model as $key=>$tt)
                         <tr>
                             <td style="text-align: center">{{$key + 1}}</td>
-                            <td>{{$tt->mathoidiem}}</td>
+                            <!--td>{{$tt->mathoidiem}}</td-->
                             <td class="active">{{$tt->tenthoidiem}}</td>
                             <td>{{$tt->tungay}}</td>
                             <td>{{$tt->denngay}}</td>
