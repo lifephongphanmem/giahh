@@ -93,7 +93,7 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td>{{$key +1}}</td>
-                                <td>{{$tt->tenpb}}</td>
+                                <td class="active">{{$tt->tenpb}}</td>
                                 <td>{{getDayVn($tt->ngaynhap)}}</td>
                                 <td>
                                     <a href="{{url('taisan-otokhac/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
