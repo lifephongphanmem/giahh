@@ -268,4 +268,20 @@ class HsGiaHhTnController extends Controller
         }else
             return view('errors.notlogin');
     }
+
+    public function search(){
+        if(Session::has('admin')){
+            return view('manage.giahhdv.hhdvtn.search.create')
+                ->with('pageTitle','Tìm kiếm thông tin giá hàng hóa trong nước');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function viewsearch(Request $request){
+        if(Session::has('admin')){
+            return view('manage.giahhdv.hhdvtn.search.index')
+                ->with('pageTitle','Thông tin giá hàng hóa trong nước');
+        }else
+            return view('errors.notlogin');
+    }
 }

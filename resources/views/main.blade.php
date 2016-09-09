@@ -288,12 +288,18 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li>
                             <a href="{{url('giahhdv-trongnuoc')}}">Giá hàng hóa- dịch vụ trong nước</a>
                         </li>
+                        <li>
+                            <a href="{{url('timkiem-giahhdv-trongnuoc')}}">Tìm kiếm thông tin giá hàng hóa- dịch vụ trong nước</a>
+                        </li>
                             @endif
                         @endif
                         @if(canGeneral('hhdv','hhxnk'))
                             @if(can('hhxnk','index'))
                         <li>
                             <a href="{{url('giahh-xuatnhapkhau')}}">Giá hàng hóa xuất nhập khẩu</a>
+                        </li>
+                        <li>
+                            <a href="{{url('timkiem-giahhdv-trongnuoc')}}">Tìm kiếm thông tin giá hàng hóa xuất nhập khẩu</a>
                         </li>
                             @endif
                         @endif

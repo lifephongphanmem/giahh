@@ -108,6 +108,10 @@ Route::get('/giahhtn/store','GiaHhTnController@store');
 Route::get('/giahhtn/edit','GiaHhTnController@edit');
 Route::get('/giahhtn/update','GiaHhTnController@update');
 Route::get('/giahhtn/delete','GiaHhTnController@destroy');
+
+Route::get('timkiem-giahhdv-trongnuoc','HsGiaHhTnController@search');
+Route::post('timkiem-giahhdv-trongnuoc','HsGiaHhTnController@viewsearch');
+
 //End Giá HH-DV trong nước
 //Giá HH xuất nhập khẩu
 Route::get('giahh-xuatnhapkhau','HsGiaHhXnkController@thoidiem');
