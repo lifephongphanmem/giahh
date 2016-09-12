@@ -65,6 +65,30 @@
                                 </table>
                             </div>
                             <div class="col-md-3">
+                                <h4 style="text-align: center">Tài sản nhà nước</h4>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="action">
+                                    <tr>
+                                        <th class="table-checkbox" width="5%">
+                                            <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                        </th>
+                                        <th>Chức năng</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($setting->tsnn->tsnnnhadat) && $setting->tsnn->tsnnnhadat == 1) ? 'checked' : '' }} value="1" name="roles[tsnn][tsnnnhadat]"/></td>
+                                        <td>Tài sản nhà nước (nhà và đất)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($setting->tsnn->tsnnotokhac) && $setting->tsnn->tsnnotokhac == 1) ? 'checked' : '' }} value="1" name="roles[tsnn][tsnnotokhac]"/></td>
+                                        <td>Tài sản nhà nước (ôtô - khác)</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-3">
                                 <h4 style="text-align: center">Thẩm định giá</h4>
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>

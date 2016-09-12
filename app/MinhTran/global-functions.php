@@ -15,6 +15,18 @@ function getPermissionDefault($level) {
             'edit' => 1,
             'delete' => 1
         ),
+        'tsnnnhadat' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
+        'tsnnotokhac' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
         'tdgia' => array(
             'index' => 1,
             'create' => 1,

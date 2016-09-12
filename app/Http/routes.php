@@ -157,13 +157,15 @@ Route::post('thongtu-quyetdinh-tinh/delete','TtQdController@tinhdelete');
 //End TTQĐ
 
 //Thẩm định giá
-Route::get('hoso-thamdinhgia/nam={nam}&pb={pb}','HsThamDinhGiaController@index');
+Route::get('hoso-thamdinhgia/nam={nam}','HsThamDinhGiaController@index');
 Route::get('hoso-thamdinhgia/create','HsThamDinhGiaController@create');
 Route::post('hoso-thamdinhgia','HsThamDinhGiaController@store');
 Route::post('hoso-thamdinhgia/delete','HsThamDinhGiaController@destroy');
 Route::get('hoso-thamdinhgia/{id}/show','HsThamDinhGiaController@show');
 Route::get('hoso-thamdinhgia/{id}/edit','HsThamDinhGiaController@edit');
 Route::patch('hoso-thamdinhgia/{id}','HsThamDinhGiaController@update');
+
+Route::get('thongtin-thamdinhgia/nam={nam}&pb={pb}','HsThamDinhGiaController@showindex');
 
 Route::get('thamdinhgiadefault/store','ThamDinhgiaDefaultController@store');
 Route::get('thamdinhgiadefault/edit','ThamDinhgiaDefaultController@edit');

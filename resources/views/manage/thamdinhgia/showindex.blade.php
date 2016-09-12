@@ -22,11 +22,17 @@
 
             $('#namhs').change(function() {
                 var namhs = $('#namhs').val();
-                var url = '/hoso-thamdinhgia/nam='+namhs+'&pb=all';
+                var url = '/thongtin-thamdinhgia/nam='+namhs+'&pb=all';
 
                 window.location.href = url;
             });
+            $('#ttpb').change(function() {
+                var namhs = $('#namhs').val();
+                var ttpb = $('#ttpb').val();
+                var url = '/thongtin-thamdinhgia/nam='+namhs+'&pb='+ttpb;
 
+                window.location.href = url;
+            });
         })
         function confirmDelete(id) {
             document.getElementById("iddelete").value=id;
@@ -53,24 +59,23 @@
                 </select>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <select class="form-control select2me" id="ttpb" name="ttpb">
+                    <option value="all">--Tất cả phòng ban--</option>
+                    @foreach($modelpb as $ttpb)
+                        <option value="{{$ttpb->ma}}" {{($pb == $ttpb->ma) ? 'selected' : ''}}>{{$ttpb->ten}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
-                <div class="portlet-title">
-                    <div class="caption">
-                    </div>
-                    <div class="actions">
-                        <a href="{{url('hoso-thamdinhgia/create')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
-                        <a href="{{url('hoso-thamdinhgia/import')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Import file</a>
-                        <!--a href="" class="btn btn-default btn-sm">
-                            <i class="fa fa-print"></i> Print </a-->
-                    </div>
-                </div>
+
                 <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
@@ -97,13 +102,6 @@
                                 <td style="text-align: center">{{getDayVn($tt->thoihan)}}</td>
                                 <td>
                                     <a href="{{url('hoso-thamdinhgia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
-                                    @if(can('thamdinhgia','edit') && $tt->mahuyen == session('admin')->mahuyen)
-                                    <a href="{{url('hoso-thamdinhgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                    @endif
-                                    @if(can('thamdinhgia','delete') && $tt->mahuyen == session('admin')->mahuyen)
-                                    <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                    Xóa</button>
-                                    @endif
                                 </td>
                             </tr>
                         @endforeach

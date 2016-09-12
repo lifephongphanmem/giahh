@@ -30,7 +30,9 @@
                     <!-- BEGIN FORM-->
                     {!! Form::open(['url'=>'phong-ban', 'id' => 'create_ttphong_ban', 'class'=>'horizontal-form']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
+
                         <div class="form-body">
+                            <h4><b>Thông tin phòng ban</b></h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

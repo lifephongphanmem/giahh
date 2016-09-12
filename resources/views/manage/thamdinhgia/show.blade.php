@@ -229,7 +229,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Đơn vị yêu cầu thẩm định</label>
-                                        <input type="text" id="dvyeucau" name="dvyeucau" class="form-control" value="{{$model->dvyeucau}}" readonly>
+                                        <input type="text" id="dvyeucau" name="dvyeucau" class="form-control" value="{{session('admin')->mahuyen == $model->mahuyen?$model->dvyeucau:'Nội dung thông tin bị ẩn'}}" readonly>
                                     </div>
                                 </div>
                                 <!--/span-->

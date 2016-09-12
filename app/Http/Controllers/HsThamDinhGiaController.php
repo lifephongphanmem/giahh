@@ -14,8 +14,31 @@ use Illuminate\Support\Facades\Session;
 
 class HsThamDinhGiaController extends Controller
 {
-    public function index($nam,$pb)
+    public function index($nam)
     {
+        if(Session::has('admin')){
+
+
+            $model = HsThamDinhGia::where('nam',$nam)
+                ->where('mahuyen',session('admin')->mahuyen)
+                ->get();
+
+            $modelpb = TtPhongBan::all();
+            foreach($model as $tt){
+                $this->getTtPhongBan($modelpb,$tt);
+            }
+
+            return view('manage.thamdinhgia.index')
+                ->with('model',$model)
+                ->with('modelpb',$modelpb)
+                ->with('nam',$nam)
+                ->with('pageTitle','Thông tin hồ sơ thẩm định giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function showindex($nam,$pb){
         if(Session::has('admin')){
 
             if($pb == 'all')
@@ -28,11 +51,10 @@ class HsThamDinhGiaController extends Controller
                     ->get();
             $modelpb = TtPhongBan::all();
 
-
             foreach($model as $tt){
                 $this->getTtPhongBan($modelpb,$tt);
             }
-            return view('manage.thamdinhgia.index')
+            return view('manage.thamdinhgia.showindex')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
                 ->with('nam',$nam)

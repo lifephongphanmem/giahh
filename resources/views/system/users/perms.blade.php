@@ -46,7 +46,7 @@
                         <div class="row">
                             @if(canGeneral('hhdv','hhdvtn'))
                             <div class="col-md-3">
-                                <h4 style="text-align: center">Hàng hóa dịch vụ trong nước</h4>
+                                <h4 style="text-align: center;color: #0000ff  ">Hàng hóa dịch vụ trong nước</h4>
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead class="action">
                                     <tr>
@@ -80,7 +80,7 @@
                             @endif
                             @if(canGeneral('hhdv','hhxnk'))
                             <div class="col-md-3">
-                                <h4 style="text-align: center">Hàng hóa xuất nhập khẩu</h4>
+                                <h4 style="text-align: center;color: #0000ff  ">Hàng hóa xuất nhập khẩu</h4>
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead class="action">
                                     <tr>
@@ -112,9 +112,79 @@
                                 </table>
                             </div>
                             @endif
+                                <!--Chưa làm-->
+                            @if(canGeneral('tsnn','tsnnnhadat'))
+                                <div class="col-md-3">
+                                    <h4 style="text-align: center;color: #0000ff  ">Tài sản nhà nước (nhà và đất)</h4>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="action">
+                                        <tr>
+                                            <th class="table-checkbox" width="5%">
+                                                <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                            </th>
+                                            <th>Chức năng</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tsnnnhadat->index) && $permission->tsnnnhadat->index == 1) ? 'checked' : '' }} value="1" name="roles[tsnnnhadat][index]"/></td>
+                                            <td>Xem</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tsnnnhadat->create) && $permission->tsnnnhadat->create == 1) ? 'checked' : '' }} value="1" name="roles[tsnnnhadat][create]"/></td>
+                                            <td>Thêm mới</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tsnnnhadat->edit) && $permission->tsnnnhadat->edit == 1) ? 'checked' : '' }} value="1" name="roles[tsnnnhadat][edit]"/></td>
+                                            <td>Chỉnh sửa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tsnnnhadat->delete) && $permission->tsnnnhadat->delete == 1) ? 'checked' : '' }} value="1" name="roles[tsnnnhadat][delete]"/></td>
+                                            <td>Xóa</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+                            @if(canGeneral('tsnn','tsnnotokhac'))
+                                <div class="col-md-3">
+                                    <h4 style="text-align: center;color: #0000ff  ">Tài sản nhà nước ( ôtô - tài sản khác)</h4>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="action">
+                                        <tr>
+                                            <th class="table-checkbox" width="5%">
+                                                <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                            </th>
+                                            <th>Chức năng</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tsnnotokhac->index) && $permission->tsnnotokhac->index == 1) ? 'checked' : '' }} value="1" name="roles[tsnnotokhac][index]"/></td>
+                                            <td>Xem</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tsnnotokhac->create) && $permission->tsnnotokhac->create == 1) ? 'checked' : '' }} value="1" name="roles[tsnnotokhac][create]"/></td>
+                                            <td>Thêm mới</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tsnnotokhac->edit) && $permission->tsnnotokhac->edit == 1) ? 'checked' : '' }} value="1" name="roles[tsnnotokhac][edit]"/></td>
+                                            <td>Chỉnh sửa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tsnnotokhac->delete) && $permission->tsnnotokhac->delete == 1) ? 'checked' : '' }} value="1" name="roles[tsnnotokhac][delete]"/></td>
+                                            <td>Xóa</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+                                <!--Chưa làm-->
                             @if(canGeneral('thamdinhgia','thamdinhgia'))
                             <div class="col-md-3">
-                                <h4 style="text-align: center">Thẩm định giá</h4>
+                                <h4 style="text-align: center;color: #0000ff  ">Thẩm định giá</h4>
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead class="action">
                                         <tr>
@@ -148,7 +218,7 @@
                             @endif
                             @if(canGeneral('congbogia','congbogia'))
                             <div class="col-md-3">
-                                <h4 style="text-align: center">Công bố giá</h4>
+                                <h4 style="text-align: center;color: #0000ff  ">Công bố giá</h4>
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
                                     <tr>
@@ -181,7 +251,7 @@
                             @endif
                             @if(canGeneral('ttqd','ttqd'))
                                 <div class="col-md-3">
-                                    <h4 style="text-align: center">Công bố giá</h4>
+                                    <h4 style="text-align: center;color: #0000ff  ">Thông tư quyết định</h4>
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <tr>
@@ -219,6 +289,7 @@
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Cập nhật</button>
                     </div>
                 </div>
+
                 <!-- END EXAMPLE TABLE PORTLET-->
                 {!! Form::hidden('id', $model->id)!!}
                 {!! Form::close() !!}

@@ -107,6 +107,7 @@ License: You must have a valid license purchased only from themeforest(the above
             Layout.init(); // init layout
             QuickSidebar.init(); // init quick sidebar
             Demo.init(); // init demo features
+
         });
     </script>
     <script type="text/javascript">
@@ -184,6 +185,8 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END LOGO -->
         <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+        </a>
         <!-- END RESPONSIVE MENU TOGGLER -->
         <!-- BEGIN TOP NAVIGATION MENU -->
         <div class="top-menu">
@@ -336,9 +339,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     <ul class="sub-menu">
 
                         <li>
-                            <a href="{{url('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ thẩm định</a>
+                            <a href="{{url('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ thẩm định</a>
                         </li>
-
+                        <li>
+                            <a href="{{url('thongtin-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin thẩm định</a>
+                        </li>
                         <li>
                             <a href="{{url('timkiem-thamdinhgia')}}">
                                 Tìm kiếm thông tin thẩm định giá</a>
@@ -371,11 +376,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         </li>
                     @endif
                 @endif
-
-
-
-
-
                 @if(canGeneral('ttqd','ttqd'))
                     @if(can('ttqd','index'))
                 <li>
@@ -454,7 +454,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <a href="{{url('dmhanghoa-xuatnhapkhau')}}"> Mặt hàng xuất nhập khẩu</a>
                                 </li>
                                 @endif
-
                             </ul>
                         </li>
                         @endif
