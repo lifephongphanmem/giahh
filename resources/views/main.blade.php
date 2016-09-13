@@ -379,9 +379,11 @@ License: You must have a valid license purchased only from themeforest(the above
                             <ul class="sub-menu">
 
                                 <li>
-                                    <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Hồ sơ công bố</a>
+                                    <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ công bố</a>
                                 </li>
-
+                                <li>
+                                    <a href="{{url('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin công bố</a>
+                                </li>
                                 <li>
                                     <a href="{{url('timkiem-congbogia')}}">
                                         Tìm kiếm thông tin công bố giá</a>

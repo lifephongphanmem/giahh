@@ -189,13 +189,15 @@ Route::get('mauexceltdg','ThamDinhGiaController@getDownload');
 //End Thẩm định giá
 
 //Công bố giá
-Route::get('hoso-congbogia/nam={nam}&pb={pb}','HsCongBoGiaController@index');
+Route::get('hoso-congbogia/nam={nam}','HsCongBoGiaController@index');
 Route::get('hoso-congbogia/create','HsCongBoGiaController@create');
 Route::post('hoso-congbogia','HsCongBoGiaController@store');
 Route::post('hoso-congbogia/delete','HsCongBoGiaController@destroy');
 Route::get('hoso-congbogia/{id}/show','HsCongBoGiaController@show');
 Route::get('hoso-congbogia/{id}/edit','HsCongBoGiaController@edit');
 Route::patch('hoso-congbogia/{id}','HsCongBoGiaController@update');
+
+Route::get('thongtin-congbogia/nam={nam}&pb={pb}','HsCongBoGiaController@showindex');
 
 Route::get('congbogiadefault/store','CongBoGiaDefaultController@store');
 Route::get('congbogiadefault/edit','CongBoGiaDefaultController@edit');

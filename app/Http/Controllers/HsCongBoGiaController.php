@@ -15,12 +15,35 @@ use Illuminate\Support\Facades\Session;
 class HsCongBoGiaController extends Controller
 {
 
-    public function index($nam,$pb)
+    public function index($nam)
     {
         if(Session::has('admin')){
+
+            $model = HsCongBoGia::where('nam',$nam)
+                ->where('mahuyen',session('admin')->mahuyen)
+                ->get();
+            $modelpb = TtPhongBan::all();
+
+            foreach($model as $tt){
+                $this->getTtPhongBan($modelpb,$tt);
+            }
+            return view('manage.congbogia.index')
+                ->with('model',$model)
+                ->with('modelpb',$modelpb)
+                ->with('nam',$nam)
+                ->with('pageTitle','Thông tin hồ sơ công bố giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function showindex($nam,$pb){
+        if(Session::has('admin')){
+
             if($pb == 'all')
                 $model = HsCongBoGia::where('nam',$nam)
                     ->get();
+
             else
                 $model = HsCongBoGia::where('nam',$nam)
                     ->where('mahuyen',$pb)
@@ -30,7 +53,7 @@ class HsCongBoGiaController extends Controller
             foreach($model as $tt){
                 $this->getTtPhongBan($modelpb,$tt);
             }
-            return view('manage.congbogia.index')
+            return view('manage.congbogia.showindex')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
                 ->with('nam',$nam)
