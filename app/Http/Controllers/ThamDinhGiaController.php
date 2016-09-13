@@ -313,7 +313,8 @@ class ThamDinhGiaController extends Controller
     public function viewsearch(Request $request){
         if (Session::has('admin')) {
 
-            $_sql="select hsthamdinhgia.thoidiem, hsthamdinhgia.diadiem,thamdinhgia.tents,thamdinhgia.dvt,thamdinhgia.sl,thamdinhgia.giatritstd
+            $_sql="select hsthamdinhgia.thoidiem, hsthamdinhgia.diadiem,hsthamdinhgia.sotbkl,thamdinhgia.tents,
+                          thamdinhgia.dvt,thamdinhgia.sl,thamdinhgia.giatritstd,thamdinhgia.thongsokt,thamdinhgia.nguongoc
                                         from hsthamdinhgia, thamdinhgia
                                         Where hsthamdinhgia.mahs=thamdinhgia.mahs";
             $input=$request->all();

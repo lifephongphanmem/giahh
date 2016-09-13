@@ -197,19 +197,19 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input type="checkbox" {{ (isset($permission->thamdinhgia->index) && $permission->thamdinhgia->index == 1) ? 'checked' : '' }} value="1" name="roles[thamdinhgia][index]"/></td>
+                                            <td><input type="checkbox" {{ (isset($permission->tdgia->index) && $permission->tdgia->index == 1) ? 'checked' : '' }} value="1" name="roles[tdgia][index]"/></td>
                                             <td>Xem</td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" {{ (isset($permission->thamdinhgia->create) && $permission->thamdinhgia->create == 1) ? 'checked' : '' }} value="1" name="roles[thamdinhgia][create]"/></td>
+                                            <td><input type="checkbox" {{ (isset($permission->tdgia->create) && $permission->tdgia->create == 1) ? 'checked' : '' }} value="1" name="roles[tdgia][create]"/></td>
                                             <td>Thêm mới</td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" {{ (isset($permission->thamdinhgia->edit) && $permission->thamdinhgia->edit == 1) ? 'checked' : '' }} value="1" name="roles[thamdinhgia][edit]"/></td>
+                                            <td><input type="checkbox" {{ (isset($permission->tdgia->edit) && $permission->tdgia->edit == 1) ? 'checked' : '' }} value="1" name="roles[tdgia][edit]"/></td>
                                             <td>Chỉnh sửa</td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" {{ (isset($permission->thamdinhgia->delete) && $permission->thamdinhgia->delete == 1) ? 'checked' : '' }} value="1" name="roles[thamdinhgia][delete]"/></td>
+                                            <td><input type="checkbox" {{ (isset($permission->tdgia->delete) && $permission->tdgia->delete == 1) ? 'checked' : '' }} value="1" name="roles[tdgia][delete]"/></td>
                                             <td>Xóa</td>
                                         </tr>
                                     </tbody>
@@ -283,10 +283,10 @@
                                 </div>
                             @endif
                         </div>
-
                     </div>
-                    <div class="form-actions" style="text-align: center">
+                    <div class="form-actions">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Cập nhật</button>
+                        <a href="{{url('users/pl='.($model->level=='H'?'quan-ly':'su-dung'))}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
                     </div>
                 </div>
 

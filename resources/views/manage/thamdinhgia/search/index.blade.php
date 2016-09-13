@@ -66,10 +66,13 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Thời điểm thẩm định</th>
+                            <th style="text-align: center">Thời điểm <br>thẩm định</th>
+                            <th style="text-align: center">Số thông báo <br>kết luận</th>
                             <th style="text-align: center" width="10%">Địa điểm thẩm định</th>
                             <th style="text-align: center" width="15%">Tên tài sản</th>
-                            <th style="text-align: center" width="10%">Đơn vị tính</th>
+                            <th style="text-align: center" width="15%">Thông số kỹ thuật</th>
+                            <th style="text-align: center" width="15%">Nguồn gốc</th>
+                            <th style="text-align: center" width="10%">Đơn vị<br> tính</th>
                             <th style="text-align: center">Đơn vị tính</th>
                             <th style="text-align: center">Giá thẩm đinh</th>
                         </tr>
@@ -79,11 +82,14 @@
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td>{{getDayVn($tt->thoidiem)}}</td>
+                                <td>{{$tt->sotbkl}}</td>
                                 <td>{{$tt->diadiem}}</td>
                                 <td class="active">{{$tt->tents}}</td>
-                                <td>{{$tt->dvt}}</td>
-                                <td>{{$tt->sl}}</td>
-                                <td>{{number_format($tt->giatritstd)}}</td>
+                                <td>{{$tt->thongsokt}}</td>
+                                <td>{{$tt->nguongoc}}</td>
+                                <td style="text-align: center">{{$tt->dvt}}</td>
+                                <td style="text-align: center">{{$tt->sl}}</td>
+                                <td style="text-align: right">{{number_format($tt->giatritstd)}}</td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -36,8 +36,11 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" style="text-align: center; font-size: 16px; text-transform: uppercase;">
+        <td colspan="2" style="text-align: center; font-size: 16px;">
             <b>BÁO CÁO TỔNG HỢP KẾT QUẢ THẨM ĐỊNH GIÁ</b>
+            <br><br>
+            Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}
+
         </td>
     </tr>
 </table>
@@ -64,18 +67,32 @@
         <th>8</th>
         <th>9</th>
     </tr>
-    @foreach($model as $key=>$ts)
+    @foreach($arraynam as $key=>$nam)
         <tr>
-            <th>{{$key +1 }}</th>
-            <th>{{$ts->thang}}</th>
-            <th>{{number_format($ts->counthoso)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumgiadenghi)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
-            <th>{{number_format($ts->phantram)}}</th>
+            <td colspan="2"></td>
+            <td colspan="7" style="text-align: left"><b>Năm {{$nam}}</b></td>
         </tr>
+        @foreach($arrayquy as $key=>$quy)
+            <tr>
+                <td></td>
+                <td colspan="8" style="text-align: left"><b>Quý {{$quy}}</b></td>
+            </tr>
+            @foreach($model as $key=>$ts)
+                @if($nam == $ts->nam && $quy == $ts->quy)
+                <tr>
+                    <th>{{$key +1 }}</th>
+                    <th>{{$ts->thang}}</th>
+                    <th>{{number_format($ts->counthoso)}}</th>
+                    <th style="text-align: right">{{number_format($ts->sumgiadenghi)}}</th>
+                    <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
+                    <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
+                    <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
+                    <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
+                    <th>{{number_format($ts->phantram)}}</th>
+                </tr>
+                @endif
+            @endforeach
+        @endforeach
     @endforeach
 </table>
 </body>

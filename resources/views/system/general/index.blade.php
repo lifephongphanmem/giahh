@@ -28,8 +28,8 @@
                     <div class="actions">
                         <a href="{{url('cau-hinh-he-thong/'.$model->id.'/edit')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-edit"></i> Chỉnh sửa </a>
-                        <a href="" class="btn btn-default btn-sm">
-                            <i class="fa fa-print"></i> Print </a>
+                        <!--a href="" class="btn btn-default btn-sm">
+                            <i class="fa fa-print"></i> Print </a-->
                         @if(session('admin')->sadmin == 'ssa')
                             <a href="{{url('setting')}}" class="btn btn-default btn-sm">
                                 <i class="icon-settings"></i> Setting</a>

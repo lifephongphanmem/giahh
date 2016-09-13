@@ -274,7 +274,7 @@
                                             @foreach($modelts as $key=>$tt)
                                                 <tr>
                                                     <td style="text-align: center">{{$key +1}}</td>
-                                                    <td>{{$tt->tents}}</td>
+                                                    <td class="active">{{$tt->tents}}</td>
                                                     <td>{{$tt->dacdiempl}}</td>
                                                     <td>{{$tt->nguongoc}}</td>
                                                     <td style="text-align: center">{{$tt->dvt}}</td>

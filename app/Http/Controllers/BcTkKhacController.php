@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CongBoGia;
 use App\HsCongBoGia;
+use App\HsGiaHhXnk;
 use App\HsThamDinhGia;
 use App\ThamDinhGia;
 use Illuminate\Http\Request;
@@ -30,7 +31,9 @@ class BcTkKhacController extends Controller
             $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                 ->get();
             //dd($model);
+            $arraythang='';
             foreach($model as $hs){
+                $arraythang = $arraythang.$hs->thang.',';
                 $giadenghi = ThamDinhGia::where('mahs',$hs->mahs)->get();
                 $giathamdinh = ThamDinhGia::where('mahs',$hs->mahs)->get();
 
@@ -40,9 +43,19 @@ class BcTkKhacController extends Controller
                 if($giadenghi->sum('giadenghi')>0 && $giathamdinh->sum('giatritstd')>0)
                     $hs->phantram = $giathamdinh->sum('giatritstd') * 100/($giadenghi->sum('giadenghi'));
             }
+            //$modelthang = $model->groupBy('thang')->get();
+            //dd(is_array($arraythang));
+            $arraymodel = $model->toarray();
+            $arraythang = array_column($arraymodel,'thang');
+            $arrayquy = array_column($arraymodel,'quy');
+            $arraynam = array_column($arraymodel,'nam');
 
             return view('reports.bctkkhac.laocai.thamdinhgia.BC1')
                 ->with('model',$model)
+                ->with('arraythang',$arraythang)
+                ->with('arrayquy',$arrayquy)
+                ->with('arraynam',$arraynam)
+                ->with('dk',$input)
                 ->with('pageTitle','Kết quả thẩm đinh giá');
 
         }else
@@ -73,9 +86,15 @@ class BcTkKhacController extends Controller
                 if($giadenghi>0 && $giathamdinh >0)
                     $thangs->phantram = round($giathamdinh * 100/($giadenghi),1);
             }
+            $arraymodel = $model->toarray();
+            $arrayquy = array_column($arraymodel,'quy');
+            $arraynam = array_column($arraymodel,'nam');
 
             return view('reports.bctkkhac.laocai.thamdinhgia.BC2')
                 ->with('model',$model)
+                ->with('arrayquy',$arrayquy)
+                ->with('arraynam',$arraynam)
+                ->with('dk',$input)
                 ->with('pageTitle','Kết quả thẩm đinh giá');
 
         }else
@@ -98,9 +117,17 @@ class BcTkKhacController extends Controller
                 if($giadenghi>0 && $giathamdinh >0)
                     $hs->phantram = round($giathamdinh * 100/($giadenghi),1);
             }
+            $arraymodel = $model->toarray();
+            $arraythang = array_column($arraymodel,'thang');
+            $arrayquy = array_column($arraymodel,'quy');
+            $arraynam = array_column($arraymodel,'nam');
 
             return view('reports.bctkkhac.laocai.congbogia.BC3')
                 ->with('model',$model)
+                ->with('arraythang',$arraythang)
+                ->with('arrayquy',$arrayquy)
+                ->with('arraynam',$arraynam)
+                ->with('dk',$input)
                 ->with('pageTitle','Báo cáo chi tiết');
 
         }else
@@ -132,9 +159,17 @@ class BcTkKhacController extends Controller
                 if($giadenghi>0 && $giathamdinh >0)
                     $thangs->phantram = round($giathamdinh * 100/($giadenghi),1);
             }
+            $arraymodel = $model->toarray();
+            $arraythang = array_column($arraymodel,'thang');
+            $arrayquy = array_column($arraymodel,'quy');
+            $arraynam = array_column($arraymodel,'nam');
 
             return view('reports.bctkkhac.laocai.congbogia.BC4')
                 ->with('model',$model)
+                ->with('arraythang',$arraythang)
+                ->with('arrayquy',$arrayquy)
+                ->with('arraynam',$arraynam)
+                ->with('dk',$input)
                 ->with('pageTitle','Báo cáo tổng hợp');
 
         }else

@@ -59,6 +59,18 @@ function getPermissionDefault($level) {
             'edit' => 1,
             'delete' => 1
         ),
+        'tsnnnhadat' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
+        'tsnnotokhac' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
         'tdgia' => array(
             'index' => 1,
             'create' => 1,
@@ -81,11 +93,23 @@ function getPermissionDefault($level) {
     $roles['X'] = array(
         'hhdvtn' => array(
             'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
+        'hhxnk' => array(
+            'index' => 1,
             'create' => 0,
             'edit' => 0,
             'delete' => 0
         ),
-        'hhxnk' => array(
+        'tsnnnhadat' => array(
+            'index' => 0,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
+        ),
+        'tsnnotokhac' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,

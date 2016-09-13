@@ -308,7 +308,8 @@ class CongBoGiaController extends Controller
 
     public function viewsearch(Request $request){
         if(Session::has('admin')){
-            $_sql="select hscongbogia.ngaynhap, hscongbogia.plhs,hscongbogia.nguonvon,congbogia.tents,congbogia.dvt,congbogia.sl,congbogia.giatritstd
+            $_sql="select hscongbogia.ngaynhap, hscongbogia.plhs,hscongbogia.nguonvon,hscongbogia.sotbkl,
+                          congbogia.tents,congbogia.dvt,congbogia.sl,congbogia.giatritstd,congbogia.thongsokt,congbogia.nguongoc
                                         from hscongbogia, congbogia
                                         Where hscongbogia.mahs=congbogia.mahs";
             $input=$request->all();

@@ -101,8 +101,8 @@
                             Khóa</button>
                         <button id="btnMultiUnLockUser" type="button" onclick="multiUnLock()" class="btn btn-default btn-sm" data-target="#unlockuser-modal-confirm" data-toggle="modal"><i class="fa fa-unlock"></i>&nbsp;
                             Mở khóa</button>
-                        <a href="" class="btn btn-default btn-sm">
-                            <i class="fa fa-print"></i> Print </a>
+                        <!--a href="" class="btn btn-default btn-sm">
+                            <i class="fa fa-print"></i> Print </a-->
                     </div>
                 </div>
                 <div class="portlet-body">

@@ -23,7 +23,7 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            <div class="portlet box">
+            <div class="portlet box blue">
                 <!--div class="portlet-title">
                 </div-->
                 <div class="portlet-body form">
@@ -96,8 +96,8 @@
 
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
-                            <button type="reset" class="btn default">Cancel</button>
+                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
+                            <button type="reset" class="btn default">Hủy</button>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->

@@ -288,27 +288,40 @@ License: You must have a valid license purchased only from themeforest(the above
                     <ul class="sub-menu">
                         @if(canGeneral('hhdv','hhdvtn'))
                             @if(can('hhdvtn','index'))
-                        <li>
-                            <a href="{{url('giahhdv-trongnuoc')}}">Giá hàng hóa- dịch vụ trong nước</a>
-                        </li>
-                        <li>
-                            <a href="{{url('timkiem-giahhdv-trongnuoc')}}">Tìm kiếm thông tin giá hàng hóa- dịch vụ trong nước</a>
-                        </li>
+                            <li>
+                                <a href="">HH-DV trong nước<span class="arrow"></span> </a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="{{url('giahhdv-trongnuoc')}}">Giá HH-DV trong nước</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('timkiem-giahhdv-trongnuoc')}}">Tìm kiếm thông tin giá HH-DV trong nước</a>
+                                    </li>
+
+                                </ul>
+                            </li>
                             @endif
                         @endif
                         @if(canGeneral('hhdv','hhxnk'))
                             @if(can('hhxnk','index'))
-                        <li>
-                            <a href="{{url('giahh-xuatnhapkhau')}}">Giá hàng hóa xuất nhập khẩu</a>
-                        </li>
-                        <li>
-                            <a href="{{url('timkiem-giahhdv-trongnuoc')}}">Tìm kiếm thông tin giá hàng hóa xuất nhập khẩu</a>
-                        </li>
+                                <li>
+                                    <a href="">HH xuất nhập khẩu<span class="arrow"></span> </a>
+                                    <ul class="sub-menu">
+                                        <li>
+                                            <a href="{{url('giahh-xuatnhapkhau')}}">Giá hàng hóa XNK</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url('timkiem-giahhdv-trongnuoc')}}">Tìm kiếm thông tin giá hàng hóa XNK</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
                             @endif
                         @endif
                     </ul>
                 </li>
                 @endif
+                @if(canGeneral('tsnn','tsnnnhadat') || canGeneral('tsnn','tsnnotokhac'))
                     <li>
                         <a href="">
                             <i class="fa fa-laptop"></i>
@@ -316,20 +329,22 @@ License: You must have a valid license purchased only from themeforest(the above
                             <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
-
+                            @if(canGeneral('tsnn','tsnnnhadat'))
                             <li>
                                 <a href="{{url('taisan-nhadat/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Tài sản nhà và đất</a>
                             </li>
-
+                            @endif
+                            @if(canGeneral('tsnn','tsnnotokhac'))
                             <li>
                                 <a href="{{url('taisan-otokhac/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
                                     Tài sản ôtô- tài sản khác</a>
                             </li>
-
+                            @endif
                         </ul>
                     </li>
+                @endif
                 @if(canGeneral('thamdinhgia','thamdinhgia'))
-                    @if(can('thamdinhgia','index'))
+                    @if(can('tdgia','index'))
                 <li>
                     <a href="">
                         <i class="fa fa-laptop"></i>

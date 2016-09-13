@@ -36,15 +36,18 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" style="text-align: center; font-size: 16px; text-transform: uppercase;">
-            <b>BÁO CÁO CHI TIẾT KẾT QUẢ THẨM ĐỊNH GIÁ</b>
+        <td colspan="2" style="text-align: center; font-size: 16px;">
+            <b>BÁO CÁO CHI TIẾT KẾT QUẢ THẨM ĐỊNH GIÁ</b><br>
+            <br>
+            Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}
         </td>
+
     </tr>
 
 </table>
 <table cellspacing="0" cellpadding="0" border="1" style="margin: 20px auto; border-collapse: collapse;">
     <tr>
-        <th>STT</th>
+        <th style="width: 3%">STT</th>
         <th>Hồ sơ <br>thẩm định giá</th>
         <th>Tổng giá trị <br>đề nghị</th>
         <th>Tổng giá trị<br> thực hiện<br> thẩm định</th>
@@ -64,18 +67,37 @@
         <th>8</th>
 
     </tr>
-    @foreach($model as $key=>$ts)
-        <tr>
-            <th>{{$key+1}}</th>
-            <th style="text-align: left">{{$ts->hosotdgia}}</th>
-            <th style="text-align: right">{{number_format($ts->sumgiadenghi)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
-            <th>{{number_format($ts->phantram)}}</th>
-        </tr>
-    @endforeach
-</table>
+        @foreach($arraynam as $key=>$nam)
+            <tr>
+                <td></td>
+                <td colspan="7" style="text-align: left"><b>Năm {{$nam}}</b></td>
+            </tr>
+            @foreach($arrayquy as $key=>$quy)
+                <tr>
+                    <td></td>
+                    <td colspan="7" style="text-align: left"><b>Quý {{$quy}}</b></td>
+                </tr>
+                @foreach($arraythang as $key=>$thang)
+                    <tr>
+                        <td></td>
+                        <td colspan="7" style="text-align: left"><b> Tháng {{$thang}}</b></td>
+                    </tr>
+                    @foreach($model as $key=>$ts)
+                        @if($thang == $ts->thang && $nam == $ts->nam && $quy == $ts->quy)
+                        <tr>
+                            <th>{{$key+1}}</th>
+                            <th style="text-align: left">{{$ts->hosotdgia}}</th>
+                            <th style="text-align: right">{{number_format($ts->sumgiadenghi)}}</th>
+                            <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
+                            <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
+                            <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
+                            <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
+                            <th>{{number_format($ts->phantram)}}</th>
+                        </tr>
+                        @endif
+                    @endforeach
+                @endforeach
+            @endforeach
+        @endforeach
 </body>
 </html>

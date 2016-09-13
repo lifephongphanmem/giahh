@@ -51,7 +51,7 @@ class TtPhongBanController extends Controller
             $model->fax = $insert['fax'];
             $model->email = $insert['email'];
             if($model->save()){
-                $insert['roles'] = isset($insert['roles']) ? $insert['roles'] : null;
+                //$insert['roles'] = isset($insert['roles']) ? $insert['roles'] : null;
                 //dd(json_encode($insert['roles']));
                 $modeluser = new Users();
                 $modeluser->name = $insert['ten'];
@@ -62,7 +62,7 @@ class TtPhongBanController extends Controller
                 $modeluser->status = 'Kích hoạt';
                 $modeluser->phone = $insert['dienthoai'];
                 $modeluser->email = $insert['email'];
-                $modeluser->permission = json_encode($insert['roles']);
+                //$modeluser->permission = getPermissionDefault('H');
                 $modeluser->save();
             }
 
