@@ -47,8 +47,12 @@ class BcTkKhacController extends Controller
             //dd(is_array($arraythang));
             $arraymodel = $model->toarray();
             $arraythang = array_column($arraymodel,'thang');
+            $arraythang = array_unique($arraythang);
             $arrayquy = array_column($arraymodel,'quy');
+            $arrayquy = array_unique($arrayquy);
             $arraynam = array_column($arraymodel,'nam');
+            $arraynam = array_unique($arraynam);
+
 
             return view('reports.bctkkhac.laocai.thamdinhgia.BC1')
                 ->with('model',$model)
@@ -88,7 +92,9 @@ class BcTkKhacController extends Controller
             }
             $arraymodel = $model->toarray();
             $arrayquy = array_column($arraymodel,'quy');
+            $arrayquy = array_unique($arrayquy);
             $arraynam = array_column($arraymodel,'nam');
+            $arraynam = array_unique($arraynam);
 
             return view('reports.bctkkhac.laocai.thamdinhgia.BC2')
                 ->with('model',$model)
@@ -119,8 +125,11 @@ class BcTkKhacController extends Controller
             }
             $arraymodel = $model->toarray();
             $arraythang = array_column($arraymodel,'thang');
+            $arraythang = array_unique($arraythang);
             $arrayquy = array_column($arraymodel,'quy');
+            $arrayquy = array_unique($arrayquy);
             $arraynam = array_column($arraymodel,'nam');
+            $arraynam = array_unique($arraynam);
 
             return view('reports.bctkkhac.laocai.congbogia.BC3')
                 ->with('model',$model)
@@ -161,8 +170,11 @@ class BcTkKhacController extends Controller
             }
             $arraymodel = $model->toarray();
             $arraythang = array_column($arraymodel,'thang');
+            $arraythang = array_unique($arraythang);
             $arrayquy = array_column($arraymodel,'quy');
+            $arrayquy = array_unique($arrayquy);
             $arraynam = array_column($arraymodel,'nam');
+            $arraynam = array_unique($arraynam);
 
             return view('reports.bctkkhac.laocai.congbogia.BC4')
                 ->with('model',$model)

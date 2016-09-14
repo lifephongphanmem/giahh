@@ -72,7 +72,9 @@
             <td colspan="2"></td>
             <td colspan="7" style="text-align: left"><b>Năm {{$nam}}</b></td>
         </tr>
+
         @foreach($arrayquy as $key=>$quy)
+
             <tr>
                 <td></td>
                 <td colspan="8" style="text-align: left"><b>Quý {{$quy}}</b></td>
