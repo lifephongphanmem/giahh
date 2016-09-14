@@ -61,7 +61,7 @@
                                 Thẩm định giá
                             </div>
                         </div>
-                        <a class="more" href="{{url('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                        <a class="more" href="{{url('thongtin-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
                             Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
                         </a>
                     </div>
@@ -77,7 +77,7 @@
                                 Công bố giá
                             </div>
                         </div>
-                        <a class="more" href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                        <a class="more" href="{{url('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
                             Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
                         </a>
                     </div>

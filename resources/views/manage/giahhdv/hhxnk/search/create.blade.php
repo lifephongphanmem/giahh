@@ -15,7 +15,7 @@
 
 
     <h3 class="page-title">
-        Tìm kiếm thông tin <small> giá hàng hóa dịch vụ trong nước</small>
+        Tìm kiếm thông tin <small> giá hàng hóa xuất nhập khẩu</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -28,7 +28,7 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'timkiem-giahhdv-trongnuoc', 'id' => 'create_tkcongbogia', 'class'=>'horizontal-form']) !!}
+                    {!! Form::open(['url'=>'timkiem-giahh-xuatnhapkhau', 'id' => 'create_tkgiahhxnk', 'class'=>'horizontal-form']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <div class="row">
@@ -52,29 +52,13 @@
                                     <div class="form-group">
                                         <label class="control-label">Loại giá</label>
                                         <select id="maloaigia" name="maloaigia" class="form-control">
-                                            <option value="">--Chọn loại giá--</option>
+                                                <option value="">--Chọn loại giá--</option>
                                             @foreach($modelmaloaigia as $maloaigia)
                                                 <option value="{{$maloaigia->maloaigia}}">{{$maloaigia->tenloaigia}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Loại hàng hóa</label>
-                                        <select id="maloaihh" name="maloaihh" class="form-control">
-                                            <option value="">--Chọn loại hàng hóa--</option>
-                                            @foreach($modelmaloaihh as $maloaihh)
-                                                <option value="{{$maloaihh->maloaihh}}">{{$maloaihh->tenloaihh}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Tên hàng hóa dịch vụ<span class="require">*</span></label>
@@ -86,13 +70,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Thị trường<span class="require">*</span></label>
-                                        {!!Form::text('thitruong', null, array('id' => 'thitruong','class' => 'form-control'))!!}
-                                    </div>
-                                </div>
-
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -112,7 +89,7 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-search"></i> Tìm kiếm</button>
+                            <button type="submit" class="btn green"><i class="fa fa-search"></i> Tìm kiếm</button>
                             <button type="reset" class="btn default">Hủy</button>
                         </div>
                     {!! Form::close() !!}

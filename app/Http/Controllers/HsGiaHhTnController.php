@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class HsGiaHhTnController extends Controller
@@ -214,8 +215,6 @@ class HsGiaHhTnController extends Controller
                 $array->tenhh = $tt->tenhh;
                 break;
             }
-
-
         }
 
 
@@ -258,7 +257,7 @@ class HsGiaHhTnController extends Controller
             $input = $request->all();
             $model = HsGiaHhTn::where('id',$input['iddelete'])
                 ->first();
-            dd($model);
+            //dd($model);
             if($model->delete())
                 $modelct = GiaHhTn::where('mahs',$model->mahs)
                     ->delete();
@@ -271,7 +270,13 @@ class HsGiaHhTnController extends Controller
 
     public function search(){
         if(Session::has('admin')){
+            $modelmaloaigia = DmLoaiGia::all();
+            $modelmaloaihh = DmLoaiHh::all();
+            $modelhh = DmHhTn::where('theodoi','Có')->get();
             return view('manage.giahhdv.hhdvtn.search.create')
+                ->with('modelmaloaigia',$modelmaloaigia)
+                ->with('modelmaloaihh',$modelmaloaihh)
+                ->with('modelhh',$modelhh)
                 ->with('pageTitle','Tìm kiếm thông tin giá hàng hóa trong nước');
         }else
             return view('errors.notlogin');
@@ -279,9 +284,53 @@ class HsGiaHhTnController extends Controller
 
     public function viewsearch(Request $request){
         if(Session::has('admin')){
+
+            $_sql="select hsgiahhtn.*,
+                          giahhtn.mahh,giahhtn.masopnhom,giahhtn.giatu,giahhtn.giaden,giahhtn.soluong,giahhtn.nguontin
+                                        from hsgiahhtn, giahhtn
+                                        Where hsgiahhtn.mahs=giahhtn.mahs";
+            $input=$request->all();
+
+            //Thời gian nhập
+            //Từ
+            if($input['tgnhaptu']!=null){
+                $_sql=$_sql." and hsgiahhtn.tgnhap >='".date('Y-m-d',strtotime($input['tgnhaptu']))."'";
+            }
+            //Đến
+            if($input['tgnhapden']!=null){
+                $_sql=$_sql." and hsgiahhtn.tgnhap <='".date('Y-m-d',strtotime($input['tgnhapden']))."'";
+            }
+            //Loại giá(error Không biết vì sao)
+            //$_sql=$input['maloaigia']!=null? $_sql." and hsgiahhtn.maloaigia = ".$input['maloaigia']:$_sql;
+            //Loại hàng hóa(error Không biết vì sao)
+            //$_sql=$input['maloaihh']!=null? $_sql." and hsgiahhtn.maloaihh = ".$input['maloaihh']:$_sql;
+            //Tên hàng hóa
+            $_sql=$input['mahh']!=null? $_sql." and giahhtn.mahh = ".$input['mahh']:$_sql;
+            //Giá trị tài sản
+            //Từ
+            if(getDouble($input['giatritu'])>0)
+                $_sql=$_sql." and giahhtn.giatu >= ".getDouble($input['giatritu']);
+            //Đến
+            if(getDouble($input['giatriden'])>0)
+                $_sql=$_sql." and giahhtn.giaden <= ".getDouble($input['giatriden']);
+
+            $model =  DB::select(DB::raw($_sql));
+            //dd($model);
+
+            $modeldm = DmHhTn::all();
+            $modelpb = TtPhongBan::all();
+
+            foreach($model as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+                $this->getTtPhongBan($modelpb,$tthh);
+            }
+
             return view('manage.giahhdv.hhdvtn.search.index')
+                ->with('model',$model)
                 ->with('pageTitle','Thông tin giá hàng hóa trong nước');
         }else
             return view('errors.notlogin');
     }
+
+
 }

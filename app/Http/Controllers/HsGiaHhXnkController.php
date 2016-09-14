@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class HsGiaHhXnkController extends Controller
@@ -235,6 +236,66 @@ class HsGiaHhXnkController extends Controller
                     ->delete();
             return redirect('giahh-xuatnhapkhau/thoidiem='.$model->mathoidiem.'/nam='.$model->nam.'&pb='.$model->mahuyen);
 
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function search(){
+        if(Session::has('admin')){
+            $modelmaloaigia = DmLoaiGia::all();
+            $modelhh = DmHhXnk::where('theodoi','Có')->get();
+            return view('manage.giahhdv.hhxnk.search.create')
+                ->with('modelmaloaigia',$modelmaloaigia)
+                ->with('modelhh',$modelhh)
+                ->with('pageTitle','Tìm kiếm thông tin giá hàng hóa xuất nhập khẩu');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function viewsearch(Request $request){
+        if(Session::has('admin')){
+
+            $_sql="select hsgiahhxnk.*,
+                          giahhxnk.mahh,giahhxnk.masoloai,giahhxnk.giatu,giahhxnk.giaden,giahhxnk.soluong,giahhxnk.nguontin
+                                        from hsgiahhxnk, giahhxnk
+                                        Where hsgiahhxnk.mahs=giahhxnk.mahs";
+            $input=$request->all();
+
+            //Thời gian nhập
+            //Từ
+            if($input['tgnhaptu']!=null){
+                $_sql=$_sql." and hsgiahhxnk.tgnhap >='".date('Y-m-d',strtotime($input['tgnhaptu']))."'";
+            }
+            //Đến
+            if($input['tgnhapden']!=null){
+                $_sql=$_sql." and hsgiahhxnk.tgnhap <='".date('Y-m-d',strtotime($input['tgnhapden']))."'";
+            }
+            //Loại giá (error Không biết vì sao)
+            //$_sql=$input['maloaigia']!=null? $_sql." and hsgiahhxnk.maloaigia = ".$input['maloaigia']:$_sql;
+            //Tên hàng hóa
+            $_sql=$input['mahh']!=null? $_sql." and giahhxnk.mahh = ".$input['mahh']:$_sql;
+            //Giá trị tài sản
+            //Từ
+            if(getDouble($input['giatritu'])>0)
+                $_sql=$_sql." and giahhxnk.giatu >= ".getDouble($input['giatritu']);
+            //Đến
+            if(getDouble($input['giatriden'])>0)
+                $_sql=$_sql." and giahhxnk.giaden <= ".getDouble($input['giatriden']);
+
+            $model =  DB::select(DB::raw($_sql));
+            //dd($model);
+
+            $modeldm = DmHhXnk::all();
+            $modelpb = TtPhongBan::all();
+
+            foreach($model as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+                $this->getTtPhongBan($modelpb,$tthh);
+            }
+
+            return view('manage.giahhdv.hhxnk.search.index')
+                ->with('model',$model)
+                ->with('pageTitle','Thông tin giá hàng hóa xuất nhập khẩu');
         }else
             return view('errors.notlogin');
     }

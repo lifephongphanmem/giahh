@@ -311,7 +311,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <a href="{{url('giahh-xuatnhapkhau')}}">Giá hàng hóa XNK</a>
                                         </li>
                                         <li>
-                                            <a href="{{url('timkiem-giahhdv-trongnuoc')}}">Tìm kiếm thông tin giá hàng hóa XNK</a>
+                                            <a href="{{url('timkiem-giahh-xuatnhapkhau')}}">Tìm kiếm thông tin giá hàng hóa XNK</a>
                                         </li>
 
                                     </ul>

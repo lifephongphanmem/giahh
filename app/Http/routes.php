@@ -136,6 +136,9 @@ Route::get('/giahhxnk/store','GiaHhXnkController@store');
 Route::get('/giahhxnk/edit','GiaHhXnkController@edit');
 Route::get('/giahhxnk/update','GiaHhXnkController@update');
 Route::get('/giahhxnk/delete','GiaHhXnkController@destroy');
+
+Route::get('timkiem-giahh-xuatnhapkhau','HsGiaHhXnkController@search');
+Route::post('timkiem-giahh-xuatnhapkhau','HsGiaHhXnkController@viewsearch');
 //End Giá hh xuất nhập khẩu
     //End giá hàng hóa dv
     //TTQĐ

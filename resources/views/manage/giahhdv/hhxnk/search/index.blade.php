@@ -27,7 +27,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin<small>&nbsp;giá hàng hóa trong nước</small>
+        Thông tin<small>&nbsp;giá hàng hóa xuất nhập khẩu</small>
     </h3>
 
     <!-- END PAGE HEADER-->
@@ -39,7 +39,7 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        <a href="{{url('timkiem-giahhdv-trongnuoc')}}" class="btn btn-default btn-sm">
+                        <a href="{{url('timkiem-giahh-xuatnhapkhau')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-mail-reply"></i> Quay lại tìm kiếm </a>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Thời gian nhập</th>
                             <th style="text-align: center">Phòng ban</th>
-                            <th style="text-align: center">Tên hàng hóa dịch vụ</th>
+                            <th style="text-align: center">Tên hàng hóa</th>
                             <th style="text-align: center"">Số lượng</th>
                             <th style="text-align: center" >Giá từ</th>
                             <th style="text-align: center">Giá đến</th>
