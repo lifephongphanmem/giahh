@@ -454,9 +454,9 @@ class CongBoGiaController extends Controller
     public function create_import(Request $request){
         if(Session::has('admin')){
             if(session('admin') == 'T')
-                return redirect('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all');
+                return redirect('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all');
             else
-                return redirect('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb='.session('admin')->mahuyen);
+                return redirect('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb='.session('admin')->mahuyen);
 
         }else
             return view('errors.notlogin');
