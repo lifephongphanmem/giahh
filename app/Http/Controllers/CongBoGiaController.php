@@ -438,8 +438,9 @@ class CongBoGiaController extends Controller
                 $m_ts=CongBoGiaDefault::select('tents','dacdiempl','thongsokt','nguongoc','dvt','sl','giadenghi','giatritstd',DB::raw($mahs.' as mahs'))->where('mahuyen',session('admin')->mahuyen)->get()->toarray();
                 CongBoGia::insert($m_ts);
             }
-            return redirect('hoso-congbogia/nam='.date_format($date,'Y').'&pb=all');
-        }else{return view('errors.notlogin');}
+            return redirect('thongtin-congbogia/nam='.date_format($date,'Y').'&pb=all');
+        }else
+            return view('errors.notlogin');
     }
 
     //Tải file excel mẫu

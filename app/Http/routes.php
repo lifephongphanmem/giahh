@@ -187,7 +187,7 @@ Route::post('timkiem-thamdinhgia','ThamDinhGiaController@viewsearch');
         //import THẩm định giá
 Route::get('hoso-thamdinhgia/import','ThamDinhGiaController@import');
 Route::resource('hoso-thamdinhgia/import-view','ThamDinhGiaController@showimport');
-Route::post('import-thamdinhgia','ThamDinhGiaController@create_import');
+//Route::post('import-thamdinhgia','ThamDinhGiaController@create_import');
 Route::post('store-thamdinhgia','ThamDinhGiaController@storeimport');
 Route::get('mauexceltdg','ThamDinhGiaController@getDownload');
 //End Thẩm định giá
@@ -220,7 +220,7 @@ Route::post('timkiem-congbogia','CongBoGiaController@viewsearch');
     //import Công bố giá
 Route::get('hoso-congbogia/import','CongBoGiaController@import');
 Route::resource('hoso-congbogia/import-view','CongBoGiaController@showimport');
-Route::post('import-congbogia','CongBoGiaController@create_import');
+//Route::post('import-congbogia','CongBoGiaController@create_import');
 Route::post('store-congbogia','CongBoGiaController@storeimport');
 Route::get('mauexcelcbg','CongBoGiaController@getDownload');
 //End Công bố giá

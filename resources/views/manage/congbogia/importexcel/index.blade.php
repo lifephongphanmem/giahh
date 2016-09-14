@@ -151,7 +151,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#import_thamdinhgia").validate({
+            var validator = $("#import_conbogia").validate({
                 rules: {
                     ten :"required"
                 },
