@@ -60,6 +60,8 @@
                         @if(can('congbogia','create'))
                         <a href="{{url('hoso-congbogia/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+                        <a href="{{url('hoso-congbogia/import')}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Import file</a>
                         @endif
                         <!--a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a-->

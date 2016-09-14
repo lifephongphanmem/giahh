@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Số hồ sơ thẩm định<span class="require">*</span></label>
+                                        <label class="control-label">Số hồ sơ công bố<span class="require">*</span></label>
                                         <input type="text" id="sohs" name="sohs" class="form-control required">
                                     </div>
                                 </div>

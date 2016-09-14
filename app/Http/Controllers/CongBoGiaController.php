@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\CongBoGia;
+use App\CongBoGiaDefault;
+use App\HsCongBoGia;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CongBoGiaController extends Controller
 {
@@ -338,6 +342,121 @@ class CongBoGiaController extends Controller
             return view('manage.congbogia.search.index')
                 ->with('model',$model)
                 ->with('pageTitle','Thông tin công bố giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function import(){
+        if(Session::has('admin')){
+            return view('manage.congbogia.importexcel.create')
+                ->with('pageTitle','Nhận thông tin công bố giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function showimport(Request $request){
+        if(Session::has('admin')){
+            $madv=session('admin')->mahuyen;
+            CongBoGiaDefault::where('mahuyen', $madv)->delete();
+
+            $tents = chuanhoatruong($request->tents);
+            $dacdiempl = chuanhoatruong($request->dacdiempl);
+            $thongsokt = chuanhoatruong($request->thongsokt);
+            $nguongoc = chuanhoatruong($request->nguongoc);
+            $dvt = chuanhoatruong($request->dvt);
+            $sl = chuanhoatruong($request->sl);
+            $giadenghi = chuanhoatruong($request->giadenghi);
+            if (isset($request->giatritstd) && $request->giatritstd != '') {
+                $giatritstd = chuanhoatruong($request->giatritstd);
+                $filename = $madv . date('YmdHis');
+                $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+                $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+                $data = Excel::selectSheetsByIndex(0)->load($path, function ($sheet) {
+                    $sheet->get();
+                })->get()->toarray();
+
+                //Kiểm tra tên tài sản rỗng => bỏ qua ko chạy
+                foreach ($data as $row) {
+                    if ($row[$tents] == '') {
+                        continue;
+                    }
+                    $model = new CongBoGiaDefault();
+                    $model->mahuyen = $madv;
+                    $model->tents = $row[$tents];
+                    $model->thongsokt = isset($row[$thongsokt]) ? $row[$thongsokt] : '';
+                    $model->nguongoc = isset($row[$nguongoc]) ? $row[$nguongoc] : '';
+                    $model->dvt = isset($row[$dvt]) ? $row[$dvt] : '';
+                    $model->sl = isset($row[$sl]) ? $row[$sl] : 1;
+                    $model->giadenghi = isset($row[$giadenghi]) ? $row[$giadenghi] : 0;
+                    $model->giatritstd = isset($row[$giatritstd]) ? $row[$giatritstd] : 0;
+                    $model->dacdiempl = isset($row[$dacdiempl]) ? $row[$dacdiempl] : '';
+                    $model->save();
+                }
+            }
+            File::Delete($path);
+            $m_ts=CongBoGiaDefault::where('mahuyen', $madv)->get();
+            //dd($m_ts);
+            return view('manage.congbogia.importexcel.index')
+                ->with('m_ts',$m_ts)
+                ->with('pageTitle','Thông tin công bố giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function storeimport(Request $request)
+    {
+        if(Session::has('admin')) {
+            $insert = $request->all();
+            $date = date_create($insert['ngaynhap']);
+            $thang = date_format($date,'m');
+            $mahs = getdate()[0];
+
+            $model = new HsCongBoGia();
+            $model->sohs = $insert['sohs'];
+            $model->plhs = $insert['plhs'];
+            $model->sotbkl = $insert['sotbkl'];
+            $model->ngaynhap = $insert['ngaynhap'];
+            $model->sovbdn = $insert['sovbdn'];
+            $model->nguonvon = $insert['nguonvon'];
+
+            if($thang == 1 || $thang == 2 || $thang == 3)
+                $model->quy = 1;
+            elseif($thang == 4 || $thang == 5 || $thang == 6)
+                $model->quy = 2;
+            elseif($thang == 7 || $thang == 8 || $thang == 9)
+                $model->quy = 3;
+            else
+                $model->quy = 4;
+            $model->thang = date_format($date,'m');
+            $model->nam = date_format($date,'Y');
+            $model->mahuyen = session('admin')->mahuyen;
+            $model->mahs = $mahs;
+            if($model->save()){
+                $m_ts=CongBoGiaDefault::select('tents','dacdiempl','thongsokt','nguongoc','dvt','sl','giadenghi','giatritstd',DB::raw($mahs.' as mahs'))->where('mahuyen',session('admin')->mahuyen)->get()->toarray();
+                CongBoGia::insert($m_ts);
+            }
+            return redirect('hoso-congbogia/nam='.date_format($date,'Y').'&pb=all');
+        }else{return view('errors.notlogin');}
+    }
+
+    //Tải file excel mẫu
+    public function getDownload(){
+        $file = public_path() . '/data/uploads/excels/FILEMAU.xls';
+        $headers = array(
+            'Content-Type: application/xls',
+        );
+        return Response::download($file, 'CONGBOGIA.xls', $headers);
+    }
+
+    public function create_import(Request $request){
+        if(Session::has('admin')){
+            if(session('admin') == 'T')
+                return redirect('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all');
+            else
+                return redirect('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb='.session('admin')->mahuyen);
 
         }else
             return view('errors.notlogin');

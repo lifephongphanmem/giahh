@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\HsThamDinhGia;
 use App\ThamDinhGia;
 use App\ThamDinhGiaDefault;
 use Illuminate\Support\Facades\Response;
@@ -411,6 +412,43 @@ class ThamDinhGiaController extends Controller
 
         }else
             return view('errors.notlogin');
+    }
+
+    public function storeimport(Request $request)
+    {
+        if(Session::has('admin')) {
+            $insert = $request->all();
+            $date = date_create($insert['thoidiem']);
+            $thang = date_format($date,'m');
+            $mahs = getdate()[0];
+
+            $model = new HsThamDinhGia();
+            $model->diadiem = $insert['diadiem'];
+            $model->thoidiem = $insert['thoidiem'];
+            $model->ppthamdinh = $insert['ppthamdinh'];
+            $model->mucdich = $insert['mucdich'];
+            $model->dvyeucau = $insert['dvyeucau'];
+            $model->thoihan = $insert['thoihan'];
+            $model->sotbkl = $insert['sotbkl'];
+            $model->hosotdgia = $insert['hosotdgia'];
+            $model->thang = date_format($date,'m');
+            if($thang == 1 || $thang == 2 || $thang == 3)
+                $model->quy = 1;
+            elseif($thang == 4 || $thang == 5 || $thang == 6)
+                $model->quy = 2;
+            elseif($thang == 7 || $thang == 8 || $thang == 9)
+                $model->quy = 3;
+            else
+                $model->quy = 4;
+            $model->nam = date_format($date,'Y');
+            $model->mahuyen = session('admin')->mahuyen;
+            $model->mahs = $mahs;
+            if($model->save()){
+                $m_ts=ThamDinhGiaDefault::select('tents','dacdiempl','thongsokt','nguongoc','dvt','sl','giadenghi','giatritstd',DB::raw($mahs.' as mahs'))->where('mahuyen',session('admin')->mahuyen)->get()->toarray();
+                ThamDinhGia::insert($m_ts);
+              }
+            return redirect('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all');
+        }else{return view('errors.notlogin');}
     }
 
     //Tải file excel mẫu

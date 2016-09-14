@@ -15,7 +15,7 @@
 
 
     <h3 class="page-title">
-       Nhận dữ liệu <small> thẩm định giá</small>
+       Nhận dữ liệu <small> công bố giá</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -29,40 +29,45 @@
                 <div class="portlet-body form">
 
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'store-thamdinhgia', 'id' => 'import_thamdinhgia', 'class'=>'horizontal-form']) !!}
+                    {!! Form::open(['url'=>'store-congbogia', 'id' => 'import_conbogia', 'class'=>'horizontal-form']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Số hồ sơ thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="hosotdgia" name="hosotdgia" class="form-control required" autofocus>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
                                     <div class="form-group has-error">
-                                        <label class="control-label">Thời điểm thẩm định<span class="require">*</span></label>
-                                        <input type="date" id="thoidiem" name="thoidiem" class="form-control required">
+                                        <label class="control-label">Phân loại hồ sơ<span class="require">*</span></label>
+                                        <select class="form-control" id="plhs" name="plhs" autofocus>
+                                            <option value="Công bố giá">Công bố giá</option>
+                                            <option value="Công bố giá bổ xung">Công bố giá bổ xung</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Số hồ sơ công bố<span class="require">*</span></label>
+                                        <input type="text" id="sohs" name="sohs" class="form-control required">
+                                    </div>
+                                </div>
                             </div>
 
                             <!--/row-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Địa điểm thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="diadiem" name="diadiem" class="form-control required">
+                                        <label class="control-label">Ngày nhập<span class="require">*</span></label>
+                                        <input type="date" id="ngaynhap" name="ngaynhap" class="form-control required">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
-                                        <label class="control-label">Phương pháp thẩm định thẩm định</label>
-                                        <input type="text" id="ppthamdinh" name="ppthamdinh" class="form-control">
+                                        <label class="control-label">Nguồn vốn</label>
+                                        <select class="form-control" id="nguonvon" name="nguonvon">
+                                            <option value="Cả hai">Cả hai</option>
+                                            <option value="Thường xuyên">Thường xuyên</option>
+                                            <option value="Đầu tư">Đầu tư</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -70,30 +75,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Mục đích thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="mucdich" name="mucdich" class="form-control required">
+                                        <label class="control-label">Số văn bản đề nghị<span class="require">*</span></label>
+                                        <input type="text" id="sovbdn" name="sovbdn" class="form-control required">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
-                                        <label class="control-label">Đơn vị yêu cầu thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="dvyeucau" name="dvyeucau" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
-                                        <input type="date" id="thoihan" name="thoihan" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Số thông báo kết luận<span class="require">*</span></label>
+                                        <label class="control-label">Số công bố giá<span class="require">*</span></label>
                                         <input type="text" id="sotbkl" name="sotbkl" class="form-control required">
                                     </div>
                                 </div>
