@@ -190,7 +190,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Thị trường<span class="require">*</span></label>
-                                        {!!Form::text('thitruong', null, array('id' => 'thitruong','class' => 'form-control required'))!!}
+                                        <select class="form-control required" name="thitruong" id="thitruong">
+                                            @foreach($thitruong as $ct)
+                                                <option value="{{$ct->thitruong}}" {{$ct->thitruong==$model->thitruong?'selected':''}}>{{$ct->thitruong}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <!--/span-->

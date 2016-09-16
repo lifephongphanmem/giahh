@@ -37,7 +37,7 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; font-size: 16px; text-transform: uppercase;">
-            <b>BẢNG GIÁ THỊ TRƯỜNG....NĂM....</b>
+            <b>BẢNG GIÁ THỊ TRƯỜNG {{$thongtin['thitruong']}} NĂM {{$thongtin['nam']}}</b>
         </td>
     </tr>
     <tr>

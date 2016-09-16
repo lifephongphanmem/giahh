@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DmHhTn;
 use App\DmLoaiGia;
 use App\DmLoaiHh;
+use App\DmThiTruong;
 use App\DmThoiDiem;
 use App\GiaHhTn;
 use App\GiaHhTnDefault;
@@ -82,6 +83,7 @@ class HsGiaHhTnController extends Controller
         if(Session::has('admin')){
             $loaigia = DmLoaiGia::all();
             $loaihh = DmLoaiHh::all();
+            $thitruong= DmThiTruong::all();
             $nhomhh = NhomTn::where('theodoi','Có')
                 ->get();
             $modeldel = GiaHhTnDefault::where('mahuyen',session('admin')->mahuyen)
@@ -91,6 +93,7 @@ class HsGiaHhTnController extends Controller
                 ->with('loaigia',$loaigia)
                 ->with('loaihh',$loaihh)
                 ->with('nhomhh',$nhomhh)
+                ->with('thitruong',$thitruong)
                 ->with('pageTitle','Thông tin giá hàng hóa dịch vụ thêm mới');
         }else
             return view('errors.notlogin');
@@ -160,7 +163,8 @@ class HsGiaHhTnController extends Controller
                 ->get();
             $loaigia = DmLoaiGia::all();
             $loaihh = DmLoaiHh::all();
-            //dd($modeltthh);
+            $thitruong= DmThiTruong::all();
+            //dd($thitruong);
             $modeldm = DmHhTn::all();
 
             foreach($modeltthh as $tthh){
@@ -171,6 +175,7 @@ class HsGiaHhTnController extends Controller
                 ->with('modeltthh',$modeltthh)
                 ->with('loaigia',$loaigia)
                 ->with('loaihh',$loaihh)
+                ->with('thitruong',$thitruong)
                 ->with('pageTitle','Thông tin giá hàng hóa dịch vụ chi tiết');
         }else
             return view('errors.notlogin');
@@ -192,6 +197,7 @@ class HsGiaHhTnController extends Controller
             //dd($modeltthh);
             $loaigia = DmLoaiGia::all();
             $loaihh = DmLoaiHh::all();
+            $thitruong= DmThiTruong::all();
             $nhomhh = NhomTn::where('theodoi','Có')
                 ->get();
             //dd($modeltthh);
@@ -201,6 +207,7 @@ class HsGiaHhTnController extends Controller
                 ->with('loaigia',$loaigia)
                 ->with('loaihh',$loaihh)
                 ->with('nhomhh',$nhomhh)
+                ->with('thitruong',$thitruong)
                 ->with('pageTitle','Thông tin giá hàng hóa dịch vụ chi tiết');
         }else
             return view('errors.notlogin');

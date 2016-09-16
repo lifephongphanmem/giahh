@@ -187,7 +187,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Thị trường<span class="require">*</span></label>
-                                        <input type="text" id="thitruong" name="thitruong" class="form-control required">
+                                        <select class="form-control required" name="thitruong" id="thitruong">
+                                            @foreach($thitruong as $ct)
+                                                <option value="{{$ct->thitruong}}">{{$ct->thitruong}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <!--/span-->

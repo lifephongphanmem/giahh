@@ -54,6 +54,12 @@ Route::get('/checkmaloaihh','DmLoaiHhController@checkmaloaihh');
 Route::post('dmloaihh/delete','DmLoaiHhController@destroy');
     //End dnah mục loại mặt hàng
 
+//Danh mục loại mặt hàng
+Route::resource('dmthitruong','DmThiTruongController');
+Route::get('/checkthitruong','DmThiTruongController@checkthitruong');
+Route::post('dmthitruong/delete','DmThiTruongController@destroy');
+//End dnah mục loại mặt hàng
+
     //Hàng hóa trong nước
 Route::get('dmhanghoa-trongnuoc','DmHhTnController@nhom');
 Route::get('dmhanghoa-trongnuoc/nhom={nhom}','DmHhTnController@pnhom');

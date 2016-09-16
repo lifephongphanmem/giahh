@@ -456,6 +456,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <a href="{{url('dmthoidiem')}}"> Danh mục thời điểm</a>
                                 </li>
                                 <li>
+                                    <a href="{{url('dmthitruong')}}"> Danh mục thị trường</a>
+                                </li>
+                                <li>
                                     <a href="{{url('dmloaigia')}}"> Danh mục loại giá</a>
                                 </li>
                                 <li>

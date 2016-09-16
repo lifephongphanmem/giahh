@@ -32,7 +32,16 @@
                             </select>
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"><b>Thị trường hàng hóa</b></label>
+                        <div class="col-md-6 ">
+                            <select name="thitruong" id="thitruong" class="form-control">
+                                @foreach($thitruong as $ct)
+                                    <option value="{{$ct->thitruong}}">{{$ct->thitruong}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
