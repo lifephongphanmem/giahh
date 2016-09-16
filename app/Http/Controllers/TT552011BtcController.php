@@ -38,16 +38,26 @@ class TT552011BtcController extends Controller
             $model=GiaHhTn::join('HsGiaHhTn', 'HsGiaHhTn.mahs', '=', 'GiaHhTn.mahs')
                 ->select('GiaHhTn.*')
                 ->where('HsGiaHhTn.thitruong',$inputs['thitruong'])->get();
-            dd($model);
+            //dd($model);
+            $modeldm = DmHhTn::all();
+
+            foreach($model as $tthh){
+                $this->gettenhh($modeldm,$tthh);
+                $tthh->giahh = ($tthh->giatu + $tthh->giaden)/2;
+            }
+
             $thongtin=array('thitruong'=>$inputs['thitruong'],
                 'nam'=>$inputs['nam']);
             return view('reports.TT55-2011-BTC.PL1')
                 ->with('thongtin',$thongtin)
+                ->with('model',$model)
                 ->with('pageTitle','Phụ lục 1');
 
         }else
             return view('errors.notlogin');
     }
+
+
     public function PL2(Request $request){
         if (Session::has('admin')) {
             $input =$request->all();
@@ -81,7 +91,6 @@ class TT552011BtcController extends Controller
         foreach($mahh as $tt){
             if($tt->masopnhom == $array->masopnhom && $tt->mahh == $array->mahh){
                 $array->tenhh = $tt->tenhh;
-                $array->nsx = $tt->nsx;
                 $array->dvt = $tt->dvt;
                 break;
             }
