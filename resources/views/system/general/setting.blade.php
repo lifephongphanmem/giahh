@@ -54,6 +54,10 @@
                                     </thead>
                                     <tbody>
                                         <tr>
+                                            <td><input type="checkbox" {{ (isset($setting->hhdv->hhthitruong) && $setting->hhdv->hhthitruong == 1) ? 'checked' : '' }} value="1" name="roles[hhdv][hhthitruong]"/></td>
+                                            <td>Hàng hóa thị trường</td>
+                                        </tr>
+                                        <tr>
                                             <td><input type="checkbox" {{ (isset($setting->hhdv->hhdvtn) && $setting->hhdv->hhdvtn == 1) ? 'checked' : '' }} value="1" name="roles[hhdv][hhdvtn]"/></td>
                                             <td>Hàng hóa dịch vụ trong nước</td>
                                         </tr>

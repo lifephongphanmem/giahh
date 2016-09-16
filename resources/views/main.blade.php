@@ -286,6 +286,21 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
+                        <li>
+                            <a href="">Hàng hóa thị trường<span class="arrow"></span> </a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <a href="{{url('giahhdv-trongnuoc')}}">Giá HH thị trường</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('giahhdv-trongnuoc')}}">Thông tin giá HH thị trường</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('timkiem-giahhdv-trongnuoc')}}">Tìm kiếm thông tin giá HH thị trường</a>
+                                </li>
+
+                            </ul>
+                        </li>
                         @if(canGeneral('hhdv','hhdvtn'))
                             @if(can('hhdvtn','index'))
                             <li>
@@ -425,10 +440,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="">Hàng hóa dịch vụ<span class="arrow"></span> </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="{{url('reports/tt142-2015-BTC')}}">Thông tư 142/2015-TT-BTC</a>
+                                    <a href="{{url('reports/tt55-2011-BTC')}}">Thông tư 55/2011-TT-BTC</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('reports/tt55-2011-BTC')}}">Thông tư 55/2011-TT-BTC</a>
+                                    <a href="{{url('reports/tt142-2015-BTC')}}">Thông tư 142/2015-TT-BTC</a>
                                 </li>
                                 <li>
                                     <a href="{{url('reports/bctkkhac')}}">Báo cáo thống kê khác</a>
