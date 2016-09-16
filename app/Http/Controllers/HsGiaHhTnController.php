@@ -81,7 +81,7 @@ class HsGiaHhTnController extends Controller
     public function create($thoidiem)
     {
         if(Session::has('admin')){
-            $loaigia = DmLoaiGia::all();
+            $loaigia = DmLoaiGia::where('pl','Hàng hóa dịch vụ trong nước');
             $loaihh = DmLoaiHh::all();
             $thitruong= DmThiTruong::all();
             $nhomhh = NhomTn::where('theodoi','Có')
@@ -161,7 +161,7 @@ class HsGiaHhTnController extends Controller
             $model = HsGiaHhTn::findOrFail($id);
             $modeltthh = GiaHhTn::where('mahs',$model->mahs)
                 ->get();
-            $loaigia = DmLoaiGia::all();
+            $loaigia = DmLoaiGia::where('pl','Hàng hóa dịch vụ trong nước');
             $loaihh = DmLoaiHh::all();
             $thitruong= DmThiTruong::all();
             //dd($thitruong);
@@ -195,7 +195,7 @@ class HsGiaHhTnController extends Controller
             }
 
             //dd($modeltthh);
-            $loaigia = DmLoaiGia::all();
+            $loaigia = DmLoaiGia::where('pl','Hàng hóa dịch vụ trong nước');
             $loaihh = DmLoaiHh::all();
             $thitruong= DmThiTruong::all();
             $nhomhh = NhomTn::where('theodoi','Có')

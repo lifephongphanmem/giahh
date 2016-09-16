@@ -34,18 +34,10 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Mã thời điểm<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="mathoidiem" id="mathoidiem" autofocus>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
                                         <label class="control-label">Tên thời điểm<span class="require">*</span></label>
                                         <input type="text" class="form-control required" name="tenthoidiem" id="tenthoidiem">
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
                             <div class="row">
                                 <div class="col-md-6">

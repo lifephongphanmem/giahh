@@ -32,23 +32,35 @@
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <div class="row">
+                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Mã loại giá<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="maloaigia" id="maloaigia" autofocus>
+                                        <input type="text" class="form-control required" name="maloaigia" id="maloaigia">
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Tên loại giá<span class="require">*</span></label>
                                         <input type="text" class="form-control required" name="tenloaigia" id="tenloaigia">
                                     </div>
                                 </div>
+
                                 <!--/span-->
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Phân loại<span class="require">*</span></label>
+                                        <select class="form-control" name="pl" id="pl">
+                                            <option value="Hàng hóa thị trường">Hàng hóa thị trường</option>
+                                            <option value="Hàng hóa dịch vụ trong nước">Hàng hóa dịch vụ trong nước</option>
+                                            <option value="Hàng hóa xuất nhập khẩu">Hàng hóa xuất nhập khẩu</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ghi chú</label>
                                         <input type="text" class="form-control" name="gc" id="gc">
@@ -57,8 +69,8 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
-                            <button type="reset" class="btn default">Cancel</button>
+                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Thêm mới</button>
+                            <button type="reset" class="btn default">Hủy</button>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->

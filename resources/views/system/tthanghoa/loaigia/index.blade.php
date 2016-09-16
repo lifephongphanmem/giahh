@@ -69,6 +69,7 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Mã loại giá</th>
                             <th style="text-align: center">Tên loại giá</th>
+                            <th style="text-align: center">Phân loại</th>
                             <th style="text-align: center">Ghi chú</th>
                             <th width="15%" style="text-align: center">Thao tác</th>
                         </tr>
@@ -79,6 +80,7 @@
                             <td style="text-align: center">{{$key + 1}}</td>
                             <td>{{$tt->maloaigia}}</td>
                             <td class="success">{{$tt->tenloaigia}}</td>
+                            <td>{{$tt->pl}}</td>
                             <td>{{$tt->gc}}</td>
                             <td>
                                 <a href="{{url('dmloaigia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs">

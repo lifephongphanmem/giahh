@@ -32,13 +32,7 @@
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Mã thời điểm<span class="require">*</span></label>
-                                        {!!Form::text('mathoidiem', null, array('id' => 'mathoidiem','class' => 'form-control required', 'autofocus'))!!}
-                                    </div>
-                                </div>
-                                <!--/span-->
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Tên thời điểm<span class="require">*</span></label>

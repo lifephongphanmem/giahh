@@ -48,7 +48,21 @@
                                 <!--/span-->
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-labal">Phân loại</label>
+                                        {!! Form::select(
+                                        'pl',
+                                        array(
+                                        'Hàng hóa thị trường' => 'Hàng hóa thị trường',
+                                        'Hàng hóa dịch vụ trong nước' => 'Hàng hóa dịch vụ trong nước',
+                                        'Hàng hóa xuất nhập khẩu' => 'Hàng hóa xuất nhập khẩu',
+                                        ),null,
+                                        array('id' => 'pl', 'class' => 'form-control'))
+                                        !!}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ghi chú</label>
                                         {!!Form::text('gc', null, array('id' => 'gc','class' => 'form-control'))!!}
@@ -57,8 +71,8 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
-                            <button type="reset" class="btn default">Cancel</button>
+                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
+                            <button type="reset" class="btn default">Hủy</button>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->

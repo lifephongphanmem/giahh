@@ -18,6 +18,7 @@ class CreateDmloaigiaTable extends Migration
             $table->string('tenloaigia');
             $table->string('sapxep');
             $table->string('gc');
+            $table->string('pl');
             $table->timestamps();
         });
     }

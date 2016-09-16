@@ -12,6 +12,7 @@ class DmLoaiGia extends Model
         'maloaigia',
         'tenloaigia',
         'sapxep',
-        'gc'
+        'gc',
+        'pl'
     ];
 }

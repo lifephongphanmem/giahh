@@ -42,6 +42,7 @@ class DmLoaiGiaController extends Controller
             $model->maloaigia = $insert['maloaigia'];
             $model->tenloaigia = $insert['tenloaigia'];
             $model->gc = $insert['gc'];
+            $model->pl = $insert['pl'];
             $model->save();
 
             return redirect('dmloaigia');
@@ -70,6 +71,7 @@ class DmLoaiGiaController extends Controller
             $model->maloaigia = $update['maloaigia'];
             $model->tenloaigia = $update['tenloaigia'];
             $model->gc = $update['gc'];
+            $model->pl = $update['pl'];
             $model->save();
 
             return redirect('dmloaigia');

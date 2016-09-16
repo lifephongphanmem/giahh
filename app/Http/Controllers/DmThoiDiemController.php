@@ -42,7 +42,7 @@ class DmThoiDiemController extends Controller
         if (Session::has('admin')) {
             $insert = $request->all();
             $model = new DmThoiDiem();
-            $model->mathoidiem = $insert['mathoidiem'];
+            $model->mathoidiem = getdate()[0];
             $model->tenthoidiem = $insert['tenthoidiem'];
             $model->tungay = $insert['tungay'];
             $model->denngay = $insert['denngay'];
@@ -71,7 +71,6 @@ class DmThoiDiemController extends Controller
         if (Session::has('admin')) {
             $update = $request->all();
             $model = DmThoiDiem::findOrFail($id);
-            $model->mathoidiem = $update['mathoidiem'];
             $model->tenthoidiem = $update['tenthoidiem'];
             $model->tungay = $update['tungay'];
             $model->denngay = $update['denngay'];
