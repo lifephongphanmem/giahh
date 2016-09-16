@@ -290,7 +290,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="">Hàng hóa thị trường<span class="arrow"></span> </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="{{url('giahhdv-trongnuoc')}}">Giá HH thị trường</a>
+                                    <a href="{{url('giahh-thitruong')}}">Giá HH thị trường</a>
                                 </li>
                                 <li>
                                     <a href="{{url('giahhdv-trongnuoc')}}">Thông tin giá HH thị trường</a>

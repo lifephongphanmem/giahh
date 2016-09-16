@@ -92,14 +92,10 @@ Route::post('dmhanghoa-xuatnhapkhau/delete','DmHhXnkController@destroy');
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="--Manage--">
+
+
     //Giá hàng hóa dv
 //Giá hàng hóa thị trường
-
-
-
-
-
-
 //Giá HH-DV trong nước
 Route::get('giahhdv-trongnuoc','HsGiaHhTnController@thoidiem');
 Route::get('giahhdv-trongnuoc/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHhTnController@index');

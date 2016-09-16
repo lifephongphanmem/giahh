@@ -78,6 +78,7 @@
                                         {!! Form::select(
                                         'plbc',
                                         array(
+                                        'Hàng hóa thị trường'=>'Hàng hóa thị trường',
                                         'Hàng hóa,dịch vụ' => 'Hàng hóa,dịch vụ',
                                         'Hàng hóa xuất nhập khẩu' => 'Hàng hóa xuất nhập khẩu',
                                         ),null,
