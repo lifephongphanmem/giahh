@@ -44,6 +44,40 @@
                 <div class="portlet-body">
                     <div class="portlet-body">
                         <div class="row">
+                            @if(canGeneral('hhdv','hhthitruong'))
+                                <div class="col-md-3">
+                                    <h4 style="text-align: center;color: #0000ff  ">Hàng hóa thị trường</h4>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="action">
+                                        <tr>
+                                            <th class="table-checkbox" width="5%">
+                                                <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                            </th>
+                                            <th>Chức năng</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->hhthitruong->index) && $permission->hhthitruong->index == 1) ? 'checked' : '' }} value="1" name="roles[hhthitruong][index]"/></td>
+                                            <td>Xem</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->hhthitruong->create) && $permission->hhthitruong->create == 1) ? 'checked' : '' }} value="1" name="roles[hhthitruong][create]"/></td>
+                                            <td>Thêm mới</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->hhthitruong->edit) && $permission->hhthitruong->edit == 1) ? 'checked' : '' }} value="1" name="roles[hhthitruong][edit]"/></td>
+                                            <td>Chỉnh sửa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->hhthitruong->delete) && $permission->hhthitruong->delete == 1) ? 'checked' : '' }} value="1" name="roles[hhthitruong][delete]"/></td>
+                                            <td>Xóa</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                             @if(canGeneral('hhdv','hhdvtn'))
                             <div class="col-md-3">
                                 <h4 style="text-align: center;color: #0000ff  ">Hàng hóa dịch vụ trong nước</h4>
