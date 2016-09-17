@@ -197,7 +197,7 @@
                             </div>
 
                             <!--/row-->
-                            <div class="row">
+                            <!--div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Loại hàng hóa<span class="require">*</span></label>
@@ -209,7 +209,7 @@
                                     </div>
                                 </div>
                                 <!--/span-->
-                                <div class="col-md-6">
+                                <!--div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Loại giá</label>
                                         <select class="form-control" id="maloaigia" name="maloaigia">
@@ -218,10 +218,10 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div-->
                                 <input type="hidden" name="mathoidiem" id="mathoidiem" value="{{$mathoidiem}}"/>
                                 <!--/span-->
-                            </div>
+                            <!--/div-->
 
                             <!--/row-->
                             <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>

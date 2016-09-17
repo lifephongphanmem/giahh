@@ -108,13 +108,17 @@ Route::post('dmhanghoa-xuatnhapkhau/delete','DmHhXnkController@destroy');
 
     //Giá hàng hóa thị trường
 Route::get('giahhdv-thitruong','HsGiaHhTtController@thoidiem');
-Route::get('giahhdv-thitruong/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHhTtController@index');
+Route::get('giahhdv-thitruong/thoidiem={thoidiem}/nam={nam}','HsGiaHhTtController@index');
 Route::get('giahhdv-thitruong/thoidiem={thoidiem}/create','HsGiaHhTtController@create');
 Route::post('giahhdv-thitruong','HsGiaHhTtController@store');
 Route::get('giahhdv-thitruong/{id}/show','HsGiaHhTtController@show');
 Route::get('giahhdv-thitruong/{id}/edit','HsGiaHhTtController@edit');
 Route::patch('giahhdv-thitruong/{id}','HsGiaHhTtController@update');
 Route::post('giahhdv-thitruong/delete','HsGiaHhTtController@destroy');
+
+Route::get('thongtin-giathitruong','HsGiaHhTtController@showthoidiem');
+Route::get('thongtin-giathitruong/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHhTtController@showindex');
+Route::get('thongtin-giathitruong/{id}/show','HsGiaHhTtController@view');
 
 Route::get('/giahhttdefault/gettthh','GiaHhTtDefaultController@gettthh');
 Route::get('/giahhttdefault/store','GiaHhTtDefaultController@store');

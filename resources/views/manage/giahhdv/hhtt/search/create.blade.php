@@ -47,32 +47,7 @@
                                 </div>
                                 <!--/span-->
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Loại giá</label>
-                                        <select id="maloaigia" name="maloaigia" class="form-control">
-                                            <option value="">--Chọn loại giá--</option>
-                                            @foreach($modelmaloaigia as $maloaigia)
-                                                <option value="{{$maloaigia->maloaigia}}">{{$maloaigia->tenloaigia}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Loại hàng hóa</label>
-                                        <select id="maloaihh" name="maloaihh" class="form-control">
-                                            <option value="">--Chọn loại hàng hóa--</option>
-                                            @foreach($modelmaloaihh as $maloaihh)
-                                                <option value="{{$maloaihh->maloaihh}}">{{$maloaihh->tenloaihh}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
+
                             <div class="row">
 
                                 <div class="col-md-6">

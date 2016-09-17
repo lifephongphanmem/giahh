@@ -200,31 +200,7 @@
                                 <!--/span-->
                             </div>
 
-                            <!--/row-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Loại hàng hóa<span class="require">*</span></label>
-                                        <select class="form-control" id="maloaihh" name="maloaihh">
-                                            @foreach($loaihh as $hh)
-                                                <option value="{{$hh->maloaihh}}" {{($hh->maloaihh == $model->maloaihh) ? 'selected' : ''}}>{{$hh->tenloaihh}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Loại giá</label>
-                                        <select class="form-control" id="maloaigia" name="maloaigia">
-                                            @foreach($loaigia as $gia)
-                                                <option value="{{$gia->maloaigia}}" {{($gia->maloaigia == $model->maloaigia) ? 'selected' : ''}}>{{$gia->tenloaigia}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
+
                             <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}"
 
                             <!--/row-->

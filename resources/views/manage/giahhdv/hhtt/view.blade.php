@@ -43,7 +43,7 @@
                             </div>
 
                             <!--/row-->
-
+                            <
 
                             <!--/row-->
                             <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="form-actions right">
-                            <a href="{{url('giahhdv-thitruong/thoidiem='.$model->mathoidiem.'/nam='.$model->nam)}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                            <a href="{{url('thongtin-giathitruong/thoidiem='.$model->mathoidiem.'/nam='.$model->nam.'&pb=all')}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
                         </div>
                     </form>
                     <!-- END FORM-->

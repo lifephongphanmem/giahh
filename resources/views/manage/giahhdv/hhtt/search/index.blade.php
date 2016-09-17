@@ -39,7 +39,7 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        <a href="{{url('timkiem-giahhdv-trongnuoc')}}" class="btn btn-default btn-sm">
+                        <a href="{{url('timkiem-giahhdv-thitruong')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-mail-reply"></i> Quay lại tìm kiếm </a>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                             @endforeach
                         @else
                                 <tr>
-                                    <td colspan="6" style="text-align: center">Không tìm thấy thông tin</td>
+                                    <td colspan="8" style="text-align: center">Không tìm thấy thông tin</td>
                                 </tr>
                         @endif
                         </tbody>

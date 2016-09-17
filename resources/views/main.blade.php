@@ -293,7 +293,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <a href="{{url('giahhdv-thitruong')}}">Giá HH thị trường</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('giahhdv-thitruong')}}">Thông tin giá HH thị trường</a>
+                                    <a href="{{url('thongtin-giathitruong')}}">Thông tin giá HH thị trường</a>
                                 </li>
                                 <li>
                                     <a href="{{url('timkiem-giahhdv-thitruong')}}">Tìm kiếm thông tin giá HH thị trường</a>

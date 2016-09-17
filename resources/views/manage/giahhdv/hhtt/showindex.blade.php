@@ -22,7 +22,7 @@
             $('#nambc').change(function() {
                 var nambc = $('#nambc').val();
                 var thoidiem = $('#thoidiem').val();
-                var url = '/giahhdv-thitruong/thoidiem='+thoidiem+'/nam='+nambc+'&pb=all';
+                var url = '/thongtin-giathitruong/thoidiem='+thoidiem+'/nam='+nambc+'&pb=all';
 
                 window.location.href = url;
             });
@@ -30,7 +30,7 @@
                 var nambc = $('#nambc').val();
                 var ttpb = $('#ttpb').val();
                 var thoidiem = $('#thoidiem').val();
-                var url = '/giahhdv-thitruong/thoidiem='+thoidiem+'/nam='+nambc+'&pb='+ttpb;
+                var url = '/thongtin-giathitruong/thoidiem='+thoidiem+'/nam='+nambc+'&pb='+ttpb;
 
                 window.location.href = url;
             });
@@ -62,38 +62,42 @@
                 </select>
             </div>
         </div>
-
+        <div class="col-md-4">
+            <div class="form-group">
+                <select class="form-control select2me" id="ttpb" name="ttpb">
+                    <option value="all">--Tất cả phòng ban--</option>
+                    @foreach($modelpb as $ttpb)
+                        <option value="{{$ttpb->ma}}" {{($pb == $ttpb->ma) ? 'selected' : ''}}>{{$ttpb->ten}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     </div>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
-                <div class="portlet-title">
+                <!--div class="portlet-title">
                     <div class="caption">
 
                     </div>
                     <div class="actions">
-                        @if(can('hhdvtn','create'))
-                        <a href="{{url('giahhdv-thitruong/thoidiem='.$thoidiem.'/create')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
-                        @endif
-                        <!--a href="" class="btn btn-default btn-sm">
-                            <i class="fa fa-print"></i> Print </a-->
+
                     </div>
-                </div>
+                </div-->
                 <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Phòng ban</th>
-                            <th style="text-align: center" width="10">Ngày nhập</th>
-                            <th style="text-align: center" width="15%">Thị trường</th>
+                            <th style="text-align: center" width="20%">Ngày nhập</th>
+                            <th style="text-align: center" width="25%%">Thị trường</th>
                             <!--th style="text-align: center">Loại giá</th>
                             <th style="text-align: center">Loại hàng hóa</th-->
-                            <th style="text-align: center" width="10%">Trạng thái</th>
-                            <th style="text-align: center" width="30%">Thao tác</th>
+                            <!--th style="text-align: center">Trạng thái</th-->
+                            <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -103,9 +107,7 @@
                                 <td class="active">{{$tt->tenpb}}</td>
                                 <td>{{getDayVn($tt->tgnhap)}}</td>
                                 <td>{{$tt->thitruong}}</td>
-                                <!--td>{{$tt->maloaigia}}</td>
-                                <td>{{$tt->maloaihh}}</td-->
-                                <td style="text-align: center">
+                                <!--td style="text-align: center">
                                     @if($tt->trangthai == 'Công bố')
                                         <span class="label label-sm label-success">
 									    Công bố </span>
@@ -113,16 +115,10 @@
                                         <span class="label label-sm label-danger">
 										Chưa công bố </span>
                                     @endif
-                                </td>
+                                </td-->
                                 <td>
-                                    <a href="{{url('giahhdv-thitruong/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
-                                    @if(can('hhthitruong','edit') && $tt->mahuyen == session('admin')->mahuyen)
-                                    <a href="{{url('giahhdv-thitruong/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                    @endif
-                                    @if(can('hhthitruong','delete') && $tt->mahuyen == session('admin')->mahuyen)
-                                    <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                        Xóa</button>
-                                    @endif
+                                    <a href="{{url('thongtin-giathitruong/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+
                                 </td>
                             </tr>
                         @endforeach
