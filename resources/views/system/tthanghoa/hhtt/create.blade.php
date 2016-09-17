@@ -13,7 +13,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin hàng hóa trong nước<small> thêm mới</small>
+        Thông tin hàng hóa thị trường<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -26,21 +26,21 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'dmhanghoa-trongnuoc/'. $model->id, 'class'=>'horizontal-form','id'=>'update_tthhtn']) !!}
+                    {!! Form::open(['url'=>'dmhanghoa-thitruong', 'id' => 'create_tthhtn', 'class'=>'horizontal-form']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Mã hàng hóa<span class="require">*</span></label>
-                                        {!!Form::text('mahh', null, array('id' => 'mahh','class' => 'form-control', 'readonly'=>'readonly'))!!}
+                                        <input type="text" class="form-control required" name="mahh" id="mahh" autofocus>
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Tên hàng hóa<span class="require">*</span></label>
-                                        {!!Form::text('tenhh', null, array('id' => 'tenhh','class' => 'form-control required','autofocus'))!!}
+                                        <input type="text" class="form-control required" name="tenhh" id="tenhh">
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -49,14 +49,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Đặc điểm kỹ thuật</label>
-                                        {!!Form::text('dacdiemkt', null, array('id' => 'dacdiemkt','class' => 'form-control'))!!}
+                                        <input type="text" class="form-control" name="dacdiemkt" id="dacdiemkt">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Đơn vị tính</label>
-                                        {!!Form::text('dvt', null, array('id' => 'dvt','class' => 'form-control'))!!}
+                                        <input type="text" class="form-control" name="dvt" id="dvt">
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -65,20 +65,16 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Nơi sản xuất</label>
-                                        {!!Form::text('nsx', null, array('id' => 'nsx','class' => 'form-control'))!!}
+                                        <input type="text" class="form-control" name="nsx" id="nsx">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Theo dõi</label>
-                                        {!! Form::select(
-                                        'theodoi',
-                                        array(
-                                        'Có' => 'Có',
-                                        'Không' => 'Không',
-                                        ),null,
-                                        array('id' => 'theodoi', 'class' => 'form-control'))
-                                        !!}
+                                        <select class="form-control" name="theodoi" id="theodoi">
+                                            <option value="Có" selected>Có</option>
+                                            <option value="Không">Không</option>
+                                        </select>
                                     </div>
 
                                 </div>
@@ -87,13 +83,13 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Ghi chú<span class="require">*</span></label>
-                                        {!!Form::text('gc', null, array('id' => 'gc','class' => 'form-control'))!!}
+                                        <input type="text" class="form-control"  name="ghichu" id="ghichu">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Update</button>
+                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
                             <button type="reset" class="btn default">Cancel</button>
                         </div>
                     {!! Form::close() !!}
@@ -106,7 +102,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#update_tthhtn").validate({
+            var validator = $("#create_tthhtn").validate({
                 rules: {
                     ten :"required"
                 },
@@ -115,5 +111,29 @@
                 }
             });
         }
+    </script>
+    <script>
+        jQuery(document).ready(function($) {
+            $('input[name="mahh"]').change(function(){
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    type: 'GET',
+                    url: '/checkmahhtt',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        mahh: $(this).val()
+                    },
+                    success: function (respond) {
+                        if(respond != 'ok'){
+                            toastr.error("Bạn cần nhập mã hàng hóa khác", "Mã hàng hóa đã tồn tại!!!");
+                            $('input[name="mahh"]').val('');
+                            $('input[name="mahh"]').focus();
+                        }else
+                            toastr.success("Mã hàng hóa sử dụng được", "Thành công!");
+                    }
+
+                });
+            })
+        }(jQuery));
     </script>
 @stop

@@ -60,6 +60,18 @@ Route::get('/checkthitruong','DmThiTruongController@checkthitruong');
 Route::post('dmthitruong/delete','DmThiTruongController@destroy');
 //End dnah mục loại mặt hàng
 
+    //Hàng hóa thị trường theo thông tư 55/2011
+Route::get('dmhanghoa-thitruong','DmHhTn55Controller@nhom');
+Route::get('dmhanghoa-thitruong/nhom={nhom}','DmHhTn55Controller@pnhom');
+Route::get('dmhanghoa-thitruong/nhom={nhom}','DmHhTn55Controller@hanghoa');
+Route::get('dmhanghoa-thitruong/nhom={nhom}/create','DmHhTn55Controller@create');
+Route::get('/checkmahhtt','DmHhTn55Controller@checkmahhtn');
+Route::post('dmhanghoa-thitruong','DmHhTn55Controller@store');
+Route::get('dmhanghoa-thitruong/{id}/edit','DmHhTn55Controller@edit');
+Route::patch('dmhanghoa-thitruong/{id}','DmHhTn55Controller@update');
+Route::post('dmhanghoa-thitruong/delete','DmHhTn55Controller@destroy');
+    //End hàng hóa trong nước
+
     //Hàng hóa trong nước
 Route::get('dmhanghoa-trongnuoc','DmHhTnController@nhom');
 Route::get('dmhanghoa-trongnuoc/nhom={nhom}','DmHhTnController@pnhom');
@@ -92,7 +104,32 @@ Route::post('dmhanghoa-xuatnhapkhau/delete','DmHhXnkController@destroy');
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="--Manage--">
+    //Giá hàng hóa dv
 
+    //Giá hàng hóa thị trường
+Route::get('giahhdv-thitruong','HsGiaHhTtController@thoidiem');
+Route::get('giahhdv-thitruong/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHhTtController@index');
+Route::get('giahhdv-thitruong/thoidiem={thoidiem}/create','HsGiaHhTtController@create');
+Route::post('giahhdv-thitruong','HsGiaHhTtController@store');
+Route::get('giahhdv-thitruong/{id}/show','HsGiaHhTtController@show');
+Route::get('giahhdv-thitruong/{id}/edit','HsGiaHhTtController@edit');
+Route::patch('giahhdv-thitruong/{id}','HsGiaHhTtController@update');
+Route::post('giahhdv-thitruong/delete','HsGiaHhTtController@destroy');
+
+Route::get('/giahhttdefault/gettthh','GiaHhTtDefaultController@gettthh');
+Route::get('/giahhttdefault/store','GiaHhTtDefaultController@store');
+Route::get('/giahhttdefault/edit','GiaHhTtDefaultController@edit');
+Route::get('/giahhttdefault/update','GiaHhTtDefaultController@update');
+Route::get('/giahhttdefault/delete','GiaHhTtDefaultController@destroy');
+
+Route::get('/giahhtt/store','GiaHhTtController@store');
+Route::get('/giahhtt/edit','GiaHhTtController@edit');
+Route::get('/giahhtt/update','GiaHhTtController@update');
+Route::get('/giahhtt/delete','GiaHhTtController@destroy');
+
+Route::get('timkiem-giahhdv-thitruong','HsGiaHhTtController@search');
+Route::post('timkiem-giahhdv-thitruong','HsGiaHhTtController@viewsearch');
+    //End giá hàng hóa thị trường
 
     //Giá hàng hóa dv
 //Giá hàng hóa thị trường

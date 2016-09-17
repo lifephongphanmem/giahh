@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Nơi sản xuất</label>
+                                        <label class="control-label">Theo dõi</label>
                                         <select class="form-control" name="theodoi" id="theodoi">
                                             <option value="Có" selected>Có</option>
                                             <option value="Không">Không</option>

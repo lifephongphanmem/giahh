@@ -290,13 +290,13 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="">Hàng hóa thị trường<span class="arrow"></span> </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="{{url('giahh-thitruong')}}">Giá HH thị trường</a>
+                                    <a href="{{url('giahhdv-thitruong')}}">Giá HH thị trường</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('giahhdv-trongnuoc')}}">Thông tin giá HH thị trường</a>
+                                    <a href="{{url('giahhdv-thitruong')}}">Thông tin giá HH thị trường</a>
                                 </li>
                                 <li>
-                                    <a href="{{url('timkiem-giahhdv-trongnuoc')}}">Tìm kiếm thông tin giá HH thị trường</a>
+                                    <a href="{{url('timkiem-giahhdv-thitruong')}}">Tìm kiếm thông tin giá HH thị trường</a>
                                 </li>
 
                             </ul>
@@ -479,6 +479,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <li>
                                     <a href="{{url('dmloaihh')}}"> Danh mục loại hàng hóa</a>
                                 </li>
+                                @if(canGeneral('hhdv','hhthitruong'))
+                                <li>
+                                    <a href="{{url('dmhanghoa-thitruong')}}"> Hàng hóa thị trường</a>
+                                </li>
+                                @endif
                                 @if(canGeneral('hhdv','hhdvtn'))
                                 <li>
                                     <a href="{{url('dmhanghoa-trongnuoc')}}">Mặt hàng trong nước</a>

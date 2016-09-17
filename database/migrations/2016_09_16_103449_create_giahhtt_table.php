@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGiahhtndefaultTable extends Migration
+class CreateGiahhttTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateGiahhtndefaultTable extends Migration
      */
     public function up()
     {
-        Schema::create('giahhtndefault', function (Blueprint $table) {
+        Schema::create('giahhtt', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mahh');
             $table->string('masopnhom');
@@ -27,7 +27,6 @@ class CreateGiahhtndefaultTable extends Migration
             $table->string('nguontin');
             $table->string('gc');
             $table->string('mahs');
-            $table->string('mahuyen');
             $table->timestamps();
         });
     }
@@ -39,6 +38,6 @@ class CreateGiahhtndefaultTable extends Migration
      */
     public function down()
     {
-        Schema::drop('giahhtndefault');
+        Schema::drop('giahhtt');
     }
 }
