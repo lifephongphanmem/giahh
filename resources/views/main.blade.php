@@ -286,21 +286,27 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
+                        @if(canGeneral('hhdv','hhthitruong'))
                         <li>
                             <a href="">Hàng hóa thị trường<span class="arrow"></span> </a>
                             <ul class="sub-menu">
+                                @if(can('hhdvtn','create'))
                                 <li>
                                     <a href="{{url('giahhdv-thitruong')}}">Giá HH thị trường</a>
                                 </li>
+                                @endif
+                                @if(can('hhdvtn','index'))
                                 <li>
                                     <a href="{{url('thongtin-giathitruong')}}">Thông tin giá HH thị trường</a>
                                 </li>
+                                @endif
                                 <li>
                                     <a href="{{url('timkiem-giahhdv-thitruong')}}">Tìm kiếm thông tin giá HH thị trường</a>
                                 </li>
 
                             </ul>
                         </li>
+                        @endif
                         @if(canGeneral('hhdv','hhdvtn'))
                             @if(can('hhdvtn','index'))
                             <li>
@@ -463,7 +469,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
-                        @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk'))
+                        @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk' || canGeneral('hhdv','hhthitruong')))
                         <li>
                             <a href="">Giá hàng hóa <span class="arrow"></span> </a>
                             <ul class="sub-menu">

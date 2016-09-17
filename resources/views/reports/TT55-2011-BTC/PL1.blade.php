@@ -77,8 +77,8 @@
         <th>{{$tt->mahh}}</th>
         <th style="text-align: left">{{$tt->tenhh}}</th>
         <th>{{$tt->dvt}}</th>
+        <th style="text-align: left">{{number_format($tt->giahh)}}</th>
         <th></th>
-        <th>{{number_format($tt->giahh)}}</th>
         <th></th>
         <th></th>
     </tr>

@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\DmHhTn;
+use App\DmHhTn55;
 use App\DmHhXnk;
 use App\DmThiTruong;
 use App\GiaHhTn;
+use App\GiaHhTt;
 use App\GiaHhXnk;
 use App\HsGiaHhTn;
+use App\HsGiaHhTt;
 use App\HsGiaHhXnk;
 use Illuminate\Http\Request;
 
@@ -32,14 +35,14 @@ class TT552011BtcController extends Controller
     public function PL1(Request $request){
         if (Session::has('admin')) {
             $inputs=$request->all();
-            $dmhh=DmHhTn::get()->toarray();
-            $hoso=HsGiaHhTn::select('mahs')->where('thitruong',$inputs['thitruong'])->get();
+            $dmhh=DmHhTn55::get()->toarray();
+            $hoso=HsGiaHhTt::select('mahs')->where('thitruong',$inputs['thitruong'])->get();
 
-            $model=GiaHhTn::join('HsGiaHhTn', 'HsGiaHhTn.mahs', '=', 'GiaHhTn.mahs')
-                ->select('GiaHhTn.*')
-                ->where('HsGiaHhTn.thitruong',$inputs['thitruong'])->get();
+            $model=GiaHhTt::join('HsGiaHhTt', 'HsGiaHhTt.mahs', '=', 'GiaHhTt.mahs')
+                ->select('GiaHhTt.*')
+                ->where('HsGiaHhTt.thitruong',$inputs['thitruong'])->get();
             //dd($model);
-            $modeldm = DmHhTn::all();
+            $modeldm = DmHhTn55::all();
 
             foreach($model as $tthh){
                 $this->gettenhh($modeldm,$tthh);
