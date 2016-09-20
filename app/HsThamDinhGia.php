@@ -17,6 +17,8 @@ class HsThamDinhGia extends Model
         'thoihan',
         'sotbkl',
         'hosotdgia',
+        'nguonvon',
+        'trangthai',
         'thang',
         'nam',
         'mahuyen',

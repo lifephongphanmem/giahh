@@ -152,7 +152,7 @@
                         </div>
 
                         <div class="form-actions right">
-                            <a href="{{url('hoso-thamdinhgia/nam='.$model->nam)}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                            <a href="{{url('thongtin-thamdinhgia/nam='.$model->nam.'&pb=all')}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
                         </div>
                     </form>
                     <!-- END FORM-->

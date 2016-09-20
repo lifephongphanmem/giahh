@@ -246,6 +246,10 @@
                                             <td><input type="checkbox" {{ (isset($permission->tdgia->delete) && $permission->tdgia->delete == 1) ? 'checked' : '' }} value="1" name="roles[tdgia][delete]"/></td>
                                             <td>Xóa</td>
                                         </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tdgia->approve) && $permission->tdgia->approve == 1) ? 'checked' : '' }} value="1" name="roles[tdgia][approve]"/></td>
+                                            <td>Xét duyệt</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -278,6 +282,10 @@
                                         <tr>
                                             <td><input type="checkbox" {{ (isset($permission->congbogia->delete) && $permission->congbogia->delete == 1) ? 'checked' : '' }} value="1" name="roles[congbogia][delete]"/></td>
                                             <td>Xóa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->congbogia->approve) && $permission->congbogia->approve == 1) ? 'checked' : '' }} value="1" name="roles[congbogia][approve]"/></td>
+                                            <td>Xét duyệt</td>
                                         </tr>
                                     </tbody>
                                 </table>

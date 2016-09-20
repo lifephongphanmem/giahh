@@ -37,13 +37,15 @@ function getPermissionDefault($level) {
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
         ),
         'congbogia' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
         ),
         'ttqd' => array(
             'index' => 1,
@@ -87,13 +89,15 @@ function getPermissionDefault($level) {
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
         ),
         'congbogia' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
         ),
         'ttqd' => array(
             'index' => 1,
@@ -137,13 +141,15 @@ function getPermissionDefault($level) {
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 0
         ),
         'congbogia' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 0
         ),
         'ttqd' => array(
             'index' => 1,

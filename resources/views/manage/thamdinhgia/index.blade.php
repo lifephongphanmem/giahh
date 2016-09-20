@@ -31,6 +31,9 @@
         function confirmDelete(id) {
             document.getElementById("iddelete").value=id;
         }
+        function confirmHoantat(id) {
+            document.getElementById("idhoantat").value=id;
+        }
     </script>
 
 
@@ -63,10 +66,12 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
+                        @if(can('tdgia','create'))
                         <a href="{{url('hoso-thamdinhgia/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
                         <a href="{{url('hoso-thamdinhgia/import')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Import file</a>
+                        @endif
                         <!--a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a-->
                     </div>
@@ -81,8 +86,10 @@
                             <th style="text-align: center" width="15%">Số thông báo<br>kết luận</th>
                             <th style="text-align: center">Thời điểm thẩm định</th>
                             <!--th style="text-align: center">Mục đích thẩm định</th-->
+                            <th style="text-align: center">Nguồn vốn</th>
                             <th style="text-align: center">Thời hạn thẩm định</th>
-                            <th style="text-align: center" width="20%">Thao tác</th>
+                            <th style="text-align: center">Trạng thái</th>
+                            <th style="text-align: center" width="33%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -93,16 +100,30 @@
                                 <td style="text-align: center">{{$tt->hosotdgia}}</td>
                                 <td style="text-align: center">{{$tt->sotbkl}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
+                                <td style="text-align: center">{{$tt->nguonvon}}</td>
                                 <!--td>{{$tt->mucdich}}</td-->
                                 <td style="text-align: center">{{getDayVn($tt->thoihan)}}</td>
-                                <td>
-                                    <a href="{{url('hoso-thamdinhgia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
-                                    @if(can('thamdinhgia','edit') && $tt->mahuyen == session('admin')->mahuyen)
-                                    <a href="{{url('hoso-thamdinhgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                <td style="text-align: center">
+                                    @if($tt->trangthai == 'Đang làm')
+                                        <span class="label label-sm label-danger">
+										Đang làm </span>
+                                    @else
+                                        <span class="label label-sm label-success">
+										Hoàn tất </span>
                                     @endif
-                                    @if(can('thamdinhgia','delete') && $tt->mahuyen == session('admin')->mahuyen)
-                                    <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                    Xóa</button>
+                                </td>
+                                <td>
+
+                                    <a href="{{url('hoso-thamdinhgia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                    @if($tt->trangthai !='Hoàn tất')
+                                        @if(can('tdgia','edit'))
+                                        <a href="{{url('hoso-thamdinhgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                        @endif
+                                        @if(can('tdgia','delete'))
+                                        <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                        Xóa</button>
+                                        @endif
+                                        <button type="button" onclick="confirmHoantat('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoantat-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn tất</button>
                                     @endif
                                 </td>
                             </tr>
@@ -123,26 +144,55 @@
     <!--Modal Delete-->
     <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
         {!! Form::open(['url'=>'hoso-thamdinhgia/delete','id' => 'frm_delete'])!!}
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header modal-header-primary">
-                        <button type="button" data-dismiss="modal" aria-hidden="true"
-                                class="close">&times;</button>
-                        <h4 id="modal-header-primary-label" class="modal-title">Đồng ý xoá?</h4>
-                        <input type="hidden" name="iddelete" id="iddelete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý xoá?</h4>
+                    <input type="hidden" name="iddelete" id="iddelete">
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                        <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickdelete()">Đồng ý</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickdelete()">Đồng ý</button>
                 </div>
             </div>
+        </div>
         {!! Form::close() !!}
     </div>
     <script>
         function clickdelete(){
             $('#frm_delete').submit();
+        }
+    </script>
+    <!--Modal Hoàn tất-->
+    <div id="hoantat-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        {!! Form::open(['url'=>'hoso-thamdinhgia/hoantat','id' => 'frm_hoantat'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true"
+                            class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Đồng ý hoàn tất hồ sơ?</h4>
+
+                    <input type="hidden" name="idhoantat" id="idhoantat">
+
+                </div>
+                <div class="modal-body">
+                    <h5<i style="color: #0000FF">Hồ sơ đã hoàn tất sẽ không được phép chỉnh sửa và hủy hoàn tất hồ sơ nữa!Bạn cần liên hệ cơ quan chủ quản để chỉnh sửa hồ sơ nếu cần!</i></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickhoantat()">Đồng ý</button>
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+    <script>
+        function clickhoantat(){
+            $('#frm_hoantat').submit();
         }
     </script>
 

@@ -22,6 +22,8 @@ class CreateHsthamdinhgiaTable extends Migration
             $table->date('thoihan');
             $table->string('sotbkl');
             $table->string('hosotdgia');
+            $table->string('nguonvon');
+            $table->string('trangthai');
             $table->string('thang');
             $table->string('quy');
             $table->string('nam');

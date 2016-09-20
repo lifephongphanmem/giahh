@@ -17,11 +17,13 @@ class HsThamDinhGiaController extends Controller
     public function index($nam)
     {
         if(Session::has('admin')){
-
+            //dd(session('admin')->mahuyen);
 
             $model = HsThamDinhGia::where('nam',$nam)
                 ->where('mahuyen',session('admin')->mahuyen)
                 ->get();
+
+            //dd($model);
 
             $modelpb = TtPhongBan::all();
             foreach($model as $tt){
@@ -43,10 +45,12 @@ class HsThamDinhGiaController extends Controller
 
             if($pb == 'all')
                 $model = HsThamDinhGia::where('nam',$nam)
+                    ->where('trangthai','Hoàn tất')
                     ->get();
 
             else
                 $model = HsThamDinhGia::where('nam',$nam)
+                    ->where('trangthai','Hoàn tất')
                     ->where('mahuyen',$pb)
                     ->get();
             $modelpb = TtPhongBan::all();
@@ -111,12 +115,14 @@ class HsThamDinhGiaController extends Controller
                 $model->quy = 4;
             $model->nam = date_format($date,'Y');
             $model->mahuyen = session('admin')->mahuyen;
+            $model->nguonvon = $insert['nguonvon'];
+            $model->trangthai = 'Đang làm';
             $model->mahs = $mahs;
             if($model->save()){
                 $this->createts($mahs);
             }
 
-            return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y').'&pb=all');
+            return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -134,7 +140,9 @@ class HsThamDinhGiaController extends Controller
                 $model->nguongoc = $ts->nguongoc;
                 $model->dvt = $ts->dvt;
                 $model->sl = $ts->sl;
+                $model->nguyengiadenghi = $ts->nguyengiadenghi;
                 $model->giadenghi = $ts->giadenghi;
+                $model->nguyengiathamdinh = $ts->nguyengiathamdinh;
                 $model->giatritstd = $ts->giatritstd;
                 $model->gc = $ts->gc;
                 $model->mahs = $mahs;
@@ -152,6 +160,23 @@ class HsThamDinhGiaController extends Controller
                 ->get();
 
             return view('manage.thamdinhgia.show')
+                ->with('model',$model)
+                ->with('modelts',$modelts)
+                ->with('pageTitle','Thông tin hồ sơ thẩm định');
+        }else
+            return view('errors.notlogin');
+    }
+
+
+    public function view($id)
+    {
+        if(Session::has('admin')){
+            $model = HsThamDinhGia::findOrFail($id);
+
+            $modelts = ThamDinhGia::where('mahs',$model->mahs)
+                ->get();
+
+            return view('manage.thamdinhgia.view')
                 ->with('model',$model)
                 ->with('modelts',$modelts)
                 ->with('pageTitle','Thông tin hồ sơ thẩm định');
@@ -200,10 +225,11 @@ class HsThamDinhGiaController extends Controller
                 $model->quy = 3;
             else
                 $model->quy = 4;
+            $model->nguonvon = $update['nguonvon'];
             $model->nam = date_format($date,'Y');
             $model->save();
 
-            return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y').'&pb=all');
+            return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -212,7 +238,7 @@ class HsThamDinhGiaController extends Controller
     public function destroy(Request $request)
     {
         if(Session::has('admin')){
-            $input = $request->all();
+            //$input = $request->all();
             $model = HsThamDinhGia::where('id',$request['iddelete'])
                 ->first();
             $nam =$model->nam;
@@ -220,10 +246,36 @@ class HsThamDinhGiaController extends Controller
                 $modelts = ThamDinhGia::where('mahs',$model->mahs)
                     ->delete();
             }
-            return redirect('hoso-thamdinhgia/nam='.$nam.'&pb=all');
+            return redirect('hoso-thamdinhgia/nam='.$nam);
 
 
         }else
             return view('errors.notlogin');
     }
+
+    public function hoantat(Request $request){
+        if(Session::has('admin')){
+            $model = HsThamDinhGia::where('id',$request['idhoantat'])
+                ->first();
+            //dd($model);
+            $nam =$model->nam;
+            $model->trangthai = 'Hoàn tất';
+            $model->save();
+            return redirect('hoso-thamdinhgia/nam='.$nam);
+        }else
+            return view('errors.notlogin');
+    }
+    public function huy(Request $request){
+        if(Session::has('admin')){
+            $model = HsThamDinhGia::where('id',$request['idhuy'])
+                ->first();
+            //dd($model);
+            $nam =$model->nam;
+            $model->trangthai = 'Đang làm';
+            $model->save();
+            return redirect('thongtin-thamdinhgia/nam='.$nam.'&pb=all');
+        }else
+            return view('errors.notlogin');
+    }
+
 }

@@ -217,8 +217,11 @@ Route::post('hoso-thamdinhgia/delete','HsThamDinhGiaController@destroy');
 Route::get('hoso-thamdinhgia/{id}/show','HsThamDinhGiaController@show');
 Route::get('hoso-thamdinhgia/{id}/edit','HsThamDinhGiaController@edit');
 Route::patch('hoso-thamdinhgia/{id}','HsThamDinhGiaController@update');
+Route::post('hoso-thamdinhgia/hoantat','HsThamDinhGiaController@hoantat');
 
 Route::get('thongtin-thamdinhgia/nam={nam}&pb={pb}','HsThamDinhGiaController@showindex');
+Route::get('thongtin-thamdinhgia/{id}/show','HsThamDinhGiaController@view');
+Route::post('thongtin-thamdinhgia/huy','HsThamDinhGiaController@huy');
 
 Route::get('thamdinhgiadefault/store','ThamDinhgiaDefaultController@store');
 Route::get('thamdinhgiadefault/edit','ThamDinhgiaDefaultController@edit');

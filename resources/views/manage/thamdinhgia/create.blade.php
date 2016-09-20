@@ -24,6 +24,7 @@
                         $('#tttsedit').replaceWith(data.message);
                         $('#tentsedit').focus();
                         InputMask();
+                        tinhtoan();
                     }
                     else
                         toastr.error("Không thể chỉnh sửa thông tin tài sản!", "Lỗi!");
@@ -46,7 +47,9 @@
                     nguongoc: $('input[name ="nguongocedit"]').val(),
                     dvt: $('input[name="dvtedit"]').val(),
                     sl: $('input[name="sledit"]').val(),
-                    giadenghi: $('input[name="giadenghiedit"]').val(),
+                    nguyengiadenghi: $('input[name="nguyengiadenghiedit"]').val(),
+                    giadenghi: $('input[name = "giadenghiedit"]').val(),
+                    nguyengiathamdinh: $('input[name="nguyengiathamdinhedit"]').val(),
                     giatritstd: $('input[name="giatritstdedit"]').val(),
                     gc: $('textarea[name="gcedit"]').val()
                 },
@@ -237,8 +240,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
-                                        <input type="date" id="thoihan" name="thoihan" class="form-control required">
+                                        <label class="control-label">Nguồn vốn<span class="require">*</span></label>
+                                        <select class="form-control" name="nguonvon" id="nguonvon">
+                                            <option value="Cả hai">Cả hai (Nguồn vốn thường xuyên và Nguồn vốn đầu tư)</option>
+                                            <option value="Thường xuyên">Nguồn vốn thường xuyên</option>
+                                            <option value="Đầu tư">Nguồn vốn đầu tư</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -246,6 +253,15 @@
                                     <div class="form-group has-error">
                                         <label class="control-label">Số thông báo kết luận<span class="require">*</span></label>
                                         <input type="text" id="sotbkl" name="sotbkl" class="form-control required">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
+                                        <input type="date" id="thoihan" name="thoihan" class="form-control required">
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -334,7 +350,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button type="button" id="capnhatts" name="capnhatts" class="btn btn-primary">Cập nhật</button>
+                                        <button type="button" id="capnhatts" name="capnhatts" class="btn btn-primary">Thêm mới</button>
                                         &nbsp;
                                     </div>
                                 </div>
@@ -348,11 +364,11 @@
                                             <tr style="background: #F5F5F5">
                                                 <th width="2%" style="text-align: center">STT</th>
                                                 <th style="text-align: center">Tên tài sản</th>
-                                                <th style="text-align: center">Đặc điểm kinh tế- kỹ thuật</th>
-                                                <th style="text-align: center">Nguồn gốc</th>
                                                 <th style="text-align: center">Đơn vị tính</th>
                                                 <th style="text-align: center">Số lượng</th>
+                                                <th style="text-align: center">Nguyên giá đề nghị</th>
                                                 <th style="text-align: center">Giá trị đề nghị</th>
+                                                <th style="text-align: center">Nguyên giá thẩm định</th>
                                                 <th style="text-align: center">Giá trị thẩm định</th>
                                                 <th style="text-align: center" width="20%">Thao tác</th>
                                             </tr>
@@ -366,8 +382,10 @@
                             </div>
                         </div>
 
-                        <div class="form-actions right">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
+                        <div class="form-actions">
+                            <div class="col-md-12" style="text-align: center">
+                                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                            </div>
                         </div>
                     </form>
                     <!-- END FORM-->
@@ -389,6 +407,59 @@
             });
         }
     </script>
+    <!--Tính giá trị đề nghị và giá thẩm định-->
+    <script>
+        $(document).ready(function() {
+            $('#nguyengiadenghi').change(function () {
+                var sl = $('#sl').val();
+                sl = sl.replace(/,/g, "");
+                //sl = sl.replace(/./g, "");
+                var nguyengiadn = $('#nguyengiadenghi').val();
+                nguyengiadn = nguyengiadn.replace(/,/g, "");
+                //nguyengiadn = nguyengiadn.replace(/./g, "");
+                var tt = sl * nguyengiadn;
+                //alert(nguyengiadn);
+                $('#giadenghi').val(tt);
+            });
+            $('#nguyengiathamdinh').change(function () {
+                var sl = $('#sl').val();
+                sl = sl.replace(/,/g, "");
+                //sl = sl.replace(/./g, "");
+                var nguyengiatd = $('#nguyengiathamdinh').val();
+                nguyengiatd = nguyengiatd.replace(/,/g, "");
+                //nguyengiatd = nguyengiatd.replace(/./g, "");
+                var tt = sl * nguyengiatd;
+                //alert(nguyengiatd);
+                $('#giatritstd').val(tt);
+            });
+        });
+    </script>
+    <script>
+        function tinhtoan(){
+            $('#nguyengiadenghiedit').change(function () {
+                var sl = $('#sledit').val();
+                sl = sl.replace(/,/g, "");
+                //sl = sl.replace(/./g, "");
+                var nguyengiadn = $('#nguyengiadenghiedit').val();
+                nguyengiadn = nguyengiadn.replace(/,/g, "");
+                //nguyengiadn = nguyengiadn.replace(/./g, "");
+                var tt = sl * nguyengiadn;
+                //alert(nguyengiadn);
+                $('#giadenghiedit').val(tt);
+            });
+            $('#nguyengiathamdinhedit').change(function () {
+                var sl = $('#sledit').val();
+                sl = sl.replace(/,/g, "");
+                //sl = sl.replace(/./g, "");
+                var nguyengiatd = $('#nguyengiathamdinhedit').val();
+                nguyengiatd = nguyengiatd.replace(/,/g, "");
+                //nguyengiatd = nguyengiatd.replace(/./g, "");
+                var tt = sl * nguyengiatd;
+                //alert(nguyengiatd);
+                $('#giatritstdedit').val(tt);
+            });
+        }
+    </script>
     <script>
         jQuery(document).ready(function($) {
             $('button[name="capnhatts"]').click(function(){
@@ -404,7 +475,9 @@
                         nguongoc: $('input[name="nguongoc"]').val(),
                         dvt: $('input[name="dvt"]').val(),
                         sl: $('input[name="sl"]').val(),
+                        nguyengiadenghi: $('input[name="nguyengiadenghi"]').val(),
                         giadenghi: $('input[name = "giadenghi"]').val(),
+                        nguyengiathamdinh: $('input[name="nguyengiathamdinh"]').val(),
                         giatritstd:$('input[name="giatritstd"]').val(),
                         gc: $('textarea[name="gc"]').val()
                     },
@@ -419,7 +492,9 @@
                             $('#nguongoc').val('');
                             $('#dvt').val('');
                             $('#sl').val('1');
+                            $('#nguyengiadenghi').val('0');
                             $('#giadenghi').val('0');
+                            $('#nguyengiathamdinh').val('0');
                             $('#giatritstd').val('0');
                             $('#gc').val('');
 
