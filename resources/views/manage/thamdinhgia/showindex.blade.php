@@ -81,9 +81,9 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Phòng ban</th>
-                            <th style="text-align: center" width="10">Số hồ sơ</th>
-                            <th style="text-align: center" width="15%">Số thông báo<br>kết luận</th>
+                            <th style="text-align: center" width="20%">Phòng ban</th>
+                            <th style="text-align: center">Số hồ sơ</th>
+                            <th style="text-align: center">Số thông báo<br>kết luận</th>
                             <th style="text-align: center">Thời điểm thẩm định</th>
                             <!--th style="text-align: center">Mục đích thẩm định</th-->
                             <th style="text-align: center">Thời hạn thẩm định</th>
@@ -103,7 +103,7 @@
                                 <td>
                                     <a href="{{url('thongtin-thamdinhgia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                     @if(session('admin')->level == 'T')
-                                    <button type="button" onclick="confirmHuy('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huy-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hủy hoàn thành</button>
+                                        <button type="button" onclick="confirmHuy('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huy-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hủy hoàn thành</button>
                                     @endif
                                 </td>
                             </tr>

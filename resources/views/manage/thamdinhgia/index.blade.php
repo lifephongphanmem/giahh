@@ -81,13 +81,13 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Phòng ban</th>
-                            <th style="text-align: center" width="10">Số hồ sơ</th>
-                            <th style="text-align: center" width="15%">Số thông báo<br>kết luận</th>
-                            <th style="text-align: center">Thời điểm thẩm định</th>
+                            <th style="text-align: center" width="20%">Phòng ban</th>
+                            <th style="text-align: center">Số hồ sơ</th>
+                            <th style="text-align: center">Số thông báo<br>kết luận</th>
+                            <th style="text-align: center">Thời điểm <br>thẩm định</th>
                             <!--th style="text-align: center">Mục đích thẩm định</th-->
                             <th style="text-align: center">Nguồn vốn</th>
-                            <th style="text-align: center">Thời hạn thẩm định</th>
+                            <th style="text-align: center" with="3%">Thời hạn <br>thẩm định</th>
                             <th style="text-align: center">Trạng thái</th>
                             <th style="text-align: center" width="33%">Thao tác</th>
                         </tr>

@@ -27,17 +27,58 @@
             <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Từ ngày</b></label>
-                        <div class="col-md-6 ">
+                        <label class="col-md-3 control-label"><b>Từ ngày</b></label>
+                        <div class="col-md-9 ">
                             <input type="date" id="ngaytu" name="ngaytu" class="form-control" value="2016-01-01">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Đến ngày</b></label>
-                        <div class="col-md-6 ">
+                        <label class="col-md-3 control-label"><b>Đến ngày</b></label>
+                        <div class="col-md-9">
                             <input type="date" id="ngayden" name="ngayden" class="form-control" value="2016-12-31">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"><b>Nguồn vốn</b></label>
+                        <div class="col-md-9">
+                            {!! Form::select(
+                            'nguonvon',
+                            array(
+                            'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                            'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                            'Đầu tư' => 'Nguồn vốn đầu tư',
+                            ),null,
+                            array('id' => 'nguonvon', 'class' => 'form-control'))
+                            !!}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"><b>Kết xuất theo</b></label>
+                        <div class="col-md-9">
+                            {!! Form::select(
+                            'dk',
+                            array(
+                            'Tháng' => 'Tháng',
+                            'Quý' => 'Quý',
+                            'Năm' => 'Năm',
+                            ),null,
+                            array('id' => 'dk', 'class' => 'form-control'))
+                            !!}
+                        </div>
+                    </div>
+                    @if(session('admin')->level == 'T')
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"><b>Đơn vị</b></label>
+                        <div class="col-md-9">
+                            <select class="form-control" name="donvi" id="donvi">
+                                <option value="all">--Tất cả các đơn vị--</option>
+                                @foreach($modeldv as $dv)
+                                    <option value="{{$dv->ma}}">{{$dv->ten}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    @endif
 
                 </div>
             </div>
@@ -55,25 +96,41 @@
     <div class="modal-dialog">
         {!! Form::open(['url'=>'reports/bctkkhac/BC2','target'=>'_blank' , 'id' => 'frm_BC2', 'class'=>'form-horizontal form-validate']) !!}
         <div class="modal-content">
-            <div class="modal-header modal-header-primary">
+            <div class="modal-header modal-header-primary" style="color: #060606">
                 <button type="button" data-dismiss="modal" aria-hidden="true"
                         class="close">&times;</button>
                 <h4 id="modal-header-primary-label" class="modal-title">Báo cáo tổng hợp kết quả thẩm định giá</h4>
             </div>
             <div class="modal-body">
                 <div class="form-horizontal">
+
                     <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Từ ngày</b></label>
-                        <div class="col-md-6 ">
+                        <label class="col-md-3 control-label"><b>Từ ngày</b></label>
+                        <div class="col-md-9 ">
                             <input type="date" id="ngaytu" name="ngaytu" class="form-control" value="2016-01-01">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Đến ngày</b></label>
-                        <div class="col-md-6 ">
+                        <label class="col-md-3 control-label"><b>Đến ngày</b></label>
+                        <div class="col-md-9 ">
                             <input type="date" id="ngayden" name="ngayden" class="form-control" value="2016-12-31">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"><b>Nguồn vốn</b></label>
+                        <div class="col-md-9">
+                            {!! Form::select(
+                            'nguonvon',
+                            array(
+                            'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                            'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                            'Đầu tư' => 'Nguồn vốn đầu tư',
+                            ),null,
+                            array('id' => 'nguonvon', 'class' => 'form-control'))
+                            !!}
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="modal-footer">

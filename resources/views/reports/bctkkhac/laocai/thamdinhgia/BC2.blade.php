@@ -28,7 +28,12 @@
 <table cellspacing="0" cellpadding="0" border="0">
     <tr>
         <td style="text-align: center; text-transform: uppercase;" width="30%">
-            <b>SỞ TÀI CHÍNH TỈNH, THÀNH PHỐ</b><br>
+            <b>@if(session('admin')->level == 'T')
+                    {{getGeneralConfigs()['donvi']}}
+                @else
+                    {{session('admin')->name}}
+                @endif
+            </b><br>
             --------<br>
         </td>
         <td style="text-align: left;" width="70%">
@@ -40,6 +45,8 @@
             <b>BÁO CÁO TỔNG HỢP KẾT QUẢ THẨM ĐỊNH GIÁ</b>
             <br><br>
             Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}
+            <br>
+            Nguồn vốn: {{($dk['nguonvon']=='Cả hai') ? 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)' : $dk['nguonvon']}}
 
         </td>
     </tr>

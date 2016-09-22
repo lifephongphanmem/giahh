@@ -7,6 +7,7 @@ use App\HsCongBoGia;
 use App\HsGiaHhXnk;
 use App\HsThamDinhGia;
 use App\ThamDinhGia;
+use App\TtPhongBan;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -19,7 +20,9 @@ class BcTkKhacController extends Controller
     public function index()
     {
         if(Session::has('admin')){
+            $modeldv = TtPhongBan::all();
             return view('reports.bctkkhac.index')
+                ->with('modeldv',$modeldv)
                 ->with('pageTitle','Báo cáo thống kê khác');
         }else
             return view('errors.notlogin');
@@ -28,23 +31,53 @@ class BcTkKhacController extends Controller
     public function BC1(Request $request){
         if (Session::has('admin')) {
             $input = $request->all();
-            $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
-                ->get();
+            //dd($input);
+            if(isset($input['donvi'])){
+                if($input['donvi'] == 'all'){
+                    $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
+                        ->where('nguonvon', $input['nguonvon'])
+                        ->where('trangthai', 'Hoàn tất')
+                        ->get();
+                    $donvi = 'all';
+
+                }else{
+                    $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
+                        ->where('mahuyen', $input['donvi'])
+                        ->where('trangthai', 'Hoàn tất')
+                        ->where('nguonvon', $input['nguonvon'])
+                        ->get();
+                    $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
+                }
+            }else {
+                $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
+                    ->where('mahuyen', session('admin')->mahuyen)
+                    ->where('trangthai', 'Hoàn tất')
+                    ->where('nguonvon', $input['nguonvon'])
+                    ->get();
+                $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
+            }
+
+
             //dd($model);
             $arraythang='';
             foreach($model as $hs){
                 $arraythang = $arraythang.$hs->thang.',';
-                $giadenghi = ThamDinhGia::where('mahs',$hs->mahs)->get();
-                $giathamdinh = ThamDinhGia::where('mahs',$hs->mahs)->get();
 
-                $hs->sumgiadenghi = $giadenghi->sum('giadenghi');
-                $hs->sumgiathamdinh = $giathamdinh->sum('giatritstd');
-                $hs->sumkthamdinh = $giadenghi->sum('giadenghi')-$giathamdinh->sum('giatritstd');
-                if($giadenghi->sum('giadenghi')>0 && $giathamdinh->sum('giatritstd')>0)
-                    $hs->phantram = $giathamdinh->sum('giatritstd') * 100/($giadenghi->sum('giadenghi'));
+                $gia = ThamDinhGia::where('mahs',$hs->mahs)->get();
+
+                $hs->sumgiadenghi = $gia->sum('giadenghi');
+                $hs->sumgiathamdinh = $gia->sum('giatritstd');
+
+                $hs->sumkththamdinh = $gia->sum('giakththamdinh');
+                $hs->sumththamdinh = $gia->sum('giaththamdinh');
+                $hs->sumchenhlech =  $gia->sum('giatritstd') - $gia->sum('giaththamdinh');
+
+                if($gia->sum('giadenghi')>0 && $gia->sum('giatritstd')>0)
+                    $hs->phantram = $gia->sum('giatritstd') * 100/($gia->sum('giaththamdinh'));
             }
             //$modelthang = $model->groupBy('thang')->get();
             //dd(is_array($arraythang));
+
             $arraymodel = $model->toarray();
             $arraythang = array_column($arraymodel,'thang');
             $arraythang = array_unique($arraythang);
@@ -59,6 +92,7 @@ class BcTkKhacController extends Controller
                 ->with('arraythang',$arraythang)
                 ->with('arrayquy',$arrayquy)
                 ->with('arraynam',$arraynam)
+                ->with('donvi',$donvi)
                 ->with('dk',$input)
                 ->with('pageTitle','Kết quả thẩm đinh giá');
 
@@ -71,6 +105,7 @@ class BcTkKhacController extends Controller
             $input = $request->all();
 
             $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
+                ->where('nguonvon',$input['nguonvon'])
                 ->groupBy('thang')
                 ->get();
             foreach($model as $thangs){

@@ -25,6 +25,8 @@ class CreateThamdinhgiaTable extends Migration
             $table->string('giadenghi');
             $table->string('nguyengiathamdinh');
             $table->string('giatritstd');
+            $table->string('giaththamdinh');
+            $table->string('giakththamdinh');
             $table->string('gc');
             $table->string('mahs');
             $table->timestamps();

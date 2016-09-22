@@ -1,0 +1,15 @@
+-20/09/2016 : 
+	+ Add nguonvon,trangthai in HsThamDinhGia
+	+ Add nguyengiadenghi, nguyengiathamdinh in ThamDinhGiaDefault and ThamDinhGia
+	+ Update tr?ng thái Form Th?m d?nh giá
+	+ Update tính toán trên form create và edit ThamDinhGia
+	+ Update Controller HsThamDinhGia index, showindex, store,createts
+	+ Update view index,create,edit ThamDinhGia add scrip tinhtoan
+	+ Update ch?c nang hoàn thành và h?y hoàn thành 
+	+ Update v?ew Form showindex with trangthai = 'Hoàn t?t'
+
+-22/09/2016
+	+ Fix default level = T permission 
+	+ Phát sinh trong báo cáo c?n ph?i cho thêm tru?ng giakththamdinh, giaththamdinh trong Table ThamDinhGia, ThamDinhGiaDefault
+		- giakththamdinh = if(giathamdinh == 0) => 
+		-giaththamdinh = if(giathamdinh>0)

@@ -20,6 +20,8 @@ class ThamDinhGia extends Model
         'giadenghi',
         'nguyengiathamdinh',
         'giatritstd',
+        'giaththamdinh',
+        'giakththamdinh',
         'gc',
         'mahs'
     ];

@@ -43,6 +43,8 @@ class HsThamDinhGiaController extends Controller
     public function showindex($nam,$pb){
         if(Session::has('admin')){
 
+            //dd(session('admin')->level);
+
             if($pb == 'all')
                 $model = HsThamDinhGia::where('nam',$nam)
                     ->where('trangthai','Hoàn tất')

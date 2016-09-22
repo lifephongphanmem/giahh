@@ -5,47 +5,47 @@ function getPermissionDefault($level) {
     $roles['T'] = array(
         'hhthitruong' => array(
             'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
         ),
         'hhdvtn' => array(
             'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
         ),
         'hhxnk' => array(
             'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
         ),
         'tsnnnhadat' => array(
             'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
         ),
         'tsnnotokhac' => array(
             'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
         ),
         'tdgia' => array(
             'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0,
             'approve'=> 1
         ),
         'congbogia' => array(
             'index' => 1,
-            'create' => 1,
-            'edit' => 1,
-            'delete' => 1,
-            'approve'=> 1
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0,
+            'approve'=> 0
         ),
         'ttqd' => array(
             'index' => 1,

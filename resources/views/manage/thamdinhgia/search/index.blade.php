@@ -18,25 +18,6 @@
         jQuery(document).ready(function() {
             TableManaged.init();
         });
-        $(function(){
-
-            $('#namhs').change(function() {
-                var namhs = $('#namhs').val();
-                var url = '/hoso-thamdinhgia/nam='+namhs+'&pb=all';
-
-                window.location.href = url;
-            });
-            $('#ttpb').change(function() {
-                var namhs = $('#namhs').val();
-                var ttpb = $('#ttpb').val();
-                var url = '/hoso-thamdinhgia/nam='+namhs+'&pb='+ttpb;
-
-                window.location.href = url;
-            });
-        })
-        function confirmDelete(id) {
-            document.getElementById("iddelete").value=id;
-        }
     </script>
 
 
@@ -73,8 +54,8 @@
                             <th style="text-align: center" width="15%">Thông số kỹ thuật</th>
                             <th style="text-align: center" width="15%">Nguồn gốc</th>
                             <th style="text-align: center" width="10%">Đơn vị<br> tính</th>
-                            <th style="text-align: center">Đơn vị tính</th>
-                            <th style="text-align: center">Giá thẩm đinh</th>
+                            <th style="text-align: center">Số lượng</th>
+                            <th style="text-align: center">Giá thẩm định</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -105,30 +86,6 @@
     <!-- END DASHBOARD STATS -->
     <div class="clearfix">
     </div>
-    <!--Modal Delete-->
-    <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'hoso-thamdinhgia/delete','id' => 'frm_delete'])!!}
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header modal-header-primary">
-                        <button type="button" data-dismiss="modal" aria-hidden="true"
-                                class="close">&times;</button>
-                        <h4 id="modal-header-primary-label" class="modal-title">Đồng ý xoá?</h4>
-                        <input type="hidden" name="iddelete" id="iddelete">
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                        <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickdelete()">Đồng ý</button>
-                    </div>
-                </div>
-            </div>
-        {!! Form::close() !!}
-    </div>
-    <script>
-        function clickdelete(){
-            $('#frm_delete').submit();
-        }
-    </script>
 
 @stop

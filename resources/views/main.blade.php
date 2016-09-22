@@ -364,8 +364,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         </ul>
                     </li>
                 @endif
+                    <!--Thẩm định giá-->
                 @if(canGeneral('thamdinhgia','thamdinhgia'))
-                    @if(can('tdgia','index'))
                 <li>
                     <a href="">
                         <i class="fa fa-laptop"></i>
@@ -373,10 +373,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
-
+                        @if(can('tdgia','create'))
                         <li>
                             <a href="{{url('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ thẩm định</a>
                         </li>
+                        @endif
+                        @if(can('tdgia','index'))
                         <li>
                             <a href="{{url('thongtin-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin thẩm định</a>
                         </li>
@@ -384,13 +386,13 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="{{url('timkiem-thamdinhgia')}}">
                                 Tìm kiếm thông tin thẩm định giá</a>
                         </li>
+                        @endif
 
                     </ul>
                 </li>
-                    @endif
                 @endif
+                <!--Công bố giá-->
                 @if(canGeneral('congbogia','congbogia'))
-                    @if(can('congbogia','index'))
                         <li>
                             <a href="">
                                 <i class="fa fa-laptop"></i>
@@ -398,10 +400,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <span class="arrow "></span>
                             </a>
                             <ul class="sub-menu">
-
+                                @if(can('congbogia','create'))
                                 <li>
                                     <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ công bố</a>
                                 </li>
+                                @endif
+                                @if(can('congbogia','index'))
                                 <li>
                                     <a href="{{url('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin công bố</a>
                                 </li>
@@ -409,11 +413,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <a href="{{url('timkiem-congbogia')}}">
                                         Tìm kiếm thông tin công bố giá</a>
                                 </li>
-
+                                @endif
                             </ul>
                         </li>
-                    @endif
                 @endif
+
                 @if(canGeneral('ttqd','ttqd'))
                     @if(can('ttqd','index'))
                 <li>

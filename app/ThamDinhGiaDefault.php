@@ -18,6 +18,8 @@ class ThamDinhGiaDefault extends Model
         'nguyengiadenghi',
         'giadenghi',
         'nguyengiathamdinh',
+        'giaththamdinh',
+        'giakththamdinh',
         'giatritstd',
         'gc',
         'mahuyen'

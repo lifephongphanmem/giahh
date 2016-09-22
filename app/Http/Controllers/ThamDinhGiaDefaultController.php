@@ -52,6 +52,13 @@ class ThamDinhGiaDefaultController extends Controller
             $modelts->giadenghi = $inputs['giadenghi'];
             $modelts->nguyengiathamdinh = $inputs['nguyengiathamdinh'];
             $modelts->giatritstd = $inputs['giatritstd'];
+            if($inputs['giatritstd'] == 0) {
+                $modelts->giakththamdinh = $inputs['giadenghi'];
+                $modelts->giaththamdinh = 0;
+            }else {
+                $modelts->giakththamdinh = 0;
+                $modelts->giaththamdinh = $inputs['giadenghi'];
+            }
             $modelts->gc = $inputs['gc'];
             $modelts->mahuyen = session('admin')->mahuyen;
             $modelts->save();
@@ -234,6 +241,13 @@ class ThamDinhGiaDefaultController extends Controller
             $modelupdate->giadenghi = $inputs['giadenghi'];
             $modelupdate->nguyengiathamdinh = $inputs['nguyengiathamdinh'];
             $modelupdate->giatritstd = $inputs['giatritstd'];
+            if($inputs['giatritstd'] == 0) {
+                $modelupdate->giakththamdinh = $inputs['giadenghi'];
+                $modelupdate->giaththamdinh = 0;
+            }else {
+                $modelupdate->giakththamdinh = 0;
+                $modelupdate->giaththamdinh = $inputs['giadenghi'];
+            }
             $modelupdate->gc = $inputs['gc'];
             $modelupdate->save();
 

@@ -28,7 +28,12 @@
 <table cellspacing="0" cellpadding="0" border="0">
     <tr>
         <td style="text-align: center; text-transform: uppercase;" width="30%">
-            <b>SỞ TÀI CHÍNH TỈNH, THÀNH PHỐ</b><br>
+            <b>@if(session('admin')->level == 'T')
+                    {{getGeneralConfigs()['donvi']}}
+                @else
+                    {{session('admin')->name}}
+                @endif
+            </b><br>
             --------<br>
         </td>
         <td style="text-align: left;" width="70%">
@@ -39,7 +44,13 @@
         <td colspan="2" style="text-align: center; font-size: 16px;">
             <b>BÁO CÁO CHI TIẾT KẾT QUẢ THẨM ĐỊNH GIÁ</b><br>
             <br>
-            Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}
+            Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}<br>
+            Nguồn vốn: {{($dk['nguonvon']=='Cả hai') ? 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)' : $dk['nguonvon']}}
+            @if(session('admin')->level == 'T')
+                @if($donvi != 'all')
+                    <br>Đơn vị: {{$donvi->ten}}
+                @endif
+            @endif
         </td>
 
     </tr>
@@ -67,31 +78,38 @@
         <th>8</th>
 
     </tr>
+    @if(count($model))
         @foreach($arraynam as $key=>$nam)
+            @if($dk['dk']== 'Năm')
             <tr>
                 <td></td>
                 <td colspan="7" style="text-align: left"><b>Năm {{$nam}}</b></td>
             </tr>
+            @endif
             @foreach($arrayquy as $key=>$quy)
+                @if($dk['dk']=='Quý')
                 <tr>
                     <td></td>
                     <td colspan="7" style="text-align: left"><b>Quý {{$quy}}</b></td>
                 </tr>
+                @endif
                 @foreach($arraythang as $key=>$thang)
+                    @if($dk['dk']=='Tháng')
                     <tr>
                         <td></td>
                         <td colspan="7" style="text-align: left"><b> Tháng {{$thang}}</b></td>
                     </tr>
+                    @endif
                     @foreach($model as $key=>$ts)
                         @if($thang == $ts->thang && $nam == $ts->nam && $quy == $ts->quy)
                         <tr>
                             <th>{{$key+1}}</th>
                             <th style="text-align: left">{{$ts->hosotdgia}}</th>
                             <th style="text-align: right">{{number_format($ts->sumgiadenghi)}}</th>
+                            <th style="text-align: right">{{number_format($ts->sumththamdinh)}}</th>
+                            <th style="text-align: right">{{number_format($ts->sumkththamdinh)}}</th>
                             <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-                            <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
-                            <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-                            <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
+                            <th style="text-align: right">{{number_format($ts->sumchenhlech)}}</th>
                             <th>{{number_format($ts->phantram)}}</th>
                         </tr>
                         @endif
@@ -99,5 +117,10 @@
                 @endforeach
             @endforeach
         @endforeach
+    @else
+        <tr>
+            <th colspan="8">Không có hồ sơ thẩm định</th>
+        </tr>
+    @endif
 </body>
 </html>

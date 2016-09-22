@@ -57,20 +57,22 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Phương pháp thẩm định</label>
-                                        {!!Form::text('ppthamdinh', null, array('id' => 'ppthamdinh','class' => 'form-control'))!!}
+                                        <label class="control-label">Nguồn vốn</label>
+                                        {!! Form::select(
+                                        'nguonvon',
+                                        array(
+                                        'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                                        'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                                        'Đầu tư' => 'Nguồn vốn đầu tư',
+                                        ),null,
+                                        array('id' => 'nguonvon', 'class' => 'form-control'))
+                                        !!}
                                     </div>
                                 </div>
                                 <!--/span-->
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Địa điểm thẩm định</label>
-                                        {!!Form::text('diadiem', null, array('id' => 'diadiem','class' => 'form-control'))!!}
-                                    </div>
-                                </div>
-                                <!--/span-->
+                                                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Số thông báo kết luận<span class="require">*</span></label>
@@ -79,7 +81,7 @@
                                 </div>
                                 <!--/span-->
                             </div>
-                            <div class="row">
+                            <!--div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Giá trị từ<span class="require">*</span></label>
@@ -87,14 +89,14 @@
                                     </div>
                                 </div>
                                 <!--/span-->
-                                <div class="col-md-6">
+                                <!--div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Giá trị đến<span class="require">*</span></label>
                                         {!!Form::text('giatriden', null, array('id' => 'giatriden','class' => 'form-control','data-mask'=>'fdecimal'))!!}
                                     </div>
-                                </div>
+                                </div-->
                                 <!--/span-->
-                            </div>
+                            </div-->
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-search"></i> Tìm kiếm</button>

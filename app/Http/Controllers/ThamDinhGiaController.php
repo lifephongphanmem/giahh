@@ -55,6 +55,13 @@ class ThamDinhGiaController extends Controller
             $modelts->giadenghi = $inputs['giadenghi'];
             $modelts->nguyengiathamdinh = $inputs['nguyengiathamdinh'];
             $modelts->giatritstd = $inputs['giatritstd'];
+            if($inputs['giatritstd'] == 0) {
+                $modelts->giakththamdinh = $inputs['giadenghi'];
+                $modelts->giaththamdinh = 0;
+            }else {
+                $modelts->giakththamdinh = 0;
+                $modelts->giaththamdinh = $inputs['giadenghi'];
+            }
             $modelts->gc = $inputs['gc'];
             $modelts->mahs = $inputs['mahs'];
             $modelts->save();
@@ -238,6 +245,13 @@ class ThamDinhGiaController extends Controller
             $modelupdate->giadenghi = $inputs['giadenghi'];
             $modelupdate->nguyengiathamdinh = $inputs['nguyengiathamdinh'];
             $modelupdate->giatritstd = $inputs['giatritstd'];
+            if($inputs['giatritstd'] == 0) {
+                $modelupdate->giakththamdinh = $inputs['giadenghi'];
+                $modelupdate->giaththamdinh = 0;
+            }else {
+                $modelupdate->giakththamdinh = 0;
+                $modelupdate->giaththamdinh = $inputs['giadenghi'];
+            }
             $modelupdate->gc = $inputs['gc'];
             $modelupdate->save();
 
@@ -359,22 +373,25 @@ class ThamDinhGiaController extends Controller
             if($input['thoidiemden']!=null){
                 $_sql=$_sql." and hsthamdinhgia.thoidiem <='".date('Y-m-d',strtotime($input['thoidiemden']))."'";
             }
+            //Nguồn vốn
+            $_sql=$input['nguonvon']!=null? $_sql." and hsthamdinhgia.nguonvon = '".$input['nguonvon']."'":$_sql;
 
             //Tên tài sản
             $_sql=$input['tents']!=null? $_sql." and thamdinhgia.tents Like '".$input['tents']."%'":$_sql;
+
             //Phương pháp thẩm định
-            $_sql=$input['ppthamdinh']!=null? $_sql." and hsthamdinhgia.ppthamdinh Like '".$input['ppthamdinh']."%'":$_sql;
+            //$_sql=$input['ppthamdinh']!=null? $_sql." and hsthamdinhgia.ppthamdinh Like '".$input['ppthamdinh']."%'":$_sql;
             //Địa điểm thẩm định
-            $_sql=$input['diadiem']!=null? $_sql." and hsthamdinhgia.diadiem Like '".$input['diadiem']."%'":$_sql;
+            //$_sql=$input['diadiem']!=null? $_sql." and hsthamdinhgia.diadiem Like '".$input['diadiem']."%'":$_sql;
             //Số thông báo
             $_sql=$input['sotbkl']!=null? $_sql." and hsthamdinhgia.sotbkl Like '".$input['sotbkl']."%'":$_sql;
             //Giá trị tài sản
             //Từ
-            if(getDouble($input['giatritu'])>0)
-                $_sql=$_sql." and thamdinhgia.giatritstd >= ".getDouble($input['giatritu']);
+            //if(getDouble($input['giatritu'])>0)
+                //$_sql=$_sql." and thamdinhgia.giatritstd >= ".getDouble($input['giatritu']);
             //Đến
-            if(getDouble($input['giatriden'])>0)
-                $_sql=$_sql." and thamdinhgia.giatritstd <= ".getDouble($input['giatriden']);
+            //if(getDouble($input['giatriden'])>0)
+                //$_sql=$_sql." and thamdinhgia.giatritstd <= ".getDouble($input['giatriden']);
 
             $model =  DB::select(DB::raw($_sql));
             //dd($model);
