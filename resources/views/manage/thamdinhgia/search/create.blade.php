@@ -72,14 +72,23 @@
                                 <!--/span-->
                             </div>
                             <div class="row">
-                                                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Số thông báo kết luận<span class="require">*</span></label>
                                         {!!Form::text('sotbkl',null,array('id'=>'sotbkl','class'=>'form-control'))!!}
                                     </div>
                                 </div>
-                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Đơn vị<span class="require">*</span></label>
+                                        <select class="form-control" name="donvi" id="donvi">
+                                            <option value="all">--Tất cả các đơn vị</option>
+                                            @foreach($modeldv as $dv)
+                                                <option value="{{$dv->ma}}">{{$dv->ten}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <!--div class="row">
                                 <div class="col-md-6">
@@ -99,7 +108,7 @@
                             </div-->
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-search"></i> Tìm kiếm</button>
+                            <button type="submit" class="btn green"><i class="fa fa-search"></i> Tìm kiếm</button>
                             <button type="reset" class="btn default">Hủy</button>
                         </div>
                     {!! Form::close() !!}

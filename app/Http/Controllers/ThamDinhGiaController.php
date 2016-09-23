@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ThamDinhGia;
 use App\ThamDinhGiaDefault;
+use App\TtPhongBan;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 
@@ -348,7 +349,9 @@ class ThamDinhGiaController extends Controller
 
     public function search(){
         if(Session::has('admin')){
+            $modeldv = TtPhongBan::all();
             return view('manage.thamdinhgia.search.create')
+                ->with('modeldv',$modeldv)
                 ->with('pageTitle','Tìm kiếm thông tin thẩm định giá');
 
         }else
@@ -358,7 +361,7 @@ class ThamDinhGiaController extends Controller
     public function viewsearch(Request $request){
         if (Session::has('admin')) {
 
-            $_sql="select hsthamdinhgia.thoidiem, hsthamdinhgia.diadiem,hsthamdinhgia.sotbkl,thamdinhgia.tents,
+            $_sql="select hsthamdinhgia.thoidiem, hsthamdinhgia.diadiem,hsthamdinhgia.sotbkl,hsthamdinhgia.dvyeucau,thamdinhgia.tents,
                           thamdinhgia.dvt,thamdinhgia.sl,thamdinhgia.giatritstd,thamdinhgia.thongsokt,thamdinhgia.nguongoc
                                         from hsthamdinhgia, thamdinhgia
                                         Where hsthamdinhgia.mahs=thamdinhgia.mahs";
@@ -373,6 +376,8 @@ class ThamDinhGiaController extends Controller
             if($input['thoidiemden']!=null){
                 $_sql=$_sql." and hsthamdinhgia.thoidiem <='".date('Y-m-d',strtotime($input['thoidiemden']))."'";
             }
+
+            $_sql = $input['donvi']!= 'all' ? $_sql. "and hsthamdinhgia.mahuyen = '".$input['donvi']."'":$_sql;
             //Nguồn vốn
             $_sql=$input['nguonvon']!=null? $_sql." and hsthamdinhgia.nguonvon = '".$input['nguonvon']."'":$_sql;
 

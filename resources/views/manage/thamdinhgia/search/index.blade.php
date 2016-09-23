@@ -49,11 +49,12 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Thời điểm <br>thẩm định</th>
                             <th style="text-align: center">Số thông báo <br>kết luận</th>
-                            <th style="text-align: center" width="10%">Địa điểm thẩm định</th>
-                            <th style="text-align: center" width="15%">Tên tài sản</th>
-                            <th style="text-align: center" width="15%">Thông số kỹ thuật</th>
-                            <th style="text-align: center" width="15%">Nguồn gốc</th>
-                            <th style="text-align: center" width="10%">Đơn vị<br> tính</th>
+                            <th style="text-align: center">Địa điểm thẩm định</th>
+                            <th style="text-align: center">Đơn vị đề nghị<br>thẩm định giá</th>
+                            <th style="text-align: center" width="20%">Tên tài sản</th>
+                            <th style="text-align: center">Thông số <br>kỹ thuật</th>
+                            <th style="text-align: center">Nguồn gốc</th>
+                            <th style="text-align: center">Đơn vị<br> tính</th>
                             <th style="text-align: center">Số lượng</th>
                             <th style="text-align: center">Giá thẩm định</th>
                         </tr>
@@ -65,6 +66,7 @@
                                 <td>{{getDayVn($tt->thoidiem)}}</td>
                                 <td>{{$tt->sotbkl}}</td>
                                 <td>{{$tt->diadiem}}</td>
+                                <td>{{$tt->dvyeucau}}</td>
                                 <td class="active">{{$tt->tents}}</td>
                                 <td>{{$tt->thongsokt}}</td>
                                 <td>{{$tt->nguongoc}}</td>
