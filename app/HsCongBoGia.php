@@ -18,10 +18,12 @@ class HsCongBoGia extends Model
         'nguonvon',
         'ngaynhap',
         'donvidn',
+        'diadiemcongbo',
         'thang',
         'quy',
         'nam',
         'mahuyen',
-        'mahs'
+        'mahs',
+        'trangthai'
     ];
 }

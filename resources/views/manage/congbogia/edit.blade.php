@@ -25,6 +25,7 @@
                     $('#tttsedit').replaceWith(data.message);
                     $('#tentsedit').focus();
                     InputMask();
+                    tinhtoan();
                 }
                 else
                     toastr.error("Không thể chỉnh sửa thông tin tài sản!", "Lỗi!");
@@ -47,7 +48,9 @@
                 nguongoc: $('input[name ="nguongocedit"]').val(),
                 dvt: $('input[name="dvtedit"]').val(),
                 sl: $('input[name="sledit"]').val(),
-                giadenghi: $('input[name="giadenghiedit"]').val(),
+                nguyengiadenghi: $('input[name="nguyengiadenghiedit"]').val(),
+                giadenghi: $('input[name = "giadenghiedit"]').val(),
+                nguyengiathamdinh: $('input[name="nguyengiathamdinhedit"]').val(),
                 giatritstd: $('input[name="giatritstdedit"]').val(),
                 gc: $('textarea[name="gcedit"]').val(),
                 mahs:$('input[name="mahsedit"]').val()
@@ -188,7 +191,7 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Số hồ sơ<span class="require">*</span></label>
+                                        <label class="control-label">Số hồ sơ công bố giá VLXD<span class="require">*</span></label>
                                         {!!Form::text('sohs', null, array('id' => 'sohs','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
@@ -199,7 +202,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Ngày nhập<span class="require">*</span></label>
+                                        <label class="control-label">Thời điểm công bố<span class="require">*</span></label>
                                         <input type="date" id="ngaynhap" name="ngaynhap" class="form-control required" value="{{$model->ngaynhap}}">
                                     </div>
                                 </div>
@@ -223,6 +226,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="control-label">Địa điểm công bố giá<span class="require">*</span></label>
+                                        {!!Form::text('diadiemcongbo', null, array('id' => 'diadiemcongbo','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-error">
+                                        <label class="control-label">Đơn vị đề nghị công bố giá<span class="require">*</span></label>
+                                        {!!Form::text('donvidn', null, array('id' => 'donvidn','class' => 'form-control required'))!!}
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label class="control-label">Số văn bản đề nghị<span class="require">*</span></label>
                                         {!!Form::text('sovbdn', null, array('id' => 'sovbdn','class' => 'form-control required'))!!}
                                     </div>
@@ -230,7 +248,7 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
-                                        <label class="control-label">Số công bố giá<span class="require">*</span></label>
+                                        <label class="control-label">Số thông báo kết luận công bố giá<span class="require">*</span></label>
                                         {!!Form::text('sotbkl', null, array('id' => 'sotbkl','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
@@ -242,7 +260,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Tên tài sản<span class="require">*</span></label>
+                                        <label class="control-label">Tên vật tư VLXD<span class="require">*</span></label>
                                         <input type="text" id="tents" name="tents" class="form-control">
                                     </div>
                                 </div>
@@ -288,15 +306,32 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
+                                    <div class="form-group has-error">
+                                        <label class="control-label">Nguyên giá đề nghị<span class="require">*</span></label>
+                                        <input type="text" name="nguyengiadenghi" id="nguyengiadenghi" class="form-control" data-mask="fdecimal" value="0">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Giá đề nghị<span class="require">*</span></label>
                                         <input type="text" name="giadenghi" id="giadenghi" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
                                 </div>
                                 <!--/span-->
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Nguyên giá công bố<span class="require">*</span></label>
+                                        <input type="text" name="nguyengiathamdinh" id="nguyengiathamdinh" class="form-control" data-mask="fdecimal" value="0">
+                                    </div>
+                                </div>
+                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
-                                        <label class="control-label">Giá trị tài sản thẩm định<span class="require">*</span></label>
+                                        <label class="control-label">Giá trị công bố<span class="require">*</span></label>
                                         <input type="text" name="giatritstd" id="giatritstd" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
                                 </div>
@@ -325,26 +360,31 @@
                                         <thead>
                                             <tr style="background: #F5F5F5">
                                                 <th width="2%" style="text-align: center">STT</th>
-                                                <th style="text-align: center">Tên tài sản</th>
-                                                <th style="text-align: center">Đặc điểm kinh tế- kỹ thuật</th>
+                                                <th style="text-align: center">Tên vật tư VLXD</th>
+                                                <th style="text-align: center">Thông số kỹ thuật</th>
                                                 <th style="text-align: center">Nguồn gốc</th>
                                                 <th style="text-align: center">Đơn vị tính</th>
                                                 <th style="text-align: center">Số lượng</th>
+                                                <th style="text-align: center">Nguyên giá đề nghị</th>
                                                 <th style="text-align: center">Giá trị đề nghị</th>
-                                                <th style="text-align: center">Giá trị thẩm định</th>
+                                                <th style="text-align: center">Nguyên giá công bố</th>
+                                                <th style="text-align: center">Giá trị công bố</th>
                                                 <th style="text-align: center" width="20%">Thao tác</th>
                                             </tr>
                                         </thead>
                                         <tbody id="ttts">
+                                        @if(count($modelts)>0)
                                         @foreach($modelts as $key=>$tt)
                                             <tr>
                                                 <td style="text-align: center">{{$key +1}}</td>
-                                                <td class="active">{{$tt->tents}}</td>
-                                                <td>{{$tt->dacdiempl}}</td>
+                                                <td class="active" width="15%">{{$tt->tents}}</td>
+                                                <td>{{$tt->thongsokt}}</td>
                                                 <td>{{$tt->nguongoc}}</td>
                                                 <td style="text-align: center">{{$tt->dvt}}</td>
                                                 <td style="text-align: center">{{number_format($tt->sl)}}</td>
+                                                <td style="text-align: right">{{number_format($tt->nguyengiadenghi)}}</td>
                                                 <td style="text-align: right">{{number_format($tt->giadenghi)}}</td>
+                                                <td style="text-align: right">{{number_format($tt->nguyengiathamdinh)}}</td>
                                                 <td style="text-align: right">{{number_format($tt->giatritstd)}}</td>
                                                 <td>
                                                     <button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('{{$tt->id}}');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
@@ -352,6 +392,11 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="11">Chưa có thông tin về vật tư VLXD</td>
+                                            </tr>
+                                        @endif
                                         </tbody>
                                         </table>
                                     </div>
@@ -359,7 +404,9 @@
                             </div>
                         </div>
                         <div class="form-actions right">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
+                            <div class="col-md-12" style="text-align: center">
+                                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
+                            </div>
                         </div>
                     </form>
                     <!-- END FORM-->
@@ -381,6 +428,59 @@
             });
         }
     </script>
+    <!--Tính giá trị đề nghị và giá thẩm định-->
+    <script>
+        $(document).ready(function() {
+            $('#nguyengiadenghi').change(function () {
+                var sl = $('#sl').val();
+                sl = sl.replace(/,/g, "");
+                //sl = sl.replace(/./g, "");
+                var nguyengiadn = $('#nguyengiadenghi').val();
+                nguyengiadn = nguyengiadn.replace(/,/g, "");
+                //nguyengiadn = nguyengiadn.replace(/./g, "");
+                var tt = sl * nguyengiadn;
+                //alert(nguyengiadn);
+                $('#giadenghi').val(tt);
+            });
+            $('#nguyengiathamdinh').change(function () {
+                var sl = $('#sl').val();
+                sl = sl.replace(/,/g, "");
+                //sl = sl.replace(/./g, "");
+                var nguyengiatd = $('#nguyengiathamdinh').val();
+                nguyengiatd = nguyengiatd.replace(/,/g, "");
+                //nguyengiatd = nguyengiatd.replace(/./g, "");
+                var tt = sl * nguyengiatd;
+                //alert(nguyengiatd);
+                $('#giatritstd').val(tt);
+            });
+        });
+    </script>
+    <script>
+        function tinhtoan(){
+            $('#nguyengiadenghiedit').change(function () {
+                var sl = $('#sledit').val();
+                sl = sl.replace(/,/g, "");
+                //sl = sl.replace(/./g, "");
+                var nguyengiadn = $('#nguyengiadenghiedit').val();
+                nguyengiadn = nguyengiadn.replace(/,/g, "");
+                //nguyengiadn = nguyengiadn.replace(/./g, "");
+                var tt = sl * nguyengiadn;
+                //alert(nguyengiadn);
+                $('#giadenghiedit').val(tt);
+            });
+            $('#nguyengiathamdinhedit').change(function () {
+                var sl = $('#sledit').val();
+                sl = sl.replace(/,/g, "");
+                //sl = sl.replace(/./g, "");
+                var nguyengiatd = $('#nguyengiathamdinhedit').val();
+                nguyengiatd = nguyengiatd.replace(/,/g, "");
+                //nguyengiatd = nguyengiatd.replace(/./g, "");
+                var tt = sl * nguyengiatd;
+                //alert(nguyengiatd);
+                $('#giatritstdedit').val(tt);
+            });
+        }
+    </script>
     <script>
         jQuery(document).ready(function($) {
             $('button[name="capnhatts"]').click(function(){
@@ -397,7 +497,9 @@
                         nguongoc: $('input[name="nguongoc"]').val(),
                         dvt: $('input[name="dvt"]').val(),
                         sl: $('input[name="sl"]').val(),
+                        nguyengiadenghi: $('input[name="nguyengiadenghi"]').val(),
                         giadenghi: $('input[name = "giadenghi"]').val(),
+                        nguyengiathamdinh: $('input[name="nguyengiathamdinh"]').val(),
                         giatritstd:$('input[name="giatritstd"]').val(),
                         gc: $('textarea[name="gc"]').val(),
                         mahs: $('input[name="mahs"]').val()
@@ -414,7 +516,9 @@
                             $('#nguongoc').val('');
                             $('#dvt').val('');
                             $('#sl').val('1');
+                            $('#nguyengiadenghi').val('0');
                             $('#giadenghi').val('0');
+                            $('#nguyengiathamdinh').val('0');
                             $('#giatritstd').val('0');
                             $('#gc').val('');
 

@@ -30,8 +30,12 @@ class CongBoGiaDefaultController extends Controller
 
         $inputs['sl'] = str_replace(',','',$inputs['sl']);
         $inputs['sl'] = str_replace('.','',$inputs['sl']);
+        $inputs['nguyengiadenghi'] = str_replace(',','',$inputs['nguyengiadenghi']);
+        $inputs['nguyengiadenghi'] = str_replace('.','',$inputs['nguyengiadenghi']);
         $inputs['giadenghi'] = str_replace(',','',$inputs['giadenghi']);
         $inputs['giadenghi'] = str_replace('.','',$inputs['giadenghi']);
+        $inputs['nguyengiathamdinh'] = str_replace(',','',$inputs['nguyengiathamdinh']);
+        $inputs['nguyengiathamdinh'] = str_replace('.','',$inputs['nguyengiathamdinh']);
         $inputs['giatritstd'] = str_replace(',','',$inputs['giatritstd']);
         $inputs['giatritstd'] = str_replace('.','',$inputs['giatritstd']);
 
@@ -43,8 +47,17 @@ class CongBoGiaDefaultController extends Controller
             $modelts->nguongoc = $inputs['nguongoc'];
             $modelts->dvt = $inputs['dvt'];
             $modelts->sl = $inputs['sl'];
+            $modelts->nguyengiadenghi = $inputs['nguyengiadenghi'];
             $modelts->giadenghi = $inputs['giadenghi'];
+            $modelts->nguyengiathamdinh = $inputs['nguyengiathamdinh'];
             $modelts->giatritstd = $inputs['giatritstd'];
+            if($inputs['giatritstd'] == 0) {
+                $modelts->giakththamdinh = $inputs['giadenghi'];
+                $modelts->giaththamdinh = 0;
+            }else {
+                $modelts->giakththamdinh = 0;
+                $modelts->giaththamdinh = $inputs['giadenghi'];
+            }
             $modelts->gc = $inputs['gc'];
             $modelts->mahuyen = session('admin')->mahuyen;
             $modelts->save();
@@ -55,18 +68,19 @@ class CongBoGiaDefaultController extends Controller
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
-                    $result['message'] .= '<td>'.($key +1).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
                     $result['message'] .= '<td>'.$tents->thongsokt.'</td>';
                     $result['message'] .= '<td>'.$tents->nguongoc.'</td>';
                     $result['message'] .= '<td>'.$tents->dvt.'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->sl).'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->giadenghi).'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->giatritstd).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
                         '<button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('.$tents->id.')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
-
                         .'</td>';
                     $result['message'] .= '</tr>';
                 }
@@ -142,8 +156,21 @@ class CongBoGiaDefaultController extends Controller
 
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Nguyên giá đề nghị<span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" name="nguyengiadenghiedit" id="nguyengiadenghiedit" class="form-control"  data-mask="fdecimal" value="'.$model->nguyengiadenghi.'"></div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá trị đề nghị<span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" name="giadenghiedit" id="giadenghiedit" class="form-control"  data-mask="fdecimal" value="'.$model->giadenghi.'"></div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+
+            $result['message'] .= '<div class="row">';
+            $result['message'] .= '<div class="col-md-6">';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Nguyên giá thẩm định<span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" name="nguyengiathamdinhedit" id="nguyengiathamdinhedit" class="form-control"  data-mask="fdecimal" value="'.$model->nguyengiathamdinh.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '<div class="col-md-6">';
@@ -191,8 +218,12 @@ class CongBoGiaDefaultController extends Controller
 
             $inputs['sl'] = str_replace(',','',$inputs['sl']);
             $inputs['sl'] = str_replace('.','',$inputs['sl']);
+            $inputs['nguyengiadenghi'] = str_replace(',','',$inputs['nguyengiadenghi']);
+            $inputs['nguyengiadenghi'] = str_replace('.','',$inputs['nguyengiadenghi']);
             $inputs['giadenghi'] = str_replace(',','',$inputs['giadenghi']);
             $inputs['giadenghi'] = str_replace('.','',$inputs['giadenghi']);
+            $inputs['nguyengiathamdinh'] = str_replace(',','',$inputs['nguyengiathamdinh']);
+            $inputs['nguyengiathamdinh'] = str_replace('.','',$inputs['nguyengiathamdinh']);
             $inputs['giatritstd'] = str_replace(',','',$inputs['giatritstd']);
             $inputs['giatritstd'] = str_replace('.','',$inputs['giatritstd']);
 
@@ -204,8 +235,17 @@ class CongBoGiaDefaultController extends Controller
             $modelupdate->nguongoc = $inputs['nguongoc'];
             $modelupdate->dvt = $inputs['dvt'];
             $modelupdate->sl = $inputs['sl'];
+            $modelupdate->nguyengiadenghi = $inputs['nguyengiadenghi'];
             $modelupdate->giadenghi = $inputs['giadenghi'];
+            $modelupdate->nguyengiathamdinh = $inputs['nguyengiathamdinh'];
             $modelupdate->giatritstd = $inputs['giatritstd'];
+            if($inputs['giatritstd'] == 0) {
+                $modelupdate->giakththamdinh = $inputs['giadenghi'];
+                $modelupdate->giaththamdinh = 0;
+            }else {
+                $modelupdate->giakththamdinh = 0;
+                $modelupdate->giaththamdinh = $inputs['giadenghi'];
+            }
             $modelupdate->gc = $inputs['gc'];
             $modelupdate->save();
 
@@ -215,14 +255,16 @@ class CongBoGiaDefaultController extends Controller
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
-                    $result['message'] .= '<td>'.($key+1).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
                     $result['message'] .= '<td>'.$tents->thongsokt.'</td>';
                     $result['message'] .= '<td>'.$tents->nguongoc.'</td>';
                     $result['message'] .= '<td>'.$tents->dvt.'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->sl).'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->giadenghi).'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->giatritstd).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
                         '<button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('.$tents->id.')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
@@ -265,14 +307,16 @@ class CongBoGiaDefaultController extends Controller
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
-                    $result['message'] .= '<td>'.($key +1).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
                     $result['message'] .= '<td>'.$tents->thongsokt.'</td>';
                     $result['message'] .= '<td>'.$tents->nguongoc.'</td>';
                     $result['message'] .= '<td>'.$tents->dvt.'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->sl).'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->giadenghi).'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->giatritstd).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
                         '<button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('.$tents->id.')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
@@ -285,7 +329,7 @@ class CongBoGiaDefaultController extends Controller
             }
             else{
                 $result['message'] .= '<tr>';
-                $result['message'] .= '<td colspan="9" style="text-align: center">Chưa có thông tin</td>';
+                $result['message'] .= '<td colspan="11" style="text-align: center">Chưa có thông tin</td>';
                 $result['message'] .= '</tr>';
                 $result['message'] .= '</tbody>';
                 $result['status'] = 'success';

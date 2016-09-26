@@ -42,11 +42,13 @@ class HsCongBoGiaController extends Controller
 
             if($pb == 'all')
                 $model = HsCongBoGia::where('nam',$nam)
+                    ->where('trangthai','Hoàn tất')
                     ->get();
 
             else
                 $model = HsCongBoGia::where('nam',$nam)
                     ->where('mahuyen',$pb)
+                    ->where('trangthai','Hoàn tất')
                     ->get();
             $modelpb = TtPhongBan::all();
 
@@ -98,6 +100,8 @@ class HsCongBoGiaController extends Controller
             $model->ngaynhap = $insert['ngaynhap'];
             $model->sovbdn = $insert['sovbdn'];
             $model->nguonvon = $insert['nguonvon'];
+            $model->diadiemcongbo = $insert['diadiemcongbo'];
+            $model->donvidn = $insert['donvidn'];
 
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
@@ -107,15 +111,18 @@ class HsCongBoGiaController extends Controller
                 $model->quy = 3;
             else
                 $model->quy = 4;
+
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
             $model->mahuyen = session('admin')->mahuyen;
             $model->mahs = $mahs;
+            $model->trangthai = 'Đang làm';
+
             if($model->save()){
                 $this->createts($mahs);
             }
 
-            return redirect('hoso-congbogia/nam='.date_format($date,'Y').'&pb='.session('admin')->mahuyen);
+            return redirect('hoso-congbogia/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -133,8 +140,12 @@ class HsCongBoGiaController extends Controller
                 $model->nguongoc = $ts->nguongoc;
                 $model->dvt = $ts->dvt;
                 $model->sl = $ts->sl;
+                $model->nguyengiadenghi = $ts->nguyengiadenghi;
                 $model->giadenghi = $ts->giadenghi;
+                $model->nguyengiathamdinh = $ts->nguyengiathamdinh;
                 $model->giatritstd = $ts->giatritstd;
+                $model->giakththamdinh = $ts->giakththamdinh;
+                $model->giaththamdinh = $ts->giaththamdinh;
                 $model->gc = $ts->gc;
                 $model->mahs = $mahs;
                 $model->save();
@@ -188,6 +199,8 @@ class HsCongBoGiaController extends Controller
             $model->ngaynhap = $update['ngaynhap'];
             $model->sovbdn = $update['sovbdn'];
             $model->nguonvon = $update['nguonvon'];
+            $model->diadiemcongbo = $update['diadiemcongbo'];
+            $model->donvidn = $update['donvidn'];
 
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
@@ -197,11 +210,12 @@ class HsCongBoGiaController extends Controller
                 $model->quy = 3;
             else
                 $model->quy = 4;
+
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
             $model->save();
 
-            return redirect('hoso-congbogia/nam='.date_format($date,'Y').'&pb='.$model->mahuyen);
+            return redirect('hoso-congbogia/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -222,4 +236,46 @@ class HsCongBoGiaController extends Controller
         }else
             return view('errors.notlogin');
     }
+
+    public function hoantat(Request $request){
+        if(Session::has('admin')){
+            $model = HsCongBoGia::where('id',$request['idhoantat'])
+                ->first();
+            //dd($model);
+            $nam =$model->nam;
+            $model->trangthai = 'Hoàn tất';
+            $model->save();
+            return redirect('hoso-congbogia/nam='.$nam);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function huy(Request $request){
+        if(Session::has('admin')){
+            $model = HsCongBoGia::where('id',$request['idhuy'])
+                ->first();
+            //dd($model);
+            $nam =$model->nam;
+            $model->trangthai = 'Đang làm';
+            $model->save();
+            return redirect('thongtin-congbogia/nam='.$nam.'&pb=all');
+        }else
+            return view('errors.notlogin');
+    }
+    public function view($id)
+    {
+        if(Session::has('admin')){
+            $model = HsCongBoGia::findOrFail($id);
+
+            $modelts = CongBoGia::where('mahs',$model->mahs)
+                ->get();
+
+            return view('manage.congbogia.view')
+                ->with('model',$model)
+                ->with('modelts',$modelts)
+                ->with('pageTitle','Thông tin hồ sơ công bố giá');
+        }else
+            return view('errors.notlogin');
+    }
+
 }

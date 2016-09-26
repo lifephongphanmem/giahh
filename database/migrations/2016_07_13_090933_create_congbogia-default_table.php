@@ -20,8 +20,12 @@ class CreateCongbogiaDefaultTable extends Migration
             $table->string('nguongoc');
             $table->string('dvt');
             $table->string('sl');
+            $table->string('nguyengiadenghi');
             $table->string('giadenghi');
+            $table->string('nguyengiathamdinh');
             $table->string('giatritstd');
+            $table->string('giaththamdinh');
+            $table->string('giakththamdinh');
             $table->string('gc');
             $table->string('mahuyen');
             $table->timestamps();

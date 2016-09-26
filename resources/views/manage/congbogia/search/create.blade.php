@@ -15,7 +15,7 @@
 
 
     <h3 class="page-title">
-        Tìm kiếm thông tin <small> công bố giá</small>
+        Tìm kiếm thông tin <small> công bố giá VLXD</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -110,6 +110,19 @@
                                     </div>
                                 </div>
                                 <!--/span-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Đơn vị<span class="require">*</span></label>
+                                        <select class="form-control" name="donvi" id="donvi">
+                                            <option value="all">--Tất cả các đơn vị</option>
+                                            @foreach($modeldv as $dv)
+                                                <option value="{{$dv->ma}}" {{($dv->ma == session('admin')->mahuyen)? "selected" : ""}}>{{$dv->ten}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-actions">

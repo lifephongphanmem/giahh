@@ -121,7 +121,7 @@
     <!-- END DASHBOARD STATS -->
     <div class="clearfix">
     </div>
-    <!--Modal Delete-->
+    <!--Modal Hủy-->
     <div id="huy-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
         {!! Form::open(['url'=>'thongtin-thamdinhgia/huy','id' => 'frm_huy'])!!}
             <div class="modal-dialog">

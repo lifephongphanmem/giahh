@@ -84,7 +84,7 @@
                                         <select class="form-control" name="donvi" id="donvi">
                                             <option value="all">--Tất cả các đơn vị</option>
                                             @foreach($modeldv as $dv)
-                                                <option value="{{$dv->ma}}">{{$dv->ten}}</option>
+                                                <option value="{{$dv->ma}}" {{($dv->ma == session('admin')->mahuyen)? "selected" : ""}}>{{$dv->ten}}</option>
                                             @endforeach
                                         </select>
                                     </div>

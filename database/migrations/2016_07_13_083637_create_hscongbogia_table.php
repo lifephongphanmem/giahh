@@ -23,11 +23,13 @@ class CreateHscongbogiaTable extends Migration
             $table->string('nguonvon');
             $table->date('ngaynhap');
             $table->string('donvidn');
+            $table->string('diadiemcongbo');
             $table->string('thang');
             $table->string('quy');
             $table->string('nam');
             $table->string('mahuyen');
             $table->string('mahs');
+            $table->string('trangthai');
             $table->timestamps();
         });
     }

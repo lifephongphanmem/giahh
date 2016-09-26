@@ -1,15 +1,26 @@
 -20/09/2016 : 
 	+ Add nguonvon,trangthai in HsThamDinhGia
 	+ Add nguyengiadenghi, nguyengiathamdinh in ThamDinhGiaDefault and ThamDinhGia
-	+ Update tr?ng th·i Form Th?m d?nh gi·
-	+ Update tÌnh to·n trÍn form create v‡ edit ThamDinhGia
+	+ Update tr?ng thÔøΩi Form Th?m d?nh giÔøΩ
+	+ Update tÔøΩnh toÔøΩn trÔøΩn form create vÔøΩ edit ThamDinhGia
 	+ Update Controller HsThamDinhGia index, showindex, store,createts
 	+ Update view index,create,edit ThamDinhGia add scrip tinhtoan
-	+ Update ch?c nang ho‡n th‡nh v‡ h?y ho‡n th‡nh 
-	+ Update v?ew Form showindex with trangthai = 'Ho‡n t?t'
+	+ Update ch?c nang hoÔøΩn thÔøΩnh vÔøΩ h?y hoÔøΩn thÔøΩnh 
+	+ Update v?ew Form showindex with trangthai = 'HoÔøΩn t?t'
 
 -22/09/2016
 	+ Fix default level = T permission 
-	+ Ph·t sinh trong b·o c·o c?n ph?i cho thÍm tru?ng giakththamdinh, giaththamdinh trong Table ThamDinhGia, ThamDinhGiaDefault
+	+ PhÔøΩt sinh trong bÔøΩo cÔøΩo c?n ph?i cho thÔøΩm tru?ng giakththamdinh, giaththamdinh trong Table ThamDinhGia, ThamDinhGiaDefault
 		- giakththamdinh = if(giathamdinh == 0) => 
 		-giaththamdinh = if(giathamdinh>0)
+	+ Fix b√°o c√°o Th·∫©m ƒê·ªãnh gi√°
+
+-23/09/2016
+	+ Add diadiemcongbo in HsCongBoGia
+	+ Update Form create,edit HsCongBoGia ph·∫ßn TT h·ªì s∆°
+	+ Add nguyengiadenghi, nguyengiathamdinh, giakththamdinh, giaththamdinh trong Table CongBoGia, CongBoGiaDefault
+	+ Add trangthai in HsCongBoGia
+	+ Update Form index, showindex, show, view of CongBoGia
+
+-24/09/2016
+	+ Fix b√°o c√°o C√¥ng b·ªë gi√°

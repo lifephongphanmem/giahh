@@ -47,6 +47,11 @@
             Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}
             <br>
             Nguồn vốn: {{($dk['nguonvon']=='Cả hai') ? 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)' : $dk['nguonvon']}}
+            @if(session('admin')->level == 'T')
+                @if($donvi != 'all')
+                    <br>Đơn vị: {{$donvi->ten}}
+                @endif
+            @endif
 
         </td>
     </tr>

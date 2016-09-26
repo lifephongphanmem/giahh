@@ -104,10 +104,32 @@ class BcTkKhacController extends Controller
         if (Session::has('admin')) {
             $input = $request->all();
 
-            $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
-                ->where('nguonvon',$input['nguonvon'])
-                ->groupBy('thang')
-                ->get();
+            if(isset($input['donvi'])){
+                if($input['donvi'] == 'all'){
+                    $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
+                        ->where('nguonvon',$input['nguonvon'])
+                        ->groupBy('thang')
+                        ->get();
+                    $donvi = 'all';
+                }else{
+                    $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
+                        ->where('mahuyen',$input['donvi'])
+                        ->where('nguonvon',$input['nguonvon'])
+                        ->groupBy('thang')
+                        ->get();
+                    $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
+                }
+
+            }else{
+                $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
+                    ->where('mahuyen',session('admin')->mahuyen)
+                    ->where('nguonvon',$input['nguonvon'])
+                    ->groupBy('thang')
+                    ->get();
+                $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
+            }
+
+
             foreach($model as $thangs){
                 $idhss = HsThamDinhGia::where('thang',$thangs->thang)
                     ->get();
@@ -135,6 +157,7 @@ class BcTkKhacController extends Controller
                 ->with('model',$model)
                 ->with('arrayquy',$arrayquy)
                 ->with('arraynam',$arraynam)
+                ->with('donvi',$donvi)
                 ->with('dk',$input)
                 ->with('pageTitle','Kết quả thẩm đinh giá');
 

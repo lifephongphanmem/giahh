@@ -130,6 +130,19 @@
                             !!}
                         </div>
                     </div>
+                    @if(session('admin')->level == 'T')
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><b>Đơn vị</b></label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="donvi" id="donvi">
+                                    <option value="all">--Tất cả các đơn vị--</option>
+                                    @foreach($modeldv as $dv)
+                                        <option value="{{$dv->ma}}">{{$dv->ten}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    @endif
 
                 </div>
             </div>

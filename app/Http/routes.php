@@ -253,8 +253,11 @@ Route::post('hoso-congbogia/delete','HsCongBoGiaController@destroy');
 Route::get('hoso-congbogia/{id}/show','HsCongBoGiaController@show');
 Route::get('hoso-congbogia/{id}/edit','HsCongBoGiaController@edit');
 Route::patch('hoso-congbogia/{id}','HsCongBoGiaController@update');
+Route::post('hoso-congbogia/hoantat','HsCongBoGiaController@hoantat');
 
 Route::get('thongtin-congbogia/nam={nam}&pb={pb}','HsCongBoGiaController@showindex');
+Route::get('thongtin-congbogia/{id}/show','HsCongBoGiaController@view');
+Route::post('thongtin-congbogia/huy','HsCongBoGiaController@huy');
 
 Route::get('congbogiadefault/store','CongBoGiaDefaultController@store');
 Route::get('congbogiadefault/edit','CongBoGiaDefaultController@edit');

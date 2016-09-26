@@ -396,22 +396,22 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li>
                             <a href="">
                                 <i class="fa fa-laptop"></i>
-                                <span class="title">Công bố giá</span>
+                                <span class="title">Công bố giá VLXD</span>
                                 <span class="arrow "></span>
                             </a>
                             <ul class="sub-menu">
                                 @if(can('congbogia','create'))
                                 <li>
-                                    <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ công bố</a>
+                                    <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ công bố VLXD</a>
                                 </li>
                                 @endif
                                 @if(can('congbogia','index'))
                                 <li>
-                                    <a href="{{url('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin công bố</a>
+                                    <a href="{{url('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin công bố VLXD</a>
                                 </li>
                                 <li>
                                     <a href="{{url('timkiem-congbogia')}}">
-                                        Tìm kiếm thông tin công bố giá</a>
+                                        Tìm kiếm thông tin công bố giá VLXD</a>
                                 </li>
                                 @endif
                             </ul>
@@ -423,16 +423,16 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li>
                     <a href="">
                         <i class="fa fa-laptop"></i>
-                        <span class="title">Thông tư quyết định</span>
+                        <span class="title">Văn bản QLNN về giá</span>
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a href="{{url('thongtu-quyetdinh-tw/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">Thông tư quyết định nhà nước</a>
+                            <a href="{{url('thongtu-quyetdinh-tw/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">Văn bản QLNN về giá TW</a>
                         </li>
 
                         <li>
-                            <a href="{{url('thongtu-quyetdinh-tinh/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">Thông tư quyết định của tỉnh</a>
+                            <a href="{{url('thongtu-quyetdinh-tinh/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">Văn bản QLNN về giá địa phương</a>
                         </li>
                     </ul>
                 </li>

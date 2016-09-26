@@ -48,7 +48,7 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Ngày nhập</th>
+                            <th style="text-align: center">Thời gian<br> công bố giá</th>
                             <th style="text-align: center" width="10%">Phân loại hồ sơ</th>
                             <th style="text-align: center">Số công bố</th>
                             <th style="text-align: center" width="10%">Nguồn vốn</th>
@@ -57,7 +57,7 @@
                             <th style="text-align: center" width="10%">Thông số kỹ thuật</th>
                             <th style="text-align: center" width="10%">Nguồn gốc</th>
                             <th style="text-align: center">Số lượng</th>
-                            <th style="text-align: center">Giá thẩm đinh</th>
+                            <th style="text-align: center">Giá công bố</th>
                         </tr>
                         </thead>
                         <tbody>
