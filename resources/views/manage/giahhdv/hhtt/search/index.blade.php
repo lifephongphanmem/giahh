@@ -52,7 +52,7 @@
                             <th style="text-align: center">Phòng ban</th>
                             <th style="text-align: center">Tên hàng hóa dịch vụ</th>
                             <th style="text-align: center">Số lượng</th>
-                            <th style="text-align: center" >Giá từ</th>
+                            <th style="text-align: center">Giá từ</th>
                             <th style="text-align: center">Giá đến</th>
                             <th style="text-align: center" width="10%">Nguồn tin</th>
                         </tr>

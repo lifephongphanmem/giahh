@@ -361,21 +361,44 @@ class CongBoGiaController extends Controller
             $madv=session('admin')->mahuyen;
             CongBoGiaDefault::where('mahuyen', $madv)->delete();
 
-            $tents = chuanhoatruong($request->tents);
-            $dacdiempl = chuanhoatruong($request->dacdiempl);
-            $thongsokt = chuanhoatruong($request->thongsokt);
-            $nguongoc = chuanhoatruong($request->nguongoc);
-            $dvt = chuanhoatruong($request->dvt);
-            $sl = chuanhoatruong($request->sl);
-            $giadenghi = chuanhoatruong($request->giadenghi);
-            if (isset($request->giatritstd) && $request->giatritstd != '') {
-                $giatritstd = chuanhoatruong($request->giatritstd);
-                $filename = $madv . date('YmdHis');
-                $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
-                $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
-                $data = Excel::selectSheetsByIndex(0)->load($path, function ($sheet) {
-                    $sheet->get();
-                })->get()->toarray();
+            $inputs=$request->all();
+
+            $bd=$inputs['tudong'];
+            $sd=$inputs['sodong'];
+            $filename = $madv . date('YmdHis');
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
+
+            $data = [];
+            Excel::load($path, function($reader) use (&$data,$bd,$sd) {
+                //$reader->getSheet(0): là đối tượng -> dữ nguyên các cột
+                //$sheet: là đã tự động lấy dòng đầu tiên làm cột để nhận dữ liệu
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $Row = $sheet->getHighestRow();
+                $Row = $sd+$bd > $Row ? $Row : ($sd+$bd);
+                $Col = $sheet->getHighestColumn();
+
+                for ($r = $bd; $r <= $Row; $r++)
+                {
+                    $rowData = $sheet->rangeToArray('A' . $r . ':' . $Col . $r, NULL, TRUE, FALSE);
+                    $data[] = $rowData[0];
+                }
+            });
+
+            foreach($inputs as $key=>$val) {
+                $ma=ord($val);
+                if($ma>=65 && $ma<=90){
+                    $inputs[$key]=$ma-65;
+                }
+                if($ma>=97 && $ma<=122){
+                    $inputs[$key]=$ma-97;
+                }
+            }
+
+            /*
+             *Do file excel chưa phù hợp với yêu cầu
+             *
 
                 //Kiểm tra tên tài sản rỗng => bỏ qua ko chạy
                 foreach ($data as $row) {
@@ -394,7 +417,7 @@ class CongBoGiaController extends Controller
                     $model->dacdiempl = isset($row[$dacdiempl]) ? $row[$dacdiempl] : '';
                     $model->save();
                 }
-            }
+                */
             File::Delete($path);
             $m_ts=CongBoGiaDefault::where('mahuyen', $madv)->get();
             //dd($m_ts);

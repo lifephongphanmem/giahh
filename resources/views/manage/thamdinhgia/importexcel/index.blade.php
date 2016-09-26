@@ -131,8 +131,8 @@
                                                         <td>{{$ct->nguongoc}}</td>
                                                         <td>{{$ct->dvt}}</td>
                                                         <td>{{$ct->sl}}</td>
-                                                        <td>{{$ct->giadenghi}}</td>
-                                                        <td>{{$ct->giatritstd}}</td>
+                                                        <td>{{number_format($ct->giadenghi)}}</td>
+                                                        <td>{{number_format($ct->giatritstd)}}</td>
                                                         <td><button type="button" onclick="confirmDelete('{{$ct->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                                 Xóa</button></td>
                                                     </tr>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\HsThamDinhGia;
 use App\ThamDinhGia;
 use App\ThamDinhGiaDefault;
 use App\TtPhongBan;
@@ -420,48 +421,76 @@ class ThamDinhGiaController extends Controller
         if(Session::has('admin')){
             $madv=session('admin')->mahuyen;
             ThamDinhGiaDefault::where('mahuyen', $madv)->delete();
+            $inputs=$request->all();
 
-            $tents = chuanhoatruong($request->tents);
-            $dacdiempl = chuanhoatruong($request->dacdiempl);
-            $thongsokt = chuanhoatruong($request->thongsokt);
-            $nguongoc = chuanhoatruong($request->nguongoc);
-            $dvt = chuanhoatruong($request->dvt);
-            $sl = chuanhoatruong($request->sl);
-            $giadenghi = chuanhoatruong($request->giadenghi);
-            if (isset($request->giatritstd) && $request->giatritstd != '') {
-                $giatritstd = chuanhoatruong($request->giatritstd);
-                $filename = $madv . date('YmdHis');
-                $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
-                $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
-                $data = Excel::selectSheetsByIndex(0)->load($path, function ($sheet) {
-                    $sheet->get();
-                })->get()->toarray();
+            $bd=$inputs['tudong'];
+            $sd=$inputs['sodong'];
+            $filename = $madv . date('YmdHis');
+            $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
+            $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
 
-                //Kiểm tra tên tài sản rỗng => bỏ qua ko chạy
-                foreach ($data as $row) {
-                    if ($row[$tents] == '') {
-                        continue;
-                    }
-                    $model = new ThamDinhGiaDefault();
-                    $model->mahuyen = $madv;
-                    $model->tents = $row[$tents];
-                    $model->thongsokt = isset($row[$thongsokt]) ? $row[$thongsokt] : '';
-                    $model->nguongoc = isset($row[$nguongoc]) ? $row[$nguongoc] : '';
-                    $model->dvt = isset($row[$dvt]) ? $row[$dvt] : '';
-                    $model->sl = isset($row[$sl]) ? $row[$sl] : 1;
-                    $model->giadenghi = isset($row[$giadenghi]) ? $row[$giadenghi] : 0;
-                    $model->giatritstd = isset($row[$giatritstd]) ? $row[$giatritstd] : 0;
-                    $model->dacdiempl = isset($row[$dacdiempl]) ? $row[$dacdiempl] : '';
-                    $model->save();
+            $data = [];
+            Excel::load($path, function($reader) use (&$data,$bd,$sd) {
+                //$reader->getSheet(0): là đối tượng -> dữ nguyên các cột
+                //$sheet: là đã tự động lấy dòng đầu tiên làm cột để nhận dữ liệu
+                $obj = $reader->getExcel();
+                $sheet = $obj->getSheet(0);
+                $Row = $sheet->getHighestRow();
+                $Row = $sd+$bd > $Row ? $Row : ($sd+$bd);
+                $Col = $sheet->getHighestColumn();
+
+                for ($r = $bd; $r <= $Row; $r++)
+                {
+                    $rowData = $sheet->rangeToArray('A' . $r . ':' . $Col . $r, NULL, TRUE, FALSE);
+                    $data[] = $rowData[0];
+                }
+            });
+
+            foreach($inputs as $key=>$val) {
+                $ma=ord($val);
+                if($ma>=65 && $ma<=90){
+                    $inputs[$key]=$ma-65;
+                }
+                if($ma>=97 && $ma<=122){
+                    $inputs[$key]=$ma-97;
                 }
             }
-            File::Delete($path);
-            $m_ts=ThamDinhGiaDefault::where('mahuyen', $madv)->get();
-            //dd($m_ts);
-            return view('manage.thamdinhgia.importexcel.index')
-                ->with('m_ts',$m_ts)
-                ->with('pageTitle','Thông tin thẩm định giá');
 
+            //dd($inputs);
+            foreach ($data as $row) {
+                if($row[$inputs['tents']]==''){
+                    //Tên tài sản rỗng => thoát
+                    break;
+                }
+                $model = new ThamDinhGiaDefault();
+                $model->mahuyen = $madv;
+                $model->tents = $row[$inputs['tents']];
+                $model->thongsokt = isset($row[$inputs['thongsokt']]) ? $row[$inputs['thongsokt']] : '';
+                $model->nguongoc = isset($row[$inputs['nguongoc']]) ? $row[$inputs['nguongoc']] : '';
+                $model->dvt = isset($row[$inputs['dvt']]) ? $row[$inputs['dvt']] : '';
+                $model->sl = isset($row[$inputs['sl']]) ? $row[$inputs['sl']] : 1;
+                $model->giadenghi = isset($row[$inputs['giadenghi']]) ? $row[$inputs['giadenghi']] : 0;
+                $model->giatritstd = isset($row[$inputs['giatritstd']]) ? $row[$inputs['giatritstd']] : 0;
+                $model->dacdiempl = isset($row[$inputs['dacdiempl']]) ? $row[$inputs['dacdiempl']] : '';
+                $model->nguyengiadenghi = isset($row[$inputs['nguyengiadenghi']]) ? $row[$inputs['nguyengiadenghi']] : 0;
+                $model->nguyengiathamdinh = isset($row[$inputs['nguyengiathamdinh']]) ? $row[$inputs['nguyengiathamdinh']] : 0;
+
+                if($model->giatritstd==0){
+                    $model->giakththamdinh=$model->giadenghi;
+                    $model->giaththamdinh=0;
+                }else{
+                    $model->giakththamdinh=0;
+                    $model->giaththamdinh=$model->giadenghi;
+                }
+                $model->save();
+            }
+
+        File::Delete($path);
+        $m_ts=ThamDinhGiaDefault::where('mahuyen', $madv)->get();
+        //dd($m_ts);
+        return view('manage.thamdinhgia.importexcel.index')
+            ->with('m_ts',$m_ts)
+            ->with('pageTitle','Thông tin thẩm định giá');
         }else
             return view('errors.notlogin');
     }
@@ -484,6 +513,7 @@ class ThamDinhGiaController extends Controller
             $model->sotbkl = $insert['sotbkl'];
             $model->hosotdgia = $insert['hosotdgia'];
             $model->thang = date_format($date,'m');
+            $model->trangthai ='Đang làm';
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
             elseif($thang == 4 || $thang == 5 || $thang == 6)
@@ -496,7 +526,7 @@ class ThamDinhGiaController extends Controller
             $model->mahuyen = session('admin')->mahuyen;
             $model->mahs = $mahs;
             if($model->save()){
-                $m_ts=ThamDinhGiaDefault::select('tents','dacdiempl','thongsokt','nguongoc','dvt','sl','giadenghi','giatritstd',DB::raw($mahs.' as mahs'))->where('mahuyen',session('admin')->mahuyen)->get()->toarray();
+                $m_ts=ThamDinhGiaDefault::select('tents','dacdiempl','thongsokt','nguongoc','dvt','sl','giadenghi','giatritstd','giakththamdinh','giaththamdinh','nguyengiadenghi','nguyengiathamdinh',DB::raw($mahs.' as mahs'))->where('mahuyen',session('admin')->mahuyen)->get()->toarray();
                 ThamDinhGia::insert($m_ts);
             }
             return redirect('thongtin-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all');
