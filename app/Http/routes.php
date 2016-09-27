@@ -191,6 +191,7 @@ Route::get('timkiem-giahh-xuatnhapkhau','HsGiaHhXnkController@search');
 Route::post('timkiem-giahh-xuatnhapkhau','HsGiaHhXnkController@viewsearch');
 //End Giá hh xuất nhập khẩu
     //End giá hàng hóa dv
+
     //TTQĐ
 //TW
 Route::get('thongtu-quyetdinh-tw/nam={nam}&pl={pl}','TtQdController@tw');
@@ -207,6 +208,14 @@ Route::post('thongtu-quyetdinh-tinh','TtQdController@tinhstore');
 Route::get('thongtu-quyetdinh-tinh/{id}/edit','TtQdController@tinhedit');
 Route::patch('thongtu-quyetdinh-tinh/{id}','TtQdController@tinhupdate');
 Route::post('thongtu-quyetdinh-tinh/delete','TtQdController@tinhdelete');
+    //Thanh kiểm tra
+Route::get('thanhkiemtra-vegia/nam={nam}','TtQdController@thanhkiemtra');
+Route::get('thanhkiemtra-vegia/create','TtQdController@thanhkiemtracreate');
+Route::get('checkkhvb-tkt','TtQdController@checkkhvbtkt');
+Route::post('thanhkiemtra-vegia','TtQdController@thanhkiemtrastore');
+Route::get('thanhkiemtra-vegia/{id}/edit','TtQdController@thanhkiemtraedit');
+Route::patch('thanhkiemtra-vegia/{id}','TtQdController@thanhkiemtraupdate');
+Route::post('thanhkiemtra-vegia/delete','TtQdController@thanhkiemtradelete');
 //End TTQĐ
 
 //Thẩm định giá

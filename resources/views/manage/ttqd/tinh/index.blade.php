@@ -61,8 +61,10 @@
             <div class="form-group">
                 <select class="form-control" name="plvb" id="plvb">
                     <option value="all" {{$pl == 'all' ? 'selected' : ''}}>--Loại văn bản--</option>
+                    <option value="LUAT" {{$pl == 'LUAT' ? 'selected' : ''}}>Luật</option>
+                    <option value="ND" {{$pl == 'ND' ? 'selected' : ''}}>Nghị định</option>
                     <option value="TT" {{$pl == 'TT' ? 'selected' : ''}}>Thông tư</option>
-                    <option value="QD" {{$pl == 'QD' ? 'selected' : ''}}>Quyết định</option>
+                    <option value="HD" {{$pl == 'HD' ? 'selected' : ''}}>Quyết định</option>
                 </select>
             </div>
         </div>
@@ -82,33 +84,13 @@
                         <a href="{{url('thongtu-quyetdinh-tinh/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
 
-                        <a href="" class="btn btn-default btn-sm">
-                            <i class="fa fa-print"></i> Print </a>
+                        <!--a href="" class="btn btn-default btn-sm">
+                            <i class="fa fa-print"></i> Print </a-->
                     </div>
                 </div>
                     @endif
                 @endif
                 <div class="portlet-body">
-                    <!--div class="table-toolbar">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <label>Ngày ban hành</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <label>Áp dụng từ ngày</label>
-                                    <div class="form-group">
-                                        <input type="date" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <label></label>
-                                    <button type="button" class="btn btn-default"><i class="fa fa-search"></i> Tìm kiếm</button>
-                                </div>
-                            </div>
-                    </div-->
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>

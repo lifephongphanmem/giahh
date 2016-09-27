@@ -409,11 +409,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <li>
                                     <a href="{{url('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin công bố VLXD</a>
                                 </li>
+                                @endif
                                 <li>
                                     <a href="{{url('timkiem-congbogia')}}">
                                         Tìm kiếm thông tin công bố giá VLXD</a>
                                 </li>
-                                @endif
+
                             </ul>
                         </li>
                 @endif
@@ -433,6 +434,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
                         <li>
                             <a href="{{url('thongtu-quyetdinh-tinh/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">Văn bản QLNN về giá địa phương</a>
+                        </li>
+                        <li>
+                            <a href="{{url('thanhkiemtra-vegia/nam='.getGeneralConfigs()['namhethong'])}}">Thanh kiểm tra về giá</a>
                         </li>
                     </ul>
                 </li>

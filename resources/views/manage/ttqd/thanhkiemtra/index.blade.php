@@ -22,17 +22,11 @@
 
             $('#namvb').change(function() {
                 var namvb = $('#namvb').val();
-                var url = '/thongtu-quyetdinh-tw/nam='+namvb+'&pl=all';
+                var url = '/thanhkiemtra-vegia/nam='+namvb;
 
                 window.location.href = url;
             });
-            $('#plvb').change(function() {
-                var namvb = $('#namvb').val();
-                var plvb = $('#plvb').val();
-                var url = '/thongtu-quyetdinh-tw/nam='+namvb+'&pl='+plvb;
 
-                window.location.href = url;
-            });
         })
         function confirmDelete(id) {
             document.getElementById("iddelete").value=id;
@@ -43,7 +37,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tư quyết định<small>&nbsp;nhà nước</small>
+        Thanh kiểm tra<small>&nbsp;về giá</small>
     </h3>
     <div class="row">
         <div class="col-md-2">
@@ -54,17 +48,6 @@
                     @for($i = $nam_start; $i <= $nam_stop; $i++)
                         <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>{{$i}}</option>
                     @endfor
-                </select>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <select class="form-control" name="plvb" id="plvb">
-                    <option value="all" {{$pl == 'all' ? 'selected' : ''}}>--Loại văn bản--</option>
-                    <option value="LUAT" {{$pl == 'LUAT' ? 'selected' : ''}}>Luật</option>
-                    <option value="ND" {{$pl == 'ND' ? 'selected' : ''}}>Nghị định</option>
-                    <option value="TT" {{$pl == 'TT' ? 'selected' : ''}}>Thông tư</option>
-                    <option value="HD" {{$pl == 'HD' ? 'selected' : ''}}>Quyết định</option>
                 </select>
             </div>
         </div>
@@ -80,8 +63,10 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        <a href="{{url('thongtu-quyetdinh-tw/create')}}" class="btn btn-default btn-sm">
+
+                        <a href="{{url('thanhkiemtra-vegia/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
+
                         <!--a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a-->
                     </div>
@@ -89,50 +74,35 @@
                     @endif
                 @endif
                 <div class="portlet-body">
+
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Đơn vị ban hành</th>
-                            <th style="text-align: center" width="10">Loại văn bản</th>
-                            <th style="text-align: center" width="15%">Ngày ban hành/<br>Ngày áp dụng</th>
-                            <th style="text-align: center">Tiêu đề</th>
-                            <th style="text-align: center">Ghi chú</th>
-                            <th style="text-align: center" width="20%">Thao tác</th>
+                            <th style="text-align: center" width="5%">Thời điểm</th>
+                            <th style="text-align: center" width="20%">Đoàn kiểm tra</th>
+                            <th style="text-align: center" width="40%">Nội dung</th>
+                            <!--th style="text-align: center">File đính kèm</th-->
+                            <th style="text-align: center" width="25%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($model as $key=>$tt)
-                            <tr>
-                                <td style="text-align: center">{{$key + 1}}</td>
-                                <td class="active">{{$tt->dvbanhanh}}</td>
-                                @if($tt->plttqd == 'TT')
-                                <td style="text-align: center">
-                                    Thông tư
-                                </td>
-                                @else
-                                <td style="text-align: center">
-                                    Quyết định
-                                </td>
-                                @endif
-                                <td style="text-align: center">{{getDayVn($tt->ngaybh)}} || {{getDayVn($tt->ngayad)}}</td>
-                                <td class="success">{{$tt->tieude}}</td>
-                                <td>{{$tt->ghichu}}</td>
-                                <td>
-                                    @if(can('ttqd','edit'))
-                                    <a href="{{url('thongtu-quyetdinh-tw/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                    @endif
-                                    @if($tt->tailieu)
-                                    <a href="{{url('/data/uploads/ttqd/'.$tt->tailieu)}}"><span class="btn btn-default btn-xs mbs"><i class="fa fa-download"></i> Tải tệp</span></a>
-                                    @endif
-                                    @if(can('ttqd','delete'))
-                                    <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                        Xóa</button>
-                                    @endif
-                                </td>
-                            </tr>
+                            @foreach($model as $key=>$tt)
+                                <tr>
+                                    <td style="text-align: center">{{$key+1}}</td>
+                                    <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
+                                    <td class="active">{{$tt->doankt}}</td>
+                                    <td>{{$tt->noidung}}</td>
+                                    <td>
+                                        <a href="{{url('thanhkiemtra-vegia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                        @if($tt->tailieu !='')
+                                            <a href="{{url('/data/uploads/thanhkiemtra/'.$tt->tailieu)}}" target="_blank"><span class="btn btn-default btn-xs mbs"><i class="fa fa-download"></i> Tải tệp</span></a>
+                                        @endif
+                                        <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                            Xóa</button>
+                                    </td>
+                                </tr>
                             @endforeach
-
                         </tbody>
                     </table>
                 </div>
@@ -146,9 +116,14 @@
     <!-- END DASHBOARD STATS -->
     <div class="clearfix">
     </div>
+    <script>
+        function view(tt){
+            window.open("/data/uploads/thanhkiemtra/"+ tt);
+        }
+    </script>
     <!--Modal Delete-->
     <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'thongtu-quyetdinh-tw/delete','id' => 'frm_delete'])!!}
+        {!! Form::open(['url'=>'thanhkiemtra-vegia/delete','id' => 'frm_delete'])!!}
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header modal-header-primary">

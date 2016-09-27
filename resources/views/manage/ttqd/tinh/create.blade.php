@@ -23,7 +23,7 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            <div class="portlet box">
+            <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
                     {!! Form::open(['url'=>'thongtu-quyetdinh-tinh', 'files'=>true,'class'=>'horizontal-form','id'=>'create_ttttqd']) !!}
@@ -51,8 +51,10 @@
                                     <div class="form-group">
                                         <label class="control-label">Loại văn bản<span class="require">*</span></label>
                                         <select class="form-control" name="plttqd" id="plttqd">
+                                            <option value="LUAT">Luật</option>
+                                            <option value="ND">Nghị định</option>
                                             <option value="TT">Thông tư</option>
-                                            <option value="QD">Quyết định</option>
+                                            <option value="HD">Hướng dẫn</option>
                                         </select>
                                     </div>
                                 </div>
@@ -101,8 +103,10 @@
 
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
-                            <button type="reset" class="btn default">Cancel</button>
+                            <div class="col-md-12" style="text-align: center">
+                                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Thêm mới</button>
+                                <button type="reset" class="btn default">Hủy</button>
+                            </div>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->

@@ -15,7 +15,7 @@
 
 
     <h3 class="page-title">
-        Thông tư quyết định<small> thêm mới</small>
+        Thông tư quyết định<small> chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -26,77 +26,53 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'thongtu-quyetdinh-tw', 'files'=>true,'class'=>'horizontal-form','id'=>'create_ttttqd']) !!}
+                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thanhkiemtra-vegia/'. $model->id, 'class'=>'horizontal-form','id'=>'update_thanhkiemtra','files'=>true]) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ký hiệu văn bản<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="khvb" id="khvb" autofocus>
+                                        {!!Form::text('khvb', null, array('id' => 'khvb','class' => 'form-control required','autofocus'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
-
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Thời điểm</label>
+                                        <input type="date" class="form-control required" name="thoidiem" id="thoidiem" value="{{$model->thoidiem}}">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Đơn vị ban hành<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="dvbanhanh" id="dvbanhanh">
+                                        <label class="control-label">Đoàn kiểm tra</label>
+                                        <input type="text" class="form-control required" name="doankt" id="doankt" value="{{$model->doankt}}">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Loại văn bản<span class="require">*</span></label>
-                                        <select class="form-control" name="plttqd" id="plttqd">
-                                            <option value="LUAT">Luật</option>
-                                            <option value="ND">Nghị định</option>
-                                            <option value="TT">Thông tư</option>
-                                            <option value="HD">Hướng dẫn</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Ngày ban hành</label>
-                                        <input type="date" class="form-control required" name="ngaybh" id="ngaybh">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Ngày áp dụng</label>
-                                        <input type="date" class="form-control required" name="ngayad" id="ngayad">
+                                        <label class="control-label">Nội dung<span class="require">*</span></label>
+                                        <input type="text" class="form-control" name="noidung" id="noidung" value="{{$model->noidung}}">
                                     </div>
                                 </div>
                                 <!--/span-->
                             </div>
                             <div class="row">
+                                @if($model->tailieu)
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Tiêu đề</label>
-                                        <textarea id="tieude" class="form-control" name="tieude" id="tieude" cols="30" rows="3"></textarea>
+                                        <label class="control-label">Tài liệu hiện tại</label>
+                                        <a href="{{url('/data/uploads/thanhkiemtra/'.$model->tailieu)}}">{{$model->tailieu}}</a>
                                     </div>
                                 </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Ghi chú<span class="require">*</span></label>
-                                        <textarea id="tieude" class="form-control" name="ghichu" id="ghichu" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
+                                @endif
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Tài liệu<span class="require">*</span></label>
-                                        <input class="passvalid" type="file" name="img">
+                                        <input class="passvalid" type="file" name="img" id="img">
                                     </div>
                                 </div>
                             </div>
@@ -104,8 +80,8 @@
                         </div>
                         <div class="form-actions">
                             <div class="col-md-12" style="text-align: center">
-                                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Thêm mới</button>
-                                <button type="reset" class="btn default">Hủy</button>
+                                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
+                                <button type="reset" class="btn default">Cancel</button>
                             </div>
                         </div>
                     {!! Form::close() !!}
@@ -118,7 +94,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#create_ttttqd").validate({
+            var validator = $("#update_thanhkiemtra").validate({
                 rules: {
                     ten :"required"
                 },
@@ -134,7 +110,7 @@
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: 'GET',
-                    url: '/checkkhvb',
+                    url: '/checkkhvb-tkt',
                     data: {
                         _token: CSRF_TOKEN,
                         khvb:$(this).val()
@@ -145,7 +121,8 @@
                             toastr.error("Bạn cần nhập lại ký hiệu văn bản", "Ký hiệu văn bản nhập vào đã tồn tại!!!");
                             $('input[name="khvb"]').val('');
                             $('input[name="khvb"]').focus();
-                        }
+                        }else
+                            toastr.success("Ký hiệu văn bản sử dụng được!", "Thành công!");
                     }
 
                 });

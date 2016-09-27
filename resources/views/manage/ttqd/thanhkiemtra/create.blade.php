@@ -15,7 +15,7 @@
 
 
     <h3 class="page-title">
-        Thông tư quyết định<small> thêm mới</small>
+        Thanh kiểm tra<small> về giá</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -26,7 +26,7 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'thongtu-quyetdinh-tw', 'files'=>true,'class'=>'horizontal-form','id'=>'create_ttttqd']) !!}
+                    {!! Form::open(['url'=>'thanhkiemtra-vegia', 'files'=>true,'class'=>'horizontal-form','id'=>'create_thanhkiemtra']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <div class="row">
@@ -37,65 +37,36 @@
                                     </div>
                                 </div>
                                 <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Thời điểm</label>
+                                        <input type="date" class="form-control required" name="thoidiem" id="thoidiem">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Đoàn kiểm tra<span class="require">*</span></label>
+                                        <input type="text" class="form-control required" name="doankt" id="doankt">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Nội dung<span class="require">*</span></label>
+                                        <input type="text" class="form-control required" name="noidung" id="noidung">
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <div class="row">
 
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Đơn vị ban hành<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="dvbanhanh" id="dvbanhanh">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Loại văn bản<span class="require">*</span></label>
-                                        <select class="form-control" name="plttqd" id="plttqd">
-                                            <option value="LUAT">Luật</option>
-                                            <option value="ND">Nghị định</option>
-                                            <option value="TT">Thông tư</option>
-                                            <option value="HD">Hướng dẫn</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Ngày ban hành</label>
-                                        <input type="date" class="form-control required" name="ngaybh" id="ngaybh">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Ngày áp dụng</label>
-                                        <input type="date" class="form-control required" name="ngayad" id="ngayad">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Tiêu đề</label>
-                                        <textarea id="tieude" class="form-control" name="tieude" id="tieude" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Ghi chú<span class="require">*</span></label>
-                                        <textarea id="tieude" class="form-control" name="ghichu" id="ghichu" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Tài liệu<span class="require">*</span></label>
+                                        <label class="control-label">Văn bản đính kèm<span class="require">*</span></label>
                                         <input class="passvalid" type="file" name="img">
                                     </div>
                                 </div>
@@ -118,7 +89,7 @@
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#create_ttttqd").validate({
+            var validator = $("#create_thanhkiemtra").validate({
                 rules: {
                     ten :"required"
                 },
@@ -134,7 +105,7 @@
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: 'GET',
-                    url: '/checkkhvb',
+                    url: '/checkkhvb-tkt',
                     data: {
                         _token: CSRF_TOKEN,
                         khvb:$(this).val()
@@ -146,6 +117,8 @@
                             $('input[name="khvb"]').val('');
                             $('input[name="khvb"]').focus();
                         }
+                        else
+                            toastr.success("Ký hiệu văn bản sử dụng được!", "Thành công!");
                     }
 
                 });

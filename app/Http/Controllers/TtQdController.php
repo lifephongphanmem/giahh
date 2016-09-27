@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ThanhKiemTra;
 use App\TtQd;
 use Illuminate\Http\Request;
 
@@ -265,5 +266,116 @@ class TtQdController extends Controller
         }else {
             echo 'ok';
         }
+    }
+
+    public function thanhkiemtra($nam){
+        if(Session::has('admin')){
+            $model = ThanhKiemTra::where('nam',$nam)
+                ->get();
+            return view('manage.ttqd.thanhkiemtra.index')
+                ->with('model',$model)
+                ->with('nam',$nam)
+                ->with('pageTitle','Thanh kiểm tra về giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function thanhkiemtracreate(){
+        if(Session::has('admin')){
+
+
+            return view('manage.ttqd.thanhkiemtra.create')
+                ->with('pageTitle','Thêm mới thông tin thanh kiểm tra về giá');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function checkkhvbtkt(Request $request){
+        $input = $request->all();
+        $model = ThanhKiemTra::where('khvb',$input['khvb'])
+            ->first();
+        if(isset($model)){
+            echo 'cancel';
+        }else {
+            echo 'ok';
+        }
+    }
+
+    public function thanhkiemtrastore(Request $request){
+        if(Session::has('admin')){
+            $insert = $request->all();
+            $matkt = getdate()[0];
+            $nam = intval(date('Y'));
+
+            $model = new ThanhKiemTra();
+            $model->khvb = $insert['khvb'];
+            $model->doankt = $insert['doankt'];
+            $model->thoidiem = $insert['thoidiem'];
+            $model->noidung = $insert['noidung'];
+            $model->matkt = $matkt;
+            $model->nam = $nam;
+            if($request->hasFile('img')){
+                $img = $request->file('img');
+                $name = $img->getClientOriginalName();
+                $newname = $matkt .".".substr($name, strpos($name, '.') + 1);
+                $img->move(public_path() . '/data/uploads/thanhkiemtra', $newname);
+                $model->tailieu = $newname;
+            }
+            $model->save();
+
+            return redirect('thanhkiemtra-vegia/nam='.$nam);
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function thanhkiemtradelete(Request $request){
+        if(Session::has('admin')){
+            $input = $request->all();
+
+            $model = ThanhKiemTra::where('id',$input['iddelete'])
+                ->first();
+            $nam = $model->nam;
+            $model->delete();
+            return redirect('thanhkiemtra-vegia/nam='.$nam);
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function thanhkiemtraedit($id){
+        if(Session::has('admin')){
+            $model = ThanhKiemTra::findOrFail($id);
+            return view('manage.ttqd.thanhkiemtra.edit')
+                ->with('model',$model)
+                ->with('pageTitle','Chỉnh sửa thông tin thanh kiểm tra về giá');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function thanhkiemtraupdate(Request $request,$id){
+        if(Session::has('admin')){
+            $update = $request->all();
+            $model = ThanhKiemTra::findOrFail($id);
+            $nam = $model->nam;
+
+            $model->khvb = $update['khvb'];
+            $model->doankt = $update['doankt'];
+            $model->thoidiem = $update['thoidiem'];
+            $model->noidung = $update['noidung'];
+            if($request->hasFile('img')){
+                $img = $request->file('img');
+                $name = $img->getClientOriginalName();
+                $newname = $model->matkt.".".substr($name, strpos($name, '.') + 1);
+                $img->move(public_path() . '/data/uploads/thanhkiemtra', $newname);
+                $model->tailieu = $newname;
+            }
+            $model->save();
+
+            return redirect('thanhkiemtra-vegia/nam='.$nam);
+        }else
+            return view('errors.notlogin');
     }
 }

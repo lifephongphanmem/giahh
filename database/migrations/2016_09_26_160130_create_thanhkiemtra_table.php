@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTtqdTable extends Migration
+class CreateThanhkiemtraTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,19 +12,17 @@ class CreateTtqdTable extends Migration
      */
     public function up()
     {
-        Schema::create('ttqd', function (Blueprint $table) {
+        Schema::create('thanhkiemtra', function (Blueprint $table) {
             $table->increments('id');
             $table->string('khvb');
-            $table->string('mattqd');
-            $table->string('plttqd');
-            $table->string('nambh');
-            $table->string('level');
-            $table->string('dvbanhanh');
-            $table->date('ngaybh');
-            $table->date('ngayad');
-            $table->string('tieude');
-            $table->string('ghichu');
+            $table->string('matkt');
+            $table->string('doankt');
+            $table->string('nam');
+            $table->date('thoidiem');
+            $table->string('noidung');
             $table->string('tailieu');
+            $table->string('ip1');
+            $table->string('ip2');
             $table->timestamps();
         });
     }
@@ -36,6 +34,6 @@ class CreateTtqdTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ttqd');
+        Schema::drop('thanhkiemtra');
     }
 }

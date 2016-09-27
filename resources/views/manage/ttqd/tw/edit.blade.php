@@ -23,10 +23,10 @@
     <div class="row center">
         <div class="col-md-12 center">
             <!-- BEGIN VALIDATION STATES-->
-            <div class="portlet box">
+            <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thongtu-quyetdinh-tw/'. $model->id, 'class'=>'horizontal-form','id'=>'update_ttttqd']) !!}
+                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'thongtu-quyetdinh-tw/'. $model->id, 'class'=>'horizontal-form','id'=>'update_ttttqd','files'=>true]) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <div class="row">
@@ -53,8 +53,10 @@
                                         {!! Form::select(
                                         'plttqd',
                                         array(
+                                        'LUAT'=> 'Luật',
+                                        'ND' => 'Nghị định',
                                         'TT' => 'Thông tư',
-                                        'QĐ' => 'Quyết định',
+                                        'HD' => 'Hướng dẫn',
                                         ),null,
                                         array('id' => 'plttqd', 'class' => 'form-control'))
                                         !!}
@@ -113,8 +115,10 @@
 
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
-                            <button type="reset" class="btn default">Cancel</button>
+                            <div class="col-md-12" style="text-align: center">
+                                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
+                                <button type="reset" class="btn default">Hủy</button>
+                            </div>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->
