@@ -46,7 +46,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL2()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickPL2()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="" >Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>
@@ -80,7 +81,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL3()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickPL3()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="" >Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>
@@ -114,7 +116,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL4()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickPL4()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="" >Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>
@@ -150,7 +153,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL5()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickPL5()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="" >Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>
@@ -186,7 +190,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL6()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickPL6()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="" >Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>
@@ -221,7 +226,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL7()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickPL7()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="" >Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>

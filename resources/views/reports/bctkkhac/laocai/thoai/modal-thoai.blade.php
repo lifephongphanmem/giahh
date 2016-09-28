@@ -1,15 +1,36 @@
 
 <script>
-    function ClickBC1(){
+    function ClickBC1(url){
+        $('#frm_BC1').attr('action',url);
         $('#frm_BC1').submit();
     }
-    function ClickBC2(){
+    function ClickBC2(url){
+        $('#frm_BC2').attr('action',url);
         $('#frm_BC2').submit();
     }
-    function ClickBC3(){
+    function ClickBC3(url){
+        $('#frm_BC3').attr('action',url);
         $('#frm_BC3').submit();
     }
-    function ClickBC4(){
+    function ClickBC4(url){
+        $('#frm_BC4').attr('action',url);
+        $('#frm_BC4').submit();
+    }
+
+    function ClickBC1Excel(url){
+        $('#frm_BC1').attr('action',url);
+        $('#frm_BC1').submit();
+    }
+    function ClickBC2Excel(url){
+        $('#frm_BC2').attr('action',url);
+        $('#frm_BC2').submit();
+    }
+    function ClickBC3Excel(url){
+        $('#frm_BC3').attr('action',url);
+        $('#frm_BC3').submit();
+    }
+    function ClickBC4Excel(url){
+        $('#frm_BC4').attr('action',url);
         $('#frm_BC4').submit();
     }
 </script>
@@ -17,7 +38,7 @@
 <!--Modal Thoại BC1-->
 <div id="BC1-thoai-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
     <div class="modal-dialog">
-        {!! Form::open(['url'=>'reports/bctkkhac/BC1','target'=>'_blank' , 'id' => 'frm_BC1', 'class'=>'form-horizontal form-validate']) !!}
+        {!! Form::open(['url'=>'/reports/bctkkhac/BC1','target'=>'_blank' , 'id' => 'frm_BC1', 'class'=>'form-horizontal form-validate']) !!}
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
                 <button type="button" data-dismiss="modal" aria-hidden="true"
@@ -84,7 +105,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC1()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC1('/reports/bctkkhac/BC1')" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC1Excel('/reports/bctkkhac/BC1Excel')" >Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>
@@ -94,7 +116,7 @@
 <!--Modal Thoại BC2-->
 <div id="BC2-thoai-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
     <div class="modal-dialog">
-        {!! Form::open(['url'=>'reports/bctkkhac/BC2','target'=>'_blank' , 'id' => 'frm_BC2', 'class'=>'form-horizontal form-validate']) !!}
+        {!! Form::open(['url'=>'/reports/bctkkhac/BC2','target'=>'_blank' , 'id' => 'frm_BC2', 'class'=>'form-horizontal form-validate']) !!}
         <div class="modal-content">
             <div class="modal-header modal-header-primary" style="color: #060606">
                 <button type="button" data-dismiss="modal" aria-hidden="true"
@@ -148,7 +170,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC2()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC2('/reports/bctkkhac/BC2')" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC2Excel('/reports/bctkkhac/BC2Excel')" >Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>
@@ -195,7 +218,8 @@
 
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC3()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC3('/reports/bctkkhac/BC3')" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC3Excel('/reports/bctkkhac/BC3Excel')" >Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>
@@ -241,7 +265,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC4()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC4('/reports/bctkkhac/BC4')" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBC4Excel('/reports/bctkkhac/BC4Excel')" >Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>

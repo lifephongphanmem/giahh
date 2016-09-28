@@ -73,10 +73,10 @@
     </tr>
     @foreach($model as $key=>$tt)
     <tr>
-        <th>{{$key+1}}</th>
         <th>{{$tt->mahh}}</th>
         <th style="text-align: left">{{$tt->tenhh}}</th>
         <th>{{$tt->dvt}}</th>
+        <th></th>
         <th style="text-align: left">{{number_format($tt->giahh)}}</th>
         <th></th>
         <th></th>

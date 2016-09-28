@@ -1,9 +1,19 @@
 
 <script>
-    function ClickPL1(){
+    function ClickPL1(url){
+        $('#frm_pl1').attr('action',url);
         $('#frm_pl1').submit();
     }
-    function ClickPL2(){
+    function ClickPL2(url){
+        $('#frm_pl2').attr('action',url);
+        $('#frm_pl2').submit();
+    }
+    function ClickPL1Excel(url){
+        $('#frm_pl1').attr('action',url);
+        $('#frm_pl1').submit();
+    }
+    function ClickPL2Excel(url){
+        $('#frm_pl2').attr('action',url);
         $('#frm_pl2').submit();
     }
 </script>
@@ -11,7 +21,7 @@
 <!--Modal Thoại PL1-->
 <div id="pl1-thoai-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
     <div class="modal-dialog">
-        {!! Form::open(['url'=>'reports/tt55-2011-BTC/PL1','target'=>'_blank' , 'id' => 'frm_pl1', 'class'=>'form-horizontal form-validate']) !!}
+        {!! Form::open(['url'=>'/reports/tt55-2011-BTC/PL1','target'=>'_blank' , 'id' => 'frm_pl1', 'class'=>'form-horizontal form-validate']) !!}
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
                 <button type="button" data-dismiss="modal" aria-hidden="true"
@@ -46,7 +56,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL1()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickPL1('/reports/tt55-2011-BTC/PL1')">Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL1Excel('/reports/tt55-2011-BTC/PL1Excel')">Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>
@@ -56,7 +67,7 @@
 <!--Phụ lục 2-->
 <div id="pl2-thoai-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
     <div class="modal-dialog">
-        {!! Form::open(['url'=>'reports/tt55-2011-BTC/PL2','target'=>'_blank' , 'id' => 'frm_pl2', 'class'=>'form-horizontal form-validate']) !!}
+        {!! Form::open(['url'=>'/reports/tt55-2011-BTC/PL2','target'=>'_blank' , 'id' => 'frm_pl2', 'class'=>'form-horizontal form-validate']) !!}
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
                 <button type="button" data-dismiss="modal" aria-hidden="true"
@@ -81,7 +92,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL2()" >Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickPL2('/reports/tt55-2011-BTC/PL2')">Đồng ý</button>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickPL2Excel('/reports/tt55-2011-BTC/PL2Excel')">Xuất Excel</button>
             </div>
             {!! Form::close() !!}
         </div>

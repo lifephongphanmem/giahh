@@ -351,6 +351,8 @@ Route::post('reports/tt142-2015-BTC/PL7','TT1422015BtcController@PL7');
 Route::get('reports/tt55-2011-BTC','TT552011BtcController@index');
 Route::post('reports/tt55-2011-BTC/PL1','TT552011BtcController@PL1');
 Route::post('reports/tt55-2011-BTC/PL2','TT552011BtcController@PL2');
+Route::post('reports/tt55-2011-BTC/PL1Excel','TT552011BtcController@PL1Excel');
+Route::post('reports/tt55-2011-BTC/PL2Excel','TT552011BtcController@PL2Excel');
     //End TT55/2011/BTC
 
 
@@ -360,6 +362,10 @@ Route::post('reports/bctkkhac/BC1','BcTkKhacController@BC1');
 Route::post('reports/bctkkhac/BC2','BcTkKhacController@BC2');
 Route::post('reports/bctkkhac/BC3','BcTkKhacController@BC3');
 Route::post('reports/bctkkhac/BC4','BcTkKhacController@BC4');
+Route::post('reports/bctkkhac/BC1Excel','BcTkKhacController@BC1Excel');
+Route::post('reports/bctkkhac/BC2Excel','BcTkKhacController@BC2Excel');
+Route::post('reports/bctkkhac/BC3Excel','BcTkKhacController@BC3Excel');
+Route::post('reports/bctkkhac/BC4Excel','BcTkKhacController@BC4Excel');
     //End BCTK khác
 // </editor-fold>
 ?>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\CongBoGia;
 use App\HsCongBoGia;
-use App\HsGiaHhXnk;
 use App\HsThamDinhGia;
 use App\ThamDinhGia;
 use App\TtPhongBan;
@@ -13,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BcTkKhacController extends Controller
 {
@@ -242,6 +242,236 @@ class BcTkKhacController extends Controller
                 ->with('dk',$input)
                 ->with('pageTitle','Báo cáo tổng hợp');
 
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function BC1Excel(Request $request){
+        if (Session::has('admin')) {
+            $input = $request->all();
+            //dd($input);
+            if(isset($input['donvi'])){
+                if($input['donvi'] == 'all'){
+                    $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
+                        ->where('nguonvon', $input['nguonvon'])
+                        ->where('trangthai', 'Hoàn tất')
+                        ->get();
+                    $donvi = 'all';
+
+                }else{
+                    $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
+                        ->where('mahuyen', $input['donvi'])
+                        ->where('trangthai', 'Hoàn tất')
+                        ->where('nguonvon', $input['nguonvon'])
+                        ->get();
+                    $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
+                }
+            }else {
+                $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
+                    ->where('mahuyen', session('admin')->mahuyen)
+                    ->where('trangthai', 'Hoàn tất')
+                    ->where('nguonvon', $input['nguonvon'])
+                    ->get();
+                $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
+            }
+
+
+            //dd($model);
+            $arraythang='';
+            foreach($model as $hs){
+                $arraythang = $arraythang.$hs->thang.',';
+
+                $gia = ThamDinhGia::where('mahs',$hs->mahs)->get();
+
+                $hs->sumgiadenghi = $gia->sum('giadenghi');
+                $hs->sumgiathamdinh = $gia->sum('giatritstd');
+
+                $hs->sumkththamdinh = $gia->sum('giakththamdinh');
+                $hs->sumththamdinh = $gia->sum('giaththamdinh');
+                $hs->sumchenhlech =  $gia->sum('giatritstd') - $gia->sum('giaththamdinh');
+
+                if($gia->sum('giadenghi')>0 && $gia->sum('giatritstd')>0)
+                    $hs->phantram = $gia->sum('giatritstd') * 100/($gia->sum('giaththamdinh'));
+            }
+            //$modelthang = $model->groupBy('thang')->get();
+            //dd(is_array($arraythang));
+
+            $arraymodel = $model->toarray();
+            $arraythang = array_column($arraymodel,'thang');
+            $arraythang = array_unique($arraythang);
+            $arrayquy = array_column($arraymodel,'quy');
+            $arrayquy = array_unique($arrayquy);
+            $arraynam = array_column($arraymodel,'nam');
+            $arraynam = array_unique($arraynam);
+
+            Excel::create('Bao cao 01', function($excel) use($model, $arraythang,$arrayquy,$arraynam,$donvi,$input){
+                $excel->sheet('Phu luc 01', function($sheet) use($model, $arraythang,$arrayquy,$arraynam,$donvi,$input){
+                    $sheet->loadView('reports.bctkkhac.laocai.thamdinhgia.BC1')
+                        ->with('arraythang',$arraythang)
+                        ->with('arrayquy',$arrayquy)
+                        ->with('arraynam',$arraynam)
+                        ->with('donvi',$donvi)
+                        ->with('dk',$input)
+                        ->with('model',$model)
+                        ->with('pageTitle','Ket qua tham dinh gia');
+                });
+            })->download('xlsx');
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function BC2Excel(Request $request){
+        if (Session::has('admin')) {
+            $input = $request->all();
+
+            if(isset($input['donvi'])){
+                if($input['donvi'] == 'all'){
+                    $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
+                        ->where('nguonvon',$input['nguonvon'])
+                        ->groupBy('thang')
+                        ->get();
+                    $donvi = 'all';
+                }else{
+                    $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
+                        ->where('mahuyen',$input['donvi'])
+                        ->where('nguonvon',$input['nguonvon'])
+                        ->groupBy('thang')
+                        ->get();
+                    $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
+                }
+
+            }else{
+                $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
+                    ->where('mahuyen',session('admin')->mahuyen)
+                    ->where('nguonvon',$input['nguonvon'])
+                    ->groupBy('thang')
+                    ->get();
+                $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
+            }
+
+
+            foreach($model as $thangs){
+                $idhss = HsThamDinhGia::where('thang',$thangs->thang)
+                    ->get();
+                $tshs = count($idhss);
+                $arrayidhs = '';
+                foreach($idhss as $idhs){
+                    $arrayidhs = $arrayidhs. $idhs->mahs.',';
+                }
+                $giadenghi = ThamDinhGia::wherein('mahs',explode(',',$arrayidhs))->sum('giadenghi');
+                $giathamdinh = ThamDinhGia::wherein('mahs',explode(',',$arrayidhs))->sum('giatritstd');
+                $thangs->counthoso = $tshs;
+                $thangs->sumgiadenghi = $giadenghi;
+                $thangs->sumgiathamdinh = $giathamdinh;
+                $thangs->sumkthamdinh = $giadenghi-$giathamdinh;
+                if($giadenghi>0 && $giathamdinh >0)
+                    $thangs->phantram = round($giathamdinh * 100/($giadenghi),1);
+            }
+            $arraymodel = $model->toarray();
+            $arrayquy = array_column($arraymodel,'quy');
+            $arrayquy = array_unique($arrayquy);
+            $arraynam = array_column($arraymodel,'nam');
+            $arraynam = array_unique($arraynam);
+
+            Excel::create('Bao cao 02', function($excel) use($model, $arrayquy,$arraynam,$donvi,$input){
+                $excel->sheet('Ket qua tham dinh gia', function($sheet) use($model, $arrayquy,$arraynam,$donvi,$input){
+                    $sheet->loadView('reports.bctkkhac.laocai.thamdinhgia.BC2')
+                        ->with('arrayquy',$arrayquy)
+                        ->with('arraynam',$arraynam)
+                        ->with('donvi',$donvi)
+                        ->with('dk',$input)
+                        ->with('model',$model)
+                        ->with('pageTitle','Ket qua tham dinh gia');
+                });
+            })->download('xlsx');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function BC3Excel(Request $request){
+        if (Session::has('admin')) {
+            $input = $request->all();
+
+            $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
+                ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                ->get();
+            foreach($model as $hs){
+                $giadenghi = CongBoGia::where('mahs',$hs->mahs)->sum('giadenghi');
+                $giathamdinh = CongBoGia::where('mahs',$hs->mahs)->sum('giatritstd');
+                $hs->sumgiadenghi = $giadenghi;
+                $hs->sumgiathamdinh = $giathamdinh;
+                $hs->sumkthamdinh = $giadenghi-$giathamdinh;
+                if($giadenghi>0 && $giathamdinh >0)
+                    $hs->phantram = round($giathamdinh * 100/($giadenghi),1);
+            }
+            $arraymodel = $model->toarray();
+            $arraythang = array_column($arraymodel,'thang');
+            $arraythang = array_unique($arraythang);
+            $arrayquy = array_column($arraymodel,'quy');
+            $arrayquy = array_unique($arrayquy);
+            $arraynam = array_column($arraymodel,'nam');
+            $arraynam = array_unique($arraynam);
+
+            Excel::create('Bao cao 03', function($excel) use($model,$arraythang,$arrayquy,$arraynam,$input){
+                $excel->sheet('Cong bo gia', function($sheet) use($model,$arraythang,$arrayquy,$arraynam,$input){
+                    $sheet->loadView('reports.bctkkhac.laocai.congbogia.BC3')
+                        ->with('arrayquy',$arrayquy)
+                        ->with('arraynam',$arraynam)
+                        ->with('arraythang',$arraythang)
+                        ->with('dk',$input)
+                        ->with('model',$model)
+                        ->with('pageTitle','Cong bo gia');
+                });
+            })->download('xlsx');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function BC4Excel(Request $request){
+        if (Session::has('admin')) {
+            $input = $request->all();
+
+            $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
+                ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
+                ->groupBy('thang')
+                ->get();
+            foreach($model as $thangs){
+                $idhss = HsCongBoGia::where('thang',$thangs->thang)
+                    ->get();
+                $tshs = count($idhss);
+                $arrayidhs = '';
+                foreach($idhss as $idhs){
+                    $arrayidhs = $arrayidhs. $idhs->mahs.',';
+                }
+                $giadenghi = CongBoGia::wherein('mahs',explode(',',$arrayidhs))->sum('giadenghi');
+                $giathamdinh = CongBoGia::wherein('mahs',explode(',',$arrayidhs))->sum('giatritstd');
+                $thangs->counths = $tshs;
+                $thangs->sumgiadenghi = $giadenghi;
+                $thangs->sumgiathamdinh =$giathamdinh;
+                $thangs->sumkthamdinh = $giadenghi-$giathamdinh;
+                if($giadenghi>0 && $giathamdinh >0)
+                    $thangs->phantram = round($giathamdinh * 100/($giadenghi),1);
+            }
+            $arraymodel = $model->toarray();
+            $arraythang = array_column($arraymodel,'thang');
+            $arraythang = array_unique($arraythang);
+            $arrayquy = array_column($arraymodel,'quy');
+            $arrayquy = array_unique($arrayquy);
+            $arraynam = array_column($arraymodel,'nam');
+            $arraynam = array_unique($arraynam);
+
+            Excel::create('Bao cao 04', function($excel) use($model,$arraythang,$arrayquy,$arraynam,$input){
+                $excel->sheet('Bao cao tong hop', function($sheet) use($model,$arraythang,$arrayquy,$arraynam,$input){
+                    $sheet->loadView('reports.bctkkhac.laocai.congbogia.BC4')
+                        ->with('arrayquy',$arrayquy)
+                        ->with('arraynam',$arraynam)
+                        ->with('arraythang',$arraythang)
+                        ->with('dk',$input)
+                        ->with('model',$model)
+                        ->with('pageTitle','Bao cao tong hop');
+                });
+            })->download('xlsx');
         }else
             return view('errors.notlogin');
     }
