@@ -64,7 +64,7 @@
                     <option value="LUAT" {{$pl == 'LUAT' ? 'selected' : ''}}>Luật</option>
                     <option value="ND" {{$pl == 'ND' ? 'selected' : ''}}>Nghị định</option>
                     <option value="TT" {{$pl == 'TT' ? 'selected' : ''}}>Thông tư</option>
-                    <option value="HD" {{$pl == 'HD' ? 'selected' : ''}}>Quyết định</option>
+                    <option value="HD" {{$pl == 'HD' ? 'selected' : ''}}>Hướng dẫn</option>
                 </select>
             </div>
         </div>
@@ -108,15 +108,17 @@
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td class="active">{{$tt->dvbanhanh}}</td>
-                                @if($tt->plttqd == 'TT')
                                 <td style="text-align: center">
-                                    Thông tư
+                                    @if($tt->plttqd == 'LUAT')
+                                        Luật
+                                    @elseif($tt->plttqd == 'ND')
+                                        Nghị định
+                                    @elseif($tt->plttqd == 'TT')
+                                        Thông tư
+                                    @else
+                                        Hướng dẫn
+                                    @endif
                                 </td>
-                                @else
-                                <td style="text-align: center">
-                                    Quyết định
-                                </td>
-                                @endif
                                 <td style="text-align: center">{{getDayVn($tt->ngaybh)}} || {{getDayVn($tt->ngayad)}}</td>
                                 <td class="success">{{$tt->tieude}}</td>
                                 <td>{{$tt->ghichu}}</td>

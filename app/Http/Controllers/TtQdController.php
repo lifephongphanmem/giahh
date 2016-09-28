@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class TtQdController extends Controller
@@ -85,6 +86,8 @@ class TtQdController extends Controller
             $model = TtQd::where('id',$input['iddelete'])
                 ->first();
             $nam = $model->nambh;
+            $path = public_path() . '/data/uploads/ttqd/'.$model->tailieu;
+            File::Delete($path);
             $model->delete();
             return redirect('thongtu-quyetdinh-tw/nam='.$nam.'&pl=all');
 
@@ -208,6 +211,8 @@ class TtQdController extends Controller
             $model = TtQd::where('id',$input['iddelete'])
                 ->first();
             $nam = $model->nambh;
+            $path = public_path() . '/data/uploads/ttqd/'.$model->tailieu;
+            File::Delete($path);
             $model->delete();
             return redirect('thongtu-quyetdinh-tinh/nam='.$nam.'&pl=all');
 
@@ -338,6 +343,8 @@ class TtQdController extends Controller
             $model = ThanhKiemTra::where('id',$input['iddelete'])
                 ->first();
             $nam = $model->nam;
+            $path = public_path() . '/data/uploads/thanhkiemtra/'.$model->tailieu;
+            File::Delete($path);
             $model->delete();
             return redirect('thanhkiemtra-vegia/nam='.$nam);
 
