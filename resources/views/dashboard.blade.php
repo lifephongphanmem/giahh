@@ -17,7 +17,27 @@
             </h3>
             <!-- END PAGE HEADER-->
             <!-- BEGIN DASHBOARD STATS -->
+
             <div class="row">
+                @if(canGeneral('hhdv','hhthitruong'))
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="dashboard-stat red-intense">
+                            <div class="visual">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="details">
+                                <div class="number"></div>
+                                <div class="desc">
+                                    Hàng hóa thị trường
+                                </div>
+                            </div>
+                            <a class="more" href="{{url('thongtin-giathitruong')}}">
+                                Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                @endif
+                @if(canGeneral('hhdv','hhdvtn'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat blue-madison">
                         <div class="visual">
@@ -34,6 +54,8 @@
                         </a>
                     </div>
                 </div>
+                @endif
+                @if(canGeneral('hhdv','hhxnk'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat red-intense">
                         <div class="visual">
@@ -50,6 +72,44 @@
                         </a>
                     </div>
                 </div>
+                @endif
+                @if(canGeneral('tsnn','tsnnnhadat'))
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="dashboard-stat purple-plum">
+                            <div class="visual">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="details">
+                                <div class="number"></div>
+                                <div class="desc">
+                                    Tài sản là nhà, đất
+                                </div>
+                            </div>
+                            <a class="more" href="{{url('taisan-nhadat/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                                Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                @endif
+                @if(canGeneral('tsnn','tsnnotokhac'))
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="dashboard-stat blue-madison">
+                            <div class="visual">
+                                <i class="fa fa-car"></i>
+                            </div>
+                            <div class="details">
+                                <div class="number"></div>
+                                <div class="desc">
+                                    Tài sản là ôtô, tài sản khác
+                                </div>
+                            </div>
+                            <a class="more" href="{{url('taisan-otokhac/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                                Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                @endif
+                @if(canGeneral('thamdinhgia','thamdinhgia'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat green-haze">
                         <div class="visual">
@@ -66,6 +126,8 @@
                         </a>
                     </div>
                 </div>
+                @endif
+                @if(canGeneral('congbogia','congbogia'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat purple-plum">
                         <div class="visual">
@@ -82,38 +144,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="dashboard-stat purple-plum">
-                        <div class="visual">
-                            <i class="fa fa-home"></i>
-                        </div>
-                        <div class="details">
-                            <div class="number"></div>
-                            <div class="desc">
-                                Tài sản là nhà, đất
-                            </div>
-                        </div>
-                        <a class="more" href="{{url('taisan-nhadat/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
-                            Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="dashboard-stat green-haze">
-                        <div class="visual">
-                            <i class="fa fa-car"></i>
-                        </div>
-                        <div class="details">
-                            <div class="number"></div>
-                            <div class="desc">
-                                Tài sản là ôtô, tài sản khác
-                            </div>
-                        </div>
-                        <a class="more" href="{{url('taisan-otokhac/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
-                            Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
-                        </a>
-                    </div>
-                </div>
+                @endif
+                @if(canGeneral('ttqd','ttqd'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat red-intense">
                         <div class="visual">
@@ -131,7 +163,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="dashboard-stat blue-madison">
+                    <div class="dashboard-stat purple-plum">
                         <div class="visual">
                             <i class="fa fa-file-word-o"></i>
                         </div>
@@ -146,6 +178,23 @@
                         </a>
                     </div>
                 </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue-madison">
+                        <div class="visual">
+                            <i class="fa fa-file-word-o"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number"></div>
+                            <div class="desc">
+                                Thanh kiểm tra về giá
+                            </div>
+                        </div>
+                        <a class="more" href="{{url('hanhkiemtra-vegia/nam='.getGeneralConfigs()['namhethong'])}}">
+                            Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+                @endif
             </div>
             <div class="clearfix">
             </div>

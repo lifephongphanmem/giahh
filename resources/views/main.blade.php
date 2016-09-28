@@ -278,7 +278,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                 </li>
                 @if(session('admin')->sadmin != 'sa')
-                @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk'))
+                @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk') || canGeneral('hhdv','hhthitruong'))
                 <li>
                     <a href="">
                         <i class="fa fa-laptop"></i>
