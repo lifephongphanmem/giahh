@@ -42,10 +42,15 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; font-size: 16px;">
-            <b>BÁO CÁO TỔNG HỢP CÔNG BỐ GIÁ VẬT LiỆU VÀ CÔNG BỐ GIÁ BỔ XUNG</b>
+            <b>BÁO CÁO TỔNG HỢP CÔNG BỐ GIÁ VẬT LIỆU VÀ CÔNG BỐ GIÁ BỔ XUNG</b>
             <br>
             <br>
             Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}
+            @if(session('admin')->level == 'T')
+                @if($donvi != 'all')
+                    <br>Đơn vị: {{$donvi->ten}}
+                @endif
+            @endif
         </td>
     </tr>
 
@@ -73,6 +78,7 @@
         <th>8</th>
         <th>9</th>
     </tr>
+    @if(count($model))
     @foreach($arraynam as $key=>$nam)
         <tr>
             <td colspan="2"></td>
@@ -89,17 +95,22 @@
                     <th>{{$key+1}}</th>
                     <th>{{'Tháng '. $ts->thang}}</th>
                     <th style="text-align: right">{{number_format($ts->counths)}}</th>
-                    <th style="text-align: right">{{number_format($ts->sumgiadenghi)}}</th>
-                    <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-                    <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
-                    <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-                    <th>{{number_format($ts->sumkthamdinh)}}</th>
+                    <th style="text-align: right">{{number_format($ts->giadenghi)}}</th>
+                    <th style="text-align: right">{{number_format($ts->giaththamdinh)}}</th>
+                    <th style="text-align: right">{{number_format($ts->giakththamdinh)}}</th>
+                    <th style="text-align: right">{{number_format($ts->giatritstd)}}</th>
+                    <th>{{number_format($ts->chenhlech)}}</th>
                     <th>{{$ts->phantram}}</th>
                 </tr>
                 @endif
             @endforeach
         @endforeach
     @endforeach
+    @else
+        <tr>
+            <th colspan="9">Không có hồ sơ công bố</th>
+        </tr>
+    @endif
 </table>
 </body>
 </html>

@@ -79,6 +79,7 @@
         <th>8</th>
         <th>9</th>
     </tr>
+    @if(count($model))
     @foreach($arraynam as $key=>$nam)
         <tr>
             <td colspan="2"></td>
@@ -97,17 +98,22 @@
                     <th>{{$key +1 }}</th>
                     <th>{{$ts->thang}}</th>
                     <th>{{number_format($ts->counthoso)}}</th>
-                    <th style="text-align: right">{{number_format($ts->sumgiadenghi)}}</th>
-                    <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-                    <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
-                    <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-                    <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
+                    <th style="text-align: right">{{number_format($ts->giadenghi)}}</th>
+                    <th style="text-align: right">{{number_format($ts->giaththamdinh)}}</th>
+                    <th style="text-align: right">{{number_format($ts->giakththamdinh)}}</th>
+                    <th style="text-align: right">{{number_format($ts->giatritstd)}}</th>
+                    <th style="text-align: right">{{number_format($ts->chenhlech)}}</th>
                     <th>{{number_format($ts->phantram)}}</th>
                 </tr>
                 @endif
             @endforeach
         @endforeach
     @endforeach
+    @else
+        <tr>
+            <th colspan="9">Không có hồ sơ thẩm định</th>
+        </tr>
+    @endif
 </table>
 </body>
 </html>

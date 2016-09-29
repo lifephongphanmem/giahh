@@ -42,10 +42,15 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; font-size: 16px;">
-            <b>BÁO CÁO CHI TIẾT CÔNG BỐ GIÁ VẬT LiỆU VÀ CÔNG BỐ GIÁ BỔ XUNG</b>
+            <b>BÁO CÁO CHI TIẾT CÔNG BỐ GIÁ VẬT LIỆU VÀ CÔNG BỐ GIÁ BỔ XUNG</b>
             <br>
             <br>
             Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}
+            @if(session('admin')->level == 'T')
+                @if($donvi != 'all')
+                    <br>Đơn vị: {{$donvi->ten}}
+                @endif
+            @endif
         </td>
     </tr>
 
@@ -75,6 +80,7 @@
         <th>9</th>
         <th>10</th>
     </tr>
+    @if(count($model))
     @foreach($arraynam as $key=>$nam)
         <tr>
             <td></td>
@@ -98,10 +104,10 @@
                         <th style="text-align: left">{{$ts->donvidn}}</th>
                         <th>{{$ts->sotbkl}}</th>
                         <th style="text-align: right">{{number_format($ts->sumgiadenghi)}}</th>
-                        <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-                        <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
+                        <th style="text-align: right">{{number_format($ts->sumththamdinh)}}</th>
+                        <th style="text-align: right">{{number_format($ts->sumkththamdinh)}}</th>
                         <th>{{number_format($ts->sumgiathamdinh)}}</th>
-                        <th>{{number_format($ts->sumkthamdinh)}}</th>
+                        <th>{{number_format($ts->sumchenhlech)}}</th>
                         <th>{{$ts->phantram}}</th>
                     </tr>
                     @endif
@@ -109,6 +115,11 @@
             @endforeach
         @endforeach
     @endforeach
+    @else
+        <tr>
+            <th colspan="10">Không có hồ sơ công bố</th>
+        </tr>
+    @endif
 </table>
 </body>
 </html>

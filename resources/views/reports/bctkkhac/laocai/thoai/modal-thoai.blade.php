@@ -192,20 +192,20 @@
             <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Từ ngày</b></label>
-                        <div class="col-md-6 ">
+                        <label class="col-md-3 control-label"><b>Từ ngày</b></label>
+                        <div class="col-md-9 ">
                             <input type="date" id="ngaytu" name="ngaytu" class="form-control" value="2016-01-01">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Đến ngày</b></label>
-                        <div class="col-md-6 ">
+                        <label class="col-md-3 control-label"><b>Đến ngày</b></label>
+                        <div class="col-md-9 ">
                             <input type="date" id="ngayden" name="ngayden" class="form-control" value="2016-12-31">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Nguồn vốn</b></label>
-                        <div class="col-md-6 ">
+                        <label class="col-md-3 control-label"><b>Nguồn vốn</b></label>
+                        <div class="col-md-9 ">
                             <select name="nguonvon" id="nguonvon" class="form-control">
                                 <option value="Cả hai">Cả hai</option>
                                 <option value="Thường xuyên">Thường xuyên</option>
@@ -213,6 +213,19 @@
                             </select>
                         </div>
                     </div>
+                    @if(session('admin')->level == 'T')
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><b>Đơn vị</b></label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="donvi" id="donvi">
+                                    <option value="all">--Tất cả các đơn vị--</option>
+                                    @foreach($modeldv as $dv)
+                                        <option value="{{$dv->ma}}">{{$dv->ten}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
 
@@ -240,20 +253,20 @@
             <div class="modal-body">
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Từ ngày</b></label>
-                        <div class="col-md-6 ">
+                        <label class="col-md-3 control-label"><b>Từ ngày</b></label>
+                        <div class="col-md-9">
                             <input type="date" id="ngaytu" name="ngaytu" class="form-control" value="2016-01-01">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Đến ngày</b></label>
-                        <div class="col-md-6 ">
+                        <label class="col-md-3 control-label"><b>Đến ngày</b></label>
+                        <div class="col-md-9">
                             <input type="date" id="ngayden" name="ngayden" class="form-control" value="2016-12-31">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Nguồn vốn</b></label>
-                        <div class="col-md-6 ">
+                        <label class="col-md-3 control-label"><b>Nguồn vốn</b></label>
+                        <div class="col-md-9">
                             <select name="nguonvon" id="nguonvon" class="form-control">
                                 <option value="Cả hai">Cả hai</option>
                                 <option value="Thường xuyên">Thường xuyên</option>
@@ -261,6 +274,19 @@
                             </select>
                         </div>
                     </div>
+                    @if(session('admin')->level == 'T')
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"><b>Đơn vị</b></label>
+                            <div class="col-md-9">
+                                <select class="form-control" name="donvi" id="donvi">
+                                    <option value="all">--Tất cả các đơn vị--</option>
+                                    @foreach($modeldv as $dv)
+                                        <option value="{{$dv->ma}}">{{$dv->ten}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="modal-footer">
