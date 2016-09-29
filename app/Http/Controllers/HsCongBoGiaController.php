@@ -164,7 +164,7 @@ class HsCongBoGiaController extends Controller
             return view('manage.congbogia.show')
                 ->with('model',$model)
                 ->with('modelts',$modelts)
-                ->with('pageTitle','Thông tin hồ sơ thẩm định');
+                ->with('pageTitle','Thông tin hồ sơ công bố');
         }else
             return view('errors.notlogin');
     }
