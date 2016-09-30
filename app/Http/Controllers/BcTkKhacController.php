@@ -108,12 +108,14 @@ class BcTkKhacController extends Controller
                 if($input['donvi'] == 'all'){
                     $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                         ->where('nguonvon',$input['nguonvon'])
+                        ->where('trangthai', 'Hoàn tất')
                         ->groupBy('thang')
                         ->get();
                     $donvi = 'all';
                 }else{
                     $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                         ->where('mahuyen',$input['donvi'])
+                        ->where('trangthai', 'Hoàn tất')
                         ->where('nguonvon',$input['nguonvon'])
                         ->groupBy('thang')
                         ->get();
@@ -123,6 +125,7 @@ class BcTkKhacController extends Controller
             }else{
                 $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                     ->where('mahuyen',session('admin')->mahuyen)
+                    ->where('trangthai', 'Hoàn tất')
                     ->where('nguonvon',$input['nguonvon'])
                     ->groupBy('thang')
                     ->get();
@@ -132,6 +135,7 @@ class BcTkKhacController extends Controller
 
             foreach($model as $thangs){
                 $idhss = HsThamDinhGia::where('thang',$thangs->thang)
+                    ->where('trangthai', 'Hoàn tất')
                     ->get();
                 $tshs = count($idhss);
                 $arrayidhs = '';
@@ -185,12 +189,14 @@ class BcTkKhacController extends Controller
                 if($input['donvi'] == 'all'){
                     $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
                         ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                        ->where('trangthai', 'Hoàn tất')
                         ->get();
                     $donvi = 'all';
                 }else{
                     $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
                         ->where('mahuyen',$input['donvi'])
                         ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                        ->where('trangthai', 'Hoàn tất')
                         ->get();
                     $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
                 }
@@ -198,6 +204,7 @@ class BcTkKhacController extends Controller
             }else{
                 $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
                     ->where('mahuyen',session('admin')->mahuyen)
+                    ->where('trangthai', 'Hoàn tất')
                     ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
                     ->get();
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
@@ -247,6 +254,7 @@ class BcTkKhacController extends Controller
                 if($input['donvi'] == 'all'){
                     $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
                         ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
+                        ->where('trangthai', 'Hoàn tất')
                         ->groupBy('thang')
                         ->get();
                     $donvi = 'all';
@@ -255,6 +263,7 @@ class BcTkKhacController extends Controller
                     $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
                         ->where('mahuyen',$input['donvi'])
                         ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
+                        ->where('trangthai', 'Hoàn tất')
                         ->groupBy('thang')
                         ->get();
                     $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
@@ -264,6 +273,7 @@ class BcTkKhacController extends Controller
                 $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
                     ->where('mahuyen',session('admin')->mahuyen)
                     ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
+                    ->where('trangthai', 'Hoàn tất')
                     ->groupBy('thang')
                     ->get();
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
@@ -272,6 +282,7 @@ class BcTkKhacController extends Controller
 
             foreach($model as $thangs){
                 $idhss = HsCongBoGia::where('thang',$thangs->thang)
+                    ->where('trangthai', 'Hoàn tất')
                     ->get();
                 $tshs = count($idhss);
                 $arrayidhs = '';
@@ -402,12 +413,14 @@ class BcTkKhacController extends Controller
                 if($input['donvi'] == 'all'){
                     $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                         ->where('nguonvon',$input['nguonvon'])
+                        ->where('trangthai', 'Hoàn tất')
                         ->groupBy('thang')
                         ->get();
                     $donvi = 'all';
                 }else{
                     $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                         ->where('mahuyen',$input['donvi'])
+                        ->where('trangthai', 'Hoàn tất')
                         ->where('nguonvon',$input['nguonvon'])
                         ->groupBy('thang')
                         ->get();
@@ -417,6 +430,7 @@ class BcTkKhacController extends Controller
             }else{
                 $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                     ->where('mahuyen',session('admin')->mahuyen)
+                    ->where('trangthai', 'Hoàn tất')
                     ->where('nguonvon',$input['nguonvon'])
                     ->groupBy('thang')
                     ->get();
@@ -426,6 +440,7 @@ class BcTkKhacController extends Controller
 
             foreach($model as $thangs){
                 $idhss = HsThamDinhGia::where('thang',$thangs->thang)
+                    ->where('trangthai', 'Hoàn tất')
                     ->get();
                 $tshs = count($idhss);
                 $arrayidhs = '';
@@ -482,12 +497,14 @@ class BcTkKhacController extends Controller
                 if($input['donvi'] == 'all'){
                     $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
                         ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                        ->where('trangthai', 'Hoàn tất')
                         ->get();
                     $donvi = 'all';
                 }else{
                     $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
                         ->where('mahuyen',$input['donvi'])
                         ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                        ->where('trangthai', 'Hoàn tất')
                         ->get();
                     $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
                 }
@@ -496,6 +513,7 @@ class BcTkKhacController extends Controller
                 $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
                     ->where('mahuyen',session('admin')->mahuyen)
                     ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                    ->where('trangthai', 'Hoàn tất')
                     ->get();
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
             }
@@ -546,6 +564,7 @@ class BcTkKhacController extends Controller
             if(isset($input['donvi'])){
                 if($input['donvi'] == 'all'){
                     $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
+                        ->where('trangthai', 'Hoàn tất')
                         ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
                         ->groupBy('thang')
                         ->get();
@@ -553,6 +572,7 @@ class BcTkKhacController extends Controller
                 }else{
 
                     $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
+                        ->where('trangthai', 'Hoàn tất')
                         ->where('mahuyen',$input['donvi'])
                         ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
                         ->groupBy('thang')
@@ -562,6 +582,7 @@ class BcTkKhacController extends Controller
 
             }else{
                 $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
+                    ->where('trangthai', 'Hoàn tất')
                     ->where('mahuyen',session('admin')->mahuyen)
                     ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
                     ->groupBy('thang')
@@ -572,6 +593,7 @@ class BcTkKhacController extends Controller
 
             foreach($model as $thangs){
                 $idhss = HsCongBoGia::where('thang',$thangs->thang)
+                    ->where('trangthai', 'Hoàn tất')
                     ->get();
                 $tshs = count($idhss);
                 $arrayidhs = '';
