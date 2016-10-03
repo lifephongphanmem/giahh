@@ -312,7 +312,7 @@
                         </div>
                         <!--/span-->
                     </div>
-
+                    {!! Form::close() !!}
                     <!--/row-->
                     <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
                     <div class="row">
@@ -467,7 +467,7 @@
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
             </div>
         </div>
-        {!! Form::close() !!}
+
     </div>
 
     <!-- BEGIN DASHBOARD STATS -->

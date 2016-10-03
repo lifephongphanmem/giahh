@@ -5768,9 +5768,10 @@ Custom tables
 }
 
 .table .btn {
-  margin-top: 0px;
+  margin-top: 2px;
   margin-left: 0px;
   margin-right: 5px;
+  margin-bottom: 2px;
 }
 
 .table thead tr th {

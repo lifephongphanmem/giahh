@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\HsThamDinhGia;
 use App\ThamDinhGia;
 use App\ThamDinhGiaDefault;
+use App\ThamDinhGiaH;
 use App\TtPhongBan;
 use Illuminate\Http\Request;
 
@@ -122,6 +123,13 @@ class HsThamDinhGiaController extends Controller
             $model->mahs = $mahs;
             if($model->save()){
                 $this->createts($mahs);
+                $modelh = new ThamDinhGiaH();
+                $modelh->thaotac = 'Tạo mới hồ sơ thẩm định';
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->mahs = $mahs;
+                $model->datanew = json_encode($insert);
+                $modelh->save();
             }
 
             return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y'));
@@ -206,10 +214,17 @@ class HsThamDinhGiaController extends Controller
     {
         if(Session::has('admin')){
             $update = $request->all();
+
             $date = date_create($update['thoidiem']);
             $thang = date_format($date,'m');
 
             $model = HsThamDinhGia::findOrFail($id);
+            /* add history*/
+            $arraymodel = $model->toarray();
+            $arrayold = array_intersect_key($arraymodel,$update);
+            $arraynew = array_intersect_key($update,$arrayold);
+
+
             $model->diadiem = $update['diadiem'];
             $model->thoidiem = $update['thoidiem'];
             $model->ppthamdinh = $update['ppthamdinh'];
@@ -229,12 +244,39 @@ class HsThamDinhGiaController extends Controller
                 $model->quy = 4;
             $model->nguonvon = $update['nguonvon'];
             $model->nam = date_format($date,'Y');
-            $model->save();
+            if($model->save()) {
+                $this->updateh($arrayold, $arraynew, $model->mahs);
+            }
 
             return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
+    }
+
+    public function updateh($dataold,$datanew,$mahs){
+        $arrysosanh = array_diff_assoc($datanew,$dataold);
+        //dd(empty($arrysosanh));
+        if(!empty($arrysosanh)) {
+            $thaydoi = '';
+            foreach ($arrysosanh as $key => $value) {
+                foreach ($dataold as $keyold => $valueold) {
+                    if ($key == $keyold) {
+                        $thaydoi = $thaydoi . $key . ':' . $valueold . '=>' . $value . '; ';
+                    }
+                }
+            }
+
+            $model = new ThamDinhGiaH();
+            $model->thaotac = 'Cập nhật, Thay đổi chi tiết hồ sơ thẩm định';
+            $model->dataold = json_encode($dataold);
+            $model->datanew = json_encode($datanew);
+            $model->thaydoi = $thaydoi;
+            $model->name = session('admin')->name;
+            $model->username = session('admin')->username;
+            $model->mahs = $mahs;
+            $model->save();
+        }
     }
 
     public function destroy(Request $request)
@@ -246,6 +288,8 @@ class HsThamDinhGiaController extends Controller
             $nam =$model->nam;
             if($model->delete()){
                 $modelts = ThamDinhGia::where('mahs',$model->mahs)
+                    ->delete();
+                $modelh = ThamDinhGiaH::where('mahs',$model->mahs)
                     ->delete();
             }
             return redirect('hoso-thamdinhgia/nam='.$nam);
@@ -262,7 +306,14 @@ class HsThamDinhGiaController extends Controller
             //dd($model);
             $nam =$model->nam;
             $model->trangthai = 'Hoàn tất';
-            $model->save();
+            if($model->save()){
+                $modelh = new ThamDinhGiaH();
+                $modelh->mahs = $model->mahs;
+                $modelh->thaotac = 'Hoàn tất hồ sơ';
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->save();
+            }
             return redirect('hoso-thamdinhgia/nam='.$nam);
         }else
             return view('errors.notlogin');
@@ -274,8 +325,26 @@ class HsThamDinhGiaController extends Controller
             //dd($model);
             $nam =$model->nam;
             $model->trangthai = 'Đang làm';
-            $model->save();
+            if($model->save()){
+                $modelh = new ThamDinhGiaH();
+                $modelh->mahs = $model->mahs;
+                $modelh->thaotac = 'Hủy hoàn tất hồ sơ';
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->save();
+            }
             return redirect('thongtin-thamdinhgia/nam='.$nam.'&pb=all');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function history($mahs){
+        if(Session::has('admin')){
+            $model = ThamDinhGiaH::where('mahs',$mahs)
+                ->get();
+            return view('manage.thamdinhgia.history.index')
+                ->with('model',$model)
+                ->with('pageTitle','Thông tin lịch sử hồ sơ thẩm định giá');
         }else
             return view('errors.notlogin');
     }

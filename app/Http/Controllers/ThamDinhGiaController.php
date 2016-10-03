@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\HsThamDinhGia;
 use App\ThamDinhGia;
 use App\ThamDinhGiaDefault;
+use App\ThamDinhGiaH;
 use App\TtPhongBan;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
@@ -66,7 +67,16 @@ class ThamDinhGiaController extends Controller
             }
             $modelts->gc = $inputs['gc'];
             $modelts->mahs = $inputs['mahs'];
-            $modelts->save();
+            if($modelts->save()){
+                $modelh = new ThamDinhGiaH();
+                $modelh->thaotac = 'Thêm mới thông tin tài sản thẩm định';
+                $modelh->datanew = json_encode($inputs);
+                //$modelh->thaydoi = json_encode($inputs);
+                $modelh->mahs = $inputs['mahs'];
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->save();
+            }
 
             $model = ThamDinhGia::where('mahs',$inputs['mahs'])
                 ->get();
@@ -263,6 +273,11 @@ class ThamDinhGiaController extends Controller
 
             $modelupdate = ThamDinhGia::where('id',$inputs['id'])
                 ->first();
+
+            $arraymodel = $modelupdate->toarray();
+            $arrayold = array_intersect_key($arraymodel,$inputs);
+            $arraynew = array_intersect_key($inputs,$arrayold);
+
             $modelupdate->tents = $inputs['tents'];
             $modelupdate->dacdiempl = $inputs['dacdiempl'];
             $modelupdate->thongsokt  =$inputs['thongsokt'];
@@ -281,7 +296,14 @@ class ThamDinhGiaController extends Controller
                 $modelupdate->giaththamdinh = $inputs['giadenghi'];
             }
             $modelupdate->gc = $inputs['gc'];
-            $modelupdate->save();
+
+
+
+            if($modelupdate->save()) {
+                //add history
+                $this->updatehis($arrayold,$arraynew,$inputs['mahs']);
+
+            }
 
             $model = ThamDinhGia::where('mahs',$inputs['mahs'])
                 ->get();
@@ -336,6 +358,31 @@ class ThamDinhGiaController extends Controller
         die(json_encode($result));
     }
 
+    public function updatehis($dataold,$datanew,$mahs){
+        $arrysosanh = array_diff_assoc($datanew,$dataold);
+
+        //dd($dataold);
+        if(!empty($arrysosanh)) {
+            $thaydoi = '' ;
+            foreach ($arrysosanh as $key => $value) {
+                foreach ($dataold as $keyold => $valueold) {
+                    if ($key == $keyold) {
+                        $thaydoi = $thaydoi . $key . ':' . $valueold . '=>' . $value . '; ';
+                    }
+                }
+            }
+            $model = new ThamDinhGiaH();
+            $model->thaotac = 'Cập nhật, Thay đổi chi tiết hồ sơ thẩm định - Tên tài sản: '.$dataold['tents'].'- '.$dataold['thongsokt'];
+            $model->dataold = json_encode($dataold);
+            $model->datanew = json_encode($datanew);
+            $model->thaydoi = $thaydoi;
+            $model->name = session('admin')->name;
+            $model->username = session('admin')->username;
+            $model->mahs = $mahs;
+            $model->save();
+        }
+    }
+
     public function destroy(Request $request)
     {
         $result = array(
@@ -356,7 +403,16 @@ class ThamDinhGiaController extends Controller
             $modeldel = ThamDinhGia::where('id',$inputs['id'])
                 ->first();
             $mahs = $modeldel->mahs;
-            $modeldel->delete();
+            $arraymodeldel = $modeldel->toarray();
+            if($modeldel->delete()){
+                $modelh = new ThamDinhGiaH();
+                $modelh->thaotac = 'Xoá thông tin tài sản thẩm định';
+                //$modelh->thaydoi = json_encode($arraymodeldel);
+                $modelh->mahs = $mahs;
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->save();
+            }
 
             $model = ThamDinhGia::where('mahs',$mahs)
                 ->get();
