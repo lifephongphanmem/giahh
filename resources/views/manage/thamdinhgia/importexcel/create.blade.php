@@ -44,7 +44,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Đặc điểm pháp lý<span class="require">*</span></label>
-                                        {!!Form::text('dacdiempl', 'C', array('id' => 'dacdiempl','class' => 'form-control'))!!}
+                                        {!!Form::text('dacdiempl', 'C', array('id' => 'dacdiempl','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -60,7 +60,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Nguồn gốc</label>
-                                        {!!Form::text('nguongoc', 'D', array('id' => 'nguongoc','class' => 'form-control','required' => 'required'))!!}
+                                        {!!Form::text('nguongoc', 'D', array('id' => 'nguongoc','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -69,14 +69,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Đơn vị tính</label>
-                                        {!!Form::text('dvt', 'E', array('id' => 'dvt','class' => 'form-control','required' => 'required'))!!}
+                                        {!!Form::text('dvt', 'E', array('id' => 'dvt','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Số lượng<span class="require">*</span></label>
-                                        {!!Form::text('sl', 'F', array('id' => 'sl','class' => 'form-control','required' => 'required'))!!}
+                                        {!!Form::text('sl', 'F', array('id' => 'sl','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -85,14 +85,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Nguyên giá đề nghị<span class="require">*</span></label>
-                                        {!!Form::text('nguyengiadenghi', 'G', array('id' => 'nguyengiadenghi','class' => 'form-control','required' => 'required'))!!}
+                                        {!!Form::text('nguyengiadenghi', 'G', array('id' => 'nguyengiadenghi','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Giá đề nghị<span class="require">*</span></label>
-                                        {!!Form::text('giadenghi', 'H', array('id' => 'giadenghi','class' => 'form-control','required' => 'required'))!!}
+                                        {!!Form::text('giadenghi', 'H', array('id' => 'giadenghi','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -101,14 +101,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Nguyên giá thẩm định<span class="require">*</span></label>
-                                        {!!Form::text('nguyengiathamdinh', 'I', array('id' => 'nguyengiathamdinh','class' => 'form-control','required' => 'required'))!!}
+                                        {!!Form::text('nguyengiathamdinh', 'I', array('id' => 'nguyengiathamdinh','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Giá thẩm định<span class="require">*</span></label>
-                                        {!!Form::text('giatritstd', 'J', array('id' => 'giatritstd','class' => 'form-control','required' => 'required'))!!}
+                                        {!!Form::text('giatritstd', 'J', array('id' => 'giatritstd','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -117,14 +117,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Nhận từ dòng<span class="require">*</span></label>
-                                        {!!Form::text('tudong', '7', array('id' => 'tudong','class' => 'form-control','data-mask'=>'fdecimal'))!!}
+                                        {!!Form::text('tudong', '7', array('id' => 'tudong','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Số lượng tài sản<span class="require">*</span></label>
-                                        {!!Form::text('sodong', '1000', array('id' => 'sodong','class' => 'form-control','data-mask'=>'fdecimal'))!!}
+                                        {!!Form::text('sodong', '1000', array('id' => 'sodong','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -135,7 +135,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">File thông tin<span class="require">*</span></label>
-                                        <input name="fexcel" type="file">
+                                        <input name="fexcel" class="required" type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -146,8 +146,6 @@
                                 </div>
                                 <!--/span-->
                             </div>
-
-
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-plus"></i> Import</button>
@@ -163,17 +161,15 @@
     </div>
     <script type="text/javascript">
         function validateForm(){
-
-            var validator = $("#import_thamdinhgia1").validate({
+            var validator = $("#import_thamdinhgia").validate({
                 rules: {
-                    ten :"required",
+                    fexcel :"required",
                     diachi :"required",
                     username :"required",
                     password :"required"
-
                 },
                 messages: {
-                    ten :"Chưa nhập dữ liệu",
+                    fexcel :"Chưa chọn file dữ liệu",
                     diachi :"Chưa nhập dữ liệu",
                     username :"Chưa nhập dữ liệu",
                     password :"Chưa nhập dữ liệu"
