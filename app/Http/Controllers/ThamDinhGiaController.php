@@ -654,6 +654,14 @@ class ThamDinhGiaController extends Controller
             if($model->save()){
                 $m_ts=ThamDinhGiaDefault::select('tents','dacdiempl','thongsokt','nguongoc','dvt','sl','giadenghi','giatritstd','giakththamdinh','giaththamdinh','nguyengiadenghi','nguyengiathamdinh',DB::raw($mahs.' as mahs'))->where('mahuyen',session('admin')->mahuyen)->get()->toarray();
                 ThamDinhGia::insert($m_ts);
+
+                $modelh = new ThamDinhGiaH();
+                $modelh->thaotac = 'Import hồ sơ thẩm định';
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->mahs = $mahs;
+                $model->datanew = json_encode($insert);
+                $modelh->save();
             }
             return redirect('thongtin-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all');
         }else{return view('errors.notlogin');}
