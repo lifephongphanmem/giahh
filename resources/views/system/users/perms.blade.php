@@ -146,6 +146,75 @@
                                 </table>
                             </div>
                             @endif
+                            @if(canGeneral('hhdv','kkgtw'))
+                                <div class="col-md-3">
+                                    <h4 style="text-align: center;color: #0000ff  ">Kê khai giá trung ương</h4>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="action">
+                                        <tr>
+                                            <th class="table-checkbox" width="5%">
+                                                <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                            </th>
+                                            <th>Chức năng</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->kkgtw->index) && $permission->kkgtw->index == 1) ? 'checked' : '' }} value="1" name="roles[kkgtw][index]"/></td>
+                                            <td>Xem</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->kkgtw->create) && $permission->kkgtw->create == 1) ? 'checked' : '' }} value="1" name="roles[kkgtw][create]"/></td>
+                                            <td>Thêm mới</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->kkgtw->edit) && $permission->kkgtw->edit == 1) ? 'checked' : '' }} value="1" name="roles[kkgtw][edit]"/></td>
+                                            <td>Chỉnh sửa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->kkgtw->delete) && $permission->kkgtw->delete == 1) ? 'checked' : '' }} value="1" name="roles[kkgtw][delete]"/></td>
+                                            <td>Xóa</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+                            @if(canGeneral('hhdv','kkgdp'))
+                                <div class="col-md-3">
+                                    <h4 style="text-align: center;color: #0000ff  ">Kê khai giá địa phương</h4>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="action">
+                                        <tr>
+                                            <th class="table-checkbox" width="5%">
+                                                <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                            </th>
+                                            <th>Chức năng</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->kkgdp->index) && $permission->kkgdp->index == 1) ? 'checked' : '' }} value="1" name="roles[kkgdp][index]"/></td>
+                                            <td>Xem</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->kkgdp->create) && $permission->kkgdp->create == 1) ? 'checked' : '' }} value="1" name="roles[kkgdp][create]"/></td>
+                                            <td>Thêm mới</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->kkgdp->edit) && $permission->kkgdp->edit == 1) ? 'checked' : '' }} value="1" name="roles[kkgdp][edit]"/></td>
+                                            <td>Chỉnh sửa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->kkgdp->delete) && $permission->kkgdp->delete == 1) ? 'checked' : '' }} value="1" name="roles[kkgdp][delete]"/></td>
+                                            <td>Xóa</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+
                                 <!--Chưa làm-->
                             @if(canGeneral('tsnn','tsnnnhadat'))
                                 <div class="col-md-3">

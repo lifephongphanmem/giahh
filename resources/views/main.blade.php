@@ -278,7 +278,8 @@ License: You must have a valid license purchased only from themeforest(the above
                     </a>
                 </li>
                 @if(session('admin')->sadmin != 'sa')
-                @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk') || canGeneral('hhdv','hhthitruong'))
+                @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk') || canGeneral('hhdv','hhthitruong')
+                    || canGeneral('hhdv','kkgtw') || canGeneral('hhdv','kkgdp'))
                 <li>
                     <a href="">
                         <i class="fa fa-laptop"></i>
@@ -338,6 +339,48 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </ul>
                                 </li>
                             @endif
+                        @endif
+                        @if(canGeneral('hhdv','kkgtw'))
+                        <li>
+                            <a href="">Kê khai giá TW<span class="arrow"></span> </a>
+                            <ul class="sub-menu">
+                                @if(can('kkgtw','create'))
+                                <li>
+                                    <a href="">Kê khai giá</a>
+                                </li>
+                                @endif
+                                @if(can('kkgtw','index'))
+                                <li>
+                                    <a href="">Thông tin kê khai giá</a>
+                                </li>
+                                @endif
+                                <li>
+                                    <a href="">Tìm kiếm thông tin kê khai giá</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        @endif
+                        @if(canGeneral('hhdv','kkgdp'))
+                        <li>
+                            <a href="">Kê khai giá địa phương<span class="arrow"></span> </a>
+                            <ul class="sub-menu">
+                                @if(can('kkgdp','create'))
+                                <li>
+                                    <a href="">Kê khai giá</a>
+                                </li>
+                                @endif
+                                @if(can('kkgdp','index'))
+                                <li>
+                                    <a href="">Thông tin kê khai giá</a>
+                                </li>
+                                @endif
+                                <li>
+                                    <a href="">Tìm kiếm thông tin kê khai giá</a>
+                                </li>
+
+                            </ul>
+                        </li>
                         @endif
                     </ul>
                 </li>
@@ -477,7 +520,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="arrow "></span>
                     </a>
                     <ul class="sub-menu">
-                        @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk' || canGeneral('hhdv','hhthitruong')))
+                        @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk') || canGeneral('hhdv','hhthitruong')
+                            || canGeneral('hhdv','kkgtw') || canGeneral('hhdv','kkgdp'))
                         <li>
                             <a href="">Giá hàng hóa <span class="arrow"></span> </a>
                             <ul class="sub-menu">

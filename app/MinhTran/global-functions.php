@@ -21,6 +21,18 @@ function getPermissionDefault($level) {
             'edit' => 0,
             'delete' => 0
         ),
+        'kkgtw' => array(
+            'index' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
+        ),
+        'kkgdp' => array(
+            'index' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
+        ),
         'tsnnnhadat' => array(
             'index' => 1,
             'create' => 0,
@@ -73,6 +85,18 @@ function getPermissionDefault($level) {
             'edit' => 1,
             'delete' => 1
         ),
+        'kkgtw' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
+        'kkgdp' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1
+        ),
         'tsnnnhadat' => array(
             'index' => 1,
             'create' => 1,
@@ -120,6 +144,18 @@ function getPermissionDefault($level) {
             'delete' => 0
         ),
         'hhxnk' => array(
+            'index' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
+        ),
+        'kkgtw' => array(
+            'index' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0
+        ),
+        'kkgdp' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,

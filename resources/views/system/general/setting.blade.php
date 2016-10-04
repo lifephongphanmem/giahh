@@ -65,6 +65,14 @@
                                             <td><input type="checkbox" {{ (isset($setting->hhdv->hhxnk) && $setting->hhdv->hhxnk == 1) ? 'checked' : '' }} value="1" name="roles[hhdv][hhxnk]"/></td>
                                             <td>Hàng hóa xuất nhập khẩu</td>
                                         </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($setting->hhdv->kkgtw) && $setting->hhdv->kkgtw == 1) ? 'checked' : '' }} value="1" name="roles[hhdv][kkgtw]"/></td>
+                                            <td>Kê khai giá trung ương</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($setting->hhdv->kkgdp) && $setting->hhdv->kkgdp == 1) ? 'checked' : '' }} value="1" name="roles[hhdv][kkgdp]"/></td>
+                                            <td>Kê khai giá địa phương</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
