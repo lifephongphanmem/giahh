@@ -98,6 +98,14 @@ Route::post('dmhanghoa-xuatnhapkhau/delete','DmHhXnkController@destroy');
     //End hàng hóa xuất nhập khẩu
 
 //End Thông tin hàng hóa
+    //Danh mục loại xe thuế trước bạ
+Route::get('dmloaixe-thuetruocba','DmXeThueTbController@dmloaixe');
+Route::get('dmloaixe-thuetruocba/maloai={maloai}','DmXeThueTbController@index');
+Route::get('dmloaixe-thuetruocba/maloai={maloai}/create','DmXeThueTbController@create');
+Route::post('dmloaixe-thuetruocba','DmXeThueTbController@store');
+Route::get('dmloaixe-thuetruocba/{id}/edit','DmXeThueTbController@edit');
+Route::patch('dmloaixe-thuetruocba/{id}','DmXeThueTbController@update');
+Route::post('dmloaixe-thuetruocba/delete','DmXeThueTbController@destroy');
 
 
 
@@ -335,6 +343,30 @@ Route::get('tttsotokhac/delete','TtTsOtoKhacController@destroy');
 
     //End Tài sản ôtô khác
 //End Tài sản nhà nước
+
+//Thuế trước bạ
+Route::get('gia-thuetruocba/nam={nam}','GiaThueTbController@index');
+Route::get('gia-thuetruocba/create','GiaThueTbController@create');
+Route::get('gia-thuetruocba-ct/create','GiaThueTbController@createds');
+Route::get('gia-thuetruocba-ct/edit','GiaThueTbController@editctds');
+Route::get('gia-thuetruocba-ct/update','GiaThueTbController@updatectds');
+Route::post('gia-thuetruocba','GiaThueTbController@store');
+Route::get('gia-thuetruocba/{id}/edit','GiaThueTbController@edit');
+Route::get('gia-thuetruocba-ct/taomoi','GiaThueTbController@taomoids');
+Route::get('gia-thuetruocba-ct/chinhsua','GiaThueTbController@chinhsuads');
+Route::get('gia-thuetruocba-ct/capnhat','GiaThueTbController@capnhatds');
+Route::patch('gia-thuetruocba/{id}','GiaThueTbController@update');
+
+Route::get('gia-thuetruocba/{id}/show','GiaThueTbController@show');
+Route::post('gia-thuetruocba/delete','GiaThueTbController@destroy');
+Route::post('gia-thuetruocba/hoantat','GiaThueTbController@hoantat');
+
+Route::get('thongtin-gia-thuetruocba/nam={nam}&pb={pb}','GiaThueTbController@indexthongtin');
+Route::get('thongtin-gia-thuetruocba/{id}/show','GiaThueTbController@showthongtin');
+
+Route::get('timkiem-thongtin-gia-thuetruocba','GiaThueTbController@search');
+Route::post('timkiem-thongtin-gia-thuetruocba','GiaThueTbController@viewsearch');
+//End Thuế trước bạ
 
 // </editor-fold>
 

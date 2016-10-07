@@ -407,6 +407,32 @@ License: You must have a valid license purchased only from themeforest(the above
                         </ul>
                     </li>
                 @endif
+                @if(canGeneral('gttruocba','gttruocba'))
+                <li>
+                    <a href="">
+                        <i class="fa fa-laptop"></i>
+                        <span class="title">Giá thuế trước bạ</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        @if(can('gttruocba','create'))
+                            <li>
+                                <a href="{{url('gia-thuetruocba/nam='.getGeneralConfigs()['namhethong'])}}">Giá thuế trước bạ</a>
+                            </li>
+                        @endif
+                        @if(can('gttruocba','index'))
+                            <li>
+                                <a href="{{url('thongtin-gia-thuetruocba/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin giá thuế trước bạ</a>
+                            </li>
+                        @endif
+                            <li>
+                                <a href="{{url('timkiem-thongtin-gia-thuetruocba')}}">
+                                    Tìm kiếm thông tin giá thuế trước bạ</a>
+                            </li>
+
+                    </ul>
+                </li>
+                @endif
                     <!--Thẩm định giá-->
                 @if(canGeneral('thamdinhgia','thamdinhgia'))
                 <li>
@@ -555,6 +581,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             </ul>
                         </li>
                         @endif
+                        @if(canGeneral('gttruocba','gttruocba'))
+                        <li><a href="{{url('dmloaixe-thuetruocba')}}">Danh mục thuế trước bạ</a> </li>
+                        @endif
+
                         <li><a href="{{url('phong-ban')}}">Thông tin phòng ban</a></li>
                         <li><a href="{{url('users/pl=quan-ly')}}"> Quản lý tài khoản</a></li>
 

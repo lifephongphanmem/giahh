@@ -7,43 +7,57 @@ function getPermissionDefault($level) {
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 1
         ),
         'hhdvtn' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 1
         ),
         'hhxnk' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 1
         ),
         'kkgtw' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 1
         ),
         'kkgdp' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 1
         ),
         'tsnnnhadat' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 1
         ),
         'tsnnotokhac' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 1
+        ),
+        'gttruocba' => array(
+            'index' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0,
+            'approve'=> 1
         ),
         'tdgia' => array(
             'index' => 1,
@@ -71,57 +85,71 @@ function getPermissionDefault($level) {
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
         ),
         'hhdvtn' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
         ),
         'hhxnk' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
         ),
         'kkgtw' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
         ),
         'kkgdp' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
         ),
         'tsnnnhadat' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
         ),
         'tsnnotokhac' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
-            'delete' => 1
+            'delete' => 1,
+            'approve'=> 1
+        ),
+        'gttruocba' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
         ),
         'tdgia' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
             'delete' => 1,
-            'approve'=> 1
+            'approve'=> 1,
         ),
         'congbogia' => array(
             'index' => 1,
             'create' => 1,
             'edit' => 1,
             'delete' => 1,
-            'approve'=> 1
+            'approve'=> 1,
         ),
         'ttqd' => array(
             'index' => 1,
@@ -135,43 +163,57 @@ function getPermissionDefault($level) {
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 0
         ),
         'hhdvtn' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 0
         ),
         'hhxnk' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 0
         ),
         'kkgtw' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 0
         ),
         'kkgdp' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 0
         ),
         'tsnnnhadat' => array(
             'index' => 0,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 0
         ),
         'tsnnotokhac' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
-            'delete' => 0
+            'delete' => 0,
+            'approve'=> 0
+        ),
+        'gttruocba' => array(
+            'index' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0,
+            'approve'=> 0
         ),
         'tdgia' => array(
             'index' => 1,

@@ -74,6 +74,10 @@
                                             <td><input type="checkbox" {{ (isset($permission->hhthitruong->delete) && $permission->hhthitruong->delete == 1) ? 'checked' : '' }} value="1" name="roles[hhthitruong][delete]"/></td>
                                             <td>Xóa</td>
                                         </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->hhthitruong->approve) && $permission->hhthitruong->approve == 1) ? 'checked' : '' }} value="1" name="roles[hhthitruong][approve]"/></td>
+                                            <td>Xét duyệt</td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -107,6 +111,10 @@
                                     <tr>
                                         <td><input type="checkbox" {{ (isset($permission->hhdvtn->delete) && $permission->hhdvtn->delete == 1) ? 'checked' : '' }} value="1" name="roles[hhdvtn][delete]"/></td>
                                         <td>Xóa</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->hhdvtn->approve) && $permission->hhdvtn->approve == 1) ? 'checked' : '' }} value="1" name="roles[hhdvtn][approve]"/></td>
+                                        <td>Xét duyệt</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -142,6 +150,10 @@
                                         <td><input type="checkbox" {{ (isset($permission->hhxnk->delete) && $permission->hhxnk->delete == 1) ? 'checked' : '' }} value="1" name="roles[hhxnk][delete]"/></td>
                                         <td>Xóa</td>
                                     </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($permission->hhxnk->approve) && $permission->hhxnk->approve == 1) ? 'checked' : '' }} value="1" name="roles[hhxnk][approve]"/></td>
+                                        <td>Xét duyệt</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -176,6 +188,10 @@
                                             <td><input type="checkbox" {{ (isset($permission->kkgtw->delete) && $permission->kkgtw->delete == 1) ? 'checked' : '' }} value="1" name="roles[kkgtw][delete]"/></td>
                                             <td>Xóa</td>
                                         </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->kkgtw->approve) && $permission->kkgtw->approve == 1) ? 'checked' : '' }} value="1" name="roles[kkgtw][approve]"/></td>
+                                            <td>Xét duyệt</td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -209,6 +225,10 @@
                                         <tr>
                                             <td><input type="checkbox" {{ (isset($permission->kkgdp->delete) && $permission->kkgdp->delete == 1) ? 'checked' : '' }} value="1" name="roles[kkgdp][delete]"/></td>
                                             <td>Xóa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->kkgdp->approve) && $permission->kkgdp->approve == 1) ? 'checked' : '' }} value="1" name="roles[kkgdp][approve]"/></td>
+                                            <td>Xét duyệt</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -246,6 +266,10 @@
                                             <td><input type="checkbox" {{ (isset($permission->tsnnnhadat->delete) && $permission->tsnnnhadat->delete == 1) ? 'checked' : '' }} value="1" name="roles[tsnnnhadat][delete]"/></td>
                                             <td>Xóa</td>
                                         </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tsnnnhadat->approve) && $permission->tsnnnhadat->approve == 1) ? 'checked' : '' }} value="1" name="roles[tsnnnhadat][approve]"/></td>
+                                            <td>Xét duyệt</td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -279,6 +303,48 @@
                                         <tr>
                                             <td><input type="checkbox" {{ (isset($permission->tsnnotokhac->delete) && $permission->tsnnotokhac->delete == 1) ? 'checked' : '' }} value="1" name="roles[tsnnotokhac][delete]"/></td>
                                             <td>Xóa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->tsnnotokhac->approve) && $permission->tsnnotokhac->approve == 1) ? 'checked' : '' }} value="1" name="roles[tsnnotokhac][approve]"/></td>
+                                            <td>Xét duyệt</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
+                            @if(canGeneral('gttruocba','gttruocba'))
+                                <div class="col-md-3">
+                                    <h4 style="text-align: center;color: #0000ff  ">Giá thuế trước bạ</h4>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead class="action">
+                                        <tr>
+                                            <th class="table-checkbox" width="5%">
+                                                <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                            </th>
+                                            <th>Chức năng</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->gttruocba->index) && $permission->gttruocba->index == 1) ? 'checked' : '' }} value="1" name="roles[gttruocba][index]"/></td>
+                                            <td>Xem</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->gttruocba->create) && $permission->gttruocba->create == 1) ? 'checked' : '' }} value="1" name="roles[gttruocba][create]"/></td>
+                                            <td>Thêm mới</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->gttruocba->edit) && $permission->gttruocba->edit == 1) ? 'checked' : '' }} value="1" name="roles[gttruocba][edit]"/></td>
+                                            <td>Chỉnh sửa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->gttruocba->delete) && $permission->gttruocba->delete == 1) ? 'checked' : '' }} value="1" name="roles[gttruocba][delete]"/></td>
+                                            <td>Xóa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->gttruocba->approve) && $permission->gttruocba->approve == 1) ? 'checked' : '' }} value="1" name="roles[gttruocba][approve]"/></td>
+                                            <td>Xét duyệt</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -395,9 +461,11 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Cập nhật</button>
                         <a href="{{url('users/pl='.($model->level=='H'?'quan-ly':'su-dung'))}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                        </div>
                     </div>
                 </div>
 
