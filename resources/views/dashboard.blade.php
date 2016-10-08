@@ -109,6 +109,24 @@
                         </div>
                     </div>
                 @endif
+                @if(canGeneral('gttruocba','gttruocba'))
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="dashboard-stat red-intense">
+                            <div class="visual">
+                                <i class="fa fa-globe"></i>
+                            </div>
+                            <div class="details">
+                                <div class="number"></div>
+                                <div class="desc">
+                                    Giá thuế trước bạ
+                                </div>
+                            </div>
+                            <a class="more" href="{{url('thongtin-gia-thuetruocba/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                                Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                @endif
                 @if(canGeneral('thamdinhgia','thamdinhgia'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat green-haze">
@@ -189,7 +207,7 @@
                                 Thanh kiểm tra về giá
                             </div>
                         </div>
-                        <a class="more" href="{{url('hanhkiemtra-vegia/nam='.getGeneralConfigs()['namhethong'])}}">
+                        <a class="more" href="{{url('thanhkiemtra-vegia/nam='.getGeneralConfigs()['namhethong'])}}">
                             Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
                         </a>
                     </div>

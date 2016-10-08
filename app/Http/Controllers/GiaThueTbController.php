@@ -780,6 +780,9 @@ class GiaThueTbController extends Controller
             //Tên tài sản
             $_sql=$input['tenhieu']!=null? $_sql." and giathuetbct.tenhieu Like '".$input['tenhieu']."%'":$_sql;
 
+
+
+
             $model =  DB::select(DB::raw($_sql));
             $modelloai = DmLoaiXeThueTb::all();
 

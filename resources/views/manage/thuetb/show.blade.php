@@ -35,6 +35,7 @@
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box blue">
 
+
                 <div class="portlet-body">
                     <h4 class="form-section" style="color: #0000ff">Thông tin bảng giá</h4>
                     <div class="row">
@@ -104,6 +105,8 @@
             <!-- END EXAMPLE TABLE PORTLET-->
             <div style="text-align: center">
                 <a href="{{url('gia-thuetruocba/nam='.$model->nam)}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('banggiatinh-thuetruocba/'.$model->mahs)}}" class="btn red" target="_blank">
+                    <i class="fa fa-print"></i> In </a>
             </div>
         </div>
 

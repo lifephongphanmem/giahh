@@ -401,5 +401,9 @@ Route::post('reports/bctkkhac/BC2Excel','BcTkKhacController@BC2Excel');
 Route::post('reports/bctkkhac/BC3Excel','BcTkKhacController@BC3Excel');
 Route::post('reports/bctkkhac/BC4Excel','BcTkKhacController@BC4Excel');
     //End BCTK khác
+
+    //Thuế trước bạ
+Route::get('banggiatinh-thuetruocba/{mahs}','BcGiaTTbController@BaGThueTB')
+    //End thuế trước bạ
 // </editor-fold>
 ?>

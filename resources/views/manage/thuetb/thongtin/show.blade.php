@@ -104,6 +104,8 @@
             <!-- END EXAMPLE TABLE PORTLET-->
             <div style="text-align: center">
                 <a href="{{url('thongtin-gia-thuetruocba/nam='.$model->nam.'&pb=all')}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('banggiatinh-thuetruocba/'.$model->mahs)}}" class="btn red" target="_blank">
+                    <i class="fa fa-print"></i> In </a>
             </div>
         </div>
 
