@@ -125,7 +125,7 @@
                         _token: CSRF_TOKEN,
                         mahh: $(this).val(),
                         nhom:$('input[name="nhom"]').val(),
-                        pnhom:$('input[name="pnhom"]').val(),
+                        pnhom:$('input[name="pnhom"]').val()
 
                     },
                     success: function (respond) {

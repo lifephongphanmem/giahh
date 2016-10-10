@@ -28,6 +28,22 @@ class DmThoiDiemController extends Controller
             return view('errors.notlogin');
     }
 
+    public function indextd($plbc)
+    {
+        if (Session::has('admin')) {
+            if($plbc=='all')
+            {$model = DmThoiDiem::all();}
+            else
+            {$model = DmThoiDiem::where('plbc',$plbc)->get();}
+            return view('system.tthanghoa.thoidiem.index')
+                ->with('pl',$plbc)
+                ->with('model',$model)
+                ->with('pageTitle','Danh mục thời điểm báo cáo');
+
+        }else
+            return view('errors.notlogin');
+    }
+
     public function create()
     {
         if (Session::has('admin')) {
@@ -50,7 +66,7 @@ class DmThoiDiemController extends Controller
             $model->plbc = $insert['plbc'];
             $model->save();
 
-            return redirect('dmthoidiem');
+            return redirect('dmtd/pl='.$insert['plbc']);
         }else
             return view('errors.notlogin');
     }
@@ -78,7 +94,7 @@ class DmThoiDiemController extends Controller
             $model->plbc = $update['plbc'];
             $model->save();
 
-            return redirect('dmthoidiem');
+            return redirect('dmtd/pl='.$update['plbc']);
         }else
             return view('errors.notlogin');
     }
@@ -87,9 +103,8 @@ class DmThoiDiemController extends Controller
     {
         if (Session::has('admin')) {
             $input = $request->all();
-            $model = DmThoiDiem::where('id',$input['iddelete'])
-                ->delete();
-            return redirect('dmthoidiem');
+            $model = DmThoiDiem::where('id',$input['iddelete'])->delete();
+            return redirect('dmtd/pl=all');
         }else
             return view('errors.notlogin');
     }

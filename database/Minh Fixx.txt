@@ -24,3 +24,6 @@
 
 -24/09/2016
 	+ Fix báo cáo Công bố giá
+-06/10/2016
+    + Thêm 3 bảng DmHangHoa, NhomHangHoa, PNhomHangHoa
+    + Them 3 bang giahanghoa, hsgiahanghoa, giahanghoadefault

@@ -8,6 +8,15 @@
 @section('custom-script')
     <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
+    <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            TableManaged.init();
+        });
+
+    </script>
     <script>
         function editItem(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -55,9 +64,10 @@
                     //$('#modal-wide-width').dialog('close');
                     if(data.status == 'success') {
                         toastr.success("Chỉnh sửa thông tin hàng hóa dịch vụ thành công", "Thành công!");
-                        $('#ttts').replaceWith(data.message);
-                        //$("#modal-wide-width").dialog("close");
-                        //$('#modal-wide-width').fadeOut();
+                        $('#dsts').replaceWith(data.message);
+                        jQuery(document).ready(function() {
+                            TableManaged.init();
+                        });
                         $('#modal-wide-width').modal("hide");
 
                     }else
@@ -80,8 +90,10 @@
                 success: function (data) {
                     //if(data.status == 'success') {
                     toastr.success("Bạn đã xóa thông tin hàng hóa dịch vụ thành công!", "Thành công!");
-                    $('#ttts').replaceWith(data.message);
-
+                    $('#dsts').replaceWith(data.message);
+                    jQuery(document).ready(function() {
+                        TableManaged.init();
+                    });
                     //}
                 }
             })
@@ -201,7 +213,7 @@
                             </div>
 
 
-                            <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}"
+                            <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}" />
 
                             <!--/row-->
                             <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
@@ -277,13 +289,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id="dsts">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table table-striped table-bordered table-hover" id="sample_3">
                                         <thead>
                                             <tr style="background: #F5F5F5">
                                                 <th width="2%" style="text-align: center">STT</th>
+                                                <th style="text-align: center">Mã hàng hóa</th>
                                                 <th style="text-align: center">Tên hàng hóa dịch vụ</th>
                                                 <th style="text-align: center" width="10%">Giá từ</th>
                                                 <th style="text-align: center" width="10%">Giá đến</th>
@@ -298,6 +311,7 @@
                                             @foreach($modeltthh as $key=>$tt)
                                                 <tr>
                                                     <td style="text-align: center">{{$key +1}}</td>
+                                                    <td>{{$tt->mahh}}</td>
                                                     <td class="active">{{$tt->tenhh}}</td>
                                                     <td style="text-align: right">{{number_format($tt->giatu)}}</td>
                                                     <td style="text-align: right">{{number_format($tt->giaden)}}</td>
@@ -367,7 +381,10 @@
                     success: function (data) {
                         if(data.status == 'success') {
                             toastr.success("Cập nhật thông tin giá hàng hóa dịch vụ thành công", "Thành công!");
-                            $('#ttts').replaceWith(data.message);
+                            $('#dsts').replaceWith(data.message);
+                            jQuery(document).ready(function() {
+                                TableManaged.init();
+                            });
                             $('#manhom').val('');
                             $('#mahh').val('');
                             $('#mahh').children().remove().end().append('<option selected value="">--Chọn hàng hóa- dịch vụ--</option>') ;

@@ -344,18 +344,18 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li>
                             <a href="">Kê khai giá TW<span class="arrow"></span> </a>
                             <ul class="sub-menu">
-                                @if(can('kkgtw','create'))
+                                @if(can('kkgtw','create')||can('kkgtw','edit'))
                                 <li>
-                                    <a href="">Kê khai giá</a>
+                                    <a href="/giahhdv-tw">Kê khai giá</a>
                                 </li>
                                 @endif
                                 @if(can('kkgtw','index'))
                                 <li>
-                                    <a href="">Thông tin kê khai giá</a>
+                                    <a href="/thongtin-tw">Thông tin kê khai giá</a>
                                 </li>
                                 @endif
                                 <li>
-                                    <a href="">Tìm kiếm thông tin kê khai giá</a>
+                                    <a href="/timkiem-giahhdv-tw">Tìm kiếm thông tin kê khai giá</a>
                                 </li>
 
                             </ul>
@@ -365,18 +365,18 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li>
                             <a href="">Kê khai giá địa phương<span class="arrow"></span> </a>
                             <ul class="sub-menu">
-                                @if(can('kkgdp','create'))
+                                @if(can('kkgdp','create')||can('kkgdp','edit'))
                                 <li>
-                                    <a href="">Kê khai giá</a>
+                                    <a href="/giahhdv-dp">Kê khai giá</a>
                                 </li>
                                 @endif
                                 @if(can('kkgdp','index'))
                                 <li>
-                                    <a href="">Thông tin kê khai giá</a>
+                                    <a href="/thongtin-dp">Thông tin kê khai giá</a>
                                 </li>
                                 @endif
                                 <li>
-                                    <a href="">Tìm kiếm thông tin kê khai giá</a>
+                                    <a href="/timkiem-giahhdv-dp">Tìm kiếm thông tin kê khai giá</a>
                                 </li>
 
                             </ul>
@@ -552,7 +552,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="">Giá hàng hóa <span class="arrow"></span> </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="{{url('dmthoidiem')}}"> Danh mục thời điểm</a>
+                                    <a href="{{url('dmtd/pl=all')}}"> Danh mục thời điểm</a>
                                 </li>
                                 <li>
                                     <a href="{{url('dmthitruong')}}"> Danh mục thị trường</a>
@@ -568,6 +568,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <a href="{{url('dmhanghoa-thitruong')}}"> Hàng hóa thị trường</a>
                                 </li>
                                 @endif
+                                        <!-- 1. Thay thế phần mặt hàng trong nước dành cho Lào Cai -->
+                                @if(!canGeneral('hhdv','hhdvlc'))<!--Chưa phân quyền-->
+                                    <li>
+                                        <a href="{{url('dmhanghoa-hanghoa')}}">Hàng hóa, dịch vụ trong nước</a>
+                                    </li>
+                                @endif
+                                        <!--End 1. -->
                                 @if(canGeneral('hhdv','hhdvtn'))
                                 <li>
                                     <a href="{{url('dmhanghoa-trongnuoc')}}">Mặt hàng trong nước</a>

@@ -32,7 +32,6 @@
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <div class="row">
-
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Tên thời điểm<span class="require">*</span></label>
@@ -79,7 +78,7 @@
                                         'plbc',
                                         array(
                                         'Hàng hóa thị trường'=>'Hàng hóa thị trường',
-                                        'Hàng hóa,dịch vụ' => 'Hàng hóa,dịch vụ',
+                                        'Hàng hóa, dịch vụ' => 'Hàng hóa, dịch vụ',
                                         'Hàng hóa xuất nhập khẩu' => 'Hàng hóa xuất nhập khẩu',
                                         ),null,
                                         array('id' => 'plbc', 'class' => 'form-control'))
@@ -89,8 +88,8 @@
                             </div>
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
-                            <button type="reset" class="btn default">Cancel</button>
+                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                            <button type="reset" class="btn default">Hủy</button>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->

@@ -24,7 +24,7 @@ class HsGiaHhTnController extends Controller
     public function thoidiem()
     {
         if(Session::has('admin')){
-            $model = DmThoiDiem::where('plbc','Hàng hóa,dịch vụ')
+            $model = DmThoiDiem::where('plbc','Hàng hóa, dịch vụ')
                 ->get();
             return view('manage.giahhdv.hhdvtn.thoidiem.index')
                 ->with('model',$model)

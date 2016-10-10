@@ -36,7 +36,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Mã loại giá<span class="require">*</span></label>
-                                        <input type="text" class="form-control required" name="maloaigia" id="maloaigia">
+                                        <input type="text" class="form-control" name="maloaigia" id="maloaigia" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -54,7 +54,7 @@
                                         <label class="control-label">Phân loại<span class="require">*</span></label>
                                         <select class="form-control" name="pl" id="pl">
                                             <option value="Hàng hóa thị trường">Hàng hóa thị trường</option>
-                                            <option value="Hàng hóa dịch vụ trong nước">Hàng hóa dịch vụ trong nước</option>
+                                            <option value="Hàng hóa, dịch vụ">Hàng hóa, dịch vụ</option>
                                             <option value="Hàng hóa xuất nhập khẩu">Hàng hóa xuất nhập khẩu</option>
 
                                         </select>

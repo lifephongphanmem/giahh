@@ -117,14 +117,25 @@ class HsGiaHhTtController extends Controller
     public function create($thoidiem)
     {
         if(Session::has('admin')){
+            $mahuyen=session('admin')->mahuyen;
+            GiaHhTtDefault::where('mahuyen',$mahuyen)->delete();
+
             $loaigia = DmLoaiGia::where('pl','Hàng hóa thị trường')->get();
-            //dd($loaigia);
             $loaihh = DmLoaiHh::all();
+
             $thitruong= DmThiTruong::all();
             $nhomhh = NhomTn55::where('theodoi','Có')->get();
-            GiaHhTtDefault::where('mahuyen',session('admin')->mahuyen)->delete();
+            $hanghoa = DmHhTn55::select('masopnhom','mahh',DB::raw($mahuyen." as 'mahuyen'"),DB::raw("1 as 'soluong'"),DB::raw("0 as 'giatu'"),DB::raw("0 as 'giaden'"))->wherein('masopnhom',['01','02'])->get()->toarray();
+            GiaHhTtDefault::insert($hanghoa);
+
+            $dmhanghoa = DmHhTn55::all();
+            $model=GiaHhTtDefault::where('mahuyen',$mahuyen)->get();
+            foreach($model as $ct){
+                $this->gettenhh($dmhanghoa,$ct);
+            }
 
             return view('manage.giahhdv.hhtt.create')
+                ->with('model',$model)
                 ->with('mathoidiem',$thoidiem)
                 ->with('loaigia',$loaigia)
                 ->with('loaihh',$loaihh)
@@ -279,8 +290,6 @@ class HsGiaHhTtController extends Controller
                 break;
             }
         }
-
-
     }
 
     public function update(Request $request, $id)

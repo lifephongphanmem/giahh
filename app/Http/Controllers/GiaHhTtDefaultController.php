@@ -91,11 +91,30 @@ class GiaHhTtDefaultController extends Controller
                 $this->gettenhh($modeldm,$tthh);
             }
 
-            $result['message'] = '<tbody id="ttts">';
+            $result['message'] = '<div class="row" id="dsts">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="table-responsive">';
+            $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
+            $result['message'] .= '<thead>';
+            $result['message'] .= '<tr style="background: #F5F5F5">';
+            $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
+            $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá từ</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá đến</th>';
+            $result['message'] .= '<th style="text-align: center" width="5%">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Nguồn tin</th>';
+            $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
+            $result['message'] .= '<th style="text-align: center" width="12%">Thao tác</th>';
+            $result['message'] .= '</tr>';
+            $result['message'] .= '</thead>';
+
+            $result['message'] .= '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
-                    $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.($key+1).'</td>';
+                    $result['message'] .= '<td>'.$tents->mahh.'</td>';
                     $result['message'] .= '<td class="active">'.$tents->tenhh.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatu).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giaden).'</td>';
@@ -109,9 +128,15 @@ class GiaHhTtDefaultController extends Controller
                         .'</td>';
                     $result['message'] .= '</tr>';
                 }
-                $result['message'] .= '</tbody>';
-                $result['status'] = 'success';
+
+            }else{
+                $result['message'] .= '<td colspan="9" style="text-align: center">Chưa có thông tin</td>';
             }
+            $result['message'] .= '</tbody>';
+            $result['message'] .= '</table>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['status'] = 'success';
         }
         die(json_encode($result));
     }
@@ -241,11 +266,31 @@ class GiaHhTtDefaultController extends Controller
             foreach($model as $tthh){
                 $this->gettenhh($modeldm,$tthh);
             }
-            $result['message'] = '<tbody id="ttts">';
+
+            $result['message'] = '<div class="row" id="dsts">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="table-responsive">';
+            $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
+            $result['message'] .= '<thead>';
+            $result['message'] .= '<tr style="background: #F5F5F5">';
+            $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
+            $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá từ</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá đến</th>';
+            $result['message'] .= '<th style="text-align: center" width="5%">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Nguồn tin</th>';
+            $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
+            $result['message'] .= '<th style="text-align: center" width="12%">Thao tác</th>';
+            $result['message'] .= '</tr>';
+            $result['message'] .= '</thead>';
+
+            $result['message'] .= '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key+1).'</td>';
+                    $result['message'] .= '<td>'.$tents->mahh.'</td>';
                     $result['message'] .= '<td class="active">'.$tents->tenhh.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatu).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giaden).'</td>';
@@ -260,6 +305,9 @@ class GiaHhTtDefaultController extends Controller
                     $result['message'] .= '</tr>';
                 }
                 $result['message'] .= '</tbody>';
+                $result['message'] .= '</table>';
+                $result['message'] .= '</div>';
+                $result['message'] .= '</div>';
                 $result['status'] = 'success';
             }
 
@@ -296,15 +344,34 @@ class GiaHhTtDefaultController extends Controller
             foreach($model as $tthh){
                 $this->gettenhh($modeldm,$tthh);
             }
-            $result['message'] = '<tbody id="ttts">';
+            $result['message'] = '<div class="row" id="dsts">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<div class="table-responsive">';
+            $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
+            $result['message'] .= '<thead>';
+            $result['message'] .= '<tr style="background: #F5F5F5">';
+            $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
+            $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
+            $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá từ</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá đến</th>';
+            $result['message'] .= '<th style="text-align: center" width="5%">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Nguồn tin</th>';
+            $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
+            $result['message'] .= '<th style="text-align: center" width="12%">Thao tác</th>';
+            $result['message'] .= '</tr>';
+            $result['message'] .= '</thead>';
+
+            $result['message'] .= '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
-                    $result['message'] .= '<td>'.($key+1).'</td>';
-                    $result['message'] .= '<td>'.$tents->tenhh.'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->giatu).'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->giaden).'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->soluong).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.($key+1).'</td>';
+                    $result['message'] .= '<td>'.$tents->mahh.'</td>';
+                    $result['message'] .= '<td class="active">'.$tents->tenhh.'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatu).'</td>';
+                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giaden).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.number_format($tents->soluong).'</td>';
                     $result['message'] .= '<td>'.$tents->nguontin.'</td>';
                     $result['message'] .= '<td>'.$tents->gc.'</td>';
                     $result['message'] .= '<td>'.
@@ -314,29 +381,25 @@ class GiaHhTtDefaultController extends Controller
                         .'</td>';
                     $result['message'] .= '</tr>';
                 }
-                $result['message'] .= '</tbody>';
-                $result['status'] = 'success';
+
+            }else{
+                $result['message'] .= '<td colspan="9" style="text-align: center">Chưa có thông tin</td>';
             }
-            else{
-                $result['message'] .= '<tr>';
-                $result['message'] .= '<td colspan="8" style="text-align: center">Chưa có thông tin</td>';
-                $result['message'] .= '</tr>';
-                $result['message'] .= '</tbody>';
-                $result['status'] = 'success';
-            }
+            $result['message'] .= '</tbody>';
+            $result['message'] .= '</table>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['status'] = 'success';
         }
         die(json_encode($result));
     }
 
     public function gettenhh($mahh,$array){
-
         foreach($mahh as $tt){
             if($tt->mahh == $array->mahh){
                 $array->tenhh = $tt->tenhh;
                 break;
             }
         }
-
-
     }
 }

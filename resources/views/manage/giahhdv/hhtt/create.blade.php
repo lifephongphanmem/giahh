@@ -8,6 +8,15 @@
 @section('custom-script')
     <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
+    <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            TableManaged.init();
+        });
+
+    </script>
     <script>
         function editItem(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -53,9 +62,10 @@
                     //$('#modal-wide-width').dialog('close');
                     if(data.status == 'success') {
                         toastr.success("Chỉnh sửa thông tin hàng hóa thị trường thành công", "Thành công!");
-                        $('#ttts').replaceWith(data.message);
-                        //$("#modal-wide-width").dialog("close");
-                        //$('#modal-wide-width').fadeOut();
+                        $('#dsts').replaceWith(data.message);
+                        jQuery(document).ready(function() {
+                            TableManaged.init();
+                        });
                         $('#modal-wide-width').modal("hide");
 
                     }else
@@ -77,7 +87,7 @@
                 success: function (data) {
                     //if(data.status == 'success') {
                     toastr.success("Bạn đã xóa thông tin hàng hóa thị trường thành công!", "Thành công!");
-                    $('#ttts').replaceWith(data.message);
+                    $('#dsts').replaceWith(data.message);
                     //}
                 }
             })
@@ -297,25 +307,41 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id="dsts">
                                 <div class="col-md-12">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                        <thead>
-                                            <tr style="background: #F5F5F5">
-                                                <th width="2%" style="text-align: center">STT</th>
-                                                <th style="text-align: center">Tên hàng hóa dịch vụ</th>
-                                                <th style="text-align: center" width="10%">Giá từ</th>
-                                                <th style="text-align: center" width="10%">Giá đến</th>
-                                                <th style="text-align: center" width="5%">Số lượng</th>
-                                                <th style="text-align: center">Nguồn tin</th>
-                                                <th style="text-align: center">Ghi chú</th>
-                                                <th style="text-align: center" width="12%">Thao tác</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="ttts">
-                                            <td colspan="9" style="text-align: center">Chưa có thông tin</td>
-                                        </tbody>
+                                        <table class="table table-striped table-bordered table-hover" id="sample_3">
+                                            <thead>
+                                                <tr style="background: #F5F5F5">
+                                                    <th width="2%" style="text-align: center">STT</th>
+                                                    <th style="text-align: center">Mã hàng hóa</th>
+                                                    <th style="text-align: center">Tên hàng hóa dịch vụ</th>
+                                                    <th style="text-align: center" width="10%">Giá từ</th>
+                                                    <th style="text-align: center" width="10%">Giá đến</th>
+                                                    <th style="text-align: center" width="5%">Số lượng</th>
+                                                    <th style="text-align: center">Nguồn tin</th>
+                                                    <th style="text-align: center">Ghi chú</th>
+                                                    <th style="text-align: center" width="12%">Thao tác</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="ttts">
+                                                @foreach($model as $key=>$tents)
+                                                    <tr id="{{$tents->id}}">
+                                                        <td>{{$key+1}}</td>
+                                                        <td>{{$tents->mahh}}</td>
+                                                        <td>{{$tents->tenhh}}</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>1</td>
+                                                        <td>{{$tents->nguontin}}</td>
+                                                        <td>{{$tents->gc}}</td>
+                                                        <td>
+                                                            <button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('{{$tents->id}}');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
+                                                            <button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('{{$tents->id}}')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -368,7 +394,10 @@
                     success: function (data) {
                         if(data.status == 'success') {
                             toastr.success("Cập nhật thông tin giá hàng hóa dịch vụ thành công", "Thành công!");
-                            $('#ttts').replaceWith(data.message);
+                            $('#dsts').replaceWith(data.message);
+                            jQuery(document).ready(function() {
+                                TableManaged.init();
+                            });
                             $('#manhom').val('');
                             $('#mahh').val('');
                             $('#mahh').children().remove().end().append('<option selected value="">--Chọn hàng hóa- dịch vụ--</option>') ;
@@ -417,7 +446,6 @@
                 });
         }(jQuery));
     </script>
-
 
     <!--Modal Wide Width-->
     <div class="modal fade bs-modal-lg" id="modal-wide-width" tabindex="-1" role="dialog" aria-hidden="true">

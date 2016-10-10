@@ -40,6 +40,7 @@ Route::post('phong-ban/delete','TtPhongBanController@destroy');
 Route::resource('dmthoidiem','DmThoiDiemController');
 Route::get('/checkmathoidiem','DmThoiDiemController@checkmathoidiem');
 Route::post('dmthoidiem/delete','DmThoiDiemController@destroy');
+Route::get('dmtd/pl={plbc}','DmThoiDiemController@indextd');
     //End danh mục thời điểm báo cáo
 
     //Danh mục loại giá
@@ -82,6 +83,17 @@ Route::post('dmhanghoa-trongnuoc','DmHhTnController@store');
 Route::get('dmhanghoa-trongnuoc/{id}/edit','DmHhTnController@edit');
 Route::patch('dmhanghoa-trongnuoc/{id}','DmHhTnController@update');
 Route::post('dmhanghoa-trongnuoc/delete','DmHhTnController@destroy');
+    //End hàng hóa trong nước
+
+    //Hàng hóa trong nước làm cho Lào Cai theo qd177
+Route::get('dmhanghoa-hanghoa','DmHanghoaController@nhom');
+Route::get('dmhanghoa-hanghoa/nhom={nhom}','DmHanghoaController@pnhom');
+Route::get('dmhanghoa-hanghoa/nhom={nhom}/pnhom={pnhom}','DmHanghoaController@hanghoa');
+Route::get('dmhanghoa-hanghoa/nhom={nhom}/pnhom={pnhom}/create','DmHanghoaController@create');
+Route::post('dmhanghoa-hanghoa','DmHanghoaController@store');
+Route::get('dmhanghoa-hanghoa/{id}/edit','DmHanghoaController@edit');
+Route::patch('dmhanghoa-hanghoa/{id}','DmHanghoaController@update');
+Route::post('dmhanghoa-hanghoa/delete','DmHanghoaController@destroy');
     //End hàng hóa trong nước
 
     //Hàng hóa xuất nhập khẩu
@@ -198,6 +210,53 @@ Route::get('/giahhxnk/delete','GiaHhXnkController@destroy');
 Route::get('timkiem-giahh-xuatnhapkhau','HsGiaHhXnkController@search');
 Route::post('timkiem-giahh-xuatnhapkhau','HsGiaHhXnkController@viewsearch');
 //End Giá hh xuất nhập khẩu
+
+       //1.Giá hàng hóa do TW quy định
+Route::get('giahhdv-tw','HsGiaHangHoaTWController@thoidiem');
+Route::get('giahhdv-tw/thoidiem={thoidiem}/nam={nam}','HsGiaHangHoaTWController@index');
+Route::post('giahhdv-tw/create','HsGiaHangHoaTWController@create');
+Route::post('giahhdv-tw','HsGiaHangHoaTWController@store');
+Route::get('giahhdv-tw/{id}/show','HsGiaHangHoaTWController@show');
+Route::get('giahhdv-tw/{id}/edit','HsGiaHangHoaTWController@edit');
+Route::patch('giahhdv-tw/{id}','HsGiaHangHoaTWController@update');
+Route::post('giahhdv-tw/delete','HsGiaHangHoaTWController@destroy');
+
+Route::get('thongtin-tw','HsGiaHangHoaTWController@showthoidiem');
+Route::get('thongtin-tw/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHangHoaTWController@showindex');
+Route::get('thongtin-tw/{id}/show','HsGiaHangHoaTWController@view');
+
+Route::get('/giahanghoadefault/gettthh','GiaHangHoaDefaultController@gettthh');
+Route::get('/giahanghoadefault/store','GiaHangHoaDefaultController@store');
+Route::get('/giahanghoadefault/edit','GiaHangHoaDefaultController@edit');
+Route::get('/giahanghoadefault/update','GiaHangHoaDefaultController@update');
+Route::get('/giahanghoadefault/delete','GiaHangHoaDefaultController@destroy');
+
+Route::get('/giahanghoa/store','GiaHangHoaController@store');
+Route::get('/giahanghoa/edit','GiaHangHoaController@edit');
+Route::get('/giahanghoa/update','GiaHangHoaController@update');
+Route::get('/giahanghoa/delete','GiaHangHoaController@destroy');
+
+Route::get('timkiem-giahhdv-tw','HsGiaHangHoaTWController@search');
+Route::post('timkiem-giahhdv-tw','HsGiaHangHoaTWController@viewsearch');
+    //End 1.Giá hàng hóa do TW quy định
+
+    //2.Giá hàng hóa do địa phương quy định
+Route::get('giahhdv-dp','HsGiaHangHoaDPController@thoidiem');
+Route::get('giahhdv-dp/thoidiem={thoidiem}/nam={nam}','HsGiaHangHoaDPController@index');
+Route::post('giahhdv-dp/create','HsGiaHangHoaDPController@create');
+Route::post('giahhdv-dp','HsGiaHangHoaDPController@store');
+Route::get('giahhdv-dp/{id}/show','HsGiaHangHoaDPController@show');
+Route::get('giahhdv-dp/{id}/edit','HsGiaHangHoaDPController@edit');
+Route::patch('giahhdv-dp/{id}','HsGiaHangHoaDPController@update');
+Route::post('giahhdv-dp/delete','HsGiaHangHoaDPController@destroy');
+
+Route::get('thongtin-dp','HsGiaHangHoaDPController@showthoidiem');
+Route::get('thongtin-dp/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHangHoaDPController@showindex');
+Route::get('thongtin-dp/{id}/show','HsGiaHangHoaDPController@view');
+
+Route::get('timkiem-giahhdv-dp','HsGiaHangHoaDPController@search');
+Route::post('timkiem-giahhdv-dp','HsGiaHangHoaDPController@viewsearch');
+    //End 2.Giá hàng hóa do địa phương quy định
     //End giá hàng hóa dv
 
     //TTQĐ

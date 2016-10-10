@@ -39,7 +39,7 @@ class DmLoaiGiaController extends Controller
         if (Session::has('admin')) {
             $insert = $request->all();
             $model = new DmLoaiGia();
-            $model->maloaigia = $insert['maloaigia'];
+            $model->maloaigia = getdate()[0];
             $model->tenloaigia = $insert['tenloaigia'];
             $model->gc = $insert['gc'];
             $model->pl = $insert['pl'];

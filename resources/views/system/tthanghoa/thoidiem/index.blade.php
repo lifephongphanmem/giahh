@@ -30,6 +30,13 @@
         jQuery(document).ready(function() {
             TableManaged.init();
         });
+        $(function(){
+            $('#plbc').change(function() {
+                var plbc = $('#plbc').val();
+                var url = '/dmtd/pl='+plbc;
+                window.location.href = url;
+            });
+        })
         function getId(id){
             document.getElementById("iddelete").value=id;
         }
@@ -41,6 +48,19 @@
     <h3 class="page-title">
         Danh mục thời điểm<small>&nbsp;báo cáo</small>
     </h3>
+    <div class="row">
+        <div class="col-md-2" style="padding-top: 5px;text-align: right;">
+                <label>Phân loại báo cáo</label>
+        </div>
+        <div class="col-md-4">
+                <select class="form-control" name="plbc" id="plbc">
+                    <option value="all" {{$pl == 'all' ? 'selected' : ''}}>--Phân loại văn bản--</option>
+                    <option value="Hàng hóa, dịch vụ" {{$pl == 'Hàng hóa, dịch vụ' ? 'selected' : ''}}>Hàng hóa, dịch vụ</option>
+                    <option value="Hàng hóa xuất nhập khẩu" {{$pl == 'Hàng hóa xuất nhập khẩu' ? 'selected' : ''}}>Hàng hóa xuất nhập khẩu</option>
+                    <option value="Hàng hóa thị trường" {{$pl == 'Hàng hóa thị trường' ? 'selected' : ''}}>Hàng hóa thị trường</option>
+                </select>
+        </div>
+    </div>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
