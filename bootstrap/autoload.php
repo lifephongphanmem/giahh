@@ -13,6 +13,7 @@ define('LARAVEL_START', microtime(true));
 | loading of any our classes "manually". Feels great to relax.
 |
 */
+require __DIR__.'/../app/MinhTran/array_function.php';
 require __DIR__.'/../app/MinhTran/global-functions.php';
 require __DIR__.'/../vendor/autoload.php';
 

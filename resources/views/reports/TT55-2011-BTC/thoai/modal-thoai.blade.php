@@ -52,6 +52,26 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"><b>Thời điểm báo cáo</b></label>
+                        <div class="col-md-6 ">
+                            <select name="kynay" id="kynay" class="form-control">
+                                @foreach($thoidiem as $ct)
+                                    <option value="{{$ct->mathoidiem}}">{{$ct->tenthoidiem}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"><b>Thời điểm kỳ trước</b></label>
+                        <div class="col-md-6 ">
+                            <select name="kytruoc" id="kytruoc" class="form-control">
+                                @foreach($thoidiem as $ct)
+                                    <option value="{{$ct->mathoidiem}}">{{$ct->tenthoidiem}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

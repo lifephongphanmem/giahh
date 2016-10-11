@@ -73,14 +73,14 @@
     </tr>
     @foreach($model as $key=>$tt)
     <tr>
-        <th>{{$tt->mahh}}</th>
-        <th style="text-align: left">{{$tt->tenhh}}</th>
-        <th>{{$tt->dvt}}</th>
-        <th></th>
-        <th style="text-align: left">{{number_format($tt->giahh)}}</th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <td>{{$tt->mahh}}</td>
+        <td style="text-align: left">{{$tt->tenhh}}</td>
+        <td>{{$tt->dvt}}</td>
+        <td style="text-align: right">{{number_format($tt->giahhkytrc)}}</td>
+        <td style="text-align: right">{{number_format($tt->giahh)}}</td>
+        <td style="text-align: right">{{number_format($tt->tanggiam)}}</td>
+        <td style="text-align: center">{{$tt->phantram}}</td>
+        <td></td>
     </tr>
     @endforeach
 </table>

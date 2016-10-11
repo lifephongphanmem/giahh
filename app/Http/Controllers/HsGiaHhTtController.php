@@ -52,8 +52,6 @@ class HsGiaHhTtController extends Controller
                 ->where('nam',$nam)
                 ->where('mahuyen',session('admin')->mahuyen)
                 ->get();
-
-
             $modelpb = TtPhongBan::all();
 
             foreach($model as $tt){

@@ -383,4 +383,24 @@ function getAddMap($diachi){
     }
     return $kq;
 }
+
+function getPhanTram1($giatri, $thaydoi){
+    $kq=0;
+    if($thaydoi==0||$giatri==0){
+        return '';
+    }
+    if($giatri<$thaydoi){
+        $kq=round((($thaydoi-$giatri)/$giatri)*100,2).'%';
+    }else{
+        $kq='-'.round((($giatri-$thaydoi)/$giatri)*100,2).'%';
+    }
+    return $kq;
+}
+
+function getPhanTram2($giatri, $thaydoi){
+    if($thaydoi==0||$giatri==0){
+        return '';
+    }
+    return round(($thaydoi/$giatri)*100,2).'%';
+}
 ?>
