@@ -88,7 +88,7 @@
             </div>
             <div class="col-md-12" style="text-align: center">
                 <button type="submit" class="btn green"><i class="fa fa-search"></i> Tìm kiếm</button>
-                <button type="reset" class="btn default">Hủy</button>
+                <button type="reset" class="btn default"> Hủy</button>
             </div>
             {!! Form::close() !!}
             <!-- END VALIDATION STATES-->

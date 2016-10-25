@@ -73,6 +73,8 @@
                                             <option value="Hàng hóa thị trường">Hàng hóa thị trường</option>
                                             <option value="Hàng hóa, dịch vụ">Hàng hóa, dịch vụ</option>
                                             <option value="Hàng hóa xuất nhập khẩu">Hàng hóa xuất nhập khẩu</option>
+                                            <option value="Thuế tài nguyên">Thuế tài nguyên</option>
+                                            <option value="Lệ phí trước bạ">Lệ phí trước bạ</option>
                                         </select>
                                     </div>
                                 </div>
@@ -80,7 +82,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                            <button type="reset" class="btn default">Hủy</button>
+                            <button type="reset" class="btn default"> Hủy</button>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->

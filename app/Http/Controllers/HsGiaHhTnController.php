@@ -81,11 +81,10 @@ class HsGiaHhTnController extends Controller
     public function create($thoidiem)
     {
         if(Session::has('admin')){
-            $loaigia = DmLoaiGia::where('pl','Hàng hóa dịch vụ trong nước');
+            $loaigia = DmLoaiGia::where('pl','Hàng hóa dịch vụ trong nước')->get();
             $loaihh = DmLoaiHh::all();
             $thitruong= DmThiTruong::all();
-            $nhomhh = NhomTn::where('theodoi','Có')
-                ->get();
+            $nhomhh = NhomTn::where('theodoi','Có')->get();
             $modeldel = GiaHhTnDefault::where('mahuyen',session('admin')->mahuyen)
                 ->delete();
             return view('manage.giahhdv.hhdvtn.create')
@@ -214,17 +213,12 @@ class HsGiaHhTnController extends Controller
     }
 
     public function gettenhh($mahh,$array){
-
-        //dd($array);
         foreach($mahh as $tt){
-
             if($tt->masopnhom == $array->masopnhom && $tt->mahh == $array->mahh){
                 $array->tenhh = $tt->tenhh;
                 break;
             }
         }
-
-
     }
 
     public function update(Request $request, $id)

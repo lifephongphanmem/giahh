@@ -48,17 +48,25 @@
     <h3 class="page-title">
         Danh mục thời điểm<small>&nbsp;báo cáo</small>
     </h3>
-    <div class="row">
-        <div class="col-md-2" style="padding-top: 5px;text-align: right;">
+    <div class="row" style="padding-top: 15px;padding-bottom: 15px";>
+        <div class="col-md-2 text-right" style="padding-top: 5px">
                 <label>Phân loại báo cáo</label>
         </div>
         <div class="col-md-4">
                 <select class="form-control" name="plbc" id="plbc">
-                    <option value="all" {{$pl == 'all' ? 'selected' : ''}}>--Phân loại văn bản--</option>
+                    <option value="all" {{$pl == 'all' ? 'selected' : ''}}>--Phân loại thời điểm--</option>
                     <option value="Hàng hóa, dịch vụ" {{$pl == 'Hàng hóa, dịch vụ' ? 'selected' : ''}}>Hàng hóa, dịch vụ</option>
                     <option value="Hàng hóa xuất nhập khẩu" {{$pl == 'Hàng hóa xuất nhập khẩu' ? 'selected' : ''}}>Hàng hóa xuất nhập khẩu</option>
                     <option value="Hàng hóa thị trường" {{$pl == 'Hàng hóa thị trường' ? 'selected' : ''}}>Hàng hóa thị trường</option>
+                    <option value="Thuế tài nguyên" {{$pl == 'Thuế tài nguyên' ? 'selected' : ''}}>Thuế tài nguyên</option>
+                    <option value="Lệ phí trước bạ" {{$pl == 'Lệ phí trước bạ' ? 'selected' : ''}}>Lệ phí trước bạ</option>
                 </select>
+        </div>
+        <div class="col-md-6 text-right" style="padding-top: 5px">
+            <a href="{{url('dmthoidiem/create')}}" class="btn btn-default btn-sm">
+                <i class="fa fa-plus"></i> Thêm mới </a>
+            <a href="" class="btn btn-default btn-sm">
+                <i class="fa fa-print"></i> Print </a>
         </div>
     </div>
     <!-- END PAGE HEADER-->
@@ -66,16 +74,6 @@
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box wi">
-                <div class="portlet-title">
-                    <div class="caption">
-                    </div>
-                    <div class="actions">
-                        <a href="{{url('dmthoidiem/create')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
-                        <a href="" class="btn btn-default btn-sm">
-                            <i class="fa fa-print"></i> Print </a>
-                    </div>
-                </div>
                 <div class="portlet-body">
                     <div class="table-toolbar">
 

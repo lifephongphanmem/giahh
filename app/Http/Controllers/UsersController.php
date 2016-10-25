@@ -181,28 +181,23 @@ class UsersController extends Controller
     }
 
     public function lock($ids){
-
         $arrayid = explode('-', $ids);
         foreach ($arrayid as $id) {
             $model = Users::findOrFail($id);
             $model->status = "Vô hiệu";
             $model->save();
         }
-        return redirect('users');
-
+        return redirect('users/pl=quan-ly');
     }
 
     public function unlock($ids){
-
         $arrayid = explode('-', $ids);
-
         foreach ($arrayid as $id) {
             $model = Users::findOrFail($id);
             $model->status = "Kích hoạt";
             $model->save();
         }
-        return redirect('users');
-
+        return redirect('users/pl=quan-ly');
     }
 
     public function logout() {

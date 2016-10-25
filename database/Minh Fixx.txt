@@ -27,3 +27,6 @@
 -06/10/2016
     + Thêm 3 bảng DmHangHoa, NhomHangHoa, PNhomHangHoa
     + Them 3 bang giahanghoa, hsgiahanghoa, giahanghoadefault
+-15/10/2016
+    + Thêm 3 bảng DmThueTn, NhomThueTn, PNhomThueTn
+    + Them 3 bang ThueTn, HsThueTn, ThueTndefault

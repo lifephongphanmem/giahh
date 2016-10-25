@@ -80,7 +80,6 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-
                         <a href="{{url('thongtu-quyetdinh-tinh/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
 

@@ -20,7 +20,6 @@
             TableManaged.init();
         });
         function  getSelectedCheckboxes(){
-
             var ids = '';
             $.each($("input[name='ck_value']:checked"), function(){
                 ids += ($(this).attr('value')) + '-';
@@ -58,7 +57,6 @@
             document.getElementById("iddelete").value=id;
         }
         $(function(){
-
             $('#phanloai').change(function() {
                 var pl = $('#phanloai').val();
                 var url = '/users/pl='+pl;
@@ -204,7 +202,7 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
-
+    </div>
     @include('includes.e.modal-confirm')
 
 

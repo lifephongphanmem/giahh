@@ -103,7 +103,6 @@
                                 <td style="text-align: center">{{$tt->soqd}}</td>
                                 <td style="text-align: center">{{$tt->tenloai}}</td>
                                 <td>
-
                                     <a href="{{url('thongtin-gia-thuetruocba/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                     @if(session('admin')->level == 'T')
                                         <button type="button" onclick="confirmHuy('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huy-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hủy hoàn thành</button>

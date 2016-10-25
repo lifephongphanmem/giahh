@@ -119,7 +119,16 @@ Route::get('dmloaixe-thuetruocba/{id}/edit','DmXeThueTbController@edit');
 Route::patch('dmloaixe-thuetruocba/{id}','DmXeThueTbController@update');
 Route::post('dmloaixe-thuetruocba/delete','DmXeThueTbController@destroy');
 
-
+    //Danh mục tính thuế tài nguyên
+Route::get('dmthuetn','DmThueTnController@nhom');
+Route::get('dmthuetn/nhom={nhom}','DmThueTnController@pnhom');
+Route::get('dmthuetn/nhom={nhom}/pnhom={pnhom}','DmThueTnController@hanghoa');
+Route::get('dmthuetn/nhom={nhom}/pnhom={pnhom}/create','DmThueTnController@create');
+Route::post('dmthuetn','DmThueTnController@store');
+Route::get('dmthuetn/{id}/edit','DmThueTnController@edit');
+Route::patch('dmthuetn/{id}','DmThueTnController@update');
+Route::post('dmthuetn/delete','DmThueTnController@destroy');
+    //End danh mục tính thuế tài nguyên
 
 // </editor-fold>
 
@@ -427,6 +436,39 @@ Route::get('timkiem-thongtin-gia-thuetruocba','GiaThueTbController@search');
 Route::post('timkiem-thongtin-gia-thuetruocba','GiaThueTbController@viewsearch');
 //End Thuế trước bạ
 
+//1.Giá thuế tài nguyên
+Route::get('giathuetn','HsThueTnController@thoidiem');
+Route::get('giathuetn/thoidiem={thoidiem}/nam={nam}','HsThueTnController@index');
+Route::post('giathuetn/create','HsThueTnController@create');
+Route::post('giathuetn','HsThueTnController@store');
+Route::get('giathuetn/{id}/show','HsThueTnController@show');
+Route::get('giathuetn/{id}/edit','HsThueTnController@edit');
+Route::patch('giathuetn/{id}','HsThueTnController@update');
+Route::post('giathuetn/delete','HsThueTnController@destroy');
+
+//Route::get('giathuetn','HsThueTnController@showthoidiem');
+Route::get('giathuetn/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsThueTnController@showindex');
+Route::get('giathuetn/{id}/show','HsThueTnController@view');
+
+Route::get('/giathuetndefault/gettthh','ThueTnDefaultController@gettthh');
+Route::get('/giathuetndefault/store','ThueTnDefaultController@store');
+Route::get('/giathuetndefault/edit','ThueTnDefaultController@edit');
+Route::get('/giathuetndefault/update','ThueTnDefaultController@update');
+Route::get('/giathuetndefault/delete','ThueTnDefaultController@destroy');
+
+Route::get('/giathuetn/store','ThueTnController@store');
+Route::get('/giathuetn/edit','ThueTnController@edit');
+Route::get('/giathuetn/update','ThueTnController@update');
+Route::get('/giathuetn/delete','ThueTnController@destroy');
+
+Route::get('thongtin-giathuetn','HsThueTnController@showthoidiem');
+Route::get('thongtin-giathuetn/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsThueTnController@showindex');
+Route::get('thongtin-giathuetn/{id}/show','HsThueTnController@view');
+
+Route::get('timkiem-giathuetn','HsThueTnController@search');
+Route::post('timkiem-giathuetn','HsThueTnController@viewsearch');
+//End 1.Giá thuế tài nguyên
+
 // </editor-fold>
 
 // <editor-fold defaultstate="collapsed" desc="--Reports--">
@@ -462,7 +504,13 @@ Route::post('reports/bctkkhac/BC4Excel','BcTkKhacController@BC4Excel');
     //End BCTK khác
 
     //Thuế trước bạ
-Route::get('banggiatinh-thuetruocba/{mahs}','BcGiaTTbController@BaGThueTB')
+Route::get('banggiatinh-thuetruocba/{mahs}','BcGiaTTbController@BaGThueTB');
     //End thuế trước bạ
+
+    //Thuế tài nguyên
+Route::get('reports/thuetn/index','BcGiaThueTnController@index');
+Route::post('reports/thuetn/bcgiathuetn','BcGiaThueTnController@bcgiathuetn');
+Route::post('reports/thuetn/bcgiathuetnexcel','BcGiaThueTnController@bcgiathuetnexcel');
+    //End tài nguyên
 // </editor-fold>
 ?>

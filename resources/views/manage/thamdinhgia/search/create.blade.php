@@ -109,7 +109,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn green"><i class="fa fa-search"></i> Tìm kiếm</button>
-                            <button type="reset" class="btn default">Hủy</button>
+                            <button type="reset" class="btn default"> Hủy</button>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->

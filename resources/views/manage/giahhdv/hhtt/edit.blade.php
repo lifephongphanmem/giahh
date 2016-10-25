@@ -307,7 +307,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="ttts">
-                                        @if($modeltthh)
+                                        @if(isset($modeltthh))
                                             @foreach($modeltthh as $key=>$tt)
                                                 <tr>
                                                     <td style="text-align: center">{{$key +1}}</td>

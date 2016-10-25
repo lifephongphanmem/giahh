@@ -117,7 +117,7 @@
                         <div class="form-actions">
                             <div class="col-md-12" style="text-align: center">
                             <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
-                            <button type="reset" class="btn default">Hủy</button>
+                            <button type="reset" class="btn default"> Hủy</button>
                             </div>
                         </div>
                     {!! Form::close() !!}

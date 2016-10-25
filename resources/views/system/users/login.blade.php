@@ -74,7 +74,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<label class="control-label visible-ie8 visible-ie9">Username</label>
 			<div class="input-icon">
 				<i class="fa fa-user"></i>
-				<input class="form-control required type="text" autocomplete="off" placeholder="Username" name="username" id="username" autofocus/  >
+				<input class="form-control required" type="text" autocomplete="off" placeholder="Username" name="username" id="username" autofocus />
 			</div>
 		</div>
 		<div class="form-group">

@@ -80,7 +80,7 @@
                             <div class="col-md-12" style="text-align: center">
                                 <div class="form-group">
                                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
-                                <button type="reset" class="btn default">Hủy</button>
+                                <button type="reset" class="btn default"> Hủy</button>
                                 </div>
                             </div>
                         </div>

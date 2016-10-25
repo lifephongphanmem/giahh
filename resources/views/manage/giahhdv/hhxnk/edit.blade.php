@@ -317,7 +317,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="ttts">
-                                        @if($modeltthh)
+                                        @if(isset($modeltthh))
                                             @foreach($modeltthh as $key=>$tt)
                                                 <tr>
                                                     <td style="text-align: center">{{$key+1}}</td>
@@ -344,7 +344,7 @@
                         </div>
 
                         <div class="form-actions right">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
+                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                         </div>
                     </form>
                     <!-- END FORM-->

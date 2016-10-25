@@ -125,6 +125,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="col-md-offset-5 col-md-2">
+                    <a class="btn blue" href="{{url('/thongtin-giathitruong')}}"><i class="fa fa-mail-reply"></i>  Quay lại</a>
+                </div>
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->
         </div>

@@ -101,26 +101,6 @@
                                 </table>
                             </div>
                             <div class="col-md-3">
-                                <h4 style="text-align: center">Giá thuế trước bạ</h4>
-                                <table class="table table-striped table-bordered table-hover">
-                                    <thead class="action">
-                                    <tr>
-                                        <th class="table-checkbox" width="5%">
-                                            <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
-                                        </th>
-                                        <th>Chức năng</th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" {{ (isset($setting->gttruocba->gttruocba) && $setting->gttruocba->gttruocba == 1) ? 'checked' : '' }} value="1" name="roles[gttruocba][gttruocba]"/></td>
-                                        <td>Giá thuế trước bạ</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-md-3">
                                 <h4 style="text-align: center">Thẩm định giá</h4>
                                 <table class="table table-striped table-bordered table-hover">
                                     <thead>
@@ -157,6 +137,48 @@
                                         <td>Công bố giá</td>
                                     </tr>
 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4 style="text-align: center">Thuế tài nguyên</h4>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="table-checkbox" width="5%">
+                                            <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                        </th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($setting->gthuetn->gthuetn) && $setting->gthuetn->gthuetn == 1) ? 'checked' : '' }} value="1" name="roles[gthuetn][gthuetn]"/></td>
+                                        <td>Thuế tài nguyên</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-3">
+                                <h4 style="text-align: center">Giá thuế trước bạ</h4>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead class="action">
+                                    <tr>
+                                        <th class="table-checkbox" width="5%">
+                                            <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                        </th>
+                                        <th>Chức năng</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($setting->gttruocba->gttruocba) && $setting->gttruocba->gttruocba == 1) ? 'checked' : '' }} value="1" name="roles[gttruocba][gttruocba]"/></td>
+                                        <td>Giá thuế trước bạ</td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>

@@ -129,7 +129,7 @@
 
                         </div>
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-plus"></i> Import</button>
+                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-plus"></i> Hoàn thành</button>
                             <button type="reset" class="btn default">Hủy</button>
 
                         </div>

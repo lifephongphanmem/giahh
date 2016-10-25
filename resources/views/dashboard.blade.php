@@ -111,7 +111,7 @@
                 @endif
                 @if(canGeneral('gttruocba','gttruocba'))
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="dashboard-stat red-intense">
+                        <div class="dashboard-stat green-haze">
                             <div class="visual">
                                 <i class="fa fa-globe"></i>
                             </div>
@@ -127,6 +127,25 @@
                         </div>
                     </div>
                 @endif
+                    @if(canGeneral('gthuetn','gthuetn'))
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="dashboard-stat blue-madison">
+                                <div class="visual">
+                                    <i class="fa fa-adjust"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="number"></div>
+                                    <div class="desc">
+                                        Giá thuế tài nguyên
+                                    </div>
+                                </div>
+                                <a class="more" href="{{url('thongtin-thuetn/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                                    Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+
                 @if(canGeneral('thamdinhgia','thamdinhgia'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat green-haze">

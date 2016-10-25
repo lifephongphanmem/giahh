@@ -115,6 +115,10 @@ class HsGiaHangHoaDPController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(Request $request)
     {
         if(Session::has('admin')){

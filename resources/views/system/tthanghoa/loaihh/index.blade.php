@@ -69,10 +69,8 @@
                             <td>
                                 <a href="{{url('dmloaihh/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs">
                                     <i class="fa fa-edit"></i> Chỉnh sửa </a>
-
                                 <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" onclick="getId('{{$tt->id}}')">
                                     <i class="fa fa-trash-o"></i>&nbsp; Xóa</button>
-
                             </td>
                         </tr>
                         @endforeach

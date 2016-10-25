@@ -291,12 +291,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li>
                             <a href="">Hàng hóa thị trường<span class="arrow"></span> </a>
                             <ul class="sub-menu">
-                                @if(can('hhdvtn','create'))
+                                @if(can('hhthitruong','create'))
                                 <li>
                                     <a href="{{url('giahhdv-thitruong')}}">Giá HH thị trường</a>
                                 </li>
                                 @endif
-                                @if(can('hhdvtn','index'))
+                                @if(can('hhthitruong','index'))
                                 <li>
                                     <a href="{{url('thongtin-giathitruong')}}">Thông tin giá HH thị trường</a>
                                 </li>
@@ -433,6 +433,32 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
                 @endif
+
+                <!--Thuế tài nguyên-->
+                @if(canGeneral('gthuetn','gthuetn'))
+                    <li>
+                        <a href="">
+                            <i class="fa fa-laptop"></i>
+                            <span class="title">Giá thuế tài nguyên</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if(can('gthuetn','create'))
+                                <li>
+                                    <a href="{{url('giathuetn')}}">Giá thuế tài nguyên</a>
+                                </li>
+                            @endif
+                            @if(can('gthuetn','index'))
+                                <li>
+                                    <a href="{{url('thongtin-giathuetn')}}">Thông tin giá thuế tài nguyên</a>
+                                </li>
+                            @endif
+                                <li>
+                                    <a href="{{url('timkiem-giathuetn')}}">Tìm kiếm thông tin giá thuế tài nguyên</a>
+                                </li>
+                        </ul>
+                    </li>
+                @endif
                     <!--Thẩm định giá-->
                 @if(canGeneral('thamdinhgia','thamdinhgia'))
                 <li>
@@ -534,7 +560,11 @@ License: You must have a valid license purchased only from themeforest(the above
                             </ul>
                         </li>
                         @endif
-
+                        @if(canGeneral('gthuetn','gthuetn'))
+                            <li>
+                                <a href="{{url('/reports/thuetn/index')}}">Thuế tài nguyên</a>
+                            </li>
+                        @endif
                     </ul>
                 </li>
                 @endif
@@ -548,55 +578,54 @@ License: You must have a valid license purchased only from themeforest(the above
                     <ul class="sub-menu">
                         @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk') || canGeneral('hhdv','hhthitruong')
                             || canGeneral('hhdv','kkgtw') || canGeneral('hhdv','kkgdp'))
-                        <li>
-                            <a href="">Giá hàng hóa <span class="arrow"></span> </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="{{url('dmtd/pl=all')}}"> Danh mục thời điểm</a>
-                                </li>
-                                <li>
-                                    <a href="{{url('dmthitruong')}}"> Danh mục thị trường</a>
-                                </li>
-                                <li>
-                                    <a href="{{url('dmloaigia')}}"> Danh mục loại giá</a>
-                                </li>
-                                <li>
-                                    <a href="{{url('dmloaihh')}}"> Danh mục loại hàng hóa</a>
-                                </li>
-                                @if(canGeneral('hhdv','hhthitruong'))
-                                <li>
-                                    <a href="{{url('dmhanghoa-thitruong')}}"> Hàng hóa thị trường</a>
-                                </li>
-                                @endif
-                                        <!-- 1. Thay thế phần mặt hàng trong nước dành cho Lào Cai -->
-                                @if(!canGeneral('hhdv','hhdvlc'))<!--Chưa phân quyền-->
+                            <li>
+                                <a href="">Giá hàng hóa <span class="arrow"></span> </a>
+                                <ul class="sub-menu">
                                     <li>
-                                        <a href="{{url('dmhanghoa-hanghoa')}}">Hàng hóa, dịch vụ trong nước</a>
+                                        <a href="{{url('dmthitruong')}}"> Danh mục thị trường</a>
                                     </li>
-                                @endif
-                                        <!--End 1. -->
-                                @if(canGeneral('hhdv','hhdvtn'))
-                                <li>
-                                    <a href="{{url('dmhanghoa-trongnuoc')}}">Mặt hàng trong nước</a>
-                                </li>
-                                @endif
-                                @if(canGeneral('hhdv','hhxnk'))
-                                <li>
-                                    <a href="{{url('dmhanghoa-xuatnhapkhau')}}"> Mặt hàng xuất nhập khẩu</a>
-                                </li>
-                                @endif
-                            </ul>
-                        </li>
+                                    <li>
+                                        <a href="{{url('dmloaigia')}}"> Danh mục loại giá</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('dmloaihh')}}"> Danh mục loại hàng hóa</a>
+                                    </li>
+                                    @if(canGeneral('hhdv','hhthitruong'))
+                                    <li>
+                                        <a href="{{url('dmhanghoa-thitruong')}}"> Hàng hóa thị trường</a>
+                                    </li>
+                                    @endif
+                                            <!-- 1. Thay thế phần mặt hàng trong nước dành cho Lào Cai -->
+                                    @if(!canGeneral('hhdv','hhdvlc'))<!--Chưa phân quyền-->
+                                        <li>
+                                            <a href="{{url('dmhanghoa-hanghoa')}}">Hàng hóa, dịch vụ trong nước</a>
+                                        </li>
+                                    @endif
+                                            <!--End 1. -->
+                                    @if(canGeneral('hhdv','hhdvtn'))
+                                    <li>
+                                        <a href="{{url('dmhanghoa-trongnuoc')}}">Mặt hàng trong nước</a>
+                                    </li>
+                                    @endif
+                                    @if(canGeneral('hhdv','hhxnk'))
+                                    <li>
+                                        <a href="{{url('dmhanghoa-xuatnhapkhau')}}"> Mặt hàng xuất nhập khẩu</a>
+                                    </li>
+                                    @endif
+                                </ul>
+                            </li>
                         @endif
                         @if(canGeneral('gttruocba','gttruocba'))
-                        <li><a href="{{url('dmloaixe-thuetruocba')}}">Danh mục thuế trước bạ</a> </li>
+                            <li><a href="{{url('dmloaixe-thuetruocba')}}">Danh mục thuế trước bạ</a> </li>
                         @endif
-
+                        @if(canGeneral('gthuetn','gthuetn'))
+                            <li><a href="{{url('dmthuetn')}}">Danh mục thuế tài nguyên</a> </li>
+                        @endif
+                        <li><a href="{{url('dmtd/pl=all')}}">Thời điểm kê khai</a></li>
                         <li><a href="{{url('phong-ban')}}">Thông tin phòng ban</a></li>
                         <li><a href="{{url('users/pl=quan-ly')}}"> Quản lý tài khoản</a></li>
 
                         <li><a href="{{url('cau-hinh-he-thong')}}">Cấu hình hệ thống</a></li>
-
                     </ul>
                 </li>
                 @endif

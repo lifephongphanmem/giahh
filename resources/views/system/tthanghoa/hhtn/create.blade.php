@@ -91,8 +91,8 @@
                         <input type="hidden" value="{{$nhom}}" name="nhom" id="nhom">
                         <input type="hidden" value="{{$pnhom}}" name="pnhom" id="pnhom">
                         <div class="form-actions">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
-                            <button type="reset" class="btn default">Cancel</button>
+                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                            <button type="reset" class="btn default"> Huỷ</button>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->

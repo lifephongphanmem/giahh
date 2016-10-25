@@ -325,7 +325,7 @@
                         </div>
 
                         <div class="form-actions right">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Submit</button>
+                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                         </div>
                     </form>
                     <!-- END FORM-->

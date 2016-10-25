@@ -80,6 +80,8 @@
                                         'Hàng hóa thị trường'=>'Hàng hóa thị trường',
                                         'Hàng hóa, dịch vụ' => 'Hàng hóa, dịch vụ',
                                         'Hàng hóa xuất nhập khẩu' => 'Hàng hóa xuất nhập khẩu',
+                                        'Thuế tài nguyên' =>'Thuế tài nguyên',
+                                        'Lệ phí trước bạ' =>'Lệ phí trước bạ'
                                         ),null,
                                         array('id' => 'plbc', 'class' => 'form-control'))
                                         !!}
@@ -89,7 +91,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                            <button type="reset" class="btn default">Hủy</button>
+                            <button type="reset" class="btn default"> Hủy</button>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->

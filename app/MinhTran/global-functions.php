@@ -59,6 +59,13 @@ function getPermissionDefault($level) {
             'delete' => 0,
             'approve'=> 1
         ),
+        'gthuetn' => array(
+            'index' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0,
+            'approve'=> 1
+        ),
         'tdgia' => array(
             'index' => 1,
             'create' => 0,
@@ -137,6 +144,13 @@ function getPermissionDefault($level) {
             'delete' => 1,
             'approve'=> 1
         ),
+        'gthuetn' => array(
+            'index' => 1,
+            'create' => 1,
+            'edit' => 1,
+            'delete' => 1,
+            'approve'=> 1
+        ),
         'tdgia' => array(
             'index' => 1,
             'create' => 1,
@@ -209,6 +223,13 @@ function getPermissionDefault($level) {
             'approve'=> 0
         ),
         'gttruocba' => array(
+            'index' => 1,
+            'create' => 0,
+            'edit' => 0,
+            'delete' => 0,
+            'approve'=> 0
+        ),
+        'gthuetn' => array(
             'index' => 1,
             'create' => 0,
             'edit' => 0,
@@ -402,5 +423,40 @@ function getPhanTram2($giatri, $thaydoi){
         return '';
     }
     return round(($thaydoi/$giatri)*100,2).'%';
+}
+
+function ConverToRoman($num){
+    $n = intval($num);
+    $res = '';
+
+    //array of roman numbers
+    $romanNumber_Array = array(
+        'M'  => 1000,
+        'CM' => 900,
+        'D'  => 500,
+        'CD' => 400,
+        'C'  => 100,
+        'XC' => 90,
+        'L'  => 50,
+        'XL' => 40,
+        'X'  => 10,
+        'IX' => 9,
+        'V'  => 5,
+        'IV' => 4,
+        'I'  => 1);
+
+    foreach ($romanNumber_Array as $roman => $number){
+        //divide to get  matches
+        $matches = intval($n / $number);
+
+        //assign the roman char * $matches
+        $res .= str_repeat($roman, $matches);
+
+        //substract from the number
+        $n = $n % $number;
+    }
+
+    // return the result
+    return $res;
 }
 ?>

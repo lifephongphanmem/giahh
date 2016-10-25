@@ -351,6 +351,43 @@
                                 </div>
                             @endif
                                 <!--Chưa làm-->
+                            @if(canGeneral('gthuetn','gthuetn'))
+                                <div class="col-md-3">
+                                    <h4 style="text-align: center;color: #0000ff  ">Thuế tài nguyên</h4>
+                                    <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="table-checkbox" width="5%">
+                                                <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                            </th>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->gthuetn->index) && $permission->gthuetn->index == 1) ? 'checked' : '' }} value="1" name="roles[gthuetn][index]"/></td>
+                                            <td>Xem</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->gthuetn->create) && $permission->gthuetn->create == 1) ? 'checked' : '' }} value="1" name="roles[gthuetn][create]"/></td>
+                                            <td>Thêm mới</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->gthuetn->create) && $permission->gthuetn->create == 1) ? 'checked' : '' }} value="1" name="roles[gthuetn][edit]"/></td>
+                                            <td>Chỉnh sửa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->gthuetn->delete) && $permission->gthuetn->delete == 1) ? 'checked' : '' }} value="1" name="roles[gthuetn][delete]"/></td>
+                                            <td>Xóa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->gthuetn->approve) && $permission->gthuetn->approve == 1) ? 'checked' : '' }} value="1" name="roles[gthuetn][approve]"/></td>
+                                            <td>Xét duyệt</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endif
                             @if(canGeneral('thamdinhgia','thamdinhgia'))
                             <div class="col-md-3">
                                 <h4 style="text-align: center;color: #0000ff  ">Thẩm định giá</h4>

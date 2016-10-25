@@ -73,7 +73,6 @@
                             <td>
                                 <a href="{{url('dmloaixe-thuetruocba/maloai='.$tt->maloai)}}" class="btn btn-default btn-xs mbs">
                                     <i class="fa fa-edit"></i> Xem chi tiết</a>
-
                             </td>
                         </tr>
                         @endforeach

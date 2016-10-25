@@ -70,7 +70,7 @@
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Thêm mới</button>
-                            <button type="reset" class="btn default">Hủy</button>
+                            <button type="reset" class="btn default"> Hủy</button>
                         </div>
                     {!! Form::close() !!}
                     <!-- END FORM-->
