@@ -1,13 +1,25 @@
 @extends('main')
 
 @section('custom-style')
-
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
 @stop
 
 
 @section('custom-script')
     <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
-    <!--cript src="{{url('assets/admin/pages/scripts/form-validation.js')}}"></script-->
+    <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            TableManaged.init();
+        });
+
+    </script>
     <script>
     function editItem(id) {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -60,7 +72,10 @@
                 //$('#modal-wide-width').dialog('close');
                 if (data.status == 'success') {
                     toastr.success("Chỉnh sửa thông tin tài sản thành công", "Thành công!");
-                    $('#ttts').replaceWith(data.message);
+                    $('#dsts').replaceWith(data.message);
+                    jQuery(document).ready(function() {
+                        TableManaged.init();
+                    });
                     $('#modal-wide-width').modal("hide");
 
                 } else
@@ -80,7 +95,10 @@
             dataType: 'JSON',
             success: function (data) {
                 toastr.success("Bạn đã xóa thông tin tài sản thành công!", "Thành công!");
-                $('#ttts').replaceWith(data.message);
+                $('#dsts').replaceWith(data.message);
+                jQuery(document).ready(function() {
+                    TableManaged.init();
+                });
             }
         })
     }
@@ -353,31 +371,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id="dsts">
                                 <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                    <table class="table table-striped table-bordered table-hover" id="sample_3">
                                         <thead>
-                                            <tr style="background: #F5F5F5">
-                                                <th width="2%" style="text-align: center">STT</th>
-                                                <th style="text-align: center">Tên vật tư VLXD</th>
-                                                <th style="text-align: center">Thông số kỹ thuật</th>
-                                                <th style="text-align: center">Nguồn gốc</th>
-                                                <th style="text-align: center">Đơn vị tính</th>
-                                                <th style="text-align: center">Số lượng</th>
-                                                <th style="text-align: center">Nguyên giá đề nghị</th>
-                                                <th style="text-align: center">Giá trị đề nghị</th>
-                                                <th style="text-align: center">Nguyên giá công bố</th>
-                                                <th style="text-align: center">Giá trị công bố</th>
-                                                <th style="text-align: center" width="20%">Thao tác</th>
-                                            </tr>
+                                        <tr>
+                                            <th width="2%" style="text-align: center">STT</th>
+                                            <th style="text-align: center">Tên vật tư VLXD</th>
+                                            <th style="text-align: center">Thông số kỹ thuật</th>
+                                            <th style="text-align: center">Nguồn gốc xuất xứ</th>
+                                            <th style="text-align: center">Đơn vị <br>tính</th>
+                                            <th style="text-align: center">Số lượng</th>
+                                            <th style="text-align: center">Nguyên giá<br> đề nghị</th>
+                                            <th style="text-align: center">Giá trị<br> đề nghị</th>
+                                            <th style="text-align: center">Nguyên giá<br> công bố</th>
+                                            <th style="text-align: center">Giá trị<br> công bố</th>
+                                            <th style="text-align: center" width="15%">Thao tác</th>
+                                        </tr>
                                         </thead>
                                         <tbody id="ttts">
-                                        @if(count($modelts)>0)
                                         @foreach($modelts as $key=>$tt)
                                             <tr>
                                                 <td style="text-align: center">{{$key +1}}</td>
-                                                <td class="active" width="15%">{{$tt->tents}}</td>
+                                                <td class="active">{{$tt->tents}}</td>
                                                 <td>{{$tt->thongsokt}}</td>
                                                 <td>{{$tt->nguongoc}}</td>
                                                 <td style="text-align: center">{{$tt->dvt}}</td>
@@ -387,33 +403,27 @@
                                                 <td style="text-align: right">{{number_format($tt->nguyengiathamdinh)}}</td>
                                                 <td style="text-align: right">{{number_format($tt->giatritstd)}}</td>
                                                 <td>
-                                                    <button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('{{$tt->id}}');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
-                                                    <button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('{{$tt->id}}')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                                    <button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem({{$tt->id}})"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>
+                                                    <button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow({{$tt->id}})" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
                                                 </td>
                                             </tr>
                                         @endforeach
-                                        @else
-                                            <tr>
-                                                <td colspan="11">Chưa có thông tin về vật tư VLXD</td>
-                                            </tr>
-                                        @endif
                                         </tbody>
-                                        </table>
-                                    </div>
+                                    </table>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-actions right">
-                            <div class="col-md-12" style="text-align: center">
-                                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
-                            </div>
-                        </div>
-                    </form>
+
                     <!-- END FORM-->
                 </div>
             </div>
             <!-- END VALIDATION STATES-->
         </div>
+        <div class="row">
+            <div class="col-md-12" style="text-align: center">
+                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
+            </div>
+        </div>
+        {!! Form::close() !!}
     </div>
     <script type="text/javascript">
         function validateForm(){
@@ -509,7 +519,7 @@
                     success: function (data) {
                         if(data.status == 'success') {
                             toastr.success("Cập nhật thông tin tài sản thành công", "Thành công!");
-                            $('#ttts').replaceWith(data.message);
+                            $('#dsts').replaceWith(data.message);
                             $('#tents').val('');
                             $('#dacdiempl').val('');
                             $('#thongsokt').val('');
@@ -521,7 +531,9 @@
                             $('#nguyengiathamdinh').val('0');
                             $('#giatritstd').val('0');
                             $('#gc').val('');
-
+                            jQuery(document).ready(function() {
+                                TableManaged.init();
+                            });
                             $('#tents').focus();
                         }
                         else

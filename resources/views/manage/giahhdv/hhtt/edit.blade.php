@@ -200,7 +200,7 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                    <div class="form-group has-error">
+                                    <div class="form-group">
                                         <label class="control-label">Thị trường<span class="require">*</span></label>
                                         <select class="form-control required" name="thitruong" id="thitruong">
                                             @foreach($thitruong as $ct)
@@ -252,7 +252,7 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                    <div class="form-group has-error">
+                                    <div class="form-group">
                                         <label class="control-label">Giá đến<span class="require">*</span></label>
                                         <input type="text" name="giaden" id="giaden" class="form-control" data-mask="fdecimal" value="0">
                                     </div>

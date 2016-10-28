@@ -1,12 +1,24 @@
 @extends('main')
 
 @section('custom-style')
-
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
 @stop
 
 
 @section('custom-script')
     <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            TableManaged.init();
+        });
+
+    </script>
     <script>
         function editItem(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -58,10 +70,14 @@
                     //$('#modal-wide-width').dialog('close');
                     if(data.status == 'success') {
                         toastr.success("Chỉnh sửa thông tin tài sản thành công", "Thành công!");
-                        $('#ttts').replaceWith(data.message);
+                        $('#dsts').replaceWith(data.message);
                         //$("#modal-wide-width").dialog("close");
                         //$('#modal-wide-width').fadeOut();
+                        jQuery(document).ready(function() {
+                            TableManaged.init();
+                        });
                         $('#modal-wide-width').modal("hide");
+
 
                     }else
                         toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
@@ -81,7 +97,10 @@
                 success: function (data) {
                     //if(data.status == 'success') {
                     toastr.success("Bạn đã xóa thông tin tài sản thành công!", "Thành công!");
-                    $('#ttts').replaceWith(data.message);
+                    $('#dsts').replaceWith(data.message);
+                    jQuery(document).ready(function() {
+                        TableManaged.init();
+                    });
 
                     //}
                 }
@@ -356,28 +375,28 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row" id="dsts">
                                 <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                    <table class="table table-striped table-bordered table-hover" id="sample_3">
                                         <thead>
-                                            <tr style="background: #F5F5F5">
-                                                <th width="2%" style="text-align: center">STT</th>
-                                                <th style="text-align: center">Tên tài sản</th>
-                                                <th style="text-align: center">Đơn vị tính</th>
-                                                <th style="text-align: center">Số lượng</th>
-                                                <th style="text-align: center">Nguyên giá đề nghị</th>
-                                                <th style="text-align: center">Giá trị đề nghị</th>
-                                                <th style="text-align: center">Nguyên giá thẩm định</th>
-                                                <th style="text-align: center">Giá trị thẩm định</th>
-                                                <th style="text-align: center" width="20%">Thao tác</th>
-                                            </tr>
+                                        <tr>
+                                            <th width="2%" style="text-align: center">STT</th>
+                                            <th style="text-align: center">Tên tài sản</th>
+                                            <!--th style="text-align: center">Đặc điểm kinh tế- kỹ thuật</th-->
+                                            <!--th style="text-align: center">Nguồn gốc</th-->
+                                            <th style="text-align: center">Đơn vị tính</th>
+                                            <th style="text-align: center">Số lượng</th>
+                                            <th style="text-align: center">Nguyên giá đề nghị</th>
+                                            <th style="text-align: center">Giá trị đề nghị</th>
+                                            <th style="text-align: center">Nguyên giá thẩm định</th>
+                                            <th style="text-align: center">Giá trị thẩm định</th>
+                                            <th style="text-align: center" width="20%">Thao tác</th>
+                                        </tr>
                                         </thead>
                                         <tbody id="ttts">
-                                            <td colspan="9" style="text-align: center">Chưa có thông tin</td>
+
                                         </tbody>
-                                        </table>
-                                    </div>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -485,7 +504,7 @@
                     success: function (data) {
                         if(data.status == 'success') {
                             toastr.success("Cập nhật thông tin tài sản thành công", "Thành công!");
-                            $('#ttts').replaceWith(data.message);
+                            $('#dsts').replaceWith(data.message);
                             $('#tents').val('');
                             $('#dacdiempl').val('');
                             $('#thongsokt').val('');
@@ -499,6 +518,9 @@
                             $('#gc').val('');
 
                             $('#tents').focus();
+                            jQuery(document).ready(function() {
+                                TableManaged.init();
+                            });
                         }
                         else
                             toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");

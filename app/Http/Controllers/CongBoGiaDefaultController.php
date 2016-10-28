@@ -64,7 +64,26 @@ class CongBoGiaDefaultController extends Controller
 
             $model = CongBoGiaDefault::where('mahuyen',session('admin')->mahuyen)
                 ->get();
-            $result['message'] = '<tbody id="ttts">';
+
+            $result['message'] = '<div class="row" id="dsts">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
+            $result['message'] .= '<thead>';
+            $result['message'] .= '<tr>';
+            $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
+            $result['message'] .= '<th style="text-align: center">Tên vật tư VLXD</th>';
+            $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
+            $result['message'] .= '<th style="text-align: center">Nguồn gốc xuất xứ</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn vị<br> tính</th>';
+            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị<br> đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> công bố</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị<br> công bố</th>';
+            $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
+            $result['message'] .= '</tr>';
+            $result['message'] .= '</thead>';
+            $result['message'] .= '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
@@ -85,6 +104,9 @@ class CongBoGiaDefaultController extends Controller
                     $result['message'] .= '</tr>';
                 }
                 $result['message'] .= '</tbody>';
+                $result['message'] .= '</table>';
+                $result['message'] .= '</div>';
+                $result['message'] .= '</div>';
                 $result['status'] = 'success';
             }
         }
@@ -251,7 +273,26 @@ class CongBoGiaDefaultController extends Controller
 
             $model = CongBoGiaDefault::where('mahuyen',session('admin')->mahuyen)
                 ->get();
-            $result['message'] = '<tbody id="ttts">';
+
+            $result['message'] = '<div class="row" id="dsts">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
+            $result['message'] .= '<thead>';
+            $result['message'] .= '<tr>';
+            $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
+            $result['message'] .= '<th style="text-align: center">Tên vật tư VLXD</th>';
+            $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
+            $result['message'] .= '<th style="text-align: center">Nguồn gốc xuất xứ</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn vị<br> tính</th>';
+            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị<br> đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> công bố</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị<br> công bố</th>';
+            $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
+            $result['message'] .= '</tr>';
+            $result['message'] .= '</thead>';
+            $result['message'] .= '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
@@ -273,6 +314,9 @@ class CongBoGiaDefaultController extends Controller
                     $result['message'] .= '</tr>';
                 }
                 $result['message'] .= '</tbody>';
+                $result['message'] .= '</table>';
+                $result['message'] .= '</div>';
+                $result['message'] .= '</div>';
                 $result['status'] = 'success';
             }
 
@@ -303,7 +347,26 @@ class CongBoGiaDefaultController extends Controller
 
             $model = CongBoGiaDefault::where('mahuyen',session('admin')->mahuyen)
                 ->get();
-            $result['message'] = '<tbody id="ttts">';
+
+            $result['message'] = '<div class="row" id="dsts">';
+            $result['message'] .= '<div class="col-md-12">';
+            $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
+            $result['message'] .= '<thead>';
+            $result['message'] .= '<tr>';
+            $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
+            $result['message'] .= '<th style="text-align: center">Tên vật tư VLXD</th>';
+            $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
+            $result['message'] .= '<th style="text-align: center">Nguồn gốc xuất xứ</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn vị<br> tính</th>';
+            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị<br> đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> công bố</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị<br> công bố</th>';
+            $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
+            $result['message'] .= '</tr>';
+            $result['message'] .= '</thead>';
+            $result['message'] .= '<tbody id="ttts">';
             if(count($model) > 0){
                 foreach($model as $key=>$tents){
                     $result['message'] .= '<tr id="'.$tents->id.'">';
@@ -325,13 +388,9 @@ class CongBoGiaDefaultController extends Controller
                     $result['message'] .= '</tr>';
                 }
                 $result['message'] .= '</tbody>';
-                $result['status'] = 'success';
-            }
-            else{
-                $result['message'] .= '<tr>';
-                $result['message'] .= '<td colspan="11" style="text-align: center">Chưa có thông tin</td>';
-                $result['message'] .= '</tr>';
-                $result['message'] .= '</tbody>';
+                $result['message'] .= '</table>';
+                $result['message'] .= '</div>';
+                $result['message'] .= '</div>';
                 $result['status'] = 'success';
             }
         }

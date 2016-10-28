@@ -57,7 +57,7 @@
                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                     @if ($nam_stop = intval(date('Y')) + 5 ) @endif
                     @for($i = $nam_start; $i <= $nam_stop; $i++)
-                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>{{$i}}</option>
+                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
                     @endfor
                 </select>
             </div>
@@ -129,11 +129,14 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="col-md-offset-5 col-md-2">
+
+            </div>
+            <!-- END EXAMPLE TABLE PORTLET-->
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
                     <a class="btn blue" href="{{url('/giahhdv-dp')}}"><i class="fa fa-mail-reply"></i>  Quay lại</a>
                 </div>
             </div>
-            <!-- END EXAMPLE TABLE PORTLET-->
         </div>
     </div>
 

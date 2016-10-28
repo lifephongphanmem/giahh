@@ -27,7 +27,7 @@
                 window.location.href = url;
             });
 
-        })
+        });
         function confirmDelete(id) {
             document.getElementById("iddelete").value=id;
         }
