@@ -57,19 +57,18 @@ class GiaHhTtController extends Controller
 
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="table-responsive">';
             $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr style="background: #F5F5F5">';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
             $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
             $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá từ</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá đến</th>';
-            $result['message'] .= '<th style="text-align: center" width="5%">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Giá từ</th>';
+            $result['message'] .= '<th style="text-align: center">Giá đến</th>';
+            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
             $result['message'] .= '<th style="text-align: center">Nguồn tin</th>';
             $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
-            $result['message'] .= '<th style="text-align: center" width="12%">Thao tác</th>';
+            $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
 
@@ -94,7 +93,6 @@ class GiaHhTtController extends Controller
                 }
                 $result['message'] .= '</tbody>';
                 $result['message'] .= '</table>';
-                $result['message'] .= '</div>';
                 $result['message'] .= '</div>';
                 $result['status'] = 'success';
 
@@ -229,19 +227,18 @@ class GiaHhTtController extends Controller
             }
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="table-responsive">';
             $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr style="background: #F5F5F5">';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
             $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
             $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá từ</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá đến</th>';
-            $result['message'] .= '<th style="text-align: center" width="5%">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Giá từ</th>';
+            $result['message'] .= '<th style="text-align: center">Giá đến</th>';
+            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
             $result['message'] .= '<th style="text-align: center">Nguồn tin</th>';
             $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
-            $result['message'] .= '<th style="text-align: center" width="12%">Thao tác</th>';
+            $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
 
@@ -266,7 +263,6 @@ class GiaHhTtController extends Controller
                 }
                 $result['message'] .= '</tbody>';
                 $result['message'] .= '</table>';
-                $result['message'] .= '</div>';
                 $result['message'] .= '</div>';
                 $result['status'] = 'success';
 
@@ -305,19 +301,18 @@ class GiaHhTtController extends Controller
             }
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="table-responsive">';
             $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr style="background: #F5F5F5">';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
             $result['message'] .= '<th style="text-align: center">Mã hàng hóa</th>';
             $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá từ</th>';
-            $result['message'] .= '<th style="text-align: center" width="10%">Giá đến</th>';
-            $result['message'] .= '<th style="text-align: center" width="5%">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center">Giá từ</th>';
+            $result['message'] .= '<th style="text-align: center">Giá đến</th>';
+            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
             $result['message'] .= '<th style="text-align: center">Nguồn tin</th>';
             $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
-            $result['message'] .= '<th style="text-align: center" width="12%">Thao tác</th>';
+            $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
 
@@ -346,7 +341,6 @@ class GiaHhTtController extends Controller
             }
             $result['message'] .= '</tbody>';
             $result['message'] .= '</table>';
-            $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['status'] = 'success';
         }

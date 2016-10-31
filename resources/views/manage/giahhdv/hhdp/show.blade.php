@@ -72,7 +72,6 @@
                             <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="table-responsive">
                                         <table class="table table-bordered">
                                         <thead>
                                             <tr style="background: #F5F5F5">
@@ -99,7 +98,6 @@
                                         @endforeach
                                         </tbody>
                                         </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>

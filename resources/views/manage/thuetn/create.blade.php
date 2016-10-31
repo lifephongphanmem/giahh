@@ -2,6 +2,7 @@
 
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
 @stop
 
 
@@ -283,7 +284,6 @@
                             </div>
                             <div class="row" id="dsts">
                                 <div class="col-md-12">
-                                    <div class="table-responsive">
                                         <table class="table table-striped table-bordered table-hover" id="sample_3">
                                             <thead>
                                                 <tr style="background: #F5F5F5">
@@ -317,7 +317,6 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>

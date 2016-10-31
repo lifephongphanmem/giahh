@@ -177,18 +177,15 @@
                 </div>
 
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label text-right">Phân loại hàng hóa</label>
-                            <div class="col-md-8">
-                                <select name="masopnhom" id="masopnhom" class="form-control">
-                                    @foreach($m_pnhanghoa as $ct)
-                                        <option value="{{$ct->masopnhom}}">{{$ct->tenpnhom}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+                    <div class="form-group">
+                        <label><b>Phân loại hàng hóa</b></label>
+                        <select name="masopnhom" id="masopnhom" class="form-control">
+                            @foreach($m_pnhanghoa as $ct)
+                                <option value="{{$ct->masopnhom}}">{{$ct->tenpnhom}}</option>
+                            @endforeach
+                        </select>
                     </div>
+
                     <input type="hidden" name="thoidiem" id="thoidiem" value="{{$thoidiem}}">
                 </div>
 

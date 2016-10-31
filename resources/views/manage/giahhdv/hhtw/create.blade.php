@@ -2,6 +2,7 @@
 
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
 @stop
 
 
@@ -308,19 +309,18 @@
                             </div>
                             <div class="row" id="dsts">
                                 <div class="col-md-12">
-                                    <div class="table-responsive">
                                         <table class="table table-striped table-bordered table-hover" id="sample_3">
                                             <thead>
                                                 <tr style="background: #F5F5F5">
                                                     <th width="2%" style="text-align: center">STT</th>
                                                     <th style="text-align: center">Mã hàng hóa</th>
                                                     <th style="text-align: center">Tên hàng hóa dịch vụ</th>
-                                                    <th style="text-align: center" width="10%">Giá từ</th>
-                                                    <th style="text-align: center" width="10%">Giá đến</th>
-                                                    <th style="text-align: center" width="5%">Số lượng</th>
+                                                    <th style="text-align: center" >Giá từ</th>
+                                                    <th style="text-align: center" >Giá đến</th>
+                                                    <th style="text-align: center" >Số lượng</th>
                                                     <th style="text-align: center">Nguồn tin</th>
                                                     <th style="text-align: center">Ghi chú</th>
-                                                    <th style="text-align: center" width="12%">Thao tác</th>
+                                                    <th style="text-align: center" width="15%">Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="ttts">
@@ -331,7 +331,7 @@
                                                         <td>{{$tents->tenhh}}</td>
                                                         <td></td>
                                                         <td></td>
-                                                        <td>1</td>
+                                                        <td style="text-align: center">1</td>
                                                         <td>{{$tents->nguontin}}</td>
                                                         <td>{{$tents->gc}}</td>
                                                         <td>
@@ -342,19 +342,21 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-actions right">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                        </div>
-                    </form>
+
                     <!-- END FORM-->
                 </div>
             </div>
             <!-- END VALIDATION STATES-->
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
+                </div>
+            </div>
+            </form>
         </div>
     </div>
     <script type="text/javascript">

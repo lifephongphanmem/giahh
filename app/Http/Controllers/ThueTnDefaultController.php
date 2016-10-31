@@ -97,7 +97,7 @@ class ThueTnDefaultController extends Controller
 
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="table-responsive">';
+            //$result['message'] .= '<div class="table-responsive">';
             $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr style="background: #F5F5F5">';
@@ -139,7 +139,7 @@ class ThueTnDefaultController extends Controller
             $result['message'] .= '</tbody>';
             $result['message'] .= '</table>';
             $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
+            //$result['message'] .= '</div>';
             $result['status'] = 'success';
         }
         die(json_encode($result));
@@ -267,7 +267,7 @@ class ThueTnDefaultController extends Controller
 
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="table-responsive">';
+            //$result['message'] .= '<div class="table-responsive">';
             $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr style="background: #F5F5F5">';
@@ -305,7 +305,7 @@ class ThueTnDefaultController extends Controller
                 $result['message'] .= '</tbody>';
                 $result['message'] .= '</table>';
                 $result['message'] .= '</div>';
-                $result['message'] .= '</div>';
+                //$result['message'] .= '</div>';
                 $result['status'] = 'success';
             }
         }
@@ -339,7 +339,7 @@ class ThueTnDefaultController extends Controller
 
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<div class="table-responsive">';
+            //$result['message'] .= '<div class="table-responsive">';
             $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
             $result['message'] .= '<thead>';
             $result['message'] .= '<tr style="background: #F5F5F5">';
@@ -381,7 +381,7 @@ class ThueTnDefaultController extends Controller
             $result['message'] .= '</tbody>';
             $result['message'] .= '</table>';
             $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
+            //$result['message'] .= '</div>';
             $result['status'] = 'success';
         }
         die(json_encode($result));

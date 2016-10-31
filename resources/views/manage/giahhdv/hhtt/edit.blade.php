@@ -2,6 +2,7 @@
 
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
 @stop
 
 
@@ -177,7 +178,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin giá hàng hóa dịch vụ trong nước<small>chỉnh sửa</small>
+        Thông tin giá hàng hóa dịch vụ trong nước<small> chỉnh sửa</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -284,26 +285,25 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <button type="button" id="capnhatts" name="capnhatts" class="btn btn-primary">Cập nhật</button>
+                                        <button type="button" id="capnhatts" name="capnhatts" class="btn btn-primary">Bổ xung</button>
                                         &nbsp;
                                     </div>
                                 </div>
                             </div>
                             <div class="row" id="dsts">
                                 <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover" id="sample_3">
+                                    <table class="table table-striped table-bordered table-hover" id="sample_3">
                                         <thead>
                                             <tr style="background: #F5F5F5">
                                                 <th width="2%" style="text-align: center">STT</th>
                                                 <th style="text-align: center">Mã hàng hóa</th>
                                                 <th style="text-align: center">Tên hàng hóa dịch vụ</th>
-                                                <th style="text-align: center" width="10%">Giá từ</th>
-                                                <th style="text-align: center" width="10%">Giá đến</th>
-                                                <th style="text-align: center" width="5%">Số lượng</th>
+                                                <th style="text-align: center">Giá từ</th>
+                                                <th style="text-align: center" >Giá đến</th>
+                                                <th style="text-align: center" >Số lượng</th>
                                                 <th style="text-align: center">Nguồn tin</th>
                                                 <th style="text-align: center">Ghi chú</th>
-                                                <th style="text-align: center" width="12%">Thao tác</th>
+                                                <th style="text-align: center" width="15%">Thao tác</th>
                                             </tr>
                                         </thead>
                                         <tbody id="ttts">
@@ -328,20 +328,22 @@
                                             <td colspan="9" style="text-align: center">Chưa có thông tin</td>
                                         @endif
                                         </tbody>
-                                        </table>
-                                    </div>
+                                    </table>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-actions right">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                        </div>
-                    </form>
+
                     <!-- END FORM-->
                 </div>
             </div>
             <!-- END VALIDATION STATES-->
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
+                </div>
+            </div>
+            </form>
         </div>
     </div>
     <script type="text/javascript">
