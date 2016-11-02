@@ -35,9 +35,6 @@
                 window.location.href = url;
             });
         })
-        function confirmDelete(id) {
-            document.getElementById("iddelete").value=id;
-        }
     </script>
 
 
@@ -122,6 +119,10 @@
                                 </td-->
                                 <td>
                                     <a href="{{url('thongtin-giathuetn/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                    @if(session('admin')->level == 'T')
+                                        <button type="button" onclick="confirmHuy('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huy-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hủy hoàn thành</button>
+                                        <!--a href="{{url('hoso-thamdinhgia/'.$tt->mahs.'/history')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Lịch sử</a-->
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -138,30 +139,6 @@
     <!-- END DASHBOARD STATS -->
     <div class="clearfix">
     </div>
-    <!--Modal Delete-->
-    <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'giahhdv-dp/delete','id' => 'frm_delete'])!!}
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header modal-header-primary">
-                        <button type="button" data-dismiss="modal" aria-hidden="true"
-                                class="close">&times;</button>
-                        <h4 id="modal-header-primary-label" class="modal-title">Đồng ý xoá?</h4>
-                        <input type="hidden" name="iddelete" id="iddelete">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                        <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickdelete()">Đồng ý</button>
-                    </div>
-                </div>
-            </div>
-        {!! Form::close() !!}
-    </div>
-    <script>
-        function clickdelete(){
-            $('#frm_delete').submit();
-        }
-    </script>
-
+    <!--Modal Huỷ hoàn tất-->
+    @include('includes.e.modal-unapprove')
 @stop

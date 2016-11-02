@@ -144,10 +144,12 @@ Route::get('giahhdv-thitruong/{id}/show','HsGiaHhTtController@show');
 Route::get('giahhdv-thitruong/{id}/edit','HsGiaHhTtController@edit');
 Route::patch('giahhdv-thitruong/{id}','HsGiaHhTtController@update');
 Route::post('giahhdv-thitruong/delete','HsGiaHhTtController@destroy');
+Route::post('giahhdv-thitruong/approve','HsGiaHhTtController@approve');
 
 Route::get('thongtin-giathitruong','HsGiaHhTtController@showthoidiem');
 Route::get('thongtin-giathitruong/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHhTtController@showindex');
 Route::get('thongtin-giathitruong/{id}/show','HsGiaHhTtController@view');
+Route::post('thongtin-giathitruong/unapprove','HsGiaHhTtController@unapprove');
 
 Route::get('/giahhttdefault/gettthh','GiaHhTtDefaultController@gettthh');
 Route::get('/giahhttdefault/store','GiaHhTtDefaultController@store');
@@ -229,10 +231,12 @@ Route::get('giahhdv-tw/{id}/show','HsGiaHangHoaTWController@show');
 Route::get('giahhdv-tw/{id}/edit','HsGiaHangHoaTWController@edit');
 Route::patch('giahhdv-tw/{id}','HsGiaHangHoaTWController@update');
 Route::post('giahhdv-tw/delete','HsGiaHangHoaTWController@destroy');
+Route::post('giahhdv-tw/approve','HsGiaHangHoaTWController@approve');
 
 Route::get('thongtin-tw','HsGiaHangHoaTWController@showthoidiem');
 Route::get('thongtin-tw/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHangHoaTWController@showindex');
 Route::get('thongtin-tw/{id}/show','HsGiaHangHoaTWController@view');
+Route::post('thongtin-tw/unapprove','HsGiaHangHoaTWController@unapprove');
 
 Route::get('/giahanghoadefault/gettthh','GiaHangHoaDefaultController@gettthh');
 Route::get('/giahanghoadefault/store','GiaHangHoaDefaultController@store');
@@ -258,10 +262,12 @@ Route::get('giahhdv-dp/{id}/show','HsGiaHangHoaDPController@show');
 Route::get('giahhdv-dp/{id}/edit','HsGiaHangHoaDPController@edit');
 Route::patch('giahhdv-dp/{id}','HsGiaHangHoaDPController@update');
 Route::post('giahhdv-dp/delete','HsGiaHangHoaDPController@destroy');
+Route::post('giahhdv-dp/approve','HsGiaHangHoaDPController@approve');
 
 Route::get('thongtin-dp','HsGiaHangHoaDPController@showthoidiem');
 Route::get('thongtin-dp/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHangHoaDPController@showindex');
 Route::get('thongtin-dp/{id}/show','HsGiaHangHoaDPController@view');
+Route::post('thongtin-dp/unapprove','HsGiaHangHoaDPController@unapprove');
 
 Route::get('timkiem-giahhdv-dp','HsGiaHangHoaDPController@search');
 Route::post('timkiem-giahhdv-dp','HsGiaHangHoaDPController@viewsearch');
@@ -445,6 +451,8 @@ Route::get('giathuetn/{id}/show','HsThueTnController@show');
 Route::get('giathuetn/{id}/edit','HsThueTnController@edit');
 Route::patch('giathuetn/{id}','HsThueTnController@update');
 Route::post('giathuetn/delete','HsThueTnController@destroy');
+Route::post('giathuetn/approve','HsThueTnController@approve');
+
 
 //Route::get('giathuetn','HsThueTnController@showthoidiem');
 Route::get('giathuetn/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsThueTnController@showindex');
@@ -464,6 +472,7 @@ Route::get('/giathuetn/delete','ThueTnController@destroy');
 Route::get('thongtin-giathuetn','HsThueTnController@showthoidiem');
 Route::get('thongtin-giathuetn/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsThueTnController@showindex');
 Route::get('thongtin-giathuetn/{id}/show','HsThueTnController@view');
+Route::post('thongtin-giathuetn/unapprove','HsThueTnController@unapprove');
 
 Route::get('timkiem-giathuetn','HsThueTnController@search');
 Route::post('timkiem-giathuetn','HsThueTnController@viewsearch');

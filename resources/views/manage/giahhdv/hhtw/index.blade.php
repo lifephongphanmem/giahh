@@ -35,9 +35,6 @@
                 window.location.href = url;
             });
         })
-        function confirmDelete(id) {
-            document.getElementById("iddelete").value=id;
-        }
     </script>
 
 
@@ -106,22 +103,26 @@
                                 <td>{{$tt->tenloaigia}}</td>
                                 <td>{{$tt->tenloaihh}}</td>
                                 <td style="text-align: center">
-                                    @if($tt->trangthai == 'Công bố')
-                                        <span class="label label-sm label-success">
-									    Công bố </span>
+                                    @if($tt->trangthai == 'Hoàn tất')
+                                        <span class="label label-sm label-success">Hoàn tất</span>
                                     @else
-                                        <span class="label label-sm label-danger">
-										Chưa công bố </span>
+                                        <span class="label label-sm label-danger">Chưa hoàn tất</span>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('giahhdv-tw/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
-                                    @if(can('kkgtw','edit') && $tt->mahuyen == session('admin')->mahuyen)
-                                    <a href="{{url('giahhdv-tw/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                    @endif
-                                    @if(can('kkgtw','delete') && $tt->mahuyen == session('admin')->mahuyen)
-                                    <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                        Xóa</button>
+                                    @if($tt->trangthai == 'Hoàn tất')
+                                        <a href="{{url('giahhdv-tw/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                    @else
+                                        @if(can('kkgtw','edit') && $tt->mahuyen == session('admin')->mahuyen)
+                                            <a href="{{url('giahhdv-tw/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                        @endif
+                                        @if(can('kkgtw','delete') && $tt->mahuyen == session('admin')->mahuyen)
+                                            <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                Xóa</button>
+                                        @endif
+                                        @if(can('kkgtw','approve'))
+                                            <button type="button" onclick="confirmHoantat('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoantat-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn tất</button>
+                                        @endif
                                     @endif
                                 </td>
                             </tr>
@@ -146,25 +147,9 @@
     <div class="clearfix">
     </div>
     <!--Modal Delete-->
-    <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
-        {!! Form::open(['url'=>'giahhdv-tw/delete','id' => 'frm_delete'])!!}
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header modal-header-primary">
-                        <button type="button" data-dismiss="modal" aria-hidden="true"
-                                class="close">&times;</button>
-                        <h4 id="modal-header-primary-label" class="modal-title">Đồng ý xoá?</h4>
-                        <input type="hidden" name="iddelete" id="iddelete">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                        <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickdelete()">Đồng ý</button>
-                    </div>
-                </div>
-            </div>
-        {!! Form::close() !!}
-    </div>
+    @include('includes.e.modal-delete')
+    <!--Modal Hoàn tất-->
+    @include('includes.e.modal-approve')
 
     <!--Modal Create-->
     <div id="create-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bs-modal-lg">
@@ -198,10 +183,6 @@
         {!! Form::close() !!}
     </div>
     <script>
-        function clickdelete(){
-            $('#frm_delete').submit();
-        }
-
         function clickcreate(){
             $('#frm_create').submit();
         }

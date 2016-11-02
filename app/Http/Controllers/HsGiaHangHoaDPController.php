@@ -66,6 +66,7 @@ class HsGiaHangHoaDPController extends Controller
                 ->with('thoidiem',$thoidiem)
                 ->with('m_pnhanghoa',$m_pnhanghoa)
                 ->with('nam',$nam)
+                ->with('url','/giahhdv-dp/')
                 ->with('pageTitle','Thông tin hồ sơ giá hàng hóa do địa phương quy định');
         }else
             return view('errors.notlogin');
@@ -74,20 +75,14 @@ class HsGiaHangHoaDPController extends Controller
     public function showindex($thoidiem,$nam,$pb)
     {
         if(Session::has('admin')){
-            if($pb == 'all')
-                $model = HsGiaHangHoa::where('mathoidiem',$thoidiem)->where('nam',$nam)->where('phanloai','DP')
-                    ->get();
-            else
-                if($pb == session('admin')->mahuyen)
-                    $model = HsGiaHangHoa::where('mathoidiem',$thoidiem)
-                        ->where('nam',$nam)->where('mahuyen',$pb)->where('phanloai','DP')
-                        ->get();
-                else
-                    $model = HsGiaHangHoa::where('mathoidiem',$thoidiem)
-                        ->where('nam',$nam)->where('mahuyen',$pb)->where('phanloai','DP')
-                        //->where('trangthai','Công bố')
-                        ->get();
-
+            $model = HsGiaHangHoa::where('mathoidiem',$thoidiem)
+                ->where('nam',$nam)
+                ->where('phanloai','DP')
+                ->where('trangthai','Hoàn tất')
+                ->get();
+            if($pb != 'all') {
+                $model = $model->where('mahuyen', $pb);
+            }
             $modelpb = TtPhongBan::all();
 
             $this->getDetail($model);
@@ -98,6 +93,7 @@ class HsGiaHangHoaDPController extends Controller
                 ->with('thoidiem',$thoidiem)
                 ->with('nam',$nam)
                 ->with('pb',$pb)
+                ->with('url','/thongtin-dp/')
                 ->with('pageTitle','Thông tin hồ sơ giá hàng hóa do địa phương quy định');
         }else
             return view('errors.notlogin');
@@ -311,6 +307,48 @@ class HsGiaHangHoaDPController extends Controller
                 GiaHangHoa::where('mahs', $model->mahs)->delete();
             }
             return redirect('giahhdv-dp/thoidiem='.$model->mathoidiem.'/nam='.$model->nam);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function approve(Request $request){
+        if(Session::has('admin')){
+            $model = HsGiaHangHoa::where('id',$request['idhoantat'])->first();
+            //dd($model);
+            $model->trangthai = 'Hoàn tất';
+            $model->save();
+            /*Lịch sử
+            if($model->save()){
+                $modelh = new ThamDinhGiaH();
+                $modelh->mahs = $model->mahs;
+                $modelh->thaotac = 'Hoàn tất hồ sơ';
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->save();
+            }
+            */
+            return redirect('giahhdv-dp/thoidiem='.$model->mathoidiem.'/nam='.$model->nam);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function unapprove(Request $request){
+        if(Session::has('admin')){
+            $model = HsGiaHangHoa::where('id',$request['idhuy'])->first();
+            //dd($model);
+            $model->trangthai = 'Chưa hoàn tất';
+            $model->save();
+            /*Lịch sử
+            if($model->save()){
+                $modelh = new ThamDinhGiaH();
+                $modelh->mahs = $model->mahs;
+                $modelh->thaotac = 'Hoàn tất hồ sơ';
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->save();
+            }
+            */
+            return redirect('thongtin-dp/thoidiem='.$model->mathoidiem.'/nam='.$model->nam.'&pb=all');
         }else
             return view('errors.notlogin');
     }

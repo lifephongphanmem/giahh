@@ -66,6 +66,7 @@ class HsGiaHangHoaTWController extends Controller
                 ->with('thoidiem',$thoidiem)
                 ->with('m_pnhanghoa',$m_pnhanghoa)
                 ->with('nam',$nam)
+                ->with('url','/giahhdv-tw/')
                 ->with('pageTitle','Thông tin hồ sơ giá hàng hóa do TW quy định');
         }else
             return view('errors.notlogin');
@@ -74,26 +75,15 @@ class HsGiaHangHoaTWController extends Controller
     public function showindex($thoidiem,$nam,$pb)
     {
         if(Session::has('admin')){
-            if($pb == 'all')
-                $model = HsGiaHangHoa::where('mathoidiem',$thoidiem)->where('phanloai','TW')
-                    ->where('nam',$nam)
-                    //->where('trangthai','Công bố')
-                    ->get();
-            else
-                if($pb == session('admin')->mahuyen)
-                    $model = HsGiaHangHoa::where('mathoidiem',$thoidiem)
-                        ->where('nam',$nam)
-                        ->where('phanloai','TW')
-                        ->where('mahuyen',$pb)
-                        ->get();
-                else
-                    $model = HsGiaHangHoa::where('mathoidiem',$thoidiem)
-                        ->where('nam',$nam)
-                        ->where('phanloai','TW')
-                        ->where('mahuyen',$pb)
-                        //->where('trangthai','Công bố')
-                        ->get();
+            $model = HsGiaHangHoa::where('mathoidiem',$thoidiem)
+                ->where('trangthai','Hoàn tất')
+                ->where('phanloai','TW')
+                ->where('nam',$nam)
+                ->get();
 
+            if($pb != 'all'){
+                $model = $model->where('mahuyen',$pb);
+            }
             $modelpb = TtPhongBan::all();
             $this->getDetail($model);
             return view('manage.giahhdv.hhtw.showindex')
@@ -102,6 +92,7 @@ class HsGiaHangHoaTWController extends Controller
                 ->with('thoidiem',$thoidiem)
                 ->with('nam',$nam)
                 ->with('pb',$pb)
+                ->with('url','/thongtin-tw/')
                 ->with('pageTitle','Thông tin hồ sơ giá hàng hóa do TW quy định');
         }else
             return view('errors.notlogin');
@@ -310,6 +301,48 @@ class HsGiaHangHoaTWController extends Controller
             if($model->delete()) {
                 GiaHangHoa::where('mahs', $model->mahs)->delete();
             }
+            return redirect('giahhdv-tw/thoidiem='.$model->mathoidiem.'/nam='.$model->nam);
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function unapprove(Request $request){
+        if(Session::has('admin')){
+            $model = HsGiaHangHoa::where('id',$request['idhuy'])->first();
+            //dd($model);
+            $model->trangthai = 'Chưa hoàn tất';
+            $model->save();
+            /*Lịch sử
+            if($model->save()){
+                $modelh = new ThamDinhGiaH();
+                $modelh->mahs = $model->mahs;
+                $modelh->thaotac = 'Hoàn tất hồ sơ';
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->save();
+            }
+            */
+            return redirect('thongtin-tw/thoidiem='.$model->mathoidiem.'/nam='.$model->nam.'&pb=all');
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function approve(Request $request){
+        if(Session::has('admin')){
+            $model = HsGiaHangHoa::where('id',$request['idhoantat'])->first();
+            //dd($model);
+            $model->trangthai = 'Hoàn tất';
+            $model->save();
+            /*Lịch sử
+            if($model->save()){
+                $modelh = new ThamDinhGiaH();
+                $modelh->mahs = $model->mahs;
+                $modelh->thaotac = 'Hoàn tất hồ sơ';
+                $modelh->name = session('admin')->name;
+                $modelh->username = session('admin')->username;
+                $modelh->save();
+            }
+            */
             return redirect('giahhdv-tw/thoidiem='.$model->mathoidiem.'/nam='.$model->nam);
         }else
             return view('errors.notlogin');
