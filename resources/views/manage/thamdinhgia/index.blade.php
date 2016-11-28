@@ -22,7 +22,7 @@
 
             $('#namhs').change(function() {
                 var namhs = $('#namhs').val();
-                var url = '/hoso-thamdinhgia/nam='+namhs+'&pb=all';
+                var url = '/hoso-thamdinhgia/nam='+namhs;
 
                 window.location.href = url;
             });
@@ -44,19 +44,7 @@
     <h3 class="page-title">
         Thông tin hồ sơ<small>&nbsp;thẩm định giá</small>
     </h3>
-    <div class="row">
-        <div class="col-md-2">
-            <div class="form-group">
-                <select name="namhs" id="namhs" class="form-control">
-                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
-                    @if ($nam_stop = intval(date('Y')) + 5 ) @endif
-                    @for($i = $nam_start; $i <= $nam_stop; $i++)
-                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>{{$i}}</option>
-                    @endfor
-                </select>
-            </div>
-        </div>
-    </div>
+
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
@@ -74,6 +62,19 @@
                         @endif
                         <!--a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <select name="namhs" id="namhs" class="form-control">
+                                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                    @if ($nam_stop = intval(date('Y'))) @endif
+                                    @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="portlet-body">

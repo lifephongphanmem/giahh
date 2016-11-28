@@ -421,6 +421,8 @@
         <div class="row">
             <div class="col-md-12" style="text-align: center">
                 <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
+                <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+                <a href="{{url('hoso-congbogia/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
             </div>
         </div>
         {!! Form::close() !!}

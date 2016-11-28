@@ -349,14 +349,17 @@
                             </div>
                         </div>
 
-                        <div class="form-actions right">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                        </div>
-                    </form>
+
                     <!-- END FORM-->
                 </div>
             </div>
             <!-- END VALIDATION STATES-->
+            <div style="text-align: center">
+                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+                <a href="{{url('giahhdv-thitruong/thoidiem='.$mathoidiem.'/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+            </div>
+            </form>
         </div>
     </div>
     <script type="text/javascript">

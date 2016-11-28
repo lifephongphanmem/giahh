@@ -401,15 +401,18 @@
                             </div>
                         </div>
 
-                        <div class="form-actions">
-                            <div class="col-md-12" style="text-align: center">
-                                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                            </div>
-                        </div>
-                    </form>
+
                     <!-- END FORM-->
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                    <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+                    <a href="{{url('hoso-thamdinhgia/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                </div>
+            </div>
+            </form>
             <!-- END VALIDATION STATES-->
         </div>
     </div>

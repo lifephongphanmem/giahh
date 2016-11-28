@@ -320,18 +320,18 @@
                                                     <th style="text-align: center" width="5%">Số lượng</th>
                                                     <th style="text-align: center">Nguồn tin</th>
                                                     <th style="text-align: center">Ghi chú</th>
-                                                    <th style="text-align: center" width="12%">Thao tác</th>
+                                                    <th style="text-align: center" width="15%">Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="ttts">
                                                 @foreach($model as $key=>$tents)
                                                     <tr id="{{$tents->id}}">
-                                                        <td>{{$key+1}}</td>
+                                                        <td style="text-align: center;">{{$key+1}}</td>
                                                         <td>{{$tents->mahh}}</td>
                                                         <td>{{$tents->tenhh}}</td>
                                                         <td></td>
                                                         <td></td>
-                                                        <td>1</td>
+                                                        <td style="text-align: center;">1</td>
                                                         <td>{{$tents->nguontin}}</td>
                                                         <td>{{$tents->gc}}</td>
                                                         <td>
@@ -346,14 +346,19 @@
                             </div>
                         </div>
 
-                        <div class="form-actions right">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                        </div>
-                    </form>
+
                     <!-- END FORM-->
                 </div>
             </div>
             <!-- END VALIDATION STATES-->
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                    <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+                    <a href="{{url('giahhdv-dp/thoidiem='.$mathoidiem.'/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                </div>
+            </div>
+            </form>
         </div>
     </div>
     <script type="text/javascript">

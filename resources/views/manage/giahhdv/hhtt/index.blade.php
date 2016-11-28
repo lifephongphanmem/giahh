@@ -22,7 +22,7 @@
             $('#nambc').change(function() {
                 var nambc = $('#nambc').val();
                 var thoidiem = $('#thoidiem').val();
-                var url = '/giahhdv-thitruong/thoidiem='+thoidiem+'/nam='+nambc+'&pb=all';
+                var url = '/giahhdv-thitruong/thoidiem='+thoidiem+'/nam='+nambc;
 
                 window.location.href = url;
             });
@@ -30,7 +30,7 @@
                 var nambc = $('#nambc').val();
                 var ttpb = $('#ttpb').val();
                 var thoidiem = $('#thoidiem').val();
-                var url = '/giahhdv-thitruong/thoidiem='+thoidiem+'/nam='+nambc+'&pb='+ttpb;
+                var url = '/giahhdv-thitruong/thoidiem='+thoidiem+'/nam='+nambc;
 
                 window.location.href = url;
             });
@@ -47,20 +47,7 @@
     </h3>
     <input type="hidden" name="thoidiem" id="thoidiem" value="{{$thoidiem}}">
 
-    <div class="row">
-        <div class="col-md-2">
-            <div class="form-group">
-                <select name="nambc" id="nambc" class="form-control">
-                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
-                    @if ($nam_stop = intval(date('Y')) + 5 ) @endif
-                    @for($i = $nam_start; $i <= $nam_stop; $i++)
-                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
-                    @endfor
-                </select>
-            </div>
-        </div>
 
-    </div>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
@@ -71,12 +58,27 @@
 
                     </div>
                     <div class="actions">
-                        @if(can('hhdvtn','create'))
+                        @if(can('hhthitruong','create'))
                         <a href="{{url($url.'thoidiem='.$thoidiem.'/create')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Thêm mới </a>
                         @endif
+                        <a class="btn btn-default btn-sm" href="{{url('/giahhdv-thitruong')}}"><i class="fa fa-mail-reply"></i>  Quay lại</a>
                         <!--a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a-->
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <select name="nambc" id="nambc" class="form-control">
+                                    @if ($nam_start = intval(date('Y')) - 5 ) @endif
+                                    @if ($nam_stop = intval(date('Y'))) @endif
+                                    @for($i = $nam_start; $i <= $nam_stop; $i++)
+                                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="portlet-body">
@@ -134,11 +136,11 @@
             </div>
         </div>
             <!-- END EXAMPLE TABLE PORTLET-->
-            <div class="col-md-12" style="text-align: center">
+            <!--div class="col-md-12" style="text-align: center">
                 <div class="row">
-                <a class="btn blue" href="{{url('/giahhdv-thitruong')}}"><i class="fa fa-mail-reply"></i>  Quay lại</a>
+                    <a class="btn blue" href="{{url('/giahhdv-thitruong')}}"><i class="fa fa-mail-reply"></i>  Quay lại</a>
                 </div>
-            </div>
+            </div-->
         </div>
     </div>
     <!-- BEGIN DASHBOARD STATS -->

@@ -237,7 +237,7 @@ class HsGiaHangHoaTWController extends Controller
         if(Session::has('admin')){
             $model = HsGiaHangHoa::findOrFail($id);
             $modeltthh = GiaHangHoa::where('mahs',$model->mahs)->get();
-
+            $mathoidiem = $model->mathoidiem;
             $dmhanghoa = array_column(DmHangHoa::select('mahh','tenhh')->get()->toarray(),'tenhh','mahh');
             foreach($modeltthh as $ct){
                 $ct->tenhh=$dmhanghoa[$ct->mahh];
@@ -251,6 +251,7 @@ class HsGiaHangHoaTWController extends Controller
             //dd($modeltthh);
             return view('manage.giahhdv.hhtw.edit')
                 ->with('model',$model)
+                ->with('mathoidiem',$mathoidiem)
                 ->with('modeltthh',$modeltthh)
                 ->with('loaigia',$loaigia)
                 ->with('loaihh',$loaihh)

@@ -237,6 +237,7 @@ class HsThueTnController extends Controller
     {
         if(Session::has('admin')){
             $model = HsThueTn::findOrFail($id);
+            $mathoidiem = $model->mathoidiem;
             $modeltthh = ThueTn::where('mahs',$model->mahs)->get();
 
             $dmhanghoa = array_column(DMThueTN::select('mahh','tenhh')->get()->toarray(),'tenhh','mahh');
@@ -252,6 +253,7 @@ class HsThueTnController extends Controller
             //dd($modeltthh);
             return view('manage.thuetn.edit')
                 ->with('model',$model)
+                ->with('mathoidiem',$mathoidiem)
                 ->with('modeltthh',$modeltthh)
                 //->with('loaigia',$loaigia)
                 //->with('loaihh',$loaihh)
