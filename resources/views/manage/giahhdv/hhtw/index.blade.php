@@ -73,7 +73,9 @@
                     <div class="actions">
                         @if(can('kkgtw','create'))
                             <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
-                                Thêm mới</button>
+                                Thêm mới hồ sơ chi tiết</button>
+                            <a href="{{url($url.'thoidiem='.$thoidiem.'/create_dk')}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-plus"></i> Thêm mới hồ sơ đính kèm </a>
                         @endif
                         <!--a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a-->
@@ -111,10 +113,20 @@
                                 </td>
                                 <td>
                                     @if($tt->trangthai == 'Hoàn tất')
-                                        <a href="{{url('giahhdv-tw/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                        @if($tt->hoso == 'CHITIET')
+                                            <a href="{{url('giahhdv-tw/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                        @else
+                                            <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                        @endif
                                     @else
                                         @if(can('kkgtw','edit') && $tt->mahuyen == session('admin')->mahuyen)
-                                            <a href="{{url('giahhdv-tw/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                            @if($tt->hoso == 'CHITIET')
+                                                <a href="{{url('giahhdv-tw/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                            @else
+                                                <a href="{{url('giahhdv-tw-dk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                            @endif
+
+
                                         @endif
                                         @if(can('kkgtw','delete') && $tt->mahuyen == session('admin')->mahuyen)
                                             <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;

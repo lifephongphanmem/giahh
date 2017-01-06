@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\DmHangHoa;
 use App\DmHhTn;
 use App\DmHhXnk;
 use App\DmLoaiGia;
 use App\DmLoaiHh;
+use App\DmThiTruong;
 use App\DmThoiDiem;
 use App\GeneralConfigs;
+use App\GiaHangHoa;
 use App\GiaHhTn;
 use App\GiaHhXnk;
+use App\HsGiaHangHoa;
 use App\HsGiaHhTn;
+use App\HsGiaHhTt;
 use App\HsGiaHhXnk;
 use App\HsThamDinhGia;
 use App\ThamDinhGia;
@@ -30,17 +35,20 @@ class TT1422015BtcController extends Controller
     public function index()
     {
         if(Session::has('admin')){
-            $modelthoidiemtn = DmThoiDiem::where('plbc','Hàng hóa,dịch vụ')
+            $modelthoidiemtn = DmThoiDiem::where('plbc','Hàng hóa, dịch vụ')
                 ->get();
-            //dd($modelthoidiemtn);
             $modelthoidiemxnk = DmThoiDiem::where('plbc','Hàng hóa xuất nhập khẩu')
                 ->get();
             $modelthoidiemtdg = DmThoiDiem::where('plbc','Tài sản thẩm định giá')
                 ->get();
+            $loaihh = DmLoaiHh::all();
+            $thitruong= DmThiTruong::all();
             return view('reports.tt142-2015-btc.index')
                 ->with('modelthoidiemtn',$modelthoidiemtn)
                 ->with('modelthoidiemxnk',$modelthoidiemxnk)
                 ->with('modelthoidiemtdg',$modelthoidiemtdg)
+                ->with('loaihh',$loaihh)
+                ->with('thitruong',$thitruong)
                 ->with('pageTitle','Thông tư 142/2015/BTC');
         }else
             return view('errors.notlogin');
@@ -50,34 +58,35 @@ class TT1422015BtcController extends Controller
     public function PL2(Request $request)
     {
         if (Session::has('admin')) {
-
             $input = $request->all();
-            //dd($input);
-            $thoigian = HsGiaHhTn::where('mathoidiem',$input['mathoidiem'])
+            $thoigian = HsGiaHangHoa::where('mathoidiem',$input['mathoidiem'])
+                ->where('thitruong',$input['thitruong'])
+                ->where('maloaihh',$input['maloaihh'])
                 ->get();
 
             $arrayidtg = '';
             foreach($thoigian as $tg){
                 $arrayidtg = $arrayidtg.$tg->mahs.',';
             }
-            $model = GiaHhTn::wherein('mahs',explode(',',$arrayidtg))
+            $model = GiaHangHoa::selectraw('mahh, sum(giatu) as giatu, sum(giaden) as giaden')->wherein('mahs',explode(',',$arrayidtg))->groupby('mahh')
                 ->get();
-            $modeldmhh = DmHhTn::all();
+
+            $modeldmhh = DmHangHoa::select('mahh','tenhh','dacdiemkt','dvt')->get()->toarray();
+            $modelloaihh = DmLoaiHh::all();
+            $modelloaigia = DmLoaiGia::all();
+
             foreach($model as $hh)
             {
                 $hh->giagiaodich = ($hh->giatu + $hh->giaden)/2;
                 $this->getTtHhPL2($modeldmhh,$hh);
-                $this->getTtTgPL2($thoigian,$hh);
+                $hh->thitruong=$input['thitruong'];
+                $hh->maloaihh=$input['maloaihh'];
+                //$this->getTtTgPL2($thoigian,$hh);
+                $this->getDmLoaiHhPL2($modelloaihh,$hh);
+                //$this->getDmLoaiGiaPL2($modelloaigia,$hh);
             }
 
-            $modelloaihh = DmLoaiHh::all();
-            $modelloaigia = DmLoaiGia::all();
-            foreach($model as $dm){
-                $this->getDmLoaiHhPL2($modelloaihh,$dm);
-                $this->getDmLoaiGiaPL2($modelloaigia,$dm);
-            }
 
-            //dd($model);
             return view('reports.tt142-2015-btc.PL2')
                 ->with('model',$model)
                 ->with('pageTitle','Phụ lục 2');
@@ -89,7 +98,7 @@ class TT1422015BtcController extends Controller
 
     public function getDmLoaiHhPL2($ttdm,$array){
         foreach($ttdm as $dm){
-            if($dm->maloaihh == $array->maloaihh){
+            if($dm->maloaihh === $array->maloaihh){
                 $array->loaihh = $dm->tenloaihh;
             }
         }
@@ -105,10 +114,11 @@ class TT1422015BtcController extends Controller
 
     public function getTtHhPL2($tthh,$array){
         foreach($tthh as $hh){
-            if($hh->mahh == $array->mahh && $hh->masopnhom == $array->masopnhom){
-                $array->tenhh = $hh->tenhh;
-                $array->dacdiemkt = $hh->dacdiemkt;
-                $array->dvt = $hh->dvt;
+            if($hh['mahh'] === $array->mahh){
+                $array->tenhh = $hh['tenhh'];
+                $array->dacdiemkt = $hh['dacdiemkt'];
+                $array->dvt = $hh['dvt'];
+                break;
             }
         }
     }

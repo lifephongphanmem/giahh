@@ -668,7 +668,7 @@ class ThamDinhGiaController extends Controller
     }
     //Tải file excel mẫu
     public function getDownload(){
-        $file = public_path() . '/data/uploads/excels/FILEMAU.xls';
+        $file = public_path() . '/data/uploads/excels/THAMDINHGIA.xls';
         $headers = array(
             'Content-Type: application/xls',
         );

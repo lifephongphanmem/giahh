@@ -346,16 +346,16 @@ License: You must have a valid license purchased only from themeforest(the above
                             <ul class="sub-menu">
                                 @if(can('kkgtw','create')||can('kkgtw','edit'))
                                 <li>
-                                    <a href="/giahhdv-tw">Kê khai giá</a>
+                                    <a href="{{url('giahhdv-tw')}}">Kê khai giá</a>
                                 </li>
                                 @endif
                                 @if(can('kkgtw','index'))
                                 <li>
-                                    <a href="/thongtin-tw">Thông tin kê khai giá</a>
+                                    <a href="{{url('thongtin-tw')}}">Thông tin kê khai giá</a>
                                 </li>
                                 @endif
                                 <li>
-                                    <a href="/timkiem-giahhdv-tw">Tìm kiếm thông tin kê khai giá</a>
+                                    <a href="{{url('timkiem-giahhdv-tw')}}">Tìm kiếm thông tin kê khai giá</a>
                                 </li>
 
                             </ul>
@@ -367,16 +367,16 @@ License: You must have a valid license purchased only from themeforest(the above
                             <ul class="sub-menu">
                                 @if(can('kkgdp','create')||can('kkgdp','edit'))
                                 <li>
-                                    <a href="/giahhdv-dp">Kê khai giá</a>
+                                    <a href="{{url('giahhdv-dp')}}">Kê khai giá</a>
                                 </li>
                                 @endif
                                 @if(can('kkgdp','index'))
                                 <li>
-                                    <a href="/thongtin-dp">Thông tin kê khai giá</a>
+                                    <a href="{{url('thongtin-dp')}}">Thông tin kê khai giá</a>
                                 </li>
                                 @endif
                                 <li>
-                                    <a href="/timkiem-giahhdv-dp">Tìm kiếm thông tin kê khai giá</a>
+                                    <a href="{{url('timkiem-giahhdv-dp')}}">Tìm kiếm thông tin kê khai giá</a>
                                 </li>
 
                             </ul>

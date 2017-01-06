@@ -25,6 +25,8 @@ class CreateHsgiahhttTable extends Migration
             $table->string('quy');
             $table->string('mahuyen');
             $table->string('trangthai');
+            $table->string('phanloai',20);
+            $table->string('filedk');
             $table->timestamps();
         });
     }

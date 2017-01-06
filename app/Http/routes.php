@@ -145,6 +145,10 @@ Route::get('giahhdv-thitruong/{id}/edit','HsGiaHhTtController@edit');
 Route::patch('giahhdv-thitruong/{id}','HsGiaHhTtController@update');
 Route::post('giahhdv-thitruong/delete','HsGiaHhTtController@destroy');
 Route::post('giahhdv-thitruong/approve','HsGiaHhTtController@approve');
+Route::post('giahhdv-thitruong-dk','HsGiaHhTtController@store_dk');
+Route::get('giahhdv-thitruong/thoidiem={thoidiem}/create_dk','HsGiaHhTtController@create_dk');
+Route::get('giahhdv-thitruong-dk/{id}/edit','HsGiaHhTtController@edit_dk');
+Route::patch('giahhdv-thitruong-dk/{id}','HsGiaHhTtController@update_dk');
 
 Route::get('thongtin-giathitruong','HsGiaHhTtController@showthoidiem');
 Route::get('thongtin-giathitruong/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHhTtController@showindex');
@@ -232,6 +236,11 @@ Route::get('giahhdv-tw/{id}/edit','HsGiaHangHoaTWController@edit');
 Route::patch('giahhdv-tw/{id}','HsGiaHangHoaTWController@update');
 Route::post('giahhdv-tw/delete','HsGiaHangHoaTWController@destroy');
 Route::post('giahhdv-tw/approve','HsGiaHangHoaTWController@approve');
+
+Route::get('giahhdv-tw/thoidiem={thoidiem}/create_dk','HsGiaHangHoaTWController@create_dk');
+Route::patch('giahhdv-tw-dk/{id}','HsGiaHangHoaTWController@update_dk');
+Route::post('giahhdv-tw-dk','HsGiaHangHoaTWController@store_dk');
+Route::get('giahhdv-tw-dk/{id}/edit','HsGiaHangHoaTWController@edit_dk');
 
 Route::get('thongtin-tw','HsGiaHangHoaTWController@showthoidiem');
 Route::get('thongtin-tw/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHangHoaTWController@showindex');

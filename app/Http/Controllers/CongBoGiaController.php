@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Response;
 
 class CongBoGiaController extends Controller
 {
@@ -578,7 +579,7 @@ class CongBoGiaController extends Controller
 
     //Tải file excel mẫu
     public function getDownload(){
-        $file = public_path() . '/data/uploads/excels/FILEMAU.xls';
+        $file = public_path() . '/data/uploads/excels/CONGBOGIA.xls';
         $headers = array(
             'Content-Type: application/xls',
         );

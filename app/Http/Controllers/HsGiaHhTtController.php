@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class HsGiaHhTtController extends Controller
@@ -136,6 +137,19 @@ class HsGiaHhTtController extends Controller
             return view('errors.notlogin');
     }
 
+    public function create_dk($thoidiem)
+    {
+        if(Session::has('admin')){
+            $thitruong= DmThiTruong::all();
+
+            return view('manage.giahhdv.hhtt.create_dk')
+                ->with('mathoidiem',$thoidiem)
+                ->with('thitruong',$thitruong)
+                ->with('pageTitle','Thông tin giá hàng hóa thị trường thêm mới');
+        }else
+            return view('errors.notlogin');
+    }
+
     public function store(Request $request)
     {
         if(Session::has('admin')){
@@ -147,6 +161,7 @@ class HsGiaHhTtController extends Controller
             $model = new HsGiaHhTt();
             $model->tgnhap = $insert['tgnhap'];
             $model->thitruong = $insert['thitruong'];
+            $model->phanloai = 'CHITIET';
             //$model->maloaihh = $insert['maloaihh'];
             //$model->maloaigia = $insert['maloaigia'];
 
@@ -166,6 +181,37 @@ class HsGiaHhTtController extends Controller
             if($model->save()){
                 $this->createts($mahs);
             }
+
+            return redirect('giahhdv-thitruong/thoidiem='.$insert['mathoidiem'].'/nam='.date_format($date,'Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function store_dk(Request $request)
+    {
+        if(Session::has('admin')){
+            $insert = $request->all();
+            $date = date_create($insert['tgnhap']);
+            $thang = date_format($date,'m');
+            $mahs = getdate()[0];
+
+            $file=$request->file('filedk');
+            $filename =$mahs.'_'.$file->getClientOriginalName();
+            $file->move(public_path() . '/data/uploads/attack/', $filename);
+
+            $model = new HsGiaHhTt();
+            $model->tgnhap = $insert['tgnhap'];
+            $model->thitruong = $insert['thitruong'];
+            $model->phanloai = 'DINHKEM';
+            $model->filedk = $filename;
+            $model->quy = Thang2Quy($thang);
+            $model->thang = date_format($date,'m');
+            $model->nam = date_format($date,'Y');
+            $model->mahuyen = session('admin')->mahuyen;
+            $model->mahs = $mahs;
+            $model->mathoidiem = $insert['mathoidiem'];
+            $model->save();
 
             return redirect('giahhdv-thitruong/thoidiem='.$insert['mathoidiem'].'/nam='.date_format($date,'Y'));
 
@@ -215,6 +261,7 @@ class HsGiaHhTtController extends Controller
         }else
             return view('errors.notlogin');
     }
+
     public function view($id)
     {
         if(Session::has('admin')){
@@ -271,9 +318,21 @@ class HsGiaHhTtController extends Controller
             return view('errors.notlogin');
     }
 
-    public function gettenhh($mahh,$array){
+    public function edit_dk($id)
+    {
+        if(Session::has('admin')){
+            $model = HsGiaHhTt::findOrFail($id);
+            $thitruong= DmThiTruong::all();
+            //dd($modeltthh);
+            return view('manage.giahhdv.hhtt.edit_dk')
+                ->with('model',$model)
+                ->with('thitruong',$thitruong)
+                ->with('pageTitle','Thông tin giá hàng hóa thị trường chi tiết');
+        }else
+            return view('errors.notlogin');
+    }
 
-        //dd($array);
+    public function gettenhh($mahh,$array){
         foreach($mahh as $tt){
             if($tt->mahh == $array->mahh){
                 $array->tenhh = $tt->tenhh;
@@ -303,6 +362,38 @@ class HsGiaHhTtController extends Controller
                 $model->quy = 3;
             else
                 $model->quy = 4;
+            $model->thang = date_format($date,'m');
+            $model->nam = date_format($date,'Y');
+            $model->save();
+
+            return redirect('giahhdv-thitruong/thoidiem='.$model->mathoidiem.'/nam='.date_format($date,'Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function update_dk(Request $request, $id)
+    {
+        if(Session::has('admin')){
+            $insert = $request->all();
+            $model = HsGiaHhTt::findOrFail($id);
+            $date = date_create($insert['tgnhap']);
+            $thang = date_format($date,'m');
+
+            if(isset($request->filedk)){
+                if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk)){
+                   File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);
+                }
+                $file=$request->file('filedk');
+
+                $filename =$insert['mahs'].'_'.$file->getClientOriginalName();
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk=$filename;
+            }
+
+            $model->tgnhap = $insert['tgnhap'];
+            $model->thitruong = $insert['thitruong'];
+            $model->quy=Thang2Quy($thang);
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
             $model->save();
@@ -388,56 +479,57 @@ class HsGiaHhTtController extends Controller
             return view('errors.notlogin');
     }
 
-    public function viewsearch(Request $request){
-        if(Session::has('admin')){
+    public function viewsearch(Request $request)
+    {
+        if (Session::has('admin')) {
 
-            $_sql="select hsgiahhtt.*,
+            $_sql = "select hsgiahhtt.*,
                           giahhtt.mahh,giahhtt.masopnhom,giahhtt.giatu,giahhtt.giaden,giahhtt.soluong,giahhtt.nguontin
                                         from hsgiahhtt, giahhtt
                                         Where hsgiahhtt.mahs=giahhtt.mahs";
-            $input=$request->all();
+            $input = $request->all();
 
             //Thời gian nhập
             //Từ
-            if($input['tgnhaptu']!=null){
-                $_sql=$_sql." and hsgiahhtt.tgnhap >='".date('Y-m-d',strtotime($input['tgnhaptu']))."'";
+            if ($input['tgnhaptu'] != null) {
+                $_sql = $_sql . " and hsgiahhtt.tgnhap >='" . date('Y-m-d', strtotime($input['tgnhaptu'])) . "'";
             }
             //Đến
-            if($input['tgnhapden']!=null){
-                $_sql=$_sql." and hsgiahhtt.tgnhap <='".date('Y-m-d',strtotime($input['tgnhapden']))."'";
+            if ($input['tgnhapden'] != null) {
+                $_sql = $_sql . " and hsgiahhtt.tgnhap <='" . date('Y-m-d', strtotime($input['tgnhapden'])) . "'";
             }
             //Loại giá(error Không biết vì sao)
             //$_sql=$input['maloaigia']!=null? $_sql." and hsgiahhtn.maloaigia = ".$input['maloaigia']:$_sql;
             //Loại hàng hóa(error Không biết vì sao)
             //$_sql=$input['maloaihh']!=null? $_sql." and hsgiahhtn.maloaihh = ".$input['maloaihh']:$_sql;
             //Tên hàng hóa
-            $_sql=$input['mahh']!=null? $_sql." and giahhtt.mahh = '".$input['mahh']."'":$_sql;
+            $_sql = $input['mahh'] != null ? $_sql . " and giahhtt.mahh = '" . $input['mahh'] . "'" : $_sql;
 
             //Thị trường nhập
-            $_sql=$input['thitruong']!=null? $_sql." and hsgiahhtt.thitruong = '".$input['thitruong']."'":$_sql;
+            $_sql = $input['thitruong'] != null ? $_sql . " and hsgiahhtt.thitruong = '" . $input['thitruong'] . "'" : $_sql;
             //Giá trị tài sản
             //Từ
-            if(getDouble($input['giatritu'])>0)
-                $_sql=$_sql." and giahhtt.giatu >= ".getDouble($input['giatritu']);
+            if (getDouble($input['giatritu']) > 0)
+                $_sql = $_sql . " and giahhtt.giatu >= " . getDouble($input['giatritu']);
             //Đến
-            if(getDouble($input['giatriden'])>0)
-                $_sql=$_sql." and giahhtt.giaden <= ".getDouble($input['giatriden']);
+            if (getDouble($input['giatriden']) > 0)
+                $_sql = $_sql . " and giahhtt.giaden <= " . getDouble($input['giatriden']);
 
-            $model =  DB::select(DB::raw($_sql));
+            $model = DB::select(DB::raw($_sql));
             //dd($model);
 
             $modeldm = DmHhTn55::all();
             $modelpb = TtPhongBan::all();
 
-            foreach($model as $tthh){
-                $this->gettenhh($modeldm,$tthh);
-                $this->getTtPhongBan($modelpb,$tthh);
+            foreach ($model as $tthh) {
+                $this->gettenhh($modeldm, $tthh);
+                $this->getTtPhongBan($modelpb, $tthh);
             }
 
             return view('manage.giahhdv.hhtt.search.index')
-                ->with('model',$model)
-                ->with('pageTitle','Thông tin giá hàng hóa thị trường');
-        }else
+                ->with('model', $model)
+                ->with('pageTitle', 'Thông tin giá hàng hóa thị trường');
+        } else
             return view('errors.notlogin');
     }
 }
