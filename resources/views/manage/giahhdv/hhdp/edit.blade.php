@@ -316,7 +316,6 @@
                             </div>
                             <div class="row" id="dsts">
                                 <div class="col-md-12">
-                                    <div class="table-responsive">
                                         <table class="table table-striped table-bordered table-hover" id="sample_3">
                                         <thead>
                                             <tr style="background: #F5F5F5">
@@ -328,7 +327,7 @@
                                                 <th style="text-align: center" width="5%">Số lượng</th>
                                                 <th style="text-align: center">Nguồn tin</th>
                                                 <th style="text-align: center">Ghi chú</th>
-                                                <th style="text-align: center" width="12%">Thao tác</th>
+                                                <th style="text-align: center" width="15%">Thao tác</th>
                                             </tr>
                                         </thead>
                                         <tbody id="ttts">
@@ -354,19 +353,23 @@
                                         @endif
                                         </tbody>
                                         </table>
-                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-actions right">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                        </div>
-                    </form>
+
                     <!-- END FORM-->
                 </div>
             </div>
             <!-- END VALIDATION STATES-->
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                    <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+                    <a href="{{url('giahhdv-dp/thoidiem='.$mathoidiem.'/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                </div>
+            </div>
+            </form>
         </div>
     </div>
     <script type="text/javascript">
