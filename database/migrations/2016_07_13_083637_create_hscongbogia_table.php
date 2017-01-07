@@ -30,6 +30,8 @@ class CreateHscongbogiaTable extends Migration
             $table->string('mahuyen');
             $table->string('mahs');
             $table->string('trangthai');
+            $table->string('phanloai',20);
+            $table->string('filedk');
             $table->timestamps();
         });
     }

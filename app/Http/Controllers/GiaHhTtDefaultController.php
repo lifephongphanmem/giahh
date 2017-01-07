@@ -64,6 +64,15 @@ class GiaHhTtDefaultController extends Controller
         //dd($request);
         $inputs = $request->all();
 
+        $m_kt=GiaHhTtDefault::where('mahh',$inputs['mahh'])->where('mahuyen',session('admin')->mahuyen)->get();
+        if(count($m_kt)>0){
+            $result = array(
+                'status' => 'fail',
+                'message' => 'Hàng hóa, dịch vụ này đã kê khai chi tiết.',
+            );
+            die(json_encode($result));
+        }
+
         $inputs['soluong'] = str_replace(',','',$inputs['soluong']);
         $inputs['soluong'] = str_replace('.','',$inputs['soluong']);
         $inputs['giatu'] = str_replace(',','',$inputs['giatu']);
@@ -247,8 +256,8 @@ class GiaHhTtDefaultController extends Controller
 
             $modelupdate = GiaHhTtDefault::where('id',$inputs['id'])
                 ->first();
-            $modelupdate->masopnhom = $inputs['masopnhom'];
-            $modelupdate->mahh = $inputs['mahh'];
+            //$modelupdate->masopnhom = $inputs['masopnhom'];
+            //$modelupdate->mahh = $inputs['mahh'];
             $modelupdate->giatu  =$inputs['giatu'];
             $modelupdate->giaden = $inputs['giaden'];
             $modelupdate->soluong = $inputs['soluong'];

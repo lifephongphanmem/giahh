@@ -11,142 +11,190 @@
 
 @section('content')
 
-            <!-- BEGIN CONTENT -->
-            <h3 class="page-title">
-                Màn hình<small> điều khiển và thống kê</small>
-            </h3>
-            <!-- END PAGE HEADER-->
-            <!-- BEGIN DASHBOARD STATS -->
+    <!-- BEGIN CONTENT -->
+    <h3 class="page-title">
+        Màn hình<small> điều khiển và thống kê</small>
+    </h3>
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS -->
 
-            <div class="row">
-                @if(canGeneral('hhdv','hhthitruong'))
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="dashboard-stat red-intense">
-                            <div class="visual">
-                                <i class="fa fa-user"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number"></div>
-                                <div class="desc">
-                                    Hàng hóa thị trường
-                                </div>
-                            </div>
-                            <a class="more" href="{{url('thongtin-giathitruong')}}">
-                                Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
-                            </a>
-                        </div>
-                    </div>
-                @endif
-                @if(canGeneral('hhdv','hhdvtn'))
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="dashboard-stat blue-madison">
-                        <div class="visual">
-                            <i class="fa fa-truck"></i>
-                        </div>
-                        <div class="details">
-                            <div class="number"></div>
-                            <div class="desc">
-                                Hàng hóa trong nước
-                            </div>
-                        </div>
-                        <a class="more" href="{{url('giahhdv-trongnuoc')}}">
-                            Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
-                        </a>
-                    </div>
-                </div>
-                @endif
-                @if(canGeneral('hhdv','hhxnk'))
+    <div class="row">
+        @if(canGeneral('hhdv','hhthitruong'))
+            @if(can('hhthitruong','index'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat red-intense">
                         <div class="visual">
-                            <i class="fa fa-plane"></i>
+                            <i class="fa fa-user"></i>
                         </div>
                         <div class="details">
                             <div class="number"></div>
                             <div class="desc">
-                                Hàng hóa xuất nhập khẩu
+                                Hàng hóa thị trường
                             </div>
                         </div>
-                        <a class="more" href="{{url('giahh-xuatnhapkhau')}}">
+                        <a class="more" href="{{url('thongtin-giathitruong')}}">
                             Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
                         </a>
                     </div>
                 </div>
-                @endif
-                @if(canGeneral('tsnn','tsnnnhadat'))
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="dashboard-stat purple-plum">
-                            <div class="visual">
-                                <i class="fa fa-home"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number"></div>
-                                <div class="desc">
-                                    Tài sản là nhà, đất
-                                </div>
-                            </div>
-                            <a class="more" href="{{url('taisan-nhadat/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
-                                Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
-                            </a>
+            @endif
+        @endif
+        @if(canGeneral('hhdv','hhdvtn'))
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat blue-madison">
+                    <div class="visual">
+                        <i class="fa fa-truck"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"></div>
+                        <div class="desc">
+                            Hàng hóa trong nước
                         </div>
                     </div>
-                @endif
-                @if(canGeneral('tsnn','tsnnotokhac'))
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="dashboard-stat blue-madison">
-                            <div class="visual">
-                                <i class="fa fa-car"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number"></div>
-                                <div class="desc">
-                                    Tài sản là ôtô, tài sản khác
-                                </div>
-                            </div>
-                            <a class="more" href="{{url('taisan-otokhac/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
-                                Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
-                            </a>
+                    <a class="more" href="{{url('giahhdv-trongnuoc')}}">
+                        Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+        @endif
+        @if(canGeneral('hhdv','hhxnk'))
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat red-intense">
+                    <div class="visual">
+                        <i class="fa fa-plane"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"></div>
+                        <div class="desc">
+                            Hàng hóa xuất nhập khẩu
                         </div>
                     </div>
-                @endif
-                @if(canGeneral('gttruocba','gttruocba'))
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="dashboard-stat green-haze">
-                            <div class="visual">
-                                <i class="fa fa-globe"></i>
-                            </div>
-                            <div class="details">
-                                <div class="number"></div>
-                                <div class="desc">
-                                    Giá thuế trước bạ
-                                </div>
-                            </div>
-                            <a class="more" href="{{url('thongtin-gia-thuetruocba/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
-                                Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
-                            </a>
+                    <a class="more" href="{{url('giahh-xuatnhapkhau')}}">
+                        Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+        @endif
+        @if(canGeneral('tsnn','tsnnnhadat'))
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat purple-plum">
+                    <div class="visual">
+                        <i class="fa fa-home"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"></div>
+                        <div class="desc">
+                            Tài sản là nhà, đất
                         </div>
                     </div>
-                @endif
-                    @if(canGeneral('gthuetn','gthuetn'))
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <div class="dashboard-stat blue-madison">
-                                <div class="visual">
-                                    <i class="fa fa-adjust"></i>
-                                </div>
-                                <div class="details">
-                                    <div class="number"></div>
-                                    <div class="desc">
-                                        Giá thuế tài nguyên
-                                    </div>
-                                </div>
-                                <a class="more" href="{{url('thongtin-thuetn/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
-                                    Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
-                                </a>
+                    <a class="more" href="{{url('taisan-nhadat/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                        Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+        @endif
+        @if(canGeneral('tsnn','tsnnotokhac'))
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="dashboard-stat blue-madison">
+                    <div class="visual">
+                        <i class="fa fa-car"></i>
+                    </div>
+                    <div class="details">
+                        <div class="number"></div>
+                        <div class="desc">
+                            Tài sản là ôtô, tài sản khác
+                        </div>
+                    </div>
+                    <a class="more" href="{{url('taisan-otokhac/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                        Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
+                    </a>
+                </div>
+            </div>
+        @endif
+        @if(canGeneral('hhdv','kkgtw'))
+            @if(can('kkgtw','index'))
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat purple-plum">
+                        <div class="visual">
+                            <i class="fa fa-file-word-o"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number"></div>
+                            <div class="desc">
+                                Kê khai giá TW
                             </div>
                         </div>
-                    @endif
+                        <a class="more" href="{{url('giahhdv-tw')}}">
+                            Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+            @endif
+        @endif
+        @if(canGeneral('hhdv','kkgdp'))
+            @if(can('kkgdp','index'))
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue-madison">
+                        <div class="visual">
+                            <i class="fa fa-file-word-o"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number"></div>
+                            <div class="desc">
+                                Kê khai giá địa phương
+                            </div>
+                        </div>
+                        <a class="more" href="{{url('thanhkiemtra-vegia/nam='.getGeneralConfigs()['namhethong'])}}">
+                            Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+            @endif
+        @endif
 
-                @if(canGeneral('thamdinhgia','thamdinhgia'))
+        @if(canGeneral('gttruocba','gttruocba'))
+            @if(can('gttruocba','index'))
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat green-haze">
+                        <div class="visual">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number"></div>
+                            <div class="desc">
+                                Giá thuế trước bạ
+                            </div>
+                        </div>
+                        <a class="more" href="{{url('thongtin-gia-thuetruocba/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                            Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+            @endif
+        @endif
+        @if(canGeneral('gthuetn','gthuetn'))
+            @if(can('gthuetn','index'))
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat blue-madison">
+                        <div class="visual">
+                            <i class="fa fa-adjust"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number"></div>
+                            <div class="desc">
+                                Giá thuế tài nguyên
+                            </div>
+                        </div>
+                        <a class="more" href="{{url('thongtin-thuetn/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                            Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+            @endif
+        @endif
+
+        @if(canGeneral('thamdinhgia','thamdinhgia'))
+            @if(can('tdgia','index'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat green-haze">
                         <div class="visual">
@@ -163,8 +211,10 @@
                         </a>
                     </div>
                 </div>
-                @endif
-                @if(canGeneral('congbogia','congbogia'))
+            @endif
+        @endif
+        @if(canGeneral('congbogia','congbogia'))
+            @if(can('congbogia','index'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat purple-plum">
                         <div class="visual">
@@ -181,8 +231,10 @@
                         </a>
                     </div>
                 </div>
-                @endif
-                @if(canGeneral('ttqd','ttqd'))
+            @endif
+        @endif
+        @if(canGeneral('ttqd','ttqd'))
+            @if(can('ttqd','index'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="dashboard-stat red-intense">
                         <div class="visual">
@@ -191,7 +243,7 @@
                         <div class="details">
                             <div class="number"></div>
                             <div class="desc">
-                                Thông tư quyết định nhà nước
+                                Văn bản QLNN về giá TW
                             </div>
                         </div>
                         <a class="more" href="{{url('thongtu-quyetdinh-tw/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">
@@ -207,7 +259,7 @@
                         <div class="details">
                             <div class="number"></div>
                             <div class="desc">
-                                Thông tư quyết định tỉnh
+                                Văn bản QLNN về giá địa phương
                             </div>
                         </div>
                         <a class="more" href="{{url('thongtu-quyetdinh-tinh/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">
@@ -231,11 +283,12 @@
                         </a>
                     </div>
                 </div>
-                @endif
-            </div>
-            <div class="clearfix">
-            </div>
-        </div>
+            @endif
+        @endif
+    </div>
+    <div class="clearfix">
+    </div>
+    </div>
     </div>
 
 @stop 

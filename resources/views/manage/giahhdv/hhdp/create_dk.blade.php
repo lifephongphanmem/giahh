@@ -2,6 +2,7 @@
 
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
 @stop
 
 
@@ -12,7 +13,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin giá hàng hóa, dịch vụ do TW quy định<small>chỉnh sửa</small>
+        Thông tin giá hàng hóa, dịch vụ<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -23,14 +24,14 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                        {!! Form::model($model, ['method' => 'PATCH', 'url'=>'giahhdv-tw/'. $model->id, 'class'=>'horizontal-form','id'=>'update_ttgiahhdvtn','enctype'=>'multipart/form-data']) !!}
+                        {!! Form::open(['url'=>'giahhdv-dp-dk', 'id' => 'create_kekhai', 'class'=>'horizontal-form','method'=>'post','enctype'=>'multipart/form-data']) !!}
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Thời gian nhập<span class="require">*</span></label>
-                                        <input type="date" id="tgnhap" name="tgnhap" class="form-control required" autofocus value="{{$model->tgnhap}}">
+                                        <label class="control-label">Thời gian nhập</label>
+                                        <input type="date" id="tgnhap" name="tgnhap" class="form-control required" autofocus>
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -39,7 +40,7 @@
                                         <label class="control-label">Thị trường<span class="require">*</span></label>
                                         <select class="form-control required" name="thitruong" id="thitruong">
                                             @foreach($thitruong as $ct)
-                                                <option value="{{$ct->thitruong}}" {{$ct->thitruong==$model->thitruong?'selected':''}}>{{$ct->thitruong}}</option>
+                                                <option value="{{$ct->thitruong}}">{{$ct->thitruong}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -47,13 +48,14 @@
                                 <!--/span-->
                             </div>
 
+                            <!--/row-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Loại hàng hóa<span class="require">*</span></label>
                                         <select class="form-control" id="maloaihh" name="maloaihh">
                                             @foreach($loaihh as $hh)
-                                                <option value="{{$hh->maloaihh}}" {{$hh->maloaihh==$model->maloaihh?'selected':''}}>{{$hh->tenloaihh}}</option>
+                                                <option value="{{$hh->maloaihh}}">{{$hh->tenloaihh}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -64,42 +66,41 @@
                                         <label class="control-label">Loại giá</label>
                                         <select class="form-control" id="maloaigia" name="maloaigia">
                                             @foreach($loaigia as $gia)
-                                                <option value="{{$gia->maloaigia}}" {{$gia->maloaigia==$model->maloaigia?'selected':''}}>{{$gia->tenloaigia}}</option>
+                                                <option value="{{$gia->maloaigia}}">{{$gia->tenloaigia}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
+                                <input type="hidden" name="mathoidiem" id="mathoidiem" value="{{$mathoidiem}}"/>
                                 <!--/span-->
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">File đính kèm</label>
-                                        <p><a href="{{url('/data/uploads/attack/'.$model->filedk)}}" target="_blank">{{$model->filedk}}</a></p>
-                                        <input name="filedk" id="filedk" type="file">
+                                        <label class="control-label">File đính kèm*</label>
+                                        <input class="required" name="filedk" id="filedk" type="file">
                                     </div>
                                 </div>
                             </div>
-
-                            <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}" />
-
                         </div>
-
-                        <div class="form-actions right">
-                            <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
-                        </div>
-                    </form>
                     <!-- END FORM-->
                 </div>
             </div>
             <!-- END VALIDATION STATES-->
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                    <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+                    <a href="{{url('giahhdv-dp/thoidiem='.$mathoidiem.'/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                </div>
+            </div>
+            </form>
         </div>
     </div>
     <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#create_ttgiahhdvtn").validate({
+            var validator = $("#create_kekhai").validate({
                 rules: {
                     ten :"required"
                 },

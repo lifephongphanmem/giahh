@@ -150,6 +150,22 @@ class HsGiaHangHoaDPController extends Controller
             return view('errors.notlogin');
     }
 
+    public function create_dk($thoidiem)
+    {
+        if(Session::has('admin')){
+            $loaigia = DmLoaiGia::where('pl','Hàng hóa, dịch vụ')->get();
+            $loaihh = DmLoaiHh::all();
+            $thitruong= DmThiTruong::all();
+            return view('manage.giahhdv.hhdp.create_dk')
+                ->with('mathoidiem',$thoidiem)
+                ->with('loaigia',$loaigia)
+                ->with('loaihh',$loaihh)
+                ->with('thitruong',$thitruong)
+                ->with('pageTitle','Thông tin giá hàng hóa do địa phương quy định thêm mới');
+        }else
+            return view('errors.notlogin');
+    }
+
     public function store(Request $request)
     {
         if(Session::has('admin')){
@@ -165,14 +181,8 @@ class HsGiaHangHoaDPController extends Controller
             $model->maloaihh = $insert['maloaihh'];
             $model->maloaigia = $insert['maloaigia'];
             $model->phanloai = 'DP';
-            if($thang == 1 || $thang == 2 || $thang == 3)
-                $model->quy = 1;
-            elseif($thang == 4 || $thang == 5 || $thang == 6)
-                $model->quy = 2;
-            elseif($thang == 7 || $thang == 8 || $thang == 9)
-                $model->quy = 3;
-            else
-                $model->quy = 4;
+            $model->hoso = 'CHITIET';
+            $model->quy = Thang2Quy($thang);
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
             $model->mahuyen = $mahuyen;
@@ -182,6 +192,41 @@ class HsGiaHangHoaDPController extends Controller
                 $hanghoa = GiaHangHoaDefault::select('masopnhom','mahh','giatu','giaden','soluong','nguontin',DB::raw($mahs." as mahs"))->where('mahuyen',$mahuyen)->get()->toarray();
                 GiaHangHoa::insert($hanghoa);
             }
+
+            return redirect('giahhdv-dp/thoidiem='.$insert['mathoidiem'].'/nam='.date_format($date,'Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function store_dk(Request $request)
+    {
+        if(Session::has('admin')){
+            $insert = $request->all();
+            $date = date_create($insert['tgnhap']);
+            $thang = date_format($date,'m');
+            $mahs = getdate()[0];
+            $mahuyen = session('admin')->mahuyen;
+
+            $file=$request->file('filedk');
+            $filename =$mahs.'_'.$file->getClientOriginalName();
+            $file->move(public_path() . '/data/uploads/attack/', $filename);
+
+            $model = new HsGiaHangHoa();
+            $model->tgnhap = $insert['tgnhap'];
+            $model->thitruong = $insert['thitruong'];
+            $model->maloaihh = $insert['maloaihh'];
+            $model->maloaigia = $insert['maloaigia'];
+            $model->hoso = 'DINHKEM';
+            $model->phanloai = 'DP';
+            $model->filedk = $filename;
+            $model->quy = Thang2Quy($thang);
+            $model->thang = date_format($date,'m');
+            $model->nam = date_format($date,'Y');
+            $model->mahuyen = $mahuyen;
+            $model->mahs = $mahs;
+            $model->mathoidiem = $insert['mathoidiem'];
+            $model->save();
 
             return redirect('giahhdv-dp/thoidiem='.$insert['mathoidiem'].'/nam='.date_format($date,'Y'));
 
@@ -268,6 +313,26 @@ class HsGiaHangHoaDPController extends Controller
             return view('errors.notlogin');
     }
 
+    public function edit_dk($id)
+    {
+        if(Session::has('admin')){
+            $model = HsGiaHangHoa::findOrFail($id);
+            $mathoidiem = $model->mathoidiem;
+            $loaigia = DmLoaiGia::where('pl','Hàng hóa, dịch vụ')->get();
+            $loaihh = DmLoaiHh::all();
+            $thitruong= DmThiTruong::all();
+
+            return view('manage.giahhdv.hhdp.edit_dk')
+                ->with('model',$model)
+                ->with('mathoidiem',$mathoidiem)
+                ->with('loaigia',$loaigia)
+                ->with('loaihh',$loaihh)
+                ->with('thitruong',$thitruong)
+                ->with('pageTitle','Thông tin giá hàng hóa, dịch vụ chi tiết');
+        }else
+            return view('errors.notlogin');
+    }
+
     public function update(Request $request, $id)
     {
         if(Session::has('admin')){
@@ -289,6 +354,39 @@ class HsGiaHangHoaDPController extends Controller
                 $model->quy = 3;
             else
                 $model->quy = 4;
+            $model->thang = date_format($date,'m');
+            $model->nam = date_format($date,'Y');
+            $model->save();
+
+            return redirect('giahhdv-dp/thoidiem='.$model->mathoidiem.'/nam='.date_format($date,'Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function update_dk(Request $request, $id)
+    {
+        if(Session::has('admin')){
+            $insert = $request->all();
+            $date = date_create($insert['tgnhap']);
+            $thang = date_format($date,'m');
+
+            $model = HsGiaHangHoa::findOrFail($id);
+            if(isset($request->filedk)){
+                if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk)){
+                    File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);
+                }
+                $file=$request->file('filedk');
+
+                $filename =$insert['mahs'].'_'.$file->getClientOriginalName();
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk=$filename;
+            }
+            $model->tgnhap = $insert['tgnhap'];
+            $model->thitruong = $insert['thitruong'];
+            $model->maloaihh = $insert['maloaihh'];
+            $model->maloaigia = $insert['maloaigia'];
+            $model->quy=Thang2Quy($thang);
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
             $model->save();

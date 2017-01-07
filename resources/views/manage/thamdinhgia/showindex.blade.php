@@ -101,7 +101,12 @@
                                 <!--td>{{$tt->mucdich}}</td-->
                                 <td style="text-align: center">{{getDayVn($tt->thoihan)}}</td>
                                 <td>
-                                    <a href="{{url('thongtin-thamdinhgia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                    @if($tt->phanloai == 'DINHKEM')
+                                        <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                    @else
+                                        <a href="{{url('thongtin-thamdinhgia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                    @endif
+
                                     @if(session('admin')->level == 'T')
                                         <button type="button" onclick="confirmHuy('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huy-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hủy hoàn thành</button>
                                         <a href="{{url('hoso-thamdinhgia/'.$tt->mahs.'/history')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Lịch sử</a>

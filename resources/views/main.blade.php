@@ -98,6 +98,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="{{url('assets/admin/layout/scripts/demo.js')}}" type="text/javascript"></script>
     <script src="{{url('assets/admin/pages/scripts/index.js')}}" type="text/javascript"></script>
     <script src="{{url('assets/admin/pages/scripts/tasks.js')}}" type="text/javascript"></script>
+    <script src="{{ url('js/main.js') }}" type="text/javascript"></script>
 
     <!-- END PAGE LEVEL SCRIPTS -->
 
@@ -270,18 +271,18 @@ License: You must have a valid license purchased only from themeforest(the above
                     </form>
                     <!-- END RESPONSIVE QUICK SEARCH FORM -->
 
-                <li class="start active open">
+                <!--li class="start active open">
                     <a href="">
                         <i class="fa fa-folder-open-o"></i>
                         <span class="title">{{$pageTitle}}</span>
                         <span class="selected"></span>
                     </a>
-                </li>
+                </li-->
                 @if(session('admin')->sadmin != 'sa')
                 @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk') || canGeneral('hhdv','hhthitruong')
                     || canGeneral('hhdv','kkgtw') || canGeneral('hhdv','kkgdp'))
                 <li>
-                    <a href="">
+                    <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
                         <span class="title">Giá hàng hóa- Dịch vụ</span>
                         <span class="arrow "></span>
@@ -289,7 +290,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <ul class="sub-menu">
                         @if(canGeneral('hhdv','hhthitruong'))
                         <li>
-                            <a href="">Hàng hóa thị trường<span class="arrow"></span> </a>
+                            <a href="javascript:;">Hàng hóa thị trường<span class="arrow"></span> </a>
                             <ul class="sub-menu">
                                 @if(can('hhthitruong','create'))
                                 <li>
@@ -311,7 +312,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         @if(canGeneral('hhdv','hhdvtn'))
                             @if(can('hhdvtn','index'))
                             <li>
-                                <a href="">HH-DV trong nước<span class="arrow"></span> </a>
+                                <a href="javascript:;">HH-DV trong nước<span class="arrow"></span> </a>
                                 <ul class="sub-menu">
                                     <li>
                                         <a href="{{url('giahhdv-trongnuoc')}}">Giá HH-DV trong nước</a>
@@ -327,7 +328,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         @if(canGeneral('hhdv','hhxnk'))
                             @if(can('hhxnk','index'))
                                 <li>
-                                    <a href="">HH xuất nhập khẩu<span class="arrow"></span> </a>
+                                    <a href="javascript:;">HH xuất nhập khẩu<span class="arrow"></span> </a>
                                     <ul class="sub-menu">
                                         <li>
                                             <a href="{{url('giahh-xuatnhapkhau')}}">Giá hàng hóa XNK</a>
@@ -342,7 +343,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         @endif
                         @if(canGeneral('hhdv','kkgtw'))
                         <li>
-                            <a href="">Kê khai giá TW<span class="arrow"></span> </a>
+                            <a href="javascript:;">Kê khai giá TW<span class="arrow"></span> </a>
                             <ul class="sub-menu">
                                 @if(can('kkgtw','create')||can('kkgtw','edit'))
                                 <li>
@@ -363,7 +364,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         @endif
                         @if(canGeneral('hhdv','kkgdp'))
                         <li>
-                            <a href="">Kê khai giá địa phương<span class="arrow"></span> </a>
+                            <a href="javascript:;">Kê khai giá địa phương<span class="arrow"></span> </a>
                             <ul class="sub-menu">
                                 @if(can('kkgdp','create')||can('kkgdp','edit'))
                                 <li>
@@ -387,7 +388,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 @endif
                 @if(canGeneral('tsnn','tsnnnhadat') || canGeneral('tsnn','tsnnotokhac'))
                     <li>
-                        <a href="">
+                        <a href="javascript:;">
                             <i class="fa fa-laptop"></i>
                             <span class="title">Tài sản nhà nước</span>
                             <span class="arrow "></span>
@@ -409,7 +410,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 @endif
                 @if(canGeneral('gttruocba','gttruocba'))
                 <li>
-                    <a href="">
+                    <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
                         <span class="title">Giá thuế trước bạ</span>
                         <span class="arrow "></span>
@@ -437,7 +438,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!--Thuế tài nguyên-->
                 @if(canGeneral('gthuetn','gthuetn'))
                     <li>
-                        <a href="">
+                        <a href="javascript:;">
                             <i class="fa fa-laptop"></i>
                             <span class="title">Giá thuế tài nguyên</span>
                             <span class="arrow "></span>
@@ -462,7 +463,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!--Thẩm định giá-->
                 @if(canGeneral('thamdinhgia','thamdinhgia'))
                 <li>
-                    <a href="">
+                    <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
                         <span class="title">Thẩm định giá</span>
                         <span class="arrow "></span>
@@ -489,7 +490,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!--Công bố giá-->
                 @if(canGeneral('congbogia','congbogia'))
                         <li>
-                            <a href="">
+                            <a href="javascript:;">
                                 <i class="fa fa-laptop"></i>
                                 <span class="title">Công bố giá VLXD</span>
                                 <span class="arrow "></span>
@@ -517,7 +518,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 @if(canGeneral('ttqd','ttqd'))
                     @if(can('ttqd','index'))
                 <li>
-                    <a href="">
+                    <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
                         <span class="title">Văn bản QLNN về giá</span>
                         <span class="arrow "></span>
@@ -538,7 +539,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     @endif
                 @endif
                 <li>
-                    <a href="">
+                    <a href="javascript:;">
                         <i class="fa fa-file-o fa-fw"></i>
                         <span class="title">Báo cáo thống kê</span>
                         <span class="arrow"></span>
@@ -546,7 +547,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <ul class="sub-menu">
                         @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk') || canGeneral('thamdinhgia','thamdinhgia') || canGeneral('congbogia','congbogia'))
                         <li>
-                            <a href="">Hàng hóa dịch vụ<span class="arrow"></span> </a>
+                            <a href="javascript:;">Hàng hóa dịch vụ<span class="arrow"></span> </a>
                             <ul class="sub-menu">
                                 <li>
                                     <a href="{{url('reports/tt55-2011-BTC')}}">Thông tư 55/2011-TT-BTC</a>
@@ -570,7 +571,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 @endif
                 @if(session('admin')->sadmin == 'ssa' || session('admin')->sadmin == 'sa')
                 <li>
-                    <a href="">
+                    <a href="javascript:;">
                         <i class="icon-settings"></i>
                         <span class="title">Quản trị hệ thống</span>
                         <span class="arrow "></span>
@@ -579,7 +580,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         @if(canGeneral('hhdv','hhdvtn') || canGeneral('hhdv','hhxnk') || canGeneral('hhdv','hhthitruong')
                             || canGeneral('hhdv','kkgtw') || canGeneral('hhdv','kkgdp'))
                             <li>
-                                <a href="">Giá hàng hóa <span class="arrow"></span> </a>
+                                <a href="javascript:;">Giá hàng hóa <span class="arrow"></span> </a>
                                 <ul class="sub-menu">
                                     <li>
                                         <a href="{{url('dmthitruong')}}"> Danh mục thị trường</a>

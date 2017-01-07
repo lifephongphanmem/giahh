@@ -56,9 +56,11 @@
                     <div class="actions">
                         @if(can('tdgia','create'))
                         <a href="{{url('hoso-thamdinhgia/create')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
+                            <i class="fa fa-plus"></i> Thêm mới hồ sơ chi tiết</a>
+                        <a href="{{url('hoso-thamdinhgia-dk/create')}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Thêm mới hồ sơ đính kèm</a>
                         <a href="{{url('hoso-thamdinhgia/import')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Import file</a>
+                            <i class="fa fa-plus"></i> Thêm mới hồ sơ từ Excel</a>
                         @endif
                         <!--a href="" class="btn btn-default btn-sm">
                             <i class="fa fa-print"></i> Print </a-->
@@ -114,20 +116,29 @@
                                     @endif
                                 </td>
                                 <td>
-
-                                    <a href="{{url('hoso-thamdinhgia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
-                                    @if($tt->trangthai !='Hoàn tất')
+                                    @if($tt->trangthai =='Hoàn tất')
+                                        @if($tt->phanloai == 'DINHKEM')
+                                            <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                        @else
+                                            <a href="{{url('hoso-thamdinhgia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                        @endif
+                                    @else
                                         @if(can('tdgia','edit'))
-                                        <a href="{{url('hoso-thamdinhgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                        @endif
-                                        @if(can('tdgia','delete'))
-                                        <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                        Xóa</button>
-                                        @endif
-                                        @if(can('tdgia','approve'))
-                                        <button type="button" onclick="confirmHoantat('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoantat-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn tất</button>
+                                            @if($tt->phanloai == 'DINHKEM')
+                                                <a href="{{url('hoso-thamdinhgia-dk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                            @else
+                                                <a href="{{url('hoso-thamdinhgia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                            @endif
                                         @endif
 
+                                        @if(can('tdgia','delete'))
+                                            <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                            Xóa</button>
+                                        @endif
+
+                                        @if(can('tdgia','approve'))
+                                            <button type="button" onclick="confirmHoantat('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoantat-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn tất</button>
+                                        @endif
                                     @endif
                                         <a href="{{url('hoso-thamdinhgia/'.$tt->mahs.'/history')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Lịch sử</a>
                                 </td>

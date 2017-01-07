@@ -23,7 +23,7 @@ class HomeController extends Controller
     public function index()
     {
         if (Session::has('admin')) {
-            if(session('admin')->username == 'sa')
+            if(session('admin')->sadmin == 'sa')
                 return redirect('cau-hinh-he-thong');
             else
                 return view('dashboard')

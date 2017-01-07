@@ -127,8 +127,6 @@
                                             @else
                                                 <a href="{{url('giahhdv-tw-dk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @endif
-
-
                                         @endif
                                         @if(can('kkgtw','delete') && $tt->mahuyen == session('admin')->mahuyen)
                                             <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;

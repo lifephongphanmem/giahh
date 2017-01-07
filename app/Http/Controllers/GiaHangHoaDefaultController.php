@@ -248,8 +248,8 @@ class GiaHangHoaDefaultController extends Controller
 
             $modelupdate = GiaHangHoaDefault::where('id',$inputs['id'])
                 ->first();
-            $modelupdate->masopnhom = $inputs['masopnhom'];
-            $modelupdate->mahh = $inputs['mahh'];
+            //$modelupdate->masopnhom = $inputs['masopnhom'];
+            //$modelupdate->mahh = $inputs['mahh'];
             $modelupdate->giatu  =$inputs['giatu'];
             $modelupdate->giaden = $inputs['giaden'];
             $modelupdate->soluong = $inputs['soluong'];

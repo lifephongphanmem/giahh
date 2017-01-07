@@ -71,6 +71,7 @@ class HsThamDinhGiaController extends Controller
         }else
             return view('errors.notlogin');
     }
+
     public function getTtPhongBan($pbs,$array){
         foreach($pbs as $pb){
             if($pb->ma == $array->mahuyen)
@@ -86,6 +87,15 @@ class HsThamDinhGiaController extends Controller
             return view('manage.thamdinhgia.create')
                 ->with('pageTitle','Hồ sơ thẩm định giá thêm mới');
 
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function create_dk()
+    {
+        if(Session::has('admin')){
+            return view('manage.thamdinhgia.create_dk')
+                ->with('pageTitle','Hồ sơ thẩm định giá thêm mới');
         }else
             return view('errors.notlogin');
     }
@@ -108,6 +118,7 @@ class HsThamDinhGiaController extends Controller
             $model->sotbkl = $insert['sotbkl'];
             $model->hosotdgia = $insert['hosotdgia'];
             $model->thang = date_format($date,'m');
+            $model->phanloai = 'CHITIET';
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
             elseif($thang == 4 || $thang == 5 || $thang == 6)
@@ -131,6 +142,44 @@ class HsThamDinhGiaController extends Controller
                 $model->datanew = json_encode($insert);
                 $modelh->save();
             }
+
+            return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function store_dk(Request $request)
+    {
+        if(Session::has('admin')){
+            $insert = $request->all();
+            $date = date_create($insert['thoidiem']);
+            $thang = date_format($date,'m');
+            $mahs = getdate()[0];
+
+            $file=$request->file('filedk');
+            $filename =$mahs.'_'.$file->getClientOriginalName();
+            $file->move(public_path() . '/data/uploads/attack/', $filename);
+
+            $model = new HsThamDinhGia();
+            $model->diadiem = $insert['diadiem'];
+            $model->thoidiem = $insert['thoidiem'];
+            $model->ppthamdinh = $insert['ppthamdinh'];
+            $model->mucdich = $insert['mucdich'];
+            $model->dvyeucau = $insert['dvyeucau'];
+            $model->thoihan = $insert['thoihan'];
+            $model->sotbkl = $insert['sotbkl'];
+            $model->hosotdgia = $insert['hosotdgia'];
+            $model->thang = date_format($date,'m');
+            $model->phanloai = 'DINHKEM';
+            $model->filedk = $filename;
+            $model->quy = Thang2Quy($thang);
+            $model->nam = date_format($date,'Y');
+            $model->mahuyen = session('admin')->mahuyen;
+            $model->nguonvon = $insert['nguonvon'];
+            $model->trangthai = 'Đang làm';
+            $model->mahs = $mahs;
+            $model->save();
 
             return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y'));
 
@@ -177,7 +226,6 @@ class HsThamDinhGiaController extends Controller
             return view('errors.notlogin');
     }
 
-
     public function view($id)
     {
         if(Session::has('admin')){
@@ -205,7 +253,17 @@ class HsThamDinhGiaController extends Controller
                 ->with('model',$model)
                 ->with('modelts',$modelts)
                 ->with('pageTitle','Hồ sơ thẩm định giá chỉnh sửa');
+        }else
+            return view('errors.notlogin');
+    }
 
+    public function edit_dk($id)
+    {
+        if(Session::has('admin')){
+            $model = HsThamDinhGia::findOrFail($id);
+            return view('manage.thamdinhgia.edit_dk')
+                ->with('model',$model)
+                ->with('pageTitle','Hồ sơ thẩm định giá chỉnh sửa');
         }else
             return view('errors.notlogin');
     }
@@ -242,6 +300,52 @@ class HsThamDinhGiaController extends Controller
                 $model->quy = 3;
             else
                 $model->quy = 4;
+            $model->nguonvon = $update['nguonvon'];
+            $model->nam = date_format($date,'Y');
+            if($model->save()) {
+                $this->updateh($arrayold, $arraynew, $model->mahs);
+            }
+
+            return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function update_dk(Request $request, $id)
+    {
+        if(Session::has('admin')){
+            $update = $request->all();
+
+            $date = date_create($update['thoidiem']);
+            $thang = date_format($date,'m');
+
+            $model = HsThamDinhGia::findOrFail($id);
+            if(isset($request->filedk)){
+                if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk)){
+                    File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);
+                }
+                $file=$request->file('filedk');
+
+                $filename =$update['mahs'].'_'.$file->getClientOriginalName();
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk=$filename;
+            }
+            /* add history*/
+            $arraymodel = $model->toarray();
+            $arrayold = array_intersect_key($arraymodel,$update);
+            $arraynew = array_intersect_key($update,$arrayold);
+
+            $model->diadiem = $update['diadiem'];
+            $model->thoidiem = $update['thoidiem'];
+            $model->ppthamdinh = $update['ppthamdinh'];
+            $model->mucdich = $update['mucdich'];
+            $model->dvyeucau = $update['dvyeucau'];
+            $model->thoihan = $update['thoihan'];
+            $model->sotbkl = $update['sotbkl'];
+            $model->hosotdgia = $update['hosotdgia'];
+            $model->thang = date_format($date,'m');
+            $model->quy = Thang2Quy($thang);
             $model->nguonvon = $update['nguonvon'];
             $model->nam = date_format($date,'Y');
             if($model->save()) {
@@ -318,6 +422,7 @@ class HsThamDinhGiaController extends Controller
         }else
             return view('errors.notlogin');
     }
+
     public function huy(Request $request){
         if(Session::has('admin')){
             $model = HsThamDinhGia::where('id',$request['idhuy'])

@@ -85,6 +85,15 @@ class HsCongBoGiaController extends Controller
             return view('errors.notlogin');
     }
 
+    public function create_dk()
+    {
+        if(Session::has('admin')){
+            return view('manage.congbogia.create_dk')
+                ->with('pageTitle','Hồ sơ công bố giá thêm mới');
+        }else
+            return view('errors.notlogin');
+    }
+
     public function store(Request $request)
     {
         if(Session::has('admin')){
@@ -102,7 +111,7 @@ class HsCongBoGiaController extends Controller
             $model->nguonvon = $insert['nguonvon'];
             $model->diadiemcongbo = $insert['diadiemcongbo'];
             $model->donvidn = $insert['donvidn'];
-
+            $model->phanloai = 'CHITIET';
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
             elseif($thang == 4 || $thang == 5 || $thang == 6)
@@ -121,6 +130,43 @@ class HsCongBoGiaController extends Controller
             if($model->save()){
                 $this->createts($mahs);
             }
+
+            return redirect('hoso-congbogia/nam='.date_format($date,'Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function store_dk(Request $request)
+    {
+        if(Session::has('admin')){
+            $insert = $request->all();
+            $date = date_create($insert['ngaynhap']);
+            $thang = date_format($date,'m');
+            $mahs = getdate()[0];
+
+            $file=$request->file('filedk');
+            $filename =$mahs.'_'.$file->getClientOriginalName();
+            $file->move(public_path() . '/data/uploads/attack/', $filename);
+
+            $model = new HsCongBoGia();
+            $model->sohs = $insert['sohs'];
+            $model->plhs = $insert['plhs'];
+            $model->phanloai = 'DINHKEM';
+            $model->filedk = $filename;
+            $model->sotbkl = $insert['sotbkl'];
+            $model->ngaynhap = $insert['ngaynhap'];
+            $model->sovbdn = $insert['sovbdn'];
+            $model->nguonvon = $insert['nguonvon'];
+            $model->diadiemcongbo = $insert['diadiemcongbo'];
+            $model->donvidn = $insert['donvidn'];
+            $model->quy = Thang2Quy($thang);
+            $model->thang = date_format($date,'m');
+            $model->nam = date_format($date,'Y');
+            $model->mahuyen = session('admin')->mahuyen;
+            $model->mahs = $mahs;
+            $model->trangthai = 'Đang làm';
+            $model->save();
 
             return redirect('hoso-congbogia/nam='.date_format($date,'Y'));
 
@@ -185,6 +231,17 @@ class HsCongBoGiaController extends Controller
             return view('errors.notlogin');
     }
 
+    public function edit_dk($id)
+    {
+        if(Session::has('admin')){
+            $model = HsCongBoGia::findOrFail($id);
+            return view('manage.congbogia.edit_dk')
+                ->with('model',$model)
+                ->with('pageTitle','Hồ sơ công bố giá chỉnh sửa');
+        }else
+            return view('errors.notlogin');
+    }
+
     public function update(Request $request, $id)
     {
         if(Session::has('admin')){
@@ -211,6 +268,43 @@ class HsCongBoGiaController extends Controller
             else
                 $model->quy = 4;
 
+            $model->thang = date_format($date,'m');
+            $model->nam = date_format($date,'Y');
+            $model->save();
+
+            return redirect('hoso-congbogia/nam='.date_format($date,'Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function update_dk(Request $request, $id)
+    {
+        if(Session::has('admin')){
+            $update = $request->all();
+            $date = date_create($update['ngaynhap']);
+            $thang = date_format($date,'m');
+
+            $model = HsCongBoGia::findOrFail($id);
+            if(isset($request->filedk)){
+                if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk)){
+                    File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);
+                }
+                $file=$request->file('filedk');
+
+                $filename =$update['mahs'].'_'.$file->getClientOriginalName();
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk=$filename;
+            }
+            $model->sohs = $update['sohs'];
+            $model->plhs = $update['plhs'];
+            $model->sotbkl = $update['sotbkl'];
+            $model->ngaynhap = $update['ngaynhap'];
+            $model->sovbdn = $update['sovbdn'];
+            $model->nguonvon = $update['nguonvon'];
+            $model->diadiemcongbo = $update['diadiemcongbo'];
+            $model->donvidn = $update['donvidn'];
+            $model->quy = Thang2Quy($thang);
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
             $model->save();
@@ -262,6 +356,7 @@ class HsCongBoGiaController extends Controller
         }else
             return view('errors.notlogin');
     }
+
     public function view($id)
     {
         if(Session::has('admin')){
@@ -277,5 +372,4 @@ class HsCongBoGiaController extends Controller
         }else
             return view('errors.notlogin');
     }
-
 }

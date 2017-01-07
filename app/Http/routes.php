@@ -273,6 +273,11 @@ Route::patch('giahhdv-dp/{id}','HsGiaHangHoaDPController@update');
 Route::post('giahhdv-dp/delete','HsGiaHangHoaDPController@destroy');
 Route::post('giahhdv-dp/approve','HsGiaHangHoaDPController@approve');
 
+Route::get('giahhdv-dp/thoidiem={thoidiem}/create_dk','HsGiaHangHoaDPController@create_dk');
+Route::patch('giahhdv-dp-dk/{id}','HsGiaHangHoaDPController@update_dk');
+Route::post('giahhdv-dp-dk','HsGiaHangHoaDPController@store_dk');
+Route::get('giahhdv-dp-dk/{id}/edit','HsGiaHangHoaDPController@edit_dk');
+
 Route::get('thongtin-dp','HsGiaHangHoaDPController@showthoidiem');
 Route::get('thongtin-dp/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHangHoaDPController@showindex');
 Route::get('thongtin-dp/{id}/show','HsGiaHangHoaDPController@view');
@@ -319,6 +324,11 @@ Route::get('hoso-thamdinhgia/{id}/edit','HsThamDinhGiaController@edit');
 Route::patch('hoso-thamdinhgia/{id}','HsThamDinhGiaController@update');
 Route::post('hoso-thamdinhgia/hoantat','HsThamDinhGiaController@hoantat');
 
+Route::get('hoso-thamdinhgia-dk/create','HsThamDinhGiaController@create_dk');
+Route::get('hoso-thamdinhgia-dk/{id}/edit','HsThamDinhGiaController@edit_dk');
+Route::patch('hoso-thamdinhgia-dk/{id}','HsThamDinhGiaController@update_dk');
+Route::post('hoso-thamdinhgia-dk','HsThamDinhGiaController@store_dk');
+
 Route::get('hoso-thamdinhgia/{mahs}/history','HsThamDinhGiaController@history');
 
 Route::get('thongtin-thamdinhgia/nam={nam}&pb={pb}','HsThamDinhGiaController@showindex');
@@ -356,6 +366,12 @@ Route::get('hoso-congbogia/{id}/show','HsCongBoGiaController@show');
 Route::get('hoso-congbogia/{id}/edit','HsCongBoGiaController@edit');
 Route::patch('hoso-congbogia/{id}','HsCongBoGiaController@update');
 Route::post('hoso-congbogia/hoantat','HsCongBoGiaController@hoantat');
+
+Route::get('hoso-congbogia-dk/create','HsCongBoGiaController@create_dk');
+Route::get('hoso-congbogia-dk/{id}/edit','HsCongBoGiaController@edit_dk');
+Route::patch('hoso-congbogia-dk/{id}','HsCongBoGiaController@update_dk');
+Route::post('hoso-congbogia-dk','HsCongBoGiaController@store_dk');
+
 
 Route::get('thongtin-congbogia/nam={nam}&pb={pb}','HsCongBoGiaController@showindex');
 Route::get('thongtin-congbogia/{id}/show','HsCongBoGiaController@view');
