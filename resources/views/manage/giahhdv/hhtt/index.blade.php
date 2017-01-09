@@ -115,17 +115,17 @@
                                 </td>
                                 <td>
                                     @if($tt->trangthai == 'Hoàn tất')
-                                        @if($tt->phanloai == 'CHITIET')
-                                            <a href="{{url('giahhdv-thitruong/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
-                                        @else
+                                        @if($tt->phanloai == 'DINHKEM')
                                             <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                        @else
+                                            <a href="{{url('giahhdv-thitruong/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                         @endif
                                     @else
                                         @if(can('hhthitruong','edit') && $tt->mahuyen == session('admin')->mahuyen)
-                                            @if($tt->phanloai == 'CHITIET')
-                                                <a href="{{url('giahhdv-thitruong/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                            @else
+                                            @if($tt->phanloai == 'DINHKEM')
                                                 <a href="{{url('giahhdv-thitruong-dk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                            @else
+                                                <a href="{{url('giahhdv-thitruong/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @endif
                                         @endif
                                         @if(can('hhthitruong','delete') && $tt->mahuyen == session('admin')->mahuyen)

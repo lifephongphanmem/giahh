@@ -115,10 +115,10 @@
                                     @endif
                                 </td-->
                                 <td>
-                                    @if($tt->phanloai == 'CHITIET')
-                                        <a href="{{url('thongtin-giathitruong/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
-                                    @else
+                                    @if($tt->phanloai == 'DINHKEM')
                                         <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                    @else
+                                        <a href="{{url('thongtin-giathitruong/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                     @endif
 
                                     @if(session('admin')->level == 'T')
