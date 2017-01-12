@@ -202,6 +202,8 @@ class HsThamDinhGiaController extends Controller
                 $model->nguyengiadenghi = $ts->nguyengiadenghi;
                 $model->giadenghi = $ts->giadenghi;
                 $model->nguyengiathamdinh = $ts->nguyengiathamdinh;
+                $model->giaththamdinh = $ts->giaththamdinh;
+                $model->giakththamdinh = $ts->giakththamdinh;
                 $model->giatritstd = $ts->giatritstd;
                 $model->gc = $ts->gc;
                 $model->mahs = $mahs;

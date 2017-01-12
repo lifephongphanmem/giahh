@@ -28,7 +28,12 @@
 <table cellspacing="0" cellpadding="0" border="0">
     <tr>
         <td style="text-align: center; text-transform: uppercase;" width="30%">
-            <b>SỞ TÀI CHÍNH TỈNH, THÀNH PHỐ</b><br>
+            <b>@if(session('admin')->level == 'T')
+                    {{getGeneralConfigs()['donvi']}}
+                @else
+                    {{session('admin')->name}}
+                @endif
+            </b><br>
             --------<br>
         </td>
         <td style="text-align: left;" width="70%">
@@ -36,9 +41,18 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" style="text-align: center; font-size: 16px; text-transform: uppercase;">
+        <td colspan="2" style="text-align: center; font-size: 16px;">
             <b>BÁO CÁO TỔNG HỢP CÔNG BỐ GIÁ VẬT LiỆU VÀ CÔNG BỐ GIÁ BỔ XUNG</b>
+            <br>
+            Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}<br>
+            Nguồn vốn: {{($dk['nguonvon']=='Cả hai') ? 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)' : $dk['nguonvon']}}
+            @if(session('admin')->level == 'T')
+                @if($donvi != 'all')
+                    <br>Đơn vị: {{$donvi->ten}}
+                @endif
+            @endif
         </td>
+
     </tr>
 
 </table>
@@ -66,19 +80,25 @@
         <th>9</th>
 
     </tr>
+    @if(count($model)>0)
     @foreach($model as $key=>$ts)
         <tr>
             <th>{{$key+1}}</th>
             <th>{{'Tháng '. $ts->thang}}</th>
-            <th style="text-align: right">{{number_format($ts->counths)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumgiadenghi)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumkthamdinh)}}</th>
-            <th style="text-align: right">{{number_format($ts->sumgiathamdinh)}}</th>
-            <th>{{number_format($ts->sumkthamdinh)}}</th>
+            <th style="text-align: right">{{number_format($ts->counthoso)}}</th>
+            <th style="text-align: right">{{number_format($ts->giadenghi)}}</th>
+            <th style="text-align: right">{{number_format($ts->giaththamdinh)}}</th>
+            <th style="text-align: right">{{number_format($ts->giakththamdinh)}}</th>
+            <th style="text-align: right">{{number_format($ts->giatritstd)}}</th>
+            <th>{{number_format($ts->chenhlech)}}</th>
             <th>{{$ts->phantram}}</th>
         </tr>
     @endforeach
+    @else
+    <tr>
+        <th colspan="9">Không có thông tin công bố</th>
+    </tr>
+    @endif
 </table>
 </body>
 </html>

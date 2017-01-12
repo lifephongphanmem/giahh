@@ -112,6 +112,7 @@ class BcTkKhacController extends Controller
                         ->groupBy('thang')
                         ->get();
                     $donvi = 'all';
+
                 }else{
                     $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                         ->where('mahuyen',$input['donvi'])
@@ -133,10 +134,33 @@ class BcTkKhacController extends Controller
             }
 
 
+
+
             foreach($model as $thangs){
-                $idhss = HsThamDinhGia::where('thang',$thangs->thang)
-                    ->where('trangthai', 'Hoàn tất')
-                    ->get();
+                if(isset($input['donvi'])) {
+                    if ($input['donvi'] == 'all') {
+                        $idhss = HsThamDinhGia::where('thang', $thangs->thang)
+                            ->where('nguonvon', $input['nguonvon'])
+                            ->whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
+                            ->where('trangthai', 'Hoàn tất')
+                            ->get();
+                    } else {
+                        $idhss = HsThamDinhGia::where('thang', $thangs->thang)
+                            ->where('mahuyen', $input['donvi'])
+                            ->where('nguonvon', $input['nguonvon'])
+                            ->whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
+                            ->where('trangthai', 'Hoàn tất')
+                            ->get();
+                    }
+                }else{
+                    $idhss = HsThamDinhGia::where('thang', $thangs->thang)
+                        ->where('mahuyen',session('admin')->mahuyen)
+                        ->where('nguonvon', $input['nguonvon'])
+                        ->whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
+                        ->where('trangthai', 'Hoàn tất')
+                        ->get();
+                }
+
                 $tshs = count($idhss);
                 $arrayidhs = '';
                 foreach($idhss as $idhs){
@@ -281,9 +305,30 @@ class BcTkKhacController extends Controller
 
 
             foreach($model as $thangs){
-                $idhss = HsCongBoGia::where('thang',$thangs->thang)
-                    ->where('trangthai', 'Hoàn tất')
-                    ->get();
+                if(isset($input['donvi'])) {
+                    if ($input['donvi'] == 'all') {
+                        $idhss = HsCongBoGia::where('thang', $thangs->thang)
+                            ->where('nguonvon', $input['nguonvon'])
+                            ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                            ->where('trangthai', 'Hoàn tất')
+                            ->get();
+                    } else {
+                        $idhss = HsCongBoGia::where('thang', $thangs->thang)
+                            ->where('mahuyen', $input['donvi'])
+                            ->where('nguonvon', $input['nguonvon'])
+                            ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                            ->where('trangthai', 'Hoàn tất')
+                            ->get();
+                    }
+                }else{
+                    $idhss = HsCongBoGia::where('thang', $thangs->thang)
+                        ->where('mahuyen',session('admin')->mahuyen)
+                        ->where('nguonvon', $input['nguonvon'])
+                        ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                        ->where('trangthai', 'Hoàn tất')
+                        ->get();
+                }
+
                 $tshs = count($idhss);
                 $arrayidhs = '';
                 foreach($idhss as $idhs){
