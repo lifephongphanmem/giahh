@@ -130,9 +130,9 @@
                             <th style="text-align: center">Tên tài sản</th>
                             <th style="text-align: center">Đơn vị tính</th>
                             <th style="text-align: center">Số lượng</th>
-                            <th style="text-align: center">Nguyên giá đề nghị</th>
+                            <th style="text-align: center">Đơn giá đề nghị</th>
                             <th style="text-align: center">Giá trị đề nghị</th>
-                            <th style="text-align: center">Nguyên giá thẩm định</th>
+                            <th style="text-align: center">Đơn giá thẩm định</th>
                             <th style="text-align: center">Giá trị thẩm định</th>
                             <th style="text-align: center">Ghi chú</th>
                         </tr>

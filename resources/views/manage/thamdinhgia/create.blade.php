@@ -333,7 +333,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Nguyên giá đề nghị<span class="require">*</span></label>
+                                        <label class="control-label">Đơn giá đề nghị<span class="require">*</span></label>
                                         <input type="text" name="nguyengiadenghi" id="nguyengiadenghi" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
                                 </div>
@@ -347,7 +347,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Nguyên giá thẩm định<span class="require">*</span></label>
+                                        <label class="control-label">Đơn giá thẩm định<span class="require">*</span></label>
                                         <input type="text" name="nguyengiathamdinh" id="nguyengiathamdinh" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
                                 </div>
@@ -386,9 +386,9 @@
                                             <!--th style="text-align: center">Nguồn gốc</th-->
                                             <th style="text-align: center">Đơn vị tính</th>
                                             <th style="text-align: center">Số lượng</th>
-                                            <th style="text-align: center">Nguyên giá đề nghị</th>
+                                            <th style="text-align: center">Đơn giá đề nghị</th>
                                             <th style="text-align: center">Giá trị đề nghị</th>
-                                            <th style="text-align: center">Nguyên giá thẩm định</th>
+                                            <th style="text-align: center">Đơn giá thẩm định</th>
                                             <th style="text-align: center">Giá trị thẩm định</th>
                                             <th style="text-align: center" width="20%">Thao tác</th>
                                         </tr>

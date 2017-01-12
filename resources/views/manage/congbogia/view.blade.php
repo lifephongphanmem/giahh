@@ -118,9 +118,9 @@
                             <th style="text-align: center">Nguồn gốc xuất xứ</th>
                             <th style="text-align: center">Đơn vị tính</th>
                             <th style="text-align: center">Số lượng</th>
-                            <th style="text-align: center">Nguyên giá đề nghị</th>
+                            <th style="text-align: center">Đơn giá đề nghị</th>
                             <th style="text-align: center">Giá trị đề nghị</th>
-                            <th style="text-align: center">Nguyên giá công bố</th>
+                            <th style="text-align: center">Đơn giá công bố</th>
                             <th style="text-align: center">Giá trị công bố</th>
                         </tr>
                         </thead>

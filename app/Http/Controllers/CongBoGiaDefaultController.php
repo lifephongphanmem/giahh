@@ -76,9 +76,9 @@ class CongBoGiaDefaultController extends Controller
             $result['message'] .= '<th style="text-align: center">Nguồn gốc xuất xứ</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị<br> tính</th>';
             $result['message'] .= '<th style="text-align: center">Số lượng</th>';
-            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá<br> đề nghị</th>';
             $result['message'] .= '<th style="text-align: center">Giá trị<br> đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> công bố</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá<br> công bố</th>';
             $result['message'] .= '<th style="text-align: center">Giá trị<br> công bố</th>';
             $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
@@ -178,7 +178,7 @@ class CongBoGiaDefaultController extends Controller
 
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Nguyên giá đề nghị<span class="require">*</span></label>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Đơn giá đề nghị<span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" name="nguyengiadenghiedit" id="nguyengiadenghiedit" class="form-control"  data-mask="fdecimal" value="'.$model->nguyengiadenghi.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -191,7 +191,7 @@ class CongBoGiaDefaultController extends Controller
 
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Nguyên giá thẩm định<span class="require">*</span></label>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Đơn giá thẩm định<span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" name="nguyengiathamdinhedit" id="nguyengiathamdinhedit" class="form-control"  data-mask="fdecimal" value="'.$model->nguyengiathamdinh.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
@@ -285,9 +285,9 @@ class CongBoGiaDefaultController extends Controller
             $result['message'] .= '<th style="text-align: center">Nguồn gốc xuất xứ</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị<br> tính</th>';
             $result['message'] .= '<th style="text-align: center">Số lượng</th>';
-            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá<br> đề nghị</th>';
             $result['message'] .= '<th style="text-align: center">Giá trị<br> đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> công bố</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá<br> công bố</th>';
             $result['message'] .= '<th style="text-align: center">Giá trị<br> công bố</th>';
             $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';
@@ -359,9 +359,9 @@ class CongBoGiaDefaultController extends Controller
             $result['message'] .= '<th style="text-align: center">Nguồn gốc xuất xứ</th>';
             $result['message'] .= '<th style="text-align: center">Đơn vị<br> tính</th>';
             $result['message'] .= '<th style="text-align: center">Số lượng</th>';
-            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá<br> đề nghị</th>';
             $result['message'] .= '<th style="text-align: center">Giá trị<br> đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Nguyên giá<br> công bố</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá<br> công bố</th>';
             $result['message'] .= '<th style="text-align: center">Giá trị<br> công bố</th>';
             $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
             $result['message'] .= '</tr>';

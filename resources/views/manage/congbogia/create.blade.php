@@ -317,7 +317,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Nguyên giá đề nghị<span class="require">*</span></label>
+                                        <label class="control-label">Đơn giá đề nghị<span class="require">*</span></label>
                                         <input type="text" name="nguyengiadenghi" id="nguyengiadenghi" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
                                 </div>
@@ -331,7 +331,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Nguyên giá công bố<span class="require">*</span></label>
+                                        <label class="control-label">Đơn giá công bố<span class="require">*</span></label>
                                         <input type="text" name="nguyengiathamdinh" id="nguyengiathamdinh" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
                                 </div>
@@ -371,9 +371,9 @@
                                             <th style="text-align: center">Nguồn gốc xuất xứ</th>
                                             <th style="text-align: center">Đơn vị <br>tính</th>
                                             <th style="text-align: center">Số lượng</th>
-                                            <th style="text-align: center">Nguyên giá<br> đề nghị</th>
+                                            <th style="text-align: center">Đơn giá<br> đề nghị</th>
                                             <th style="text-align: center">Giá trị<br> đề nghị</th>
-                                            <th style="text-align: center">Nguyên giá<br> công bố</th>
+                                            <th style="text-align: center">Đơn giá<br> công bố</th>
                                             <th style="text-align: center">Giá trị<br> công bố</th>
                                             <th style="text-align: center" width="15%">Thao tác</th>
                                         </tr>
