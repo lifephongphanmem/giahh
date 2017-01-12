@@ -84,12 +84,16 @@
                             <input type="date" id="ngayden" name="ngayden" class="form-control" value="2016-12-31">
                         </div>
                     </div>
-                    <div class="col-md-6 ">
-                        <select name="nguonvon" id="nguonvon" class="form-control">
-                            <option value="Cả hai">Cả hai</option>
-                            <option value="Thường xuyên">Thường xuyên</option>
-                            <option value="Đầu tư">Đầu tư</option>
-                        </select>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label"><b>Nguồn vốn</b></label>
+                        <div class="col-md-6 ">
+
+                            <select name="nguonvon" id="nguonvon" class="form-control">
+                                <option value="Cả hai">Cả hai</option>
+                                <option value="Thường xuyên">Thường xuyên</option>
+                                <option value="Đầu tư">Đầu tư</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
