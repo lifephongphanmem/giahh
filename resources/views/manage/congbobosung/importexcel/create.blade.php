@@ -15,7 +15,7 @@
 
 
     <h3 class="page-title">
-       Nhận dữ liệu <small> công bố giá</small>
+       Nhận dữ liệu <small> hồ sơ công bố giá bổ sung</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -29,7 +29,7 @@
                 <div class="portlet-body form">
 
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'hoso-congbogia/import-view', 'id' => 'import_congbogia', 'class'=>'horizontal-form','enctype'=>'multipart/form-data']) !!}
+                    {!! Form::open(['url'=>'hoso-congbobosung/import-view', 'id' => 'import_congbogia', 'class'=>'horizontal-form','enctype'=>'multipart/form-data']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin dữ liệu import</h4>

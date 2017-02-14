@@ -15,7 +15,7 @@
 
 
     <h3 class="page-title">
-        Tìm kiếm thông tin <small> công bố giá VLXD</small>
+        Tìm kiếm thông tin <small> công bố giá bổ sung</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -28,7 +28,7 @@
                 </div-->
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'timkiem-congbogia', 'id' => 'create_tkcongbogia', 'class'=>'horizontal-form']) !!}
+                    {!! Form::open(['url'=>'timkiem-congbobosung', 'id' => 'create_tkcongbogia', 'class'=>'horizontal-form']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <div class="row">
@@ -55,7 +55,7 @@
                                         'plhs',
                                         array(
                                         ''=>'Chọn phân loại hồ sơ',
-                                        'Công bố giá' => 'Công bố giá'
+                                        'Công bố giá bổ sung' => 'Công bố giá bổ sung',
                                         ),null,
                                         array('id' => 'plhs', 'class' => 'form-control'))
                                         !!}

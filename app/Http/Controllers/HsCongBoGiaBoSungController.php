@@ -12,34 +12,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
-class HsCongBoGiaController extends Controller
+class HsCongBoGiaBoSungController extends Controller
 {
-
     public function index($nam)
-    {
-        if(Session::has('admin')){
-
-            $model = HsCongBoGia::where('nam',$nam)
-                ->where('mahuyen',session('admin')->mahuyen)
-                ->where('plhs','Công bố giá')
-                ->get();
-            $modelpb = TtPhongBan::all();
-
-            foreach($model as $tt){
-                $this->getTtPhongBan($modelpb,$tt);
-            }
-            return view('manage.congbogia.index')
-                ->with('model',$model)
-                ->with('modelpb',$modelpb)
-                ->with('nam',$nam)
-                ->with('plhs','Công bố giá')
-                ->with('pageTitle','Thông tin hồ sơ công bố giá');
-
-        }else
-            return view('errors.notlogin');
-    }
-
-    public function indexbs($nam)
     {
         if(Session::has('admin')){
 
@@ -52,12 +27,12 @@ class HsCongBoGiaController extends Controller
             foreach($model as $tt){
                 $this->getTtPhongBan($modelpb,$tt);
             }
-            return view('manage.congbogia.index')
+            return view('manage.congbobosung.index')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
                 ->with('nam',$nam)
-                ->with('plhs','Công bố giá bổ sung')
-                ->with('pageTitle','Thông tin hồ sơ công bố giá bổ sung');
+                //->with('plhs','Công bố giá')
+                ->with('pageTitle','Thông tin hồ sơ công bố giá');
 
         }else
             return view('errors.notlogin');
@@ -68,12 +43,14 @@ class HsCongBoGiaController extends Controller
 
             if($pb == 'all')
                 $model = HsCongBoGia::where('nam',$nam)
+                    ->where('plhs','Công bố giá bổ sung')
                     ->where('trangthai','Hoàn tất')
                     ->get();
 
             else
                 $model = HsCongBoGia::where('nam',$nam)
                     ->where('mahuyen',$pb)
+                    ->where('plhs','Công bố giá bổ sung')
                     ->where('trangthai','Hoàn tất')
                     ->get();
             $modelpb = TtPhongBan::all();
@@ -81,12 +58,12 @@ class HsCongBoGiaController extends Controller
             foreach($model as $tt){
                 $this->getTtPhongBan($modelpb,$tt);
             }
-            return view('manage.congbogia.showindex')
+            return view('manage.congbobosung.showindex')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
                 ->with('nam',$nam)
                 ->with('pb',$pb)
-                ->with('pageTitle','Thông tin hồ sơ công bố giá');
+                ->with('pageTitle','Thông tin hồ sơ công bố giá bổ sung');
 
         }else
             return view('errors.notlogin');
@@ -103,8 +80,8 @@ class HsCongBoGiaController extends Controller
     {
         if(Session::has('admin')){
             CongBoGiaDefault::where('mahuyen',session('admin')->mahuyen)->delete();
-            return view('manage.congbogia.create')
-                ->with('pageTitle','Hồ sơ công bố giá thêm mới');
+            return view('manage.congbobosung.create')
+                ->with('pageTitle','Hồ sơ công bố giá bổ sung thêm mới');
         }else
             return view('errors.notlogin');
     }
@@ -112,8 +89,8 @@ class HsCongBoGiaController extends Controller
     public function create_dk()
     {
         if(Session::has('admin')){
-            return view('manage.congbogia.create_dk')
-                ->with('pageTitle','Hồ sơ công bố giá thêm mới');
+            return view('manage.congbobosung.create_dk')
+                ->with('pageTitle','Hồ sơ công bố giá bổ sung thêm mới');
         }else
             return view('errors.notlogin');
     }
@@ -129,9 +106,9 @@ class HsCongBoGiaController extends Controller
             $model = new HsCongBoGia();
             $model->sohs = $insert['sohs'];
             $model->plhs = $insert['plhs'];
-            $model->sotbkl = $insert['sotbkl'];
+            //$model->sotbkl = $insert['sotbkl'];
             $model->ngaynhap = $insert['ngaynhap'];
-            $model->sovbdn = $insert['sovbdn'];
+            //$model->sovbdn = $insert['sovbdn'];
             $model->nguonvon = $insert['nguonvon'];
             $model->diadiemcongbo = $insert['diadiemcongbo'];
             $model->donvidn = $insert['donvidn'];
@@ -155,7 +132,7 @@ class HsCongBoGiaController extends Controller
                 $this->createts($mahs);
             }
 
-            return redirect('hoso-congbogia/nam='.date_format($date,'Y'));
+            return redirect('hoso-congbobosung/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -178,9 +155,9 @@ class HsCongBoGiaController extends Controller
             $model->plhs = $insert['plhs'];
             $model->phanloai = 'DINHKEM';
             $model->filedk = $filename;
-            $model->sotbkl = $insert['sotbkl'];
+            //$model->sotbkl = $insert['sotbkl'];
             $model->ngaynhap = $insert['ngaynhap'];
-            $model->sovbdn = $insert['sovbdn'];
+            //$model->sovbdn = $insert['sovbdn'];
             $model->nguonvon = $insert['nguonvon'];
             $model->diadiemcongbo = $insert['diadiemcongbo'];
             $model->donvidn = $insert['donvidn'];
@@ -192,7 +169,7 @@ class HsCongBoGiaController extends Controller
             $model->trangthai = 'Đang làm';
             $model->save();
 
-            return redirect('hoso-congbogia/nam='.date_format($date,'Y'));
+            return redirect('hoso-congbobosung/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -231,10 +208,10 @@ class HsCongBoGiaController extends Controller
             $modelts = CongBoGia::where('mahs',$model->mahs)
                 ->get();
 
-            return view('manage.congbogia.show')
+            return view('manage.congbobosung.show')
                 ->with('model',$model)
                 ->with('modelts',$modelts)
-                ->with('pageTitle','Thông tin hồ sơ công bố');
+                ->with('pageTitle','Thông tin hồ sơ công bố giá bổ sung');
         }else
             return view('errors.notlogin');
     }
@@ -246,10 +223,10 @@ class HsCongBoGiaController extends Controller
             $modelts = CongBoGia::where('mahs',$model->mahs)
                 ->get();
 
-            return view('manage.congbogia.edit')
+            return view('manage.congbobosung.edit')
                 ->with('model',$model)
                 ->with('modelts',$modelts)
-                ->with('pageTitle','Hồ sơ công bố giá chỉnh sửa');
+                ->with('pageTitle','Hồ sơ công bố giá bổ sung chỉnh sửa');
 
         }else
             return view('errors.notlogin');
@@ -259,9 +236,9 @@ class HsCongBoGiaController extends Controller
     {
         if(Session::has('admin')){
             $model = HsCongBoGia::findOrFail($id);
-            return view('manage.congbogia.edit_dk')
+            return view('manage.congbobosung.edit_dk')
                 ->with('model',$model)
-                ->with('pageTitle','Hồ sơ công bố giá chỉnh sửa');
+                ->with('pageTitle','Hồ sơ công bố giá bổ sung chỉnh sửa');
         }else
             return view('errors.notlogin');
     }
@@ -276,9 +253,9 @@ class HsCongBoGiaController extends Controller
             $model = HsCongBoGia::findOrFail($id);
             $model->sohs = $update['sohs'];
             $model->plhs = $update['plhs'];
-            $model->sotbkl = $update['sotbkl'];
+            //$model->sotbkl = $update['sotbkl'];
             $model->ngaynhap = $update['ngaynhap'];
-            $model->sovbdn = $update['sovbdn'];
+            //$model->sovbdn = $update['sovbdn'];
             $model->nguonvon = $update['nguonvon'];
             $model->diadiemcongbo = $update['diadiemcongbo'];
             $model->donvidn = $update['donvidn'];
@@ -296,7 +273,7 @@ class HsCongBoGiaController extends Controller
             $model->nam = date_format($date,'Y');
             $model->save();
 
-            return redirect('hoso-congbogia/nam='.date_format($date,'Y'));
+            return redirect('hoso-congbobosung/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -322,9 +299,9 @@ class HsCongBoGiaController extends Controller
             }
             $model->sohs = $update['sohs'];
             $model->plhs = $update['plhs'];
-            $model->sotbkl = $update['sotbkl'];
+            //$model->sotbkl = $update['sotbkl'];
             $model->ngaynhap = $update['ngaynhap'];
-            $model->sovbdn = $update['sovbdn'];
+            //$model->sovbdn = $update['sovbdn'];
             $model->nguonvon = $update['nguonvon'];
             $model->diadiemcongbo = $update['diadiemcongbo'];
             $model->donvidn = $update['donvidn'];
@@ -333,7 +310,7 @@ class HsCongBoGiaController extends Controller
             $model->nam = date_format($date,'Y');
             $model->save();
 
-            return redirect('hoso-congbogia/nam='.date_format($date,'Y'));
+            return redirect('hoso-congbobosung/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -350,7 +327,7 @@ class HsCongBoGiaController extends Controller
                 $modelts = CongBoGia::where('mahs',$model->mahs)
                     ->delete();
             }
-            return redirect('hoso-congbogia/nam='.$nam);
+            return redirect('hoso-congbobosung/nam='.$nam);
         }else
             return view('errors.notlogin');
     }
@@ -363,7 +340,7 @@ class HsCongBoGiaController extends Controller
             $nam =$model->nam;
             $model->trangthai = 'Hoàn tất';
             $model->save();
-            return redirect('hoso-congbogia/nam='.$nam);
+            return redirect('hoso-congbobosung/nam='.$nam);
         }else
             return view('errors.notlogin');
     }
@@ -376,7 +353,7 @@ class HsCongBoGiaController extends Controller
             $nam =$model->nam;
             $model->trangthai = 'Đang làm';
             $model->save();
-            return redirect('thongtin-congbogia/nam='.$nam.'&pb=all');
+            return redirect('thongtin-congbobosung/nam='.$nam.'&pb=all');
         }else
             return view('errors.notlogin');
     }
@@ -389,10 +366,10 @@ class HsCongBoGiaController extends Controller
             $modelts = CongBoGia::where('mahs',$model->mahs)
                 ->get();
 
-            return view('manage.congbogia.view')
+            return view('manage.congbobosung.view')
                 ->with('model',$model)
                 ->with('modelts',$modelts)
-                ->with('pageTitle','Thông tin hồ sơ công bố giá');
+                ->with('pageTitle','Thông tin hồ sơ công bố giá bổ sung');
         }else
             return view('errors.notlogin');
     }

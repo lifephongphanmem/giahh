@@ -15,7 +15,7 @@
 
 
     <h3 class="page-title">
-       Nhận dữ liệu <small> công bố giá</small>
+       Nhận dữ liệu <small> công bố giá bổ sung</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -29,7 +29,7 @@
                 <div class="portlet-body form">
 
                     <!-- BEGIN FORM-->
-                    {!! Form::open(['url'=>'store-congbogia', 'id' => 'import_conbogia', 'class'=>'horizontal-form']) !!}
+                    {!! Form::open(['url'=>'store-congbobosung', 'id' => 'import_conbogia', 'class'=>'horizontal-form']) !!}
                         <meta name="csrf-token" content="{{ csrf_token() }}" />
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
@@ -38,8 +38,7 @@
                                     <div class="form-group has-error">
                                         <label class="control-label">Phân loại hồ sơ<span class="require">*</span></label>
                                         <select class="form-control" id="plhs" name="plhs" autofocus>
-                                            <option value="Công bố giá">Công bố giá</option>
-                                            <!--option value="Công bố giá bổ sung">Công bố giá bổ sung</option-->
+                                            <option value="Công bố giá bổ sung">Công bố giá bổ sung</option>
                                         </select>
                                     </div>
                                 </div>
@@ -72,22 +71,20 @@
                                 </div>
                                 <!--/span-->
                             </div>
-                            <div class="row">
+                            <!--div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Số văn bản đề nghị<span class="require">*</span></label>
                                         <input type="text" id="sovbdn" name="sovbdn" class="form-control required">
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Số công bố giá<span class="require">*</span></label>
                                         <input type="text" id="sotbkl" name="sotbkl" class="form-control required">
                                     </div>
                                 </div>
-                                <!--/span-->
-                            </div>
+                            </div-->
 
                             <h4 class="form-section" style="color: #0000ff">Thông tin dữ liệu import</h4>
                             <div class="row">

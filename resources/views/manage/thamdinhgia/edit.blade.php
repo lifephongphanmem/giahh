@@ -306,6 +306,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label class="control-label">Số ngày sử dụng kết quả thẩm định</label>
+                                <input data-mask="fdecimal" id="songaykq" name="songaykq" class="form-control" value="0">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
                                 <input type="date" id="thoihan" name="thoihan" class="form-control required" value="{{$model->thoihan}}">
                             </div>
@@ -372,7 +379,7 @@
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Đơn đề nghị<span class="require">*</span></label>
+                                <label class="control-label">Giá trị đề nghị<span class="require">*</span></label>
                                 <input type="text" name="giadenghi" id="giadenghi" class="form-control" data-mask="fdecimal" value="0">
                             </div>
                         </div>
@@ -381,14 +388,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group  has-error">
                                 <label class="control-label">Đơn giá thẩm định<span class="require">*</span></label>
                                 <input type="text" name="nguyengiathamdinh" id="nguyengiathamdinh" class="form-control" data-mask="fdecimal" value="0">
                             </div>
                         </div>
                         <!--/span-->
                         <div class="col-md-6">
-                            <div class="form-group has-error">
+                            <div class="form-group">
                                 <label class="control-label">Giá trị tài sản thẩm định<span class="require">*</span></label>
                                 <input type="text" name="giatritstd" id="giatritstd" class="form-control" data-mask="fdecimal" value="0">
                             </div>
@@ -516,7 +523,31 @@
                 //alert(nguyengiatd);
                 $('#giatritstd').val(tt);
             });
+            $('#songaykq').change(function(){
+                addngay();
+            });
+            $('#thoidiem').change(function(){
+                addngay();
+            });
         });
+        function addngay(){
+            var thoidiem = $('#thoidiem').val();
+            var songay = $('#songaykq').val();
+            if(thoidiem!='' && songay!=''){
+                var date = new Date(thoidiem);
+                date.setDate(date.getDate()+parseInt(songay));
+                var dd = date.getDate();
+                var mm = date.getMonth() + 1;
+                var y = date.getFullYear();
+                if(dd<10) {
+                    dd='0'+dd
+                }
+                if(mm<10) {
+                    mm='0'+mm
+                }
+                $('#thoihan').val(y+ '-'+mm + '-' + dd  );
+            }
+        }
     </script>
 
     <script>

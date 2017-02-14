@@ -14,9 +14,10 @@
 
 @section('content')
     <h3 class="page-title">
-        Hồ sơ công bố giá<small> chỉnh sửa</small>
+        Hồ sơ công bố giá bổ sung<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
+
     <!-- BEGIN DASHBOARD STATS -->
     <div class="row center">
         <div class="col-md-12 center">
@@ -24,51 +25,44 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    {!! Form::model($model, ['method' => 'PATCH', 'url'=>'hoso-congbogia-dk/'. $model->id, 'class'=>'horizontal-form','id'=>'update_tthscongbogia','enctype'=>'multipart/form-data']) !!}
+                        {!! Form::open(['url'=>'hoso-congbobosung-dk', 'id' => 'create_tthscbg', 'class'=>'horizontal-form','enctype'=>'multipart/form-data']) !!}
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
+                                    <div class="form-group has-error">
                                         <label class="control-label">Phân loại hồ sơ<span class="require">*</span></label>
-                                        {!! Form::select(
-                                        'plhs',
-                                        array(
-                                        'Công bố giá' => 'Công bố giá'
-                                        ),null,
-                                        array('id' => 'plhs', 'class' => 'form-control'))
-                                        !!}
+                                        <select class="form-control" id="plhs" name="plhs" autofocus>
+                                            <!--option value="Công bố giá">Công bố giá</option-->
+                                            <option value="Công bố giá bổ sung">Công bố giá bổ sung</option>
+                                        </select>
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Số hồ sơ công bố giá VLXD<span class="require">*</span></label>
-                                        {!!Form::text('sohs', null, array('id' => 'sohs','class' => 'form-control required'))!!}
+                                        <label class="control-label">Số hồ sơ công bố giá bổ sung<span class="require">*</span></label>
+                                        <input type="text" id="sohs" name="sohs" class="form-control required">
                                     </div>
                                 </div>
-                                <!--/span-->
                             </div>
+
+                            <!--/row-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời điểm công bố<span class="require">*</span></label>
-                                        <input type="date" id="ngaynhap" name="ngaynhap" class="form-control required" value="{{$model->ngaynhap}}">
+                                        <input type="date" id="ngaynhap" name="ngaynhap" class="form-control required">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Nguồn vốn</label>
-                                        {!! Form::select(
-                                        'nguonvon',
-                                        array(
-                                        'Cả hai' => 'Cả hai',
-                                        'Thường xuyên' => 'Thường xuyên',
-                                        'Đầu tư' => 'Đầu tư',
-                                        ),null,
-                                        array('id' => 'nguonvon', 'class' => 'form-control'))
-                                        !!}
+                                        <select class="form-control" id="nguonvon" name="nguonvon">
+                                            <option value="Cả hai">Cả hai</option>
+                                            <option value="Thường xuyên">Thường xuyên</option>
+                                            <option value="Đầu tư">Đầu tư</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -77,61 +71,59 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Địa điểm công bố giá<span class="require">*</span></label>
-                                        {!!Form::text('diadiemcongbo', null, array('id' => 'diadiemcongbo','class' => 'form-control required'))!!}
+                                        <input type="text" id="diadiemcongbo" name="diadiemcongbo" class="form-control required">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Đơn vị đề nghị công bố giá<span class="require">*</span></label>
-                                        {!!Form::text('donvidn', null, array('id' => 'donvidn','class' => 'form-control required'))!!}
-
+                                        <input type="text" id="donvidn" name="donvidn" class="form-control required">
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!--div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Số văn bản đề nghị<span class="require">*</span></label>
-                                        {!!Form::text('sovbdn', null, array('id' => 'sovbdn','class' => 'form-control required'))!!}
+                                        <input type="text" id="sovbdn" name="sovbdn" class="form-control required">
                                     </div>
                                 </div>
-                                <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
-                                        <label class="control-label">Số thông báo kết luận công bố giá<span class="require">*</span></label>
-                                        {!!Form::text('sotbkl', null, array('id' => 'sotbkl','class' => 'form-control required'))!!}
+                                        <label class="control-label">Số thông báo kết luận công bố giá bổ sung<span class="require">*</span></label>
+                                        <input type="text" id="sotbkl" name="sotbkl" class="form-control required">
                                     </div>
                                 </div>
-                                <!--/span-->
-                            </div>
+                            </div-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">File đính kèm</label>
-                                        <p><a href="{{url('/data/uploads/attack/'.$model->filedk)}}" target="_blank">{{$model->filedk}}</a></p>
-                                        <input name="filedk" id="filedk" type="file">
+                                        <input name="filedk" id="filedk" type="file" class="required">
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" value="{{$model->mahs}}" name="mahs" id="mahs">
+                        </div>
+
+
                     <!-- END FORM-->
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
+                    <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+                    <a href="{{url('hoso-congbobosung/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                </div>
+            </div>
+            </form>
             <!-- END VALIDATION STATES-->
         </div>
-        <div class="row">
-            <div class="col-md-12" style="text-align: center">
-                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
-                <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                <a href="{{url('hoso-congbogia/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
-            </div>
-        </div>
-        {!! Form::close() !!}
     </div>
-        <script type="text/javascript">
+    <script type="text/javascript">
         function validateForm(){
 
-            var validator = $("#update_tthscongbogia").validate({
+            var validator = $("#create_tthscbg").validate({
                 rules: {
                     ten :"required"
                 },
@@ -141,6 +133,5 @@
             });
         }
     </script>
-        @include('includes.script.create-header-scripts')
-    </div>
+    @include('includes.script.create-header-scripts')
 @stop

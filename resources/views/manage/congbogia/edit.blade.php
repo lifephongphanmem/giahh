@@ -199,8 +199,7 @@
                                         {!! Form::select(
                                         'plhs',
                                         array(
-                                        'Công bố giá' => 'Công bố giá',
-                                        'Công bố giá bổ xung' => 'Công bố giá bổ xung',
+                                        'Công bố giá' => 'Công bố giá'
                                         ),null,
                                         array('id' => 'plhs', 'class' => 'form-control'))
                                         !!}
@@ -324,7 +323,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group has-error">
+                                    <div class="form-group">
                                         <label class="control-label">Đơn giá đề nghị<span class="require">*</span></label>
                                         <input type="text" name="nguyengiadenghi" id="nguyengiadenghi" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
@@ -332,7 +331,7 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Giá đề nghị<span class="require">*</span></label>
+                                        <label class="control-label">Giá trị đề nghị<span class="require">*</span></label>
                                         <input type="text" name="giadenghi" id="giadenghi" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
                                 </div>
@@ -348,7 +347,7 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                    <div class="form-group has-error">
+                                    <div class="form-group">
                                         <label class="control-label">Giá trị công bố<span class="require">*</span></label>
                                         <input type="text" name="giatritstd" id="giatritstd" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
@@ -377,10 +376,10 @@
                                         <thead>
                                         <tr>
                                             <th width="2%" style="text-align: center">STT</th>
-                                            <th style="text-align: center">Tên vật tư VLXD</th>
-                                            <th style="text-align: center">Thông số kỹ thuật</th>
-                                            <th style="text-align: center">Nguồn gốc xuất xứ</th>
-                                            <th style="text-align: center">Đơn vị <br>tính</th>
+                                            <th style="text-align: center">Tên vật tư, vật liệu</th>
+                                            <th style="text-align: center">Thông số<br>kỹ thuật</th>
+                                            <th style="text-align: center">Nguồn gốc<br>xuất xứ</th>
+                                            <th style="text-align: center">Đơn vị<br>tính</th>
                                             <th style="text-align: center">Số lượng</th>
                                             <th style="text-align: center">Đơn giá<br> đề nghị</th>
                                             <th style="text-align: center">Giá trị<br> đề nghị</th>
@@ -415,18 +414,19 @@
 
                     <!-- END FORM-->
                 </div>
-            </div>
+                </div>
             <!-- END VALIDATION STATES-->
-        </div>
-        <div class="row">
-            <div class="col-md-12" style="text-align: center">
-                <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
-                <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                <a href="{{url('hoso-congbogia/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
             </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: center">
+                    <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Cập nhật</button>
+                    <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
+                    <a href="{{url('hoso-congbogia/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                </div>
+            </div>
+            {!! Form::close() !!}
         </div>
-        {!! Form::close() !!}
-    </div>
+    <div/>
     <script type="text/javascript">
         function validateForm(){
 
@@ -515,7 +515,6 @@
                         giatritstd:$('input[name="giatritstd"]').val(),
                         gc: $('textarea[name="gc"]').val(),
                         mahs: $('input[name="mahs"]').val()
-
                     },
                     dataType: 'JSON',
                     success: function (data) {

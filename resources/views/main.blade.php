@@ -489,30 +489,53 @@ License: You must have a valid license purchased only from themeforest(the above
                 @endif
                 <!--Công bố giá-->
                 @if(canGeneral('congbogia','congbogia'))
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-laptop"></i>
+                        <span class="title">Công bố giá VLXD</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        @if(can('congbogia','create'))
                         <li>
-                            <a href="javascript:;">
-                                <i class="fa fa-laptop"></i>
-                                <span class="title">Công bố giá VLXD</span>
-                                <span class="arrow "></span>
-                            </a>
-                            <ul class="sub-menu">
-                                @if(can('congbogia','create'))
-                                <li>
-                                    <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ công bố VLXD</a>
-                                </li>
-                                @endif
-                                @if(can('congbogia','index'))
-                                <li>
-                                    <a href="{{url('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin công bố VLXD</a>
-                                </li>
-                                @endif
-                                <li>
-                                    <a href="{{url('timkiem-congbogia')}}">
-                                        Tìm kiếm thông tin công bố giá VLXD</a>
-                                </li>
-
-                            </ul>
+                            <a href="{{url('hoso-congbogia/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ công bố VLXD</a>
                         </li>
+                        @endif
+                        @if(can('congbogia','index'))
+                        <li>
+                            <a href="{{url('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin công bố VLXD</a>
+                        </li>
+                        @endif
+                        <li>
+                            <a href="{{url('timkiem-congbogia')}}">
+                                Tìm kiếm thông tin công bố giá VLXD</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-laptop"></i>
+                        <span class="title">Công bố giá bổ sung</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        @if(can('congbogia','create'))
+                            <li>
+                                <a href="{{url('hoso-congbobosung/nam='.getGeneralConfigs()['namhethong'])}}">Hồ sơ công bố bổ sung</a>
+                            </li>
+                        @endif
+                        @if(can('congbogia','index'))
+                            <li>
+                                <a href="{{url('thongtin-congbobosung/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin công bố bổ sung</a>
+                            </li>
+                        @endif
+                        <li>
+                            <a href="{{url('timkiem-congbobosung')}}">Tìm kiếm thông tin công bố giá bổ sung</a>
+                        </li>
+                    </ul>
+                </li>
                 @endif
 
                 @if(canGeneral('ttqd','ttqd'))

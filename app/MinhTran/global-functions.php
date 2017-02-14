@@ -269,6 +269,7 @@ function getDayVn($date) {
         $newday='';
     return $newday;
 }
+
 function getDateTime($date) {
     if($date != null)
         $newday = date('d/m/Y H:i:s',strtotime($date));

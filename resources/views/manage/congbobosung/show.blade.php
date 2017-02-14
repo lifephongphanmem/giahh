@@ -26,7 +26,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ<small>&nbsp;công bố giá</small>
+        Thông tin hồ sơ<small>&nbsp;công bố giá bổ sung</small>
     </h3>
 
     <!-- END PAGE HEADER-->
@@ -42,14 +42,14 @@
                             <div class="form-group has-error">
                                 <label class="control-label">Phân loại hồ sơ<span class="require">*</span></label>
                                 <select class="form-control" id="plhs" name="plhs" readonly>
-                                    <option value="Công bố giá" {{($model->plhs == 'Công bố giá' ? 'selected' : '')}}>Công bố giá</option>
-                                    <!--option value="Công bố giá bổ sung" {{($model->plhs == 'Công bố giá bổ sung' ? 'selected' : '')}}>Công bố giá bổ xung</option-->
+                                    <!--option value="Công bố giá" {{($model->plhs == 'Công bố giá' ? 'selected' : '')}}>Công bố giá</option-->
+                                    <option value="Công bố giá bổ sung" {{($model->plhs == 'Công bố giá bổ sung' ? 'selected' : '')}}>Công bố giá bổ sung</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Số hồ sơ công bố giá VLXD<span class="require">*</span></label>
+                                <label class="control-label">Số hồ sơ công bố giá bổ sung<span class="require">*</span></label>
                                 <input type="text" id="sohs" name="sohs" class="form-control" value="{{$model->sohs}}" readonly>
                             </div>
                         </div>
@@ -90,22 +90,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!--div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Số văn bản đề nghị<span class="require">*</span></label>
                                 <input type="text" id="sovbdn" name="sovbdn" class="form-control" value="{{$model->sovbdn}}" readonly>
                             </div>
                         </div>
-                        <!--/span-->
+
                         <div class="col-md-6">
                             <div class="form-group has-error">
-                                <label class="control-label">Số thông báo kết luận công bố giá VLXD<span class="require">*</span></label>
+                                <label class="control-label">Số thông báo kết luận công bố giá bổ sung<span class="require">*</span></label>
                                 <input type="text" id="sotbkl" name="sotbkl" class="form-control" value="{{$model->sotbkl}}" readonly>
                             </div>
                         </div>
-
-                    </div>
+                    </div-->
 
                     <!--/row-->
                     <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
@@ -148,7 +147,7 @@
 
             <!-- END EXAMPLE TABLE PORTLET-->
             <div style="text-align: center">
-                <a href="{{url('hoso-congbogia/nam='.$model->nam)}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('hoso-congbobosung/nam='.$model->nam)}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
             </div>
         </div>
 

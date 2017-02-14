@@ -399,6 +399,27 @@ Route::post('store-congbogia','CongBoGiaController@storeimport');
 Route::get('mauexcelcbg','CongBoGiaController@getDownload');
 //End Công bố giá
 
+//Công bố giá bổ sung
+Route::get('hoso-congbobosung/nam={nam}','HsCongBoGiaBoSungController@index');
+Route::get('hoso-congbobosung/create','HsCongBoGiaBoSungController@create');
+Route::post('hoso-congbobosung','HsCongBoGiaBoSungController@store');
+Route::post('hoso-congbobosung/delete','HsCongBoGiaBoSungController@destroy');
+Route::get('hoso-congbobosung/{id}/show','HsCongBoGiaBoSungController@show');
+Route::get('hoso-congbobosung/{id}/edit','HsCongBoGiaBoSungController@edit');
+Route::patch('hoso-congbobosung/{id}','HsCongBoGiaBoSungController@update');
+Route::post('hoso-congbobosung/hoantat','HsCongBoGiaBoSungController@hoantat');
+
+Route::get('hoso-congbobosung-dk/create','HsCongBoGiaBoSungController@create_dk');
+Route::get('hoso-congbobosung-dk/{id}/edit','HsCongBoGiaBoSungController@edit_dk');
+Route::patch('hoso-congbobosung-dk/{id}','HsCongBoGiaBoSungController@update_dk');
+Route::post('hoso-congbobosung-dk','HsCongBoGiaBoSungController@store_dk');
+
+
+Route::get('thongtin-congbobosung/nam={nam}&pb={pb}','HsCongBoGiaBoSungController@showindex');
+Route::get('thongtin-congbobosung/{id}/show','HsCongBoGiaBoSungController@view');
+Route::post('thongtin-congbobosung/huy','HsCongBoGiaBoSungController@huy');
+//End Công bố giá bổ sung
+
 //Tài sản nhà nước
     //Tài sản nhà đất
 Route::get('taisan-nhadat/nam={nam}&pb={pl}','TsNhaDatController@index');

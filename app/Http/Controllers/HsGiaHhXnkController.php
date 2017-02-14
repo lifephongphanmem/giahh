@@ -195,7 +195,6 @@ class HsGiaHhXnkController extends Controller
             return view('errors.notlogin');
     }
 
-
     public function update(Request $request, $id)
     {
         if(Session::has('admin')){

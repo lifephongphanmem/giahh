@@ -43,7 +43,7 @@
                                 <label class="control-label">Phân loại hồ sơ<span class="require">*</span></label>
                                 <select class="form-control" id="plhs" name="plhs" readonly>
                                     <option value="Công bố giá" {{($model->plhs == 'Công bố giá' ? 'selected' : '')}}>Công bố giá</option>
-                                    <option value="Công bố giá bổ xung" {{($model->plhs == 'Công bố giá bổ xung' ? 'selected' : '')}}>Công bố giá bổ xung</option>
+                                    <!--option value="Công bố giá bổ sung" {{($model->plhs == 'Công bố giá bổ sung' ? 'selected' : '')}}>Công bố giá bổ xung</option-->
                                 </select>
                             </div>
                         </div>

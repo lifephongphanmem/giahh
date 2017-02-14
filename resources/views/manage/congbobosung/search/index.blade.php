@@ -27,7 +27,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ<small>&nbsp;công bố giá</small>
+        Thông tin hồ sơ<small>&nbsp;công bố giá bổ sung</small>
     </h3>
 
     <!-- END PAGE HEADER-->

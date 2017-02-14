@@ -202,7 +202,7 @@
                                         <label class="control-label">Phân loại hồ sơ<span class="require">*</span></label>
                                         <select class="form-control" id="plhs" name="plhs" autofocus>
                                             <option value="Công bố giá">Công bố giá</option>
-                                            <option value="Công bố giá bổ xung">Công bố giá bổ xung</option>
+                                            <!--option value="Công bố giá bổ sung">Công bố giá bổ sung</option-->
                                         </select>
                                     </div>
                                 </div>
@@ -323,7 +323,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Giá đề nghị<span class="require">*</span></label>
+                                        <label class="control-label">Giá trị đề nghị<span class="require">*</span></label>
                                         <input type="text" name="giadenghi" id="giadenghi" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
                                 </div>
@@ -337,7 +337,7 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                    <div class="form-group has-error">
+                                    <div class="form-group">
                                         <label class="control-label">Giá trị công bố<span class="require">*</span></label>
                                         <input type="text" name="giatritstd" id="giatritstd" class="form-control" data-mask="fdecimal" value="0">
                                     </div>
