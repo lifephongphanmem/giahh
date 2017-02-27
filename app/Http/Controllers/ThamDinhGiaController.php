@@ -663,7 +663,7 @@ class ThamDinhGiaController extends Controller
                 $model->datanew = json_encode($insert);
                 $modelh->save();
             }
-            return redirect('thongtin-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all');
+            return redirect('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all');
         }else{return view('errors.notlogin');}
     }
     //Tải file excel mẫu

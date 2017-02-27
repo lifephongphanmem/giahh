@@ -43,8 +43,8 @@
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Đặc điểm pháp lý<span class="require">*</span></label>
-                                        {!!Form::text('dacdiempl', 'C', array('id' => 'dacdiempl','class' => 'form-control required'))!!}
+                                        <label class="control-label">Đặc điểm pháp lý</label>
+                                        {!!Form::text('dacdiempl', '', array('id' => 'dacdiempl','class' => 'form-control'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -53,7 +53,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thông số kỹ thuật</label>
-                                        {!!Form::text('thongsokt', '', array('id' => 'thongsokt','class' => 'form-control'))!!}
+                                        {!!Form::text('thongsokt', 'C', array('id' => 'thongsokt','class' => 'form-control'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->

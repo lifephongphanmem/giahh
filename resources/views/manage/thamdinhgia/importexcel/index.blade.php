@@ -42,7 +42,7 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                    <div class="form-group has-error">
+                                    <div class="form-group">
                                         <label class="control-label">Thời điểm thẩm định<span class="require">*</span></label>
                                         <input type="date" id="thoidiem" name="thoidiem" class="form-control required">
                                     </div>
@@ -60,7 +60,7 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                    <div class="form-group has-error">
+                                    <div class="form-group">
                                         <label class="control-label">Phương pháp thẩm định thẩm định</label>
                                         <input type="text" id="ppthamdinh" name="ppthamdinh" class="form-control">
                                     </div>
@@ -76,7 +76,7 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                    <div class="form-group has-error">
+                                    <div class="form-group">
                                         <label class="control-label">Đơn vị yêu cầu thẩm định<span class="require">*</span></label>
                                         <input type="text" id="dvyeucau" name="dvyeucau" class="form-control required">
                                     </div>
@@ -92,7 +92,7 @@
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
-                                    <div class="form-group has-error">
+                                    <div class="form-group">
                                         <label class="control-label">Số thông báo kết luận<span class="require">*</span></label>
                                         <input type="text" id="sotbkl" name="sotbkl" class="form-control required">
                                     </div>
@@ -106,28 +106,27 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead>
-                                            <tr style="background: #F5F5F5">
-                                                <th width="2%" style="text-align: center">STT</th>
-                                                <th style="text-align: center">Tên tài sản</th>
-                                                <th style="text-align: center">Đặc điểm kinh tế- kỹ thuật</th>
-                                                <th style="text-align: center">Nguồn gốc</th>
-                                                <th style="text-align: center">Đơn vị tính</th>
-                                                <th style="text-align: center">Số lượng</th>
-                                                <th style="text-align: center">Giá trị đề nghị</th>
-                                                <th style="text-align: center">Giá trị thẩm định</th>
-                                                <th style="text-align: center" width="10%">Thao tác</th>
-                                            </tr>
+                                                <tr style="background: #F5F5F5">
+                                                    <th width="2%" style="text-align: center">STT</th>
+                                                    <th style="text-align: center">Tên tài sản</th>
+                                                    <th style="text-align: center">Đặc điểm kinh tế- kỹ thuật</th>
+                                                    <th style="text-align: center">Nguồn gốc</th>
+                                                    <th style="text-align: center">Đơn vị tính</th>
+                                                    <th style="text-align: center">Số lượng</th>
+                                                    <th style="text-align: center">Giá trị đề nghị</th>
+                                                    <th style="text-align: center">Giá trị thẩm định</th>
+                                                    <th style="text-align: center" width="10%">Thao tác</th>
+                                                </tr>
                                             </thead>
                                             <tbody id="ttts">
                                             @if(!isset($m_ts))
                                                 <td colspan="9" style="text-align: center">Chưa có thông tin</td>
                                             @else
-
                                                 @foreach($m_ts as $key=>$ct)
                                                     <tr>
                                                         <td style="text-align: center">{{$key+1}}</td>
                                                         <td class="active">{{$ct->tents}}</td>
-                                                        <td>{{$ct->dacdiempl}}</td>
+                                                        <td>{{$ct->thongsokt}}</td>
                                                         <td>{{$ct->nguongoc}}</td>
                                                         <td>{{$ct->dvt}}</td>
                                                         <td>{{$ct->sl}}</td>
@@ -138,7 +137,6 @@
                                                     </tr>
                                                 @endforeach
                                             @endif
-
                                             </tbody>
                                         </table>
                                     </div>

@@ -144,7 +144,7 @@
                                 Kê khai giá địa phương
                             </div>
                         </div>
-                        <a class="more" href="{{url('thanhkiemtra-vegia/nam='.getGeneralConfigs()['namhethong'])}}">
+                        <a class="more" href="{{url('giahhdv-dp')}}">
                             Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
                         </a>
                     </div>
@@ -185,7 +185,7 @@
                                 Giá thuế tài nguyên
                             </div>
                         </div>
-                        <a class="more" href="{{url('thongtin-thuetn/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                        <a class="more" href="{{url('giathuetn')}}">
                             Xem chi tiết <i class="m-icon-swapright m-icon-white"></i>
                         </a>
                     </div>
@@ -259,7 +259,7 @@
                         <div class="details">
                             <div class="number"></div>
                             <div class="desc">
-                                Văn bản QLNN về giá địa phương
+                                Văn bản QLNN về giá</br>địa phương
                             </div>
                         </div>
                         <a class="more" href="{{url('thongtu-quyetdinh-tinh/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">
