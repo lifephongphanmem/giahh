@@ -146,6 +146,16 @@ class HsThueTnController extends Controller
             return view('errors.notlogin');
     }
 
+    public function create_dk($thoidiem)
+    {
+        if(Session::has('admin')){
+            return view('manage.thuetn.create_dk')
+                ->with('mathoidiem',$thoidiem)
+                ->with('pageTitle','Thông tin giá tính thuế tài nguyên thêm mới');
+        }else
+            return view('errors.notlogin');
+    }
+
     public function store(Request $request)
     {
         if(Session::has('admin')){
@@ -178,6 +188,37 @@ class HsThueTnController extends Controller
                 $hanghoa = ThueTnDefault::select('masopnhom','mahh','giatu','giaden','soluong','nguontin',DB::raw($mahs." as mahs"))->where('mahuyen',$mahuyen)->get()->toarray();
                 ThueTn::insert($hanghoa);
             }
+
+            return redirect('giathuetn/thoidiem='.$insert['mathoidiem'].'/nam='.date_format($date,'Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function store_dk(Request $request)
+    {
+        if(Session::has('admin')){
+            $insert = $request->all();
+            $date = date_create($insert['tgnhap']);
+            $thang = date_format($date,'m');
+            $mahs = getdate()[0];
+
+            $file=$request->file('filedk');
+            $filename =$mahs.'_'.$file->getClientOriginalName();
+            $file->move(public_path() . '/data/uploads/attack/', $filename);
+
+            $model = new HsThueTn();
+            $model->tgnhap = $insert['tgnhap'];
+            $model->hoso = 'DINHKEM';
+            $model->filedk = $filename;
+            $model->thang = date_format($date,'m');
+            $model->quy = Thang2Quy($thang);
+            $model->nam = date_format($date,'Y');
+            $model->mahuyen = session('admin')->mahuyen;
+            $model->trangthai = 'Đang làm';
+            $model->mahs = $mahs;
+            $model->mathoidiem = $insert['mathoidiem'];
+            $model->save();
 
             return redirect('giathuetn/thoidiem='.$insert['mathoidiem'].'/nam='.date_format($date,'Y'));
 
@@ -264,6 +305,20 @@ class HsThueTnController extends Controller
             return view('errors.notlogin');
     }
 
+    public function edit_dk($id)
+    {
+        if(Session::has('admin')){
+            $model = HsThueTn::findOrFail($id);
+            $mathoidiem = $model->mathoidiem;
+
+            return view('manage.thuetn.edit_dk')
+                ->with('model',$model)
+                ->with('mathoidiem',$mathoidiem)
+                ->with('pageTitle','Thông tin giá tính thuế tài nguyên chi tiết');
+        }else
+            return view('errors.notlogin');
+    }
+
     public function update(Request $request, $id)
     {
         if(Session::has('admin')){
@@ -289,6 +344,35 @@ class HsThueTnController extends Controller
             $model->nam = date_format($date,'Y');
             $model->save();
 
+            return redirect('giathuetn/thoidiem='.$model->mathoidiem.'/nam='.date_format($date,'Y'));
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function update_dk(Request $request, $id)
+    {
+        if(Session::has('admin')){
+            $update = $request->all();
+            $date = date_create($update['tgnhap']);
+            $thang = date_format($date,'m');
+
+            $model = HsThueTn::findOrFail($id);
+            $model->tgnhap = $update['tgnhap'];
+            if(isset($request->filedk)){
+                if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk)){
+                    File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);
+                }
+                $file=$request->file('filedk');
+
+                $filename =$update['mahs'].'_'.$file->getClientOriginalName();
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk=$filename;
+            }
+            $model->thang = date_format($date,'m');
+            $model->quy = Thang2Quy($thang);
+            $model->nam = date_format($date,'Y');
+            $model->save();
             return redirect('giathuetn/thoidiem='.$model->mathoidiem.'/nam='.date_format($date,'Y'));
 
         }else

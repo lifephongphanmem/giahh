@@ -88,7 +88,24 @@
                                 !!}
                             </div>
                         </div>
-                        <!--/span-->
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Thuế VAT</label>
+                                {!! Form::select(
+                                'thuevat',
+                                array(
+                                '' => '',
+                                'Giá bao gồm thuế VAT' => 'Giá bao gồm thuế VAT',
+                                'Giá chưa bao gồm thuế VAT' => 'Giá chưa bao gồm thuế VAT',
+                                ),null,
+                                array('id' => 'thuevat', 'class' => 'form-control'))
+                                !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-error">
                                 <label class="control-label">Số thông báo kết luận<span class="require">*</span></label>
@@ -96,15 +113,16 @@
                             </div>
                         </div>
                         <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}">
-                        <!--/span-->
-                    </div>
-                    <div class="row">
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
                                 <input type="date" id="thoihan" name="thoihan" class="form-control required" value="{{$model->thoihan}}">
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">File đính kèm</label>

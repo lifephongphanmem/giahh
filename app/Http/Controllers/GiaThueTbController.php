@@ -53,6 +53,16 @@ class GiaThueTbController extends Controller
             return view('errors.notlogin');
     }
 
+    public function create_dk(){
+        if (Session::has('admin')) {
+            $loais = DmLoaiXeThueTb::all();
+            return view('manage.thuetb.create_dk')
+                ->with('loais',$loais)
+                ->with('pageTitle','Giá thuế trước bạ thêm mới');
+        }else
+            return view('errors.notlogin');
+    }
+
     /*Tạo mới danh sách xe cộ theo thông tin maloai*/
     public function createds(Request $request){
         $result = array(
@@ -304,7 +314,7 @@ class GiaThueTbController extends Controller
             $model->maloai = $insert['maloaidt'];
             $model->soqd = $insert['soqd'];
             $model->ngaynhap = $insert['ngaynhap'];
-
+            $model->hoso = 'CHITIET';
             $model->thang = date_format($date,'m');
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
@@ -321,6 +331,39 @@ class GiaThueTbController extends Controller
             if($model->save()){
                 $this->createts($mahs);
             }
+
+            return redirect('/gia-thuetruocba/nam='.getGeneralConfigs()['namhethong']);
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function store_dk(Request $request)
+    {
+        if(Session::has('admin')){
+            $insert = $request->all();
+            $date = date_create($insert['ngaynhap']);
+            $thang = date_format($date,'m');
+            $mahs = getdate()[0];
+
+            $file=$request->file('filedk');
+            $filename =$mahs.'_'.$file->getClientOriginalName();
+            $file->move(public_path() . '/data/uploads/attack/', $filename);
+
+            $model = new GiaThueTb();
+            $model->maloai = $insert['maloaidt'];
+            $model->soqd = $insert['soqd'];
+            $model->ngaynhap = $insert['ngaynhap'];
+            $model->hoso = 'DINHKEM';
+            $model->filedk = $filename;
+            $model->thang = date_format($date,'m');
+            $model->quy = Thang2Quy($thang);
+            $model->nam = date_format($date,'Y');
+            $model->mahuyen = session('admin')->mahuyen;
+            $model->trangthai = 'Đang làm';
+            $model->mahs = $mahs;
+
+            $model->save();
 
             return redirect('/gia-thuetruocba/nam='.getGeneralConfigs()['namhethong']);
 
@@ -371,6 +414,19 @@ class GiaThueTbController extends Controller
             return view('manage.thuetb.edit')
                 ->with('model',$model)
                 ->with('modelct',$modelct)
+                ->with('loais',$loais)
+                ->with('pageTitle','Thông tin giá thuế trước bạ');
+        } else
+            return view('errors.notlogin');
+    }
+
+    public function edit_dk($id)
+    {
+        if (Session::has('admin')) {
+            $model = GiaThueTb::findOrFail($id);
+            $loais = DmLoaiXeThueTb::all();
+            return view('manage.thuetb.edit_dk')
+                ->with('model',$model)
                 ->with('loais',$loais)
                 ->with('pageTitle','Thông tin giá thuế trước bạ');
         } else
@@ -642,6 +698,38 @@ class GiaThueTbController extends Controller
             $model->trangthai = 'Đang làm';
             $model->save();
 
+            return redirect('/gia-thuetruocba/nam='.getGeneralConfigs()['namhethong']);
+
+        }else
+            return view('errors.notlogin');
+    }
+
+    public function update_dk(Request $request, $id)
+    {
+        if(Session::has('admin')){
+            $update = $request->all();
+            $date = date_create($update['ngaynhap']);
+            $thang = date_format($date,'m');
+
+            $model = GiaThueTb::findOrFail($id);
+            if(isset($request->filedk)){
+                if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk)){
+                    File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);
+                }
+                $file=$request->file('filedk');
+
+                $filename =$update['mahs'].'_'.$file->getClientOriginalName();
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk=$filename;
+            }
+
+            $model->maloai = $update['maloaidt'];
+            $model->soqd = $update['soqd'];
+            $model->ngaynhap = $update['ngaynhap'];
+            $model->thang = date_format($date,'m');
+            $model->quy = Thang2Quy($thang);
+            $model->nam = date_format($date,'Y');
+            $model->save();
             return redirect('/gia-thuetruocba/nam='.getGeneralConfigs()['namhethong']);
 
         }else

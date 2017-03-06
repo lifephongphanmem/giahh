@@ -26,6 +26,8 @@ class CreateHsthuetnTable extends Migration
             $table->string('quy');
             $table->string('mahuyen');
             $table->string('trangthai');
+            $table->string('filedk');
+            $table->string('hoso',20);
             $table->timestamps();
         });
     }

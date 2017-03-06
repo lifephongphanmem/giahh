@@ -14,9 +14,9 @@ class CreateThamdinhgiaDefaultTable extends Migration
     {
         Schema::create('thamdinhgia-default', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('tents');
-            $table->string('dacdiempl');
-            $table->string('thongsokt');
+            $table->text('tents');
+            $table->text('dacdiempl');
+            $table->text('thongsokt');
             $table->string('nguongoc');
             $table->string('dvt');
             $table->string('sl');

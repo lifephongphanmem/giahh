@@ -75,13 +75,14 @@ class ThamDinhGiaDefaultController extends Controller
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
             $result['message'] .= '<th style="text-align: center">Tên tài sản</th>';
             //$result['message'] .= '<!--th style="text-align: center">Nguồn gốc</th-->';
-            $result['message'] .= '<th style="text-align: center">Đơn vị tính</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Số lượng</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá thẩm định</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị thẩm định</th>';
-            $result['message'] .= '<th style="text-align: center" width="20%">Thao tác</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị</br>đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá</br>thẩm định</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị</br>thẩm định</th>';
+            $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
+            $result['message'] .= '<th style="text-align: center">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
             $result['message'] .= '<tbody id="ttts">';
@@ -98,6 +99,7 @@ class ThamDinhGiaDefaultController extends Controller
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
+                    $result['message'] .= '<td>'.$tents->gc.'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
                         '<button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('.$tents->id.')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
@@ -284,13 +286,14 @@ class ThamDinhGiaDefaultController extends Controller
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
             $result['message'] .= '<th style="text-align: center">Tên tài sản</th>';
             //$result['message'] .= '<!--th style="text-align: center">Nguồn gốc</th-->';
-            $result['message'] .= '<th style="text-align: center">Đơn vị tính</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Số lượng</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá thẩm định</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị thẩm định</th>';
-            $result['message'] .= '<th style="text-align: center" width="20%">Thao tác</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị</br>đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá</br>thẩm định</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị</br>thẩm định</th>';
+            $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
+            $result['message'] .= '<th style="text-align: center">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
             $result['message'] .= '<tbody id="ttts">';
@@ -307,6 +310,7 @@ class ThamDinhGiaDefaultController extends Controller
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
+                    $result['message'] .= '<td>'.$tents->gc.'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
                         '<button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('.$tents->id.')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
@@ -357,13 +361,14 @@ class ThamDinhGiaDefaultController extends Controller
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
             $result['message'] .= '<th style="text-align: center">Tên tài sản</th>';
             //$result['message'] .= '<!--th style="text-align: center">Nguồn gốc</th-->';
-            $result['message'] .= '<th style="text-align: center">Đơn vị tính</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Số lượng</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá thẩm định</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị thẩm định</th>';
-            $result['message'] .= '<th style="text-align: center" width="20%">Thao tác</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị</br>đề nghị</th>';
+            $result['message'] .= '<th style="text-align: center">Đơn giá</br>thẩm định</th>';
+            $result['message'] .= '<th style="text-align: center">Giá trị</br>thẩm định</th>';
+            $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
+            $result['message'] .= '<th style="text-align: center">Thao tác</th>';
             $result['message'] .= '</tr>';
             $result['message'] .= '</thead>';
             $result['message'] .= '<tbody id="ttts">';
@@ -380,6 +385,7 @@ class ThamDinhGiaDefaultController extends Controller
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
+                    $result['message'] .= '<td>'.$tents->gc.'</td>';
                     $result['message'] .= '<td>'.
                         '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
                         '<button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('.$tents->id.')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'

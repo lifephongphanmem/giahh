@@ -486,6 +486,11 @@ Route::get('thongtin-gia-thuetruocba/{id}/show','GiaThueTbController@showthongti
 
 Route::get('timkiem-thongtin-gia-thuetruocba','GiaThueTbController@search');
 Route::post('timkiem-thongtin-gia-thuetruocba','GiaThueTbController@viewsearch');
+
+Route::get('gia-thuetruocba-dk/create','GiaThueTbController@create_dk');
+Route::get('gia-thuetruocba-dk/{id}/edit','GiaThueTbController@edit_dk');
+Route::patch('gia-thuetruocba-dk/{id}','GiaThueTbController@update_dk');
+Route::post('gia-thuetruocba-dk/store','GiaThueTbController@store_dk');
 //End Thuế trước bạ
 
 //1.Giá thuế tài nguyên
@@ -522,6 +527,11 @@ Route::post('thongtin-giathuetn/unapprove','HsThueTnController@unapprove');
 
 Route::get('timkiem-giathuetn','HsThueTnController@search');
 Route::post('timkiem-giathuetn','HsThueTnController@viewsearch');
+
+Route::get('giathuetn-dk/thoidiem={thoidiem}/create/','HsThueTnController@create_dk');
+Route::get('giathuetn-dk/{id}/edit','HsThueTnController@edit_dk');
+Route::patch('giathuetn-dk/{id}','HsThueTnController@update_dk');
+Route::post('giathuetn-dk/store','HsThueTnController@store_dk');
 //End 1.Giá thuế tài nguyên
 
 // </editor-fold>

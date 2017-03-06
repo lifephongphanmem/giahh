@@ -103,7 +103,12 @@
                                 <td style="text-align: center">{{$tt->soqd}}</td>
                                 <td style="text-align: center">{{$tt->tenloai}}</td>
                                 <td>
-                                    <a href="{{url('thongtin-gia-thuetruocba/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                    @if($tt->hoso == 'DINHKEM')
+                                        <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                    @else
+                                        <a href="{{url('thongtin-gia-thuetruocba/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                    @endif
+
                                     @if(session('admin')->level == 'T')
                                         <button type="button" onclick="confirmHuy('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huy-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hủy hoàn thành</button>
                                     @endif

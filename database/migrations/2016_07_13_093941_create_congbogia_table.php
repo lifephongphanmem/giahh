@@ -15,9 +15,9 @@ class CreateCongbogiaTable extends Migration
         Schema::create('congbogia', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mats');
-            $table->string('tents');
-            $table->string('dacdiempl');
-            $table->string('thongsokt');
+            $table->text('tents');
+            $table->text('dacdiempl');
+            $table->text('thongsokt');
             $table->string('nguongoc');
             $table->string('dvt');
             $table->string('sl');

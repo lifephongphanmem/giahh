@@ -31,6 +31,7 @@ class CreateHsthamdinhgiaTable extends Migration
             $table->string('nam');
             $table->string('mahuyen');
             $table->string('mahs');
+            $table->string('thuevat');
             $table->timestamps();
         });
     }

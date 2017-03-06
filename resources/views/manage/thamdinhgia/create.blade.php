@@ -267,6 +267,20 @@
                                         </select>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Thuế VAT</label>
+                                        <select class="form-control" name="thuevat" id="thuevat">
+                                            <option value=""></option>
+                                            <option value="Giá bao gồm thuế VAT">Giá bao gồm thuế VAT</option>
+                                            <option value="Giá chưa bao gồm thuế VAT">Giá chưa bao gồm thuế VAT</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
@@ -275,15 +289,16 @@
                                     </div>
                                 </div>
                                 <!--/span-->
-                            </div>
-                            <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Số ngày sử dụng kết quả thẩm định</label>
                                         <input data-mask="fdecimal" id="songaykq" name="songaykq" class="form-control" value="0">
                                     </div>
                                 </div>
+                            </div>
 
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
@@ -391,13 +406,14 @@
                                             <th style="text-align: center">Tên tài sản</th>
                                             <!--th style="text-align: center">Đặc điểm kinh tế- kỹ thuật</th-->
                                             <!--th style="text-align: center">Nguồn gốc</th-->
-                                            <th style="text-align: center">Đơn vị tính</th>
+                                            <th style="text-align: center">Đơn vị</br>tính</th>
                                             <th style="text-align: center">Số lượng</th>
-                                            <th style="text-align: center">Đơn giá đề nghị</th>
-                                            <th style="text-align: center">Giá trị đề nghị</th>
-                                            <th style="text-align: center">Đơn giá thẩm định</th>
-                                            <th style="text-align: center">Giá trị thẩm định</th>
-                                            <th style="text-align: center" width="20%">Thao tác</th>
+                                            <th style="text-align: center">Đơn giá</br>đề nghị</th>
+                                            <th style="text-align: center">Giá trị</br>đề nghị</th>
+                                            <th style="text-align: center">Đơn giá</br>thẩm định</th>
+                                            <th style="text-align: center">Giá trị</br>thẩm định</th>
+                                            <th style="text-align: center">Ghi chú</th>
+                                            <th style="text-align: center">Thao tác</th>
                                         </tr>
                                         </thead>
                                         <tbody id="ttts">
@@ -466,6 +482,9 @@
             });
             $('#thoidiem').change(function(){
                 addngay();
+            });
+            $('#thuevat').change(function () {
+                $('#gc').val($('#thuevat').val());
             });
         });
     </script>

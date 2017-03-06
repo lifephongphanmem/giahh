@@ -85,7 +85,7 @@
                             <th style="text-align: center">Số hồ sơ</th>
                             <th style="text-align: center">Số thông báo<br>kết luận</th>
                             <th style="text-align: center">Thời điểm thẩm định</th>
-                            <!--th style="text-align: center">Mục đích thẩm định</th-->
+                            <th style="text-align: center">Thuế VAT</th>
                             <th style="text-align: center">Thời hạn thẩm định</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
@@ -98,7 +98,7 @@
                                 <td style="text-align: center">{{$tt->hosotdgia}}</td>
                                 <td style="text-align: center">{{$tt->sotbkl}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
-                                <!--td>{{$tt->mucdich}}</td-->
+                                <td>{{$tt->thuevat}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoihan)}}</td>
                                 <td>
                                     @if($tt->phanloai == 'DINHKEM')

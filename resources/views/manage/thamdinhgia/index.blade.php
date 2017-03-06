@@ -88,8 +88,8 @@
                             <th style="text-align: center">Số hồ sơ</th>
                             <th style="text-align: center">Số thông báo<br>kết luận</th>
                             <th style="text-align: center">Thời điểm <br>thẩm định</th>
-                            <!--th style="text-align: center">Mục đích thẩm định</th-->
                             <th style="text-align: center">Nguồn vốn</th>
+                            <th style="text-align: center">Thuế VAT</th>
                             <th style="text-align: center" with="3%">Thời hạn <br>thẩm định</th>
                             <th style="text-align: center">Trạng thái</th>
                             <th style="text-align: center" width="33%">Thao tác</th>
@@ -104,7 +104,7 @@
                                 <td style="text-align: center">{{$tt->sotbkl}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
                                 <td style="text-align: center">{{$tt->nguonvon}}</td>
-                                <!--td>{{$tt->mucdich}}</td-->
+                                <td>{{$tt->thuevat}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->thoihan)}}</td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'Đang làm')

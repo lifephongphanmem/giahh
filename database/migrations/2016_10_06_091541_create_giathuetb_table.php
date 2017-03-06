@@ -23,6 +23,8 @@ class CreateGiathuetbTable extends Migration
             $table->string('nam');
             $table->string('trangthai');
             $table->string('mahuyen');
+            $table->string('filedk');
+            $table->string('hoso',20);
             $table->timestamps();
         });
     }

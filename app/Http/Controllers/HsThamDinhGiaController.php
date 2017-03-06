@@ -130,6 +130,7 @@ class HsThamDinhGiaController extends Controller
             $model->nam = date_format($date,'Y');
             $model->mahuyen = session('admin')->mahuyen;
             $model->nguonvon = $insert['nguonvon'];
+            $model->thuevat = $insert['thuevat'];
             $model->trangthai = 'Đang làm';
             $model->mahs = $mahs;
             if($model->save()){
@@ -179,6 +180,7 @@ class HsThamDinhGiaController extends Controller
             $model->nguonvon = $insert['nguonvon'];
             $model->trangthai = 'Đang làm';
             $model->mahs = $mahs;
+            $model->thuevat = $insert['thuevat'];
             $model->save();
 
             return redirect('hoso-thamdinhgia/nam='.date_format($date,'Y'));
@@ -304,6 +306,7 @@ class HsThamDinhGiaController extends Controller
                 $model->quy = 4;
             $model->nguonvon = $update['nguonvon'];
             $model->nam = date_format($date,'Y');
+            $model->thuevat = $update['thuevat'];
             if($model->save()) {
                 $this->updateh($arrayold, $arraynew, $model->mahs);
             }
@@ -350,6 +353,7 @@ class HsThamDinhGiaController extends Controller
             $model->quy = Thang2Quy($thang);
             $model->nguonvon = $update['nguonvon'];
             $model->nam = date_format($date,'Y');
+            $model->thuevat = $update['thuevat'];
             if($model->save()) {
                 $this->updateh($arrayold, $arraynew, $model->mahs);
             }

@@ -55,7 +55,9 @@
                     </div>
                     <div class="actions">
                         <a href="{{url('gia-thuetruocba/create')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
+                            <i class="fa fa-plus"></i> Thêm mới hồ sơ chi tiết </a>
+                        <a href="{{url('gia-thuetruocba-dk/create')}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Thêm mới hồ sơ đính kèm</a>
                         <!--a href="{{url('hoso-thamdinhgia/import')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-plus"></i> Import file</a-->
                         <!--a href="" class="btn btn-default btn-sm">
@@ -104,19 +106,30 @@
                                     @endif
                                 </td>
                                 <td>
-
-                                    <a href="{{url('gia-thuetruocba/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
-                                    @if($tt->trangthai !='Hoàn tất')
+                                    @if($tt->trangthai == 'Hoàn tất')
+                                        @if($tt->hoso == 'DINHKEM')
+                                            <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                        @else
+                                            <a href="{{url('gia-thuetruocba/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                        @endif
+                                    @else
                                         @if(can('gttruocba','edit'))
-                                        <a href="{{url('gia-thuetruocba/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                            @if($tt->hoso == 'DINHKEM')
+                                                <a href="{{url('gia-thuetruocba-dk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                            @else
+                                                <a href="{{url('gia-thuetruocba/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                            @endif
                                         @endif
+
                                         @if(can('gttruocba','delete'))
-                                        <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                        Xóa</button>
+                                            <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                            Xóa</button>
                                         @endif
+
                                         @if(can('gttruocba','approve'))
-                                        <button type="button" onclick="confirmHoantat('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoantat-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn tất</button>
+                                            <button type="button" onclick="confirmHoantat('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoantat-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn tất</button>
                                         @endif
+
                                     @endif
                                 </td>
                             </tr>
