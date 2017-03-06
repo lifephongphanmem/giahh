@@ -22,6 +22,7 @@ class HsThamDinhGia extends Model
         'thang',
         'nam',
         'mahuyen',
-        'mahs'
+        'mahs',
+        'thuevat'
     ];
 }

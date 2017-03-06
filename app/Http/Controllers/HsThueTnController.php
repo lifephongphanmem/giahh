@@ -6,6 +6,7 @@ use App\DmLoaiGia;
 use App\DmLoaiHh;
 use App\DmThoiDiem;
 use App\DMThueTN;
+use App\GiaThueTb;
 use App\HsThueTn;
 use App\NhomThueTN;
 use App\PNhomThueTN;
@@ -386,7 +387,7 @@ class HsThueTnController extends Controller
             $model = HsThueTn::where('id',$input['iddelete'])->first();
             //dd($model);
             if($model->delete()) {
-                GiaHangHoa::where('mahs', $model->mahs)->delete();
+                ThueTn::where('mahs', $model->mahs)->delete();
             }
             return redirect('giathuetn/thoidiem='.$model->mathoidiem.'/nam='.$model->nam);
         }else
