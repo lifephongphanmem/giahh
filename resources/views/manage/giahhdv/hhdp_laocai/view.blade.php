@@ -2,7 +2,6 @@
 
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
 @stop
 
 
@@ -13,7 +12,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin giá hàng hóa, dịch vụ do địa phương quy định<small> xem chi tiết</small>
+        Thông tin giá hàng hóa, dịch vụ <small>do địa phương quy định</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -73,6 +72,7 @@
                             <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
                             <div class="row">
                                 <div class="col-md-12">
+                                    <div class="table-responsive">
                                         <table class="table table-bordered">
                                         <thead>
                                             <tr style="background: #F5F5F5">
@@ -99,12 +99,13 @@
                                         @endforeach
                                         </tbody>
                                         </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-actions right">
-                            <a href="{{url('giathuetn/nam='.$model->nam)}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                            <a href="{{url('thongtin-diaphuong/maso='.$model->masopnhom.'/nam='.$model->nam.'&pb=all')}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
                         </div>
                     </form>
                     <!-- END FORM-->

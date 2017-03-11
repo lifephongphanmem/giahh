@@ -74,20 +74,19 @@
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
-                @if(session('admin')->level == 'T')
-                    @if(can('ttqd','create'))
-                <div class="portlet-title">
-                    <div class="caption">
+                @if(can('ttqd','create'))
+                    <div class="portlet-title">
+                        <div class="caption">
+                        </div>
+                        <div class="actions">
+                            <a href="{{url('thongtu-quyetdinh-tw/create')}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-plus"></i> Thêm mới </a>
+                            <!--a href="" class="btn btn-default btn-sm">
+                                <i class="fa fa-print"></i> Print </a-->
+                        </div>
                     </div>
-                    <div class="actions">
-                        <a href="{{url('thongtu-quyetdinh-tw/create')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
-                        <!--a href="" class="btn btn-default btn-sm">
-                            <i class="fa fa-print"></i> Print </a-->
-                    </div>
-                </div>
-                    @endif
                 @endif
+
                 <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>

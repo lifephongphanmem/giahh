@@ -73,6 +73,17 @@
                                             <td><input type="checkbox" {{ (isset($setting->hhdv->kkgdp) && $setting->hhdv->kkgdp == 1) ? 'checked' : '' }} value="1" name="roles[hhdv][kkgdp]"/></td>
                                             <td>Kê khai giá địa phương</td>
                                         </tr>
+
+                                        <!--Giao diện dành cho Lào Cai-->
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($setting->hhdv->kkgtwlc) && $setting->hhdv->kkgtwlc == 1) ? 'checked' : '' }} value="1" name="roles[hhdv][kkgtwlc]"/></td>
+                                            <td>Kê khai giá trung ương(đặc thù)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($setting->hhdv->kkgdplc) && $setting->hhdv->kkgdplc == 1) ? 'checked' : '' }} value="1" name="roles[hhdv][kkgdplc]"/></td>
+                                            <td>Kê khai giá địa phương(đặc thù)</td>
+                                        </tr>
+                                        <!--End - Giao diện dành cho Lào Cai-->
                                     </tbody>
                                 </table>
                             </div>

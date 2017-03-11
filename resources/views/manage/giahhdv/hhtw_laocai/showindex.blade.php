@@ -21,14 +21,15 @@
         $(function(){
             $('#nambc').change(function() {
                 var nambc = $('#nambc').val();
-                var url = '/thongtin-giathuetn/nam='+nambc+'&pb=all';
+                var ttpb = $('#ttpb').val();
+                var url = '/thongtin-trunguong/maso='+'{{$masopnhom}}'+'/nam='+nambc+'&pb='+ttpb;
 
                 window.location.href = url;
             });
             $('#ttpb').change(function() {
                 var nambc = $('#nambc').val();
                 var ttpb = $('#ttpb').val();
-                var url = '/thongtin-giathuetn/nam='+nambc+'&pb='+ttpb;
+                var url = '{{$url}}'+'maso='+'{{$masopnhom}}'+'/nam='+nambc+'&pb='+ttpb;
 
                 window.location.href = url;
             });
@@ -41,7 +42,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ giá tính thuế<small> tài nguyên</small>
+        Thông tin hồ sơ<small>&nbsp;giá hàng hóa, dịch vụ do địa phương quy định</small>
     </h3>
 
     <div class="row">
@@ -51,7 +52,7 @@
                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                     @if ($nam_stop = intval(date('Y')) + 5 ) @endif
                     @for($i = $nam_start; $i <= $nam_stop; $i++)
-                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>{{$i}}</option>
                     @endfor
                 </select>
             </div>
@@ -87,11 +88,10 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Phòng ban</th>
                             <th style="text-align: center" width="20%">Ngày nhập</th>
-                            <!--th style="text-align: center" width="25%">Thị trường</th>
+                            <th style="text-align: center" width="25%%">Thị trường</th>
                             <th style="text-align: center">Loại giá</th>
                             <th style="text-align: center">Loại hàng hóa</th>
                             <!--th style="text-align: center">Trạng thái</th-->
-                            <th style="text-align: center" width="25%">Phân loại</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
@@ -101,10 +101,9 @@
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td class="active">{{$tt->tenpb}}</td>
                                 <td>{{getDayVn($tt->tgnhap)}}</td>
-                                <!--td>{{$tt->thitruong}}</td>
+                                <td>{{$tt->thitruong}}</td>
                                 <td>{{$tt->tenloaigia}}</td>
-                                <td>{{$tt->tenloaihh}}</td-->
-                                <td>{{$tt->phanloai}}</td>
+                                <td>{{$tt->tenloaihh}}</td>
                                 <!--td style="text-align: center">
                                     @if($tt->trangthai == 'Công bố')
                                         <span class="label label-sm label-success">
@@ -115,10 +114,11 @@
                                     @endif
                                 </td-->
                                 <td>
+
                                     @if($tt->hoso == 'DINHKEM')
                                         <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
                                     @else
-                                        <a href="{{url('thongtin-giathuetn/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                        <a href="{{url($url.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                     @endif
 
                                     @if(session('admin')->level == 'T')
@@ -130,6 +130,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="col-md-offset-5 col-md-2">
+                    <a class="btn blue" href="{{url($url)}}"><i class="fa fa-mail-reply"></i>  Quay lại</a>
                 </div>
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->
@@ -143,4 +146,5 @@
     </div>
     <!--Modal Huỷ hoàn tất-->
     @include('includes.e.modal-unapprove')
+
 @stop

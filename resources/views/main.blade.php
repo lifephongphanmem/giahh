@@ -362,27 +362,73 @@ License: You must have a valid license purchased only from themeforest(the above
                             </ul>
                         </li>
                         @endif
-                        @if(canGeneral('hhdv','kkgdp'))
-                        <li>
-                            <a href="javascript:;">Kê khai giá địa phương<span class="arrow"></span> </a>
-                            <ul class="sub-menu">
-                                @if(can('kkgdp','create')||can('kkgdp','edit'))
-                                <li>
-                                    <a href="{{url('giahhdv-dp')}}">Kê khai giá</a>
-                                </li>
-                                @endif
-                                @if(can('kkgdp','index'))
-                                <li>
-                                    <a href="{{url('thongtin-dp')}}">Thông tin kê khai giá</a>
-                                </li>
-                                @endif
-                                <li>
-                                    <a href="{{url('timkiem-giahhdv-dp')}}">Tìm kiếm thông tin kê khai giá</a>
-                                </li>
 
-                            </ul>
-                        </li>
+                            @if(canGeneral('hhdv','kkgdp'))
+                                <li>
+                                    <a href="javascript:;">Kê khai giá địa phương<span class="arrow"></span> </a>
+                                    <ul class="sub-menu">
+                                        @if(can('kkgdp','create')||can('kkgdp','edit'))
+                                            <li>
+                                                <a href="{{url('giahhdv-dp')}}">Kê khai giá</a>
+                                            </li>
+                                        @endif
+                                        @if(can('kkgdp','index'))
+                                            <li>
+                                                <a href="{{url('thongtin-dp')}}">Thông tin kê khai giá</a>
+                                            </li>
+                                        @endif
+                                        <li>
+                                            <a href="{{url('timkiem-giahhdv-dp')}}">Tìm kiếm thông tin kê khai giá</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                @endif
+                        <!--Giao diện kê khai giá hàng hoá Trung ương danh cho Lào Cai-->
+                        @if(canGeneral('hhdv','kkgtwlc'))
+                            <li>
+                                <a href="javascript:;">Kê khai giá TW<span class="arrow"></span> </a>
+                                <ul class="sub-menu">
+                                    @if(can('kkgtw','create')||can('kkgtw','edit'))
+                                        <li>
+                                            <a href="{{url('giahhdv-trunguong')}}">Kê khai giá</a>
+                                        </li>
+                                    @endif
+                                    @if(can('kkgtw','index'))
+                                        <li>
+                                            <a href="{{url('thongtin-trunguong')}}">Thông tin kê khai giá</a>
+                                        </li>
+                                    @endif
+                                    <li>
+                                        <a href="{{url('timkiem-giahhdv-trunguong')}}">Tìm kiếm thông tin kê khai giá</a>
+                                    </li>
+
+                                </ul>
+                            </li>
                         @endif
+                        @if(canGeneral('hhdv','kkgdplc'))
+                            <li>
+                                <a href="javascript:;">Kê khai giá địa phương<span class="arrow"></span> </a>
+                                <ul class="sub-menu">
+                                    @if(can('kkgdp','create')||can('kkgdp','edit'))
+                                        <li>
+                                            <a href="{{url('giahhdv-diaphuong')}}">Kê khai giá</a>
+                                        </li>
+                                    @endif
+                                    @if(can('kkgdp','index'))
+                                        <li>
+                                            <a href="{{url('thongtin-diaphuong')}}">Thông tin kê khai giá</a>
+                                        </li>
+                                    @endif
+                                    <li>
+                                        <a href="{{url('timkiem-giahhdv-diaphuong')}}">Tìm kiếm thông tin kê khai giá</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            @endif
+                                <!--End - Giao diện kê khai giá hàng hoá Trung ương danh cho Lào Cai-->
+
                     </ul>
                 </li>
                 @endif
@@ -446,12 +492,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <ul class="sub-menu">
                             @if(can('gthuetn','create'))
                                 <li>
-                                    <a href="{{url('giathuetn')}}">Giá thuế tài nguyên</a>
+                                    <a href="{{url('giathuetn/nam='.getGeneralConfigs()['namhethong'])}}">Giá thuế tài nguyên</a>
                                 </li>
                             @endif
                             @if(can('gthuetn','index'))
                                 <li>
-                                    <a href="{{url('thongtin-giathuetn')}}">Thông tin giá thuế tài nguyên</a>
+                                    <a href="{{url('thongtin-giathuetn/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">Thông tin giá thuế tài nguyên</a>
                                 </li>
                             @endif
                                 <li>

@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="form-actions right">
-                            <a href="{{url('thongtin-giathuetn/thoidiem='.$model->mathoidiem.'/nam='.$model->nam.'&pb=all')}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                            <a href="{{url('thongtin-giathuetn/nam='.$model->nam.'&pb=all')}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
                         </div>
                     </form>
                     <!-- END FORM-->

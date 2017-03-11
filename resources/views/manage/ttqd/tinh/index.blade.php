@@ -64,6 +64,7 @@
                     <option value="LUAT" {{$pl == 'LUAT' ? 'selected' : ''}}>Luật</option>
                     <option value="ND" {{$pl == 'ND' ? 'selected' : ''}}>Nghị định</option>
                     <option value="TT" {{$pl == 'TT' ? 'selected' : ''}}>Thông tư</option>
+                    <option value="QD" {{$pl == 'QD' ? 'selected' : ''}}>Quyết định</option>
                     <option value="HD" {{$pl == 'HD' ? 'selected' : ''}}>Hướng dẫn</option>
                 </select>
             </div>
@@ -74,20 +75,18 @@
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box">
-                @if(session('admin')->level == 'T')
-                    @if(can('ttqd','create'))
-                <div class="portlet-title">
-                    <div class="caption">
-                    </div>
-                    <div class="actions">
-                        <a href="{{url('thongtu-quyetdinh-tinh/create')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới </a>
+                @if(can('ttqd','create'))
+                    <div class="portlet-title">
+                        <div class="caption">
+                        </div>
+                        <div class="actions">
+                            <a href="{{url('thongtu-quyetdinh-tinh/create')}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-plus"></i> Thêm mới </a>
 
-                        <!--a href="" class="btn btn-default btn-sm">
-                            <i class="fa fa-print"></i> Print </a-->
+                            <!--a href="" class="btn btn-default btn-sm">
+                                <i class="fa fa-print"></i> Print </a-->
+                        </div>
                     </div>
-                </div>
-                    @endif
                 @endif
                 <div class="portlet-body">
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
@@ -114,6 +113,8 @@
                                         Nghị định
                                     @elseif($tt->plttqd == 'TT')
                                         Thông tư
+                                    @elseif($tt->plttqd == 'QD')
+                                        Quyết định
                                     @else
                                         Hướng dẫn
                                     @endif

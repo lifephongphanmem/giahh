@@ -2,7 +2,6 @@
 
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
 @stop
 
 
@@ -104,7 +103,7 @@
                         </div>
 
                         <div class="form-actions right">
-                            <a href="{{url('giathuetn/nam='.$model->nam)}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                            <a href="{{url('giahhdv-diaphuong/maso='.$model->masopnhom.'/nam='.$model->nam)}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
                         </div>
                     </form>
                     <!-- END FORM-->

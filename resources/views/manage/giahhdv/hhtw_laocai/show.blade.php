@@ -2,7 +2,6 @@
 
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
 @stop
 
 
@@ -73,6 +72,7 @@
                             <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
                             <div class="row">
                                 <div class="col-md-12">
+                                    <div class="table-responsive">
                                         <table class="table table-bordered">
                                         <thead>
                                             <tr style="background: #F5F5F5">
@@ -99,12 +99,13 @@
                                         @endforeach
                                         </tbody>
                                         </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-actions right">
-                            <a href="{{url('giathuetn/nam='.$model->nam)}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                            <a href="{{url('giahhdv-trunguong/maso='.$model->masopnhom.'&nam='.$model->nam)}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
                         </div>
                     </form>
                     <!-- END FORM-->

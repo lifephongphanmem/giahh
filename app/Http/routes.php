@@ -288,6 +288,62 @@ Route::post('timkiem-giahhdv-dp','HsGiaHangHoaDPController@viewsearch');
     //End 2.Giá hàng hóa do địa phương quy định
     //End giá hàng hóa dv
 
+//kê khai giá trung ương danh cho Lào Cai
+Route::group(['prefix'=>'giahhdv-trunguong'],function(){
+    Route::get('','HsGiaHangHoaTW_LaoCaiController@danhmuc');
+    Route::get('/maso={masopnhom}&nam={nam}','HsGiaHangHoaTW_LaoCaiController@index');
+    Route::get('/maso={masopnhom}/create','HsGiaHangHoaTW_LaoCaiController@create');
+    Route::post('','HsGiaHangHoaTW_LaoCaiController@store');
+    Route::get('{id}/edit','HsGiaHangHoaTW_LaoCaiController@edit');
+    Route::patch('{id}','HsGiaHangHoaTW_LaoCaiController@update');
+    Route::post('delete','HsGiaHangHoaTW_LaoCaiController@destroy');
+    Route::post('approve','HsGiaHangHoaTW_LaoCaiController@approve');
+    Route::get('/{id}/show','HsGiaHangHoaTW_LaoCaiController@show');
+});
+Route::group(['prefix'=>'giahhdv-trunguong-dk'],function(){
+    Route::get('/maso={masopnhom}/create_dk','HsGiaHangHoaTW_LaoCaiController@create_dk');
+    Route::patch('{id}','HsGiaHangHoaTW_LaoCaiController@update_dk');
+    Route::post('','HsGiaHangHoaTW_LaoCaiController@store_dk');
+    Route::get('{id}/edit','HsGiaHangHoaTW_LaoCaiController@edit_dk');
+});
+Route::group(['prefix'=>'thongtin-trunguong'],function(){
+    Route::get('','HsGiaHangHoaTW_LaoCaiController@showthoidiem');
+    Route::get('maso={masopnhom}/nam={nam}&pb={pb}','HsGiaHangHoaTW_LaoCaiController@showindex');
+    Route::get('{id}/show','HsGiaHangHoaTW_LaoCaiController@view');
+    Route::post('unapprove','HsGiaHangHoaTW_LaoCaiController@unapprove');
+});
+Route::get('timkiem-giahhdv-trunguong','HsGiaHangHoaTW_LaoCaiController@search');
+Route::post('timkiem-giahhdv-trunguong','HsGiaHangHoaTW_LaoCaiController@viewsearch');
+//End - kê khai giá trung ương danh cho Lào Cai
+
+//kê khai giá dia phuong danh cho Lào Cai
+Route::group(['prefix'=>'giahhdv-diaphuong'],function(){
+    Route::get('','HsGiaHangHoaDP_LaoCaiController@thoidiem');
+    Route::get('maso={thoidiem}/nam={nam}','HsGiaHangHoaDP_LaoCaiController@index');
+    Route::get('/maso={masopnhom}/create','HsGiaHangHoaDP_LaoCaiController@create');
+    Route::post('','HsGiaHangHoaDP_LaoCaiController@store');
+    Route::get('{id}/show','HsGiaHangHoaDP_LaoCaiController@show');
+    Route::get('{id}/edit','HsGiaHangHoaDP_LaoCaiController@edit');
+    Route::patch('{id}','HsGiaHangHoaDP_LaoCaiController@update');
+    Route::post('delete','HsGiaHangHoaDP_LaoCaiController@destroy');
+    Route::post('approve','HsGiaHangHoaDP_LaoCaiController@approve');
+});
+Route::group(['prefix'=>'giahhdv-diaphuong-dk'],function(){
+    Route::get('maso={masopnhom}/create_dk','HsGiaHangHoaDP_LaoCaiController@create_dk');
+    Route::patch('{id}','HsGiaHangHoaDP_LaoCaiController@update_dk');
+    Route::post('','HsGiaHangHoaDP_LaoCaiController@store_dk');
+    Route::get('{id}/edit','HsGiaHangHoaDP_LaoCaiController@edit_dk');
+});
+Route::group(['prefix'=>'thongtin-diaphuong'],function(){
+    Route::get('','HsGiaHangHoaDP_LaoCaiController@showthoidiem');
+    Route::get('maso={thoidiem}/nam={nam}&pb={pb}','HsGiaHangHoaDP_LaoCaiController@showindex');
+    Route::get('{id}/show','HsGiaHangHoaDP_LaoCaiController@view');
+    Route::post('unapprove','HsGiaHangHoaDP_LaoCaiController@unapprove');
+});
+Route::get('timkiem-giahhdv-diaphuong','HsGiaHangHoaDP_LaoCaiController@search');
+Route::post('timkiem-giahhdv-diaphuong','HsGiaHangHoaDP_LaoCaiController@viewsearch');
+//End - kê khai giá dia phuong danh cho Lào Cai
+
     //TTQĐ
 //TW
 Route::get('thongtu-quyetdinh-tw/nam={nam}&pl={pl}','TtQdController@tw');
@@ -340,12 +396,13 @@ Route::get('thamdinhgiadefault/edit','ThamDinhgiaDefaultController@edit');
 Route::get('thamdinhgiadefault/update','ThamDinhgiaDefaultController@update');
 Route::get('thamdinhgiadefault/delete','ThamDinhgiaDefaultController@destroy');
 Route::get('thamdinhgiadefault/importExcel','ThamDinhgiaDefaultController@importExcel');
-
+Route::get('thamdinhgiadefault/thuevat','ThamDinhgiaDefaultController@thuevat');
 
 Route::get('thamdinhgia/store','ThamDinhGiaController@store');
 Route::get('thamdinhgia/edit','ThamDinhGiaController@edit');
 Route::get('thamdinhgia/update','ThamDinhGiaController@update');
 Route::get('thamdinhgia/delete','ThamDinhGiaController@destroy');
+Route::get('thamdinhgia/thuevat','ThamDinhGiaController@thuevat');
         //Search Thảm định giá
 Route::get('timkiem-thamdinhgia','ThamDinhGiaController@search');
 Route::post('timkiem-thamdinhgia','ThamDinhGiaController@viewsearch');
@@ -414,6 +471,9 @@ Route::get('hoso-congbobosung-dk/{id}/edit','HsCongBoGiaBoSungController@edit_dk
 Route::patch('hoso-congbobosung-dk/{id}','HsCongBoGiaBoSungController@update_dk');
 Route::post('hoso-congbobosung-dk','HsCongBoGiaBoSungController@store_dk');
 
+Route::get('hoso-congbobosung/import','CongBoGiaBoSungController@import');
+Route::resource('hoso-congbobosung/import-view','CongBoGiaBoSungController@showimport');
+Route::post('store-congbobosung','CongBoGiaBoSungController@storeimport');
 
 Route::get('thongtin-congbobosung/nam={nam}&pb={pb}','HsCongBoGiaBoSungController@showindex');
 Route::get('thongtin-congbobosung/{id}/show','HsCongBoGiaBoSungController@view');
@@ -495,7 +555,7 @@ Route::post('gia-thuetruocba-dk/store','GiaThueTbController@store_dk');
 
 //1.Giá thuế tài nguyên
 Route::get('giathuetn','HsThueTnController@thoidiem');
-Route::get('giathuetn/thoidiem={thoidiem}/nam={nam}','HsThueTnController@index');
+Route::get('giathuetn/nam={nam}','HsThueTnController@index');
 Route::post('giathuetn/create','HsThueTnController@create');
 Route::post('giathuetn','HsThueTnController@store');
 Route::get('giathuetn/{id}/show','HsThueTnController@show');
@@ -506,7 +566,7 @@ Route::post('giathuetn/approve','HsThueTnController@approve');
 
 
 //Route::get('giathuetn','HsThueTnController@showthoidiem');
-Route::get('giathuetn/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsThueTnController@showindex');
+Route::get('giathuetn/nam={nam}&pb={pb}','HsThueTnController@showindex');
 Route::get('giathuetn/{id}/show','HsThueTnController@view');
 
 Route::get('/giathuetndefault/gettthh','ThueTnDefaultController@gettthh');
@@ -521,14 +581,14 @@ Route::get('/giathuetn/update','ThueTnController@update');
 Route::get('/giathuetn/delete','ThueTnController@destroy');
 
 Route::get('thongtin-giathuetn','HsThueTnController@showthoidiem');
-Route::get('thongtin-giathuetn/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsThueTnController@showindex');
+Route::get('thongtin-giathuetn/nam={nam}&pb={pb}','HsThueTnController@showindex');
 Route::get('thongtin-giathuetn/{id}/show','HsThueTnController@view');
 Route::post('thongtin-giathuetn/unapprove','HsThueTnController@unapprove');
 
 Route::get('timkiem-giathuetn','HsThueTnController@search');
 Route::post('timkiem-giathuetn','HsThueTnController@viewsearch');
 
-Route::get('giathuetn-dk/thoidiem={thoidiem}/create/','HsThueTnController@create_dk');
+Route::get('giathuetn-dk/create','HsThueTnController@create_dk');
 Route::get('giathuetn-dk/{id}/edit','HsThueTnController@edit_dk');
 Route::patch('giathuetn-dk/{id}','HsThueTnController@update_dk');
 Route::post('giathuetn-dk/store','HsThueTnController@store_dk');

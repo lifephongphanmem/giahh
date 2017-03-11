@@ -47,11 +47,10 @@ class HsThueTnController extends Controller
             return view('errors.notlogin');
     }
 
-    public function index($thoidiem,$nam)
+    public function index($nam)
     {
         if(Session::has('admin')){
-            $model = HsThueTn::where('mathoidiem',$thoidiem)
-                ->where('nam',$nam)
+            $model = HsThueTn::where('nam',$nam)
                 ->where('mahuyen',session('admin')->mahuyen)
                 ->get();
 
@@ -63,7 +62,6 @@ class HsThueTnController extends Controller
             return view('manage.thuetn.index')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
-                ->with('thoidiem',$thoidiem)
                 ->with('m_nhomthuetn',$m_nhomthuetn)
                 ->with('nam',$nam)
                 ->with('url','/giathuetn/')
@@ -72,11 +70,10 @@ class HsThueTnController extends Controller
             return view('errors.notlogin');
     }
 
-    public function showindex($thoidiem,$nam,$pb)
+    public function showindex($nam,$pb)
     {
         if(Session::has('admin')){
-            $model = HsThueTn::where('mathoidiem',$thoidiem)
-                ->where('nam',$nam)
+            $model = HsThueTn::where('nam',$nam)
                 ->where('trangthai','Hoàn tất')
                 ->get();
             if($pb != 'all') {
@@ -87,7 +84,6 @@ class HsThueTnController extends Controller
             return view('manage.thuetn.showindex')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
-                ->with('thoidiem',$thoidiem)
                 ->with('nam',$nam)
                 ->with('pb',$pb)
                 ->with('url','/thongtin-giathuetn/')
@@ -113,7 +109,6 @@ class HsThueTnController extends Controller
     {
         if(Session::has('admin')){
             $inputs=$request->all();
-            $thoidiem=$inputs['thoidiem'];
             $manhom=$inputs['manhom'];
             $mahuyen=session('admin')->mahuyen;
             ThueTnDefault::where('mahuyen',$mahuyen)->delete();
@@ -137,21 +132,16 @@ class HsThueTnController extends Controller
             //dd($dmhanghoa);
             return view('manage.thuetn.create')
                 ->with('model',$model)
-                ->with('mathoidiem',$thoidiem)
-                //->with('loaigia',$loaigia)
-                //->with('loaihh',$loaihh)
                 ->with('nhomhh',$nhomhh)
-                //->with('thitruong',$thitruong)
                 ->with('pageTitle','Thông tin giá tính thuế tài nguyên thêm mới');
         }else
             return view('errors.notlogin');
     }
 
-    public function create_dk($thoidiem)
+    public function create_dk()
     {
         if(Session::has('admin')){
             return view('manage.thuetn.create_dk')
-                ->with('mathoidiem',$thoidiem)
                 ->with('pageTitle','Thông tin giá tính thuế tài nguyên thêm mới');
         }else
             return view('errors.notlogin');
@@ -168,9 +158,6 @@ class HsThueTnController extends Controller
 
             $model = new HsThueTn();
             $model->tgnhap = $insert['tgnhap'];
-            //$model->thitruong = $insert['thitruong'];
-            //$model->maloaihh = $insert['maloaihh'];
-            //$model->maloaigia = $insert['maloaigia'];
             $model->phanloai = $insert['phanloai'];
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
@@ -184,13 +171,12 @@ class HsThueTnController extends Controller
             $model->nam = date_format($date,'Y');
             $model->mahuyen = $mahuyen;
             $model->mahs = $mahs;
-            $model->mathoidiem = $insert['mathoidiem'];
             if($model->save()){
                 $hanghoa = ThueTnDefault::select('masopnhom','mahh','giatu','giaden','soluong','nguontin',DB::raw($mahs." as mahs"))->where('mahuyen',$mahuyen)->get()->toarray();
                 ThueTn::insert($hanghoa);
             }
 
-            return redirect('giathuetn/thoidiem='.$insert['mathoidiem'].'/nam='.date_format($date,'Y'));
+            return redirect('giathuetn/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -218,10 +204,9 @@ class HsThueTnController extends Controller
             $model->mahuyen = session('admin')->mahuyen;
             $model->trangthai = 'Đang làm';
             $model->mahs = $mahs;
-            $model->mathoidiem = $insert['mathoidiem'];
             $model->save();
 
-            return redirect('giathuetn/thoidiem='.$insert['mathoidiem'].'/nam='.date_format($date,'Y'));
+            return redirect('giathuetn/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -232,10 +217,6 @@ class HsThueTnController extends Controller
         if(Session::has('admin')){
             $model = HsThueTn::findOrFail($id);
             $modeltthh = ThueTn::where('mahs',$model->mahs)->get();
-            //$loaigia = DmLoaiGia::where('pl','Thuế tài nguyên');
-            //$loaihh = DmLoaiHh::all();
-            //$thitruong= DmThiTruong::all();
-            //dd($thitruong);
             $dmhanghoa = array_column(DMThueTN::select('mahh','tenhh')->get()->toarray(),'tenhh','mahh');
             foreach($modeltthh as $ct){
                 $ct->tenhh=$dmhanghoa[$ct->mahh];
@@ -243,9 +224,6 @@ class HsThueTnController extends Controller
             return view('manage.thuetn.show')
                 ->with('model',$model)
                 ->with('modeltthh',$modeltthh)
-                //->with('loaigia',$loaigia)
-                //->with('loaihh',$loaihh)
-                //->with('thitruong',$thitruong)
                 ->with('pageTitle','Thông tin giá tính thuế tài nguyên chi tiết');
         }else
             return view('errors.notlogin');
@@ -256,10 +234,6 @@ class HsThueTnController extends Controller
         if(Session::has('admin')){
             $model = HsThueTn::findOrFail($id);
             $modeltthh = ThueTn::where('mahs',$model->mahs)->get();
-            //$loaigia = DmLoaiGia::where('pl','Thuế tài nguyên')->get();
-            //$loaihh = DmLoaiHh::all();
-            //$thitruong= DmThiTruong::all();
-            //dd($loaigia);
             $dmhanghoa = array_column(DMThueTN::select('mahh','tenhh')->get()->toarray(),'tenhh','mahh');
             foreach($modeltthh as $ct){
                 $ct->tenhh=$dmhanghoa[$ct->mahh];
@@ -267,9 +241,6 @@ class HsThueTnController extends Controller
             return view('manage.thuetn.view')
                 ->with('model',$model)
                 ->with('modeltthh',$modeltthh)
-                //->with('loaigia',$loaigia)
-                //->with('loaihh',$loaihh)
-                //->with('thitruong',$thitruong)
                 ->with('pageTitle','Thông tin giá tính thuế tài nguyên chi tiết');
         }else
             return view('errors.notlogin');
@@ -279,7 +250,6 @@ class HsThueTnController extends Controller
     {
         if(Session::has('admin')){
             $model = HsThueTn::findOrFail($id);
-            $mathoidiem = $model->mathoidiem;
             $modeltthh = ThueTn::where('mahs',$model->mahs)->get();
 
             $dmhanghoa = array_column(DMThueTN::select('mahh','tenhh')->get()->toarray(),'tenhh','mahh');
@@ -295,12 +265,8 @@ class HsThueTnController extends Controller
             //dd($modeltthh);
             return view('manage.thuetn.edit')
                 ->with('model',$model)
-                ->with('mathoidiem',$mathoidiem)
                 ->with('modeltthh',$modeltthh)
-                //->with('loaigia',$loaigia)
-                //->with('loaihh',$loaihh)
                 ->with('nhomhh',$nhomhh)
-                //->with('thitruong',$thitruong)
                 ->with('pageTitle','Thông tin giá tính thuế tài nguyên chi tiết');
         }else
             return view('errors.notlogin');
@@ -310,11 +276,9 @@ class HsThueTnController extends Controller
     {
         if(Session::has('admin')){
             $model = HsThueTn::findOrFail($id);
-            $mathoidiem = $model->mathoidiem;
 
             return view('manage.thuetn.edit_dk')
                 ->with('model',$model)
-                ->with('mathoidiem',$mathoidiem)
                 ->with('pageTitle','Thông tin giá tính thuế tài nguyên chi tiết');
         }else
             return view('errors.notlogin');
@@ -329,10 +293,6 @@ class HsThueTnController extends Controller
 
             $model = HsThueTn::findOrFail($id);
             $model->tgnhap = $insert['tgnhap'];
-            //$model->thitruong = $insert['thitruong'];
-            //$model->maloaihh = $insert['maloaihh'];
-            //$model->maloaigia = $insert['maloaigia'];
-
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
             elseif($thang == 4 || $thang == 5 || $thang == 6)
@@ -345,7 +305,7 @@ class HsThueTnController extends Controller
             $model->nam = date_format($date,'Y');
             $model->save();
 
-            return redirect('giathuetn/thoidiem='.$model->mathoidiem.'/nam='.date_format($date,'Y'));
+            return redirect('giathuetn/nam='.$model->nam);
 
         }else
             return view('errors.notlogin');
@@ -374,7 +334,7 @@ class HsThueTnController extends Controller
             $model->quy = Thang2Quy($thang);
             $model->nam = date_format($date,'Y');
             $model->save();
-            return redirect('giathuetn/thoidiem='.$model->mathoidiem.'/nam='.date_format($date,'Y'));
+            return redirect('giathuetn/nam='.$model->nam);
 
         }else
             return view('errors.notlogin');
@@ -389,7 +349,7 @@ class HsThueTnController extends Controller
             if($model->delete()) {
                 ThueTn::where('mahs', $model->mahs)->delete();
             }
-            return redirect('giathuetn/thoidiem='.$model->mathoidiem.'/nam='.$model->nam);
+            return redirect('giathuetn/nam='.$model->nam);
         }else
             return view('errors.notlogin');
     }
@@ -410,7 +370,7 @@ class HsThueTnController extends Controller
                 $modelh->save();
             }
             */
-            return redirect('giathuetn/thoidiem='.$model->mathoidiem.'/nam='.$model->nam);
+            return redirect('giathuetn/nam='.$model->nam);
         }else
             return view('errors.notlogin');
     }
@@ -431,22 +391,15 @@ class HsThueTnController extends Controller
                 $modelh->save();
             }
             */
-            return redirect('thongtin-giathuetn/thoidiem='.$model->mathoidiem.'/nam='.$model->nam.'&pb=all');
+            return redirect('thongtin-giathuetn/nam='.$model->nam.'&pb=all');
         }else
             return view('errors.notlogin');
     }
 
     public function search(){
         if(Session::has('admin')){
-            //$modelmaloaigia = DmLoaiGia::where('pl','Thuế tài nguyên')->get();
-            //$modelmaloaihh = DmLoaiHh::all();
-            //$modelthitruong = DmThiTruong::all();
-
             $modelhh = DMThueTN::where('theodoi','Có')->get();
             return view('manage.thuetn.search.create')
-                //->with('modelmaloaigia',$modelmaloaigia)
-                //->with('modelmaloaihh',$modelmaloaihh)
-                //->with('modelthitruong',$modelthitruong)
                 ->with('modelhh',$modelhh)
                 ->with('pageTitle','Tìm kiếm thông tin giá thuế tài nguyên');
         }else

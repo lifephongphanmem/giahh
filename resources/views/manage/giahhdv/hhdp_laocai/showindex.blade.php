@@ -21,18 +21,23 @@
         $(function(){
             $('#nambc').change(function() {
                 var nambc = $('#nambc').val();
-                var url = '/thongtin-giathuetn/nam='+nambc+'&pb=all';
+                var thoidiem = $('#masopnhom').val();
+                var url = '/thongtin-diaphuong/maso='+thoidiem+'/nam='+nambc+'&pb=all';
 
                 window.location.href = url;
             });
             $('#ttpb').change(function() {
                 var nambc = $('#nambc').val();
                 var ttpb = $('#ttpb').val();
-                var url = '/thongtin-giathuetn/nam='+nambc+'&pb='+ttpb;
+                var thoidiem = $('#masopnhom').val();
+                var url = '/thongtin-diaphuong/maso='+thoidiem+'/nam='+nambc+'&pb='+ttpb;
 
                 window.location.href = url;
             });
         })
+        function confirmDelete(id) {
+            document.getElementById("iddelete").value=id;
+        }
     </script>
 
 
@@ -41,8 +46,9 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ giá tính thuế<small> tài nguyên</small>
+        Thông tin hồ sơ<small>&nbsp;giá hàng hóa, dịch vụ do TW quy định</small>
     </h3>
+    <input type="hidden" name="masopnhom" id="masopnhom" value="{{$masopnhom}}">
 
     <div class="row">
         <div class="col-md-2">
@@ -87,11 +93,10 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Phòng ban</th>
                             <th style="text-align: center" width="20%">Ngày nhập</th>
-                            <!--th style="text-align: center" width="25%">Thị trường</th>
+                            <th style="text-align: center" width="25%%">Thị trường</th>
                             <th style="text-align: center">Loại giá</th>
                             <th style="text-align: center">Loại hàng hóa</th>
                             <!--th style="text-align: center">Trạng thái</th-->
-                            <th style="text-align: center" width="25%">Phân loại</th>
                             <th style="text-align: center" width="20%">Thao tác</th>
                         </tr>
                         </thead>
@@ -101,10 +106,9 @@
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td class="active">{{$tt->tenpb}}</td>
                                 <td>{{getDayVn($tt->tgnhap)}}</td>
-                                <!--td>{{$tt->thitruong}}</td>
+                                <td>{{$tt->thitruong}}</td>
                                 <td>{{$tt->tenloaigia}}</td>
-                                <td>{{$tt->tenloaihh}}</td-->
-                                <td>{{$tt->phanloai}}</td>
+                                <td>{{$tt->tenloaihh}}</td>
                                 <!--td style="text-align: center">
                                     @if($tt->trangthai == 'Công bố')
                                         <span class="label label-sm label-success">
@@ -118,9 +122,8 @@
                                     @if($tt->hoso == 'DINHKEM')
                                         <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
                                     @else
-                                        <a href="{{url('thongtin-giathuetn/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                        <a href="{{url('thongtin-diaphuong/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                     @endif
-
                                     @if(session('admin')->level == 'T')
                                         <button type="button" onclick="confirmHuy('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#huy-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hủy hoàn thành</button>
                                         <!--a href="{{url('hoso-thamdinhgia/'.$tt->mahs.'/history')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Lịch sử</a-->
@@ -130,6 +133,9 @@
                         @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div class="col-md-offset-5 col-md-2">
+                    <a class="btn blue" href="{{url('/thongtin-diaphuong')}}"><i class="fa fa-mail-reply"></i>  Quay lại</a>
                 </div>
             </div>
             <!-- END EXAMPLE TABLE PORTLET-->

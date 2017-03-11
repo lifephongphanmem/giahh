@@ -844,16 +844,13 @@ class GiaThueTbController extends Controller
 
     public function viewsearch(Request $request){
         if(Session::has('admin')){
-
-            $_sql="select giathuetb.ngaynhap, giathuetb.maloai,giathuetb.soqd,giathuetb.mahuyen,
-                          giathuetbct.tenhieu,giathuetbct.thongsokt,giathuetbct.dungtich,giathuetbct.nuocsx,giathuetbct.giamoi
-                                        from giathuetb, giathuetbct
-                                        Where giathuetb.mahs=giathuetbct.mahs";
+            $_sql="select giathuetb.ngaynhap, giathuetb.maloai, giathuetb.soqd, giathuetb.mahuyen,
+                          giathuetbct.tenhieu, giathuetbct.thongsokt, giathuetbct.dungtich, giathuetbct.nuocsx, giathuetbct.giamoi
+                    from giathuetb, giathuetbct
+                    Where giathuetb.mahs = giathuetbct.mahs";
             $input=$request->all();
-
             //Thời gian nhập
             //Từ
-
             if($input['ngaynhaptu']!=null){
                 $_sql=$_sql." and giathuetb.ngaynhap >='".date('Y-m-d',strtotime($input['ngaynhaptu']))."'";
             }
@@ -868,9 +865,6 @@ class GiaThueTbController extends Controller
             //Tên tài sản
             $_sql=$input['tenhieu']!=null? $_sql." and giathuetbct.tenhieu Like '".$input['tenhieu']."%'":$_sql;
 
-
-
-
             $model =  DB::select(DB::raw($_sql));
             $modelloai = DmLoaiXeThueTb::all();
 
@@ -884,5 +878,4 @@ class GiaThueTbController extends Controller
         }else
             return view('errors.notlogin');
     }
-
 }

@@ -54,6 +54,7 @@
                                             <option value="LUAT">Luật</option>
                                             <option value="ND">Nghị định</option>
                                             <option value="TT">Thông tư</option>
+                                            <option value="QD">Quyết định</option>
                                             <option value="HD">Hướng dẫn</option>
                                         </select>
                                     </div>

@@ -23,7 +23,7 @@
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             //alert(id);
             $.ajax({
-                url: '/giathuetndefault/edit',
+                url: '/giahanghoadefault/edit',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -45,7 +45,7 @@
         function updatets(){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giathuetndefault/update',
+                url: '/giahanghoadefault/update',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -78,7 +78,7 @@
         function deleteRow(id){
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '/giathuetndefault/delete',
+                url: '/giahanghoadefault/delete',
                 type: 'GET',
                 data: {
                     _token: CSRF_TOKEN,
@@ -172,7 +172,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin giá tính thuế tài nguyên<small> thêm mới</small>
+        Thông tin giá hàng hóa, dịch vụ<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 
@@ -183,7 +183,7 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                        {!! Form::open(['url'=>'giathuetn', 'id' => 'create_kekhai', 'class'=>'horizontal-form','method'=>'post']) !!}
+                        {!! Form::open(['url'=>'giahhdv-diaphuong', 'id' => 'create_kekhai', 'class'=>'horizontal-form','method'=>'post']) !!}
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
@@ -194,81 +194,52 @@
                                     </div>
                                 </div>
                                 <!--/span-->
-                                @include('includes.crumbs.cb_phanloaitainguyen')
-                            </div>
-
-                            <!--/row-->
-                            <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Nhóm hàng hóa- dịch vụ<span class="require">*</span></label>
-                                        <select class="form-control" id="mapnhom" name="mapnhom">
-                                            <option value="">--Chọn nhóm hàng hóa- dịch vụ--</option>
-                                            @foreach($nhomhh as $nhom)
-                                                <option value="{{$nhom->masopnhom}}">{{$nhom->tenpnhom}}</option>
+                                <div class="col-md-6">
+                                    <div class="form-group has-error">
+                                        <label class="control-label">Thị trường<span class="require">*</span></label>
+                                        <select class="form-control required" name="thitruong" id="thitruong">
+                                            @foreach($thitruong as $ct)
+                                                <option value="{{$ct->thitruong}}">{{$ct->thitruong}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
+                                <!--/span-->
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Tên hàng hóa-dịch vụ<span class="require">*</span></label>
-                                        <div id="tthh">
-                                            <select class="form-control select2me" name="mahh" id="mahh">
-                                                <option value="">--Chọn hàng hóa- dịch vụ--</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--/row-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Giá từ<span class="require">*</span></label>
-                                        <input type="text" name="giatu" id="giatu" class="form-control" data-mask="fdecimal" value="0">
+                                        <label class="control-label">Loại hàng hóa<span class="require">*</span></label>
+                                        <select class="form-control" id="maloaihh" name="maloaihh">
+                                            @foreach($loaihh as $hh)
+                                                <option value="{{$hh->maloaihh}}">{{$hh->tenloaihh}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
-                                        <label class="control-label">Giá đến<span class="require">*</span></label>
-                                        <input type="text" name="giaden" id="giaden" class="form-control" data-mask="fdecimal" value="0">
+                                        <label class="control-label">Loại giá</label>
+                                        <select class="form-control" id="maloaigia" name="maloaigia">
+                                            @foreach($loaigia as $gia)
+                                                <option value="{{$gia->maloaigia}}">{{$gia->tenloaigia}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
+                                <input type="hidden" name="masopnhom" id="masopnhom" value="{{$masopnhom}}"/>
                                 <!--/span-->
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Số lượng</label>
-                                        <input type="text" name="soluong" id="soluong" class="form-control" data-mask="fdecimal" value="1">
-                                    </div>
+                                    <h4 class="" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Nguồn tin</label>
-                                        <input type="text" name="nguontin" id="nguontin" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Ghi chú</label>
-                                        <textarea id="gc" class="form-control" name="gc" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <button type="button" id="capnhatts" name="capnhatts" class="btn btn-primary">Cập nhật</button>
-                                        &nbsp;
-                                    </div>
+                                <div class="col-md-6 text-right">
+                                    <button type="button" data-target="#modal-create" data-toggle="modal" class="btn btn-default" onclick="clearForm()"><i class="fa fa-plus"></i>&nbsp;Kê khai bổ xung hàng hoá</button>
                                 </div>
                             </div>
                             <div class="row" id="dsts">
@@ -290,12 +261,12 @@
                                             <tbody id="ttts">
                                                 @foreach($model as $key=>$tents)
                                                     <tr id="{{$tents->id}}">
-                                                        <td>{{$key+1}}</td>
+                                                        <td style="text-align: center;">{{$key+1}}</td>
                                                         <td>{{$tents->mahh}}</td>
                                                         <td>{{$tents->tenhh}}</td>
                                                         <td></td>
                                                         <td></td>
-                                                        <td>{{$tents->soluong}}</td>
+                                                        <td style="text-align: center;">1</td>
                                                         <td>{{$tents->nguontin}}</td>
                                                         <td>{{$tents->gc}}</td>
                                                         <td>
@@ -316,10 +287,10 @@
             </div>
             <!-- END VALIDATION STATES-->
             <div class="row">
-                <div style="text-align: center;">
+                <div class="col-md-12" style="text-align: center">
                     <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                    <a href="{{url('giathuetn/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('giahhdv-diaphuong/maso='.$masopnhom.'/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 </div>
             </div>
             </form>
@@ -337,80 +308,6 @@
                 }
             });
         }
-    </script>
-    <script>
-        jQuery(document).ready(function($) {
-            $('button[name="capnhatts"]').click(function(){
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-
-                $.ajax({
-                    url: '/giathuetndefault/store',
-                    type: 'GET',
-                    data: {
-                        _token: CSRF_TOKEN,
-                        masopnhom: $('#mapnhom').val(),
-                        mahh: $('#mahh').val(),
-                        giatu: $('#giatu').val(),
-                        giaden: $('#giaden').val(),
-                        soluong: $('#soluong').val(),
-                        nguontin: $('#nguontin').val(),
-                        gc: $('textarea[name="gc"]').val()
-
-                    },
-                    dataType: 'JSON',
-                    success: function (data) {
-                        if(data.status == 'success') {
-                            toastr.success("Cập nhật thông tin giá hàng hóa dịch vụ thành công", "Thành công!");
-                            $('#dsts').replaceWith(data.message);
-                            jQuery(document).ready(function() {
-                                TableManaged.init();
-                            });
-                            $('#mapnhom').val('');
-                            $('#mahh').val('');
-                            $('#mahh').children().remove().end().append('<option selected value="">--Chọn tài nguyên--</option>') ;
-                            $('#mahh').select2({placeholder: '--Chọn hàng hóa, dịch vụ--'});
-                            $('#giatu').val('0');
-                            $('#giaden').val('0');
-                            $('#soluong').val('1');
-                            $('#nguontin').val('');
-                            $('#gc').val('');
-
-                            $('#mapnhom').focus();
-                        }
-                        else {
-                            toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                            $('#mapnhom').focus();
-                        }
-                    }
-                })
-            });
-
-        }(jQuery));
-    </script>
-    <script><!--change select2-->
-        jQuery(document).ready(function($) {
-                $('#mapnhom').change(function () {
-                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                    $.ajax({
-                        url: '/giathuetndefault/gettthh',
-                        type: 'GET',
-                        data: {
-                            _token: CSRF_TOKEN,
-                            mapnhom: $('#mapnhom').val()
-                        },
-                        dataType: 'JSON',
-                        success: function (data) {
-                            if(data.status == 'success') {
-                                toastr.success("Chọn nhóm tài nguyên thành công - Bạn cần chọn tên tài nguyên", "Thành công!");
-                                $('#tthh').replaceWith(data.message);
-                                $('#mahh').select2();
-                            }
-                            else
-                                toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
-                        }
-                    })
-                });
-        }(jQuery));
     </script>
 
     <!--Modal Wide Width-->
@@ -432,5 +329,123 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+    <!--Model them moi-->
+    <div class="modal fade bs-modal-lg" id="modal-create" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Thông tin hàng hoá</h4>
+                </div>
+                <div class="modal-body" id="ttpthemmoi">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Tên hàng hóa-dịch vụ<span class="require">*</span></label>
+                                <div id="tthh">
+                                    <select class="form-control select2me" name="mahh" id="mahh">
+                                        @foreach($dmhanghoa as $ct)
+                                            <option value="{{$ct->mahh}}">{{$ct->tenhh}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Giá từ<span class="require">*</span></label>
+                                <input type="text" name="giatu" id="giatu" class="form-control" data-mask="fdecimal" value="0">
+                            </div>
+                        </div>
+                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Giá đến<span class="require">*</span></label>
+                                <input type="text" name="giaden" id="giaden" class="form-control" data-mask="fdecimal" value="0">
+                            </div>
+                        </div>
+                        <!--/span-->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Số lượng</label>
+                                <input type="text" name="soluong" id="soluong" class="form-control" data-mask="fdecimal" value="1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Nguồn tin</label>
+                                <input type="text" name="nguontin" id="nguontin" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="control-label">Ghi chú</label>
+                                <textarea id="gc" class="form-control" name="gc" cols="30" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="iddv" name="iddv"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default">Thoát</button>
+                    <button type="button" class="btn btn-primary" onclick="updategia()">Bổ xung</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <script>
+        function updategia(){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                url: '/giahanghoadefault/store',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    mahh: $('#mahh').val(),
+                    giatu: $('#giatu').val(),
+                    giaden: $('#giaden').val(),
+                    soluong: $('#soluong').val(),
+                    nguontin: $('#nguontin').val(),
+                    gc: $('textarea[name="gc"]').val()
+
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if(data.status == 'success') {
+                        toastr.success("Cập nhật thông tin giá hàng hóa dịch vụ thành công", "Thành công!");
+                        $('#dsts').replaceWith(data.message);
+                        jQuery(document).ready(function() {
+                            TableManaged.init();
+                        });
+
+                        $('#giatu').val('0');
+                        $('#giaden').val('0');
+                        $('#soluong').val('1');
+                        $('#nguontin').val('');
+                        $('#gc').val('');
+                    }
+                    else {
+                        toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
+                    }
+                }
+            })
+            $('#modal-create').modal('hide');
+        }
+    </script>
     @include('includes.script.create-header-scripts')
 @stop

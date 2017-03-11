@@ -186,7 +186,6 @@
                         {!! Form::open(['url'=>'giathuetn-dk/store', 'id' => 'create_kekhai', 'class'=>'horizontal-form','method'=>'post','enctype'=>'multipart/form-data']) !!}
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
-                            <input type="hidden" name="mathoidiem" id="mathoidiem" value="{{$mathoidiem}}"/>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -217,7 +216,7 @@
                 <div style="text-align: center;">
                     <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                    <a href="{{url('giathuetn/thoidiem='.$mathoidiem.'/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('giathuetn/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 </div>
             </div>
             </form>

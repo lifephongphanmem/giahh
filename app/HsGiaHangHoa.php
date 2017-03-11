@@ -20,6 +20,7 @@ class HsGiaHangHoa extends Model
         'thang',
         'quy',
         'mahuyen',
-        'trangthai'
+        'trangthai',
+        'masopnhom'
     ];
 }

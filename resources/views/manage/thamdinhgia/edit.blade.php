@@ -454,10 +454,10 @@
                                     <!--th style="text-align: center">Nguồn gốc</th-->
                                     <th style="text-align: center">Đơn vị</br>tính</th>
                                     <th style="text-align: center">Số lượng</th>
-                                    <th style="text-align: center">Đơn giá</brđề nghị</th>
-                                    <th style="text-align: center">Giá trị</brđề nghị</th>
-                                    <th style="text-align: center">Đơn giá</brthẩm định</th>
-                                    <th style="text-align: center">Giá trị</brthẩm định</th>
+                                    <th style="text-align: center">Đơn giá</br>đề nghị</th>
+                                    <th style="text-align: center">Giá trị</br>đề nghị</th>
+                                    <th style="text-align: center">Đơn giá</br>thẩm định</th>
+                                    <th style="text-align: center">Giá trị</br>thẩm định</th>
                                     <th style="text-align: center">Ghi chú</th>
                                     <th style="text-align: center">Thao tác</th>
                                 </tr>

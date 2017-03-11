@@ -28,6 +28,7 @@ class CreateHsgiahanghoaTable extends Migration
             $table->string('trangthai');
             $table->string('filedk');
             $table->string('hoso',20);
+            $table->string('masopnhom',10);
             $table->timestamps();
         });
     }
