@@ -272,7 +272,6 @@
                                     <div class="form-group">
                                         <label class="control-label">Thuế VAT</label>
                                         <select class="form-control" name="thuevat" id="thuevat">
-                                            <option value=""></option>
                                             <option value="Giá bao gồm thuế VAT">Giá bao gồm thuế VAT</option>
                                             <option value="Giá chưa bao gồm thuế VAT">Giá chưa bao gồm thuế VAT</option>
                                         </select>
@@ -485,6 +484,32 @@
             });
             $('#thuevat').change(function () {
                 $('#gc').val($('#thuevat').val());
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '/thamdinhgiadefault/thuevat',
+                    type: 'GET',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        thuevat: $('#thuevat').val()
+                    },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        //$('#modal-wide-width').dialog('close');
+                        if(data.status == 'success') {
+                            toastr.success("Chỉnh sửa thông tin tài sản thành công", "Thành công!");
+                            $('#dsts').replaceWith(data.message);
+                            //$("#modal-wide-width").dialog("close");
+                            //$('#modal-wide-width').fadeOut();
+                            jQuery(document).ready(function() {
+                                TableManaged.init();
+                            });
+                            $('#modal-wide-width').modal("hide");
+
+
+                        }else
+                            toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
+                    }
+                })
             });
         });
     </script>

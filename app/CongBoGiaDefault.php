@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CongBoGiaDefault extends Model
 {
-    protected $table = 'congbogia-default';
+    protected $table = 'congbogia_default';
     protected $fillable = [
         'id',
         'tents',

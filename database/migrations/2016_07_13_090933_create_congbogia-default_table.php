@@ -12,7 +12,7 @@ class CreateCongbogiaDefaultTable extends Migration
      */
     public function up()
     {
-        Schema::create('congbogia-default', function (Blueprint $table) {
+        Schema::create('congbogia_default', function (Blueprint $table) {
             $table->increments('id');
             $table->text('tents');
             $table->text('dacdiempl');

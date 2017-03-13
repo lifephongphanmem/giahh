@@ -617,12 +617,27 @@ class ThamDinhGiaController extends Controller
                 $model->save();
             }
 
-        File::Delete($path);
-        $m_ts=ThamDinhGiaDefault::where('mahuyen', $madv)->get();
-        //dd($m_ts);
-        return view('manage.thamdinhgia.importexcel.index')
-            ->with('m_ts',$m_ts)
-            ->with('pageTitle','Thông tin thẩm định giá');
+            File::Delete($path);
+            $m_ts=ThamDinhGiaDefault::where('mahuyen', $madv)->get();
+            //dd($m_ts);
+            $model=new HsThamDinhGia();
+            $model->hosotdgia = $inputs['hosotdgia'];
+            $model->diadiem = $inputs['diadiem'];
+            $model->thoidiem = $inputs['thoidiem'];
+            $model->ppthamdinh = $inputs['ppthamdinh'];
+            $model->mucdich = $inputs['mucdich'];
+            $model->dvyeucau = $inputs['dvyeucau'];
+            $model->thoihan = $inputs['thoihan'];
+            $model->sotbkl = $inputs['sotbkl'];
+            $model->hosotdgia = $inputs['hosotdgia'];
+            $model->nguonvon = $inputs['nguonvon'];
+            $model->thuevat = $inputs['thuevat'];
+            $model->songaykq = $inputs['songaykq'];
+
+            return view('manage.thamdinhgia.importexcel.index')
+                ->with('m_ts',$m_ts)
+                ->with('model',$model)
+                ->with('pageTitle','Thông tin thẩm định giá');
         }else
             return view('errors.notlogin');
     }
@@ -656,6 +671,8 @@ class ThamDinhGiaController extends Controller
                 $model->quy = 4;
             $model->nam = date_format($date,'Y');
             $model->mahuyen = session('admin')->mahuyen;
+            $model->thuevat = $insert['thuevat'];
+            $model->songaykq = $insert['songaykq'];
             $model->mahs = $mahs;
             if($model->save()){
                 $m_ts=ThamDinhGiaDefault::select('tents','dacdiempl','thongsokt','nguongoc','dvt','sl','giadenghi','giatritstd','giakththamdinh','giaththamdinh','nguyengiadenghi','nguyengiathamdinh',DB::raw($mahs.' as mahs'))->where('mahuyen',session('admin')->mahuyen)->get()->toarray();
@@ -669,7 +686,7 @@ class ThamDinhGiaController extends Controller
                 $model->datanew = json_encode($insert);
                 $modelh->save();
             }
-            return redirect('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong'].'&pb=all');
+            return redirect('hoso-thamdinhgia/nam='.getGeneralConfigs()['namhethong']);
         }else{return view('errors.notlogin');}
     }
     //Tải file excel mẫu
@@ -704,103 +721,54 @@ class ThamDinhGiaController extends Controller
             );
             die(json_encode($result));
         }
-        //dd($request);
         $inputs = $request->all();
+        DB::statement("Update thamdinhgia set gc='".$inputs['thuevat']."' WHERE mahs='".$inputs['mahs']."'");
 
-        if(isset($inputs['id'])){
-            $inputs['sl'] = str_replace(',','',$inputs['sl']);
-            $inputs['sl'] = str_replace('.','',$inputs['sl']);
-            $inputs['nguyengiadenghi'] = str_replace(',','',$inputs['nguyengiadenghi']);
-            $inputs['nguyengiadenghi'] = str_replace('.','',$inputs['nguyengiadenghi']);
-            $inputs['giadenghi'] = str_replace(',','',$inputs['giadenghi']);
-            $inputs['giadenghi'] = str_replace('.','',$inputs['giadenghi']);
-            $inputs['nguyengiathamdinh'] = str_replace(',','',$inputs['nguyengiathamdinh']);
-            $inputs['nguyengiathamdinh'] = str_replace('.','',$inputs['nguyengiathamdinh']);
-            $inputs['giatritstd'] = str_replace(',','',$inputs['giatritstd']);
-            $inputs['giatritstd'] = str_replace('.','',$inputs['giatritstd']);
+        $model = ThamDinhGia::where('mahs',$inputs['mahs'])->get();
 
-            $modelupdate = ThamDinhGia::where('id',$inputs['id'])
-                ->first();
+        $result['message'] = '<div class="row" id="dsts">';
+        $result['message'] .= '<div class="col-md-12">';
+        $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
+        $result['message'] .= '<thead>';
+        $result['message'] .= '<tr>';
+        $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
+        $result['message'] .= '<th style="text-align: center">Tên tài sản</th>';
+        $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
+        $result['message'] .= '<th style="text-align: center">Số lượng</th>';
+        $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
+        $result['message'] .= '<th style="text-align: center">Giá trị</br>đề nghị</th>';
+        $result['message'] .= '<th style="text-align: center">Đơn giá</br>thẩm định</th>';
+        $result['message'] .= '<th style="text-align: center">Giá trị</br>thẩm định</th>';
+        $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
+        $result['message'] .= '<th style="text-align: center">Thao tác</th>';
+        $result['message'] .= '</tr>';
+        $result['message'] .= '</thead>';
 
-            $arraymodel = $modelupdate->toarray();
-            $arrayold = array_intersect_key($arraymodel,$inputs);
-            $arraynew = array_intersect_key($inputs,$arrayold);
+        $result['message'] .= '<tbody id="ttts">';
+        if(count($model) > 0){
+            foreach($model as $key=>$tents){
+                $result['message'] .= '<tr id="'.$tents->id.'">';
+                $result['message'] .= '<td style="text-align: center">'.($key+1).'</td>';
+                $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
+                $result['message'] .= '<td>'.$tents->dvt.'</td>';
+                $result['message'] .= '<td>'.number_format($tents->sl).'</td>';
+                $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
+                $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
+                $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
+                $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
+                $result['message'] .= '<td>'.$tents->gc.'</td>';
+                $result['message'] .= '<td>'.
+                    '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
+                    '<button type="button" data-target="#modal-delete-ts" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid('.$tents->id.');"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
 
-            $modelupdate->tents = $inputs['tents'];
-            $modelupdate->dacdiempl = $inputs['dacdiempl'];
-            $modelupdate->thongsokt  =$inputs['thongsokt'];
-            $modelupdate->nguongoc = $inputs['nguongoc'];
-            $modelupdate->dvt = $inputs['dvt'];
-            $modelupdate->sl = $inputs['sl'];
-            $modelupdate->nguyengiadenghi = $inputs['nguyengiadenghi'];
-            $modelupdate->giadenghi = $inputs['giadenghi'];
-            $modelupdate->nguyengiathamdinh = $inputs['nguyengiathamdinh'];
-            $modelupdate->giatritstd = $inputs['giatritstd'];
-            if($inputs['giatritstd'] == 0) {
-                $modelupdate->giakththamdinh = $inputs['giadenghi'];
-                $modelupdate->giaththamdinh = 0;
-            }else {
-                $modelupdate->giakththamdinh = 0;
-                $modelupdate->giaththamdinh = $inputs['giadenghi'];
+                    .'</td>';
+                $result['message'] .= '</tr>';
             }
-            $modelupdate->gc = $inputs['gc'];
-
-
-
-            if($modelupdate->save()) {
-                //add history
-                $this->updatehis($arrayold,$arraynew,$inputs['mahs']);
-
-            }
-
-            $model = ThamDinhGia::where('mahs',$inputs['mahs'])->get();
-
-            $result['message'] = '<div class="row" id="dsts">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
-            $result['message'] .= '<thead>';
-            $result['message'] .= '<tr>';
-            $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên tài sản</th>';
-            //$result['message'] .= '<!--th style="text-align: center">Nguồn gốc</th-->';
-            $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
-            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị</br>đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá</br>thẩm định</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị</br>thẩm định</th>';
-            $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
-            $result['message'] .= '<th style="text-align: center">Thao tác</th>';
-            $result['message'] .= '</tr>';
-            $result['message'] .= '</thead>';
-
-            $result['message'] .= '<tbody id="ttts">';
-            if(count($model) > 0){
-                foreach($model as $key=>$tents){
-                    $result['message'] .= '<tr id="'.$tents->id.'">';
-                    $result['message'] .= '<td style="text-align: center">'.($key+1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
-                    $result['message'] .= '<td>'.$tents->dvt.'</td>';
-                    $result['message'] .= '<td>'.number_format($tents->sl).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
-                    $result['message'] .= '<td>'.$tents->gc.'</td>';
-                    $result['message'] .= '<td>'.
-                        '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
-                        '<button type="button" data-target="#modal-delete-ts" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid('.$tents->id.');"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
-
-                        .'</td>';
-                    $result['message'] .= '</tr>';
-                }
-                $result['message'] .= '</tbody>';
-                $result['message'] .= '</table>';
-                $result['message'] .= '</div>';
-                $result['message'] .= '</div>';
-                $result['status'] = 'success';
-            }
-
+            $result['message'] .= '</tbody>';
+            $result['message'] .= '</table>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['status'] = 'success';
         }
 
         die(json_encode($result));

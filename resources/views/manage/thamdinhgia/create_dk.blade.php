@@ -91,7 +91,6 @@
                                     <div class="form-group">
                                         <label class="control-label">Thuế VAT</label>
                                         <select class="form-control" name="thuevat" id="thuevat">
-                                            <option value=""></option>
                                             <option value="Giá bao gồm thuế VAT">Giá bao gồm thuế VAT</option>
                                             <option value="Giá chưa bao gồm thuế VAT">Giá chưa bao gồm thuế VAT</option>
                                         </select>
@@ -106,15 +105,22 @@
                                         <input type="text" id="sotbkl" name="sotbkl" class="form-control required">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Số ngày sử dụng kết quả thẩm định</label>
+                                        <input data-mask="fdecimal" id="songaykq" name="songaykq" class="form-control" value="0">
+                                    </div>
+                                </div>
+                            </div>
 
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
                                         <input type="date" id="thoihan" name="thoihan" class="form-control required">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">File đính kèm</label>
@@ -149,6 +155,30 @@
                     ten :"Chưa nhập dữ liệu"
                 }
             });
+        }
+        $('#songaykq').change(function(){
+            addngay();
+        });
+        $('#thoidiem').change(function(){
+            addngay();
+        });
+        function addngay(){
+            var thoidiem = $('#thoidiem').val();
+            var songay = $('#songaykq').val();
+            if(thoidiem!='' && songay!=''){
+                var date = new Date(thoidiem);
+                date.setDate(date.getDate()+parseInt(songay));
+                var dd = date.getDate();
+                var mm = date.getMonth() + 1;
+                var y = date.getFullYear();
+                if(dd<10) {
+                    dd='0'+dd
+                }
+                if(mm<10) {
+                    mm='0'+mm
+                }
+                $('#thoihan').val(y+ '-'+mm + '-' + dd  );
+            }
         }
     </script>
     @include('includes.script.create-header-scripts')

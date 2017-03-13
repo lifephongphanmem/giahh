@@ -23,6 +23,7 @@ class HsThamDinhGia extends Model
         'nam',
         'mahuyen',
         'mahs',
-        'thuevat'
+        'thuevat',
+        'songaykq'
     ];
 }

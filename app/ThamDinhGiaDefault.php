@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ThamDinhGiaDefault extends Model
 {
-    protected $table = 'thamdinhgia-default';
+    protected $table = 'thamdinhgia_default';
     protected $fillable = [
         'id',
         'tents',

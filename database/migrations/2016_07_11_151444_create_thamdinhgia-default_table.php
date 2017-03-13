@@ -12,7 +12,7 @@ class CreateThamdinhgiaDefaultTable extends Migration
      */
     public function up()
     {
-        Schema::create('thamdinhgia-default', function (Blueprint $table) {
+        Schema::create('thamdinhgia_default', function (Blueprint $table) {
             $table->increments('id');
             $table->text('tents');
             $table->text('dacdiempl');

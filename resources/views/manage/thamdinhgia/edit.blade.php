@@ -300,7 +300,6 @@
                                 {!! Form::select(
                                 'thuevat',
                                 array(
-                                '' => '',
                                 'Giá bao gồm thuế VAT' => 'Giá bao gồm thuế VAT',
                                 'Giá chưa bao gồm thuế VAT' => 'Giá chưa bao gồm thuế VAT',
                                 ),null,
@@ -323,7 +322,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Số ngày sử dụng kết quả thẩm định</label>
-                                <input data-mask="fdecimal" id="songaykq" name="songaykq" class="form-control" value="0">
+                                <input data-mask="fdecimal" id="songaykq" name="songaykq" class="form-control" value="{{$model->songaykq}}">
                             </div>
                         </div>
                     </div>
@@ -551,6 +550,33 @@
             });
             $('#thuevat').change(function () {
                 $('#gc').val($('#thuevat').val());
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '/thamdinhgia/thuevat',
+                    type: 'GET',
+                    data: {
+                        _token: CSRF_TOKEN,
+                        mahs: $('#mahs').val(),
+                        thuevat: $('#thuevat').val()
+                    },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        //$('#modal-wide-width').dialog('close');
+                        if(data.status == 'success') {
+                            toastr.success("Chỉnh sửa thông tin tài sản thành công", "Thành công!");
+                            $('#dsts').replaceWith(data.message);
+                            //$("#modal-wide-width").dialog("close");
+                            //$('#modal-wide-width').fadeOut();
+                            jQuery(document).ready(function() {
+                                TableManaged.init();
+                            });
+                            $('#modal-wide-width').modal("hide");
+
+
+                        }else
+                            toastr.error("Bạn cần kiểm tra lại thông tin vừa nhập!", "Lỗi!");
+                    }
+                })
             });
         });
         function addngay(){

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 
@@ -347,11 +348,8 @@ class ThamDinhGiaDefaultController extends Controller
         $inputs = $request->all();
 
         if(isset($inputs['id'])){
-            $modeldel = ThamDinhGiaDefault::where('id',$inputs['id'])
-                ->delete();
-
-            $model = ThamDinhGiaDefault::where('mahuyen',session('admin')->mahuyen)
-                ->get();
+            ThamDinhGiaDefault::where('id',$inputs['id'])->delete();
+            $model = ThamDinhGiaDefault::where('mahuyen',session('admin')->mahuyen)->get();
 
             $result['message'] = '<div class="row" id="dsts">';
             $result['message'] .= '<div class="col-md-12">';
@@ -360,7 +358,6 @@ class ThamDinhGiaDefaultController extends Controller
             $result['message'] .= '<tr>';
             $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
             $result['message'] .= '<th style="text-align: center">Tên tài sản</th>';
-            //$result['message'] .= '<!--th style="text-align: center">Nguồn gốc</th-->';
             $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
             $result['message'] .= '<th style="text-align: center">Số lượng</th>';
             $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
@@ -377,8 +374,6 @@ class ThamDinhGiaDefaultController extends Controller
                     $result['message'] .= '<tr id="'.$tents->id.'">';
                     $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
                     $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
-                    //$result['message'] .= '<td>'.$tents->thongsokt.'</td>';
-                    //$result['message'] .= '<td>'.$tents->nguongoc.'</td>';
                     $result['message'] .= '<td>'.$tents->dvt.'</td>';
                     $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
@@ -407,12 +402,75 @@ class ThamDinhGiaDefaultController extends Controller
 
     public function importExcel(Request $request)
     {
-        dd($request);
         if ( !Input::hasFile('file')) {
             echo 'cancel';
         }else
             echo 'ok';
+    }
+
+    public function thuevat(Request $request){
+        $result = array(
+            'status' => 'fail',
+            'message' => 'error',
+        );
+        if(!Session::has('admin')) {
+            $result = array(
+                'status' => 'fail',
+                'message' => 'permission denied',
+            );
+            die(json_encode($result));
+        }
+        $inputs = $request->all();
+        DB::statement("Update thamdinhgia_default set gc='".$inputs['thuevat']."' WHERE mahuyen='".session('admin')->mahuyen."'");
 
 
+        $model = ThamDinhGiaDefault::where('mahuyen',session('admin')->mahuyen)->get();
+
+        $result['message'] = '<div class="row" id="dsts">';
+        $result['message'] .= '<div class="col-md-12">';
+        $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
+        $result['message'] .= '<thead>';
+        $result['message'] .= '<tr>';
+        $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
+        $result['message'] .= '<th style="text-align: center">Tên tài sản</th>';
+        $result['message'] .= '<th style="text-align: center">Đơn vị</br>tính</th>';
+        $result['message'] .= '<th style="text-align: center">Số lượng</th>';
+        $result['message'] .= '<th style="text-align: center">Đơn giá</br>đề nghị</th>';
+        $result['message'] .= '<th style="text-align: center">Giá trị</br>đề nghị</th>';
+        $result['message'] .= '<th style="text-align: center">Đơn giá</br>thẩm định</th>';
+        $result['message'] .= '<th style="text-align: center">Giá trị</br>thẩm định</th>';
+        $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
+        $result['message'] .= '<th style="text-align: center">Thao tác</th>';
+        $result['message'] .= '</tr>';
+        $result['message'] .= '</thead>';
+
+        $result['message'] .= '<tbody id="ttts">';
+        if(count($model) > 0){
+            foreach($model as $key=>$tents){
+                $result['message'] .= '<tr id="'.$tents->id.'">';
+                $result['message'] .= '<td style="text-align: center">'.($key+1).'</td>';
+                $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
+                $result['message'] .= '<td>'.$tents->dvt.'</td>';
+                $result['message'] .= '<td>'.number_format($tents->sl).'</td>';
+                $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
+                $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
+                $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
+                $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
+                $result['message'] .= '<td>'.$tents->gc.'</td>';
+                $result['message'] .= '<td>'.
+                    '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
+                    '<button type="button" data-target="#modal-delete-ts" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="getid('.$tents->id.');"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
+
+                    .'</td>';
+                $result['message'] .= '</tr>';
+            }
+            $result['message'] .= '</tbody>';
+            $result['message'] .= '</table>';
+            $result['message'] .= '</div>';
+            $result['message'] .= '</div>';
+            $result['status'] = 'success';
+        }
+
+        die(json_encode($result));
     }
 }
