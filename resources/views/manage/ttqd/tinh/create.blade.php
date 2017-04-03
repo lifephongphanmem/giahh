@@ -51,9 +51,6 @@
                                     <div class="form-group">
                                         <label class="control-label">Loại văn bản<span class="require">*</span></label>
                                         <select class="form-control" name="plttqd" id="plttqd">
-                                            <option value="LUAT">Luật</option>
-                                            <option value="ND">Nghị định</option>
-                                            <option value="TT">Thông tư</option>
                                             <option value="QD">Quyết định</option>
                                             <option value="HD">Hướng dẫn</option>
                                         </select>

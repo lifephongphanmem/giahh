@@ -557,16 +557,17 @@ class ThamDinhGiaController extends Controller
 
             $bd=$inputs['tudong'];
             $sd=$inputs['sodong'];
+            $sheet=isset($inputs['sheet'])?$inputs['sheet']:0;
             $filename = $madv . date('YmdHis');
             $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
             $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
 
             $data = [];
-            Excel::load($path, function($reader) use (&$data,$bd,$sd) {
+            Excel::load($path, function($reader) use (&$data,$bd,$sd,$sheet) {
                 //$reader->getSheet(0): là đối tượng -> dữ nguyên các cột
                 //$sheet: là đã tự động lấy dòng đầu tiên làm cột để nhận dữ liệu
                 $obj = $reader->getExcel();
-                $sheet = $obj->getSheet(0);
+                $sheet = $obj->getSheet($sheet);
                 $Row = $sheet->getHighestRow();
                 $Row = $sd+$bd > $Row ? $Row : ($sd+$bd);
                 $Col = $sheet->getHighestColumn();
@@ -616,6 +617,8 @@ class ThamDinhGiaController extends Controller
                 }
                 $model->save();
             }
+
+            $inputs=$request->all();//do sau khi chạy insert chi tiết thì  $inputs bị set lại dữ liệu
 
             File::Delete($path);
             $m_ts=ThamDinhGiaDefault::where('mahuyen', $madv)->get();

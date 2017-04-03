@@ -375,16 +375,16 @@
                                         <thead>
                                         <tr>
                                             <th width="2%" style="text-align: center">STT</th>
-                                            <th style="text-align: center">Tên vật tư, vật liệu</th>
+                                            <th style="text-align: center">Tên vật tư<br>vật liệu</th>
                                             <th style="text-align: center">Thông số<br>kỹ thuật</th>
                                             <th style="text-align: center">Nguồn gốc<br>xuất xứ</th>
                                             <th style="text-align: center">Đơn vị<br>tính</th>
                                             <th style="text-align: center">Số lượng</th>
-                                            <th style="text-align: center">Đơn giá<br> đề nghị</th>
-                                            <th style="text-align: center">Giá trị<br> đề nghị</th>
-                                            <th style="text-align: center">Đơn giá<br> công bố</th>
-                                            <th style="text-align: center">Giá trị<br> công bố</th>
-                                            <th style="text-align: center" width="15%">Thao tác</th>
+                                            <th style="text-align: center">Đơn giá<br>đề nghị</th>
+                                            <th style="text-align: center">Giá trị<br>đề nghị</th>
+                                            <th style="text-align: center">Đơn giá<br>công bố</th>
+                                            <th style="text-align: center">Giá trị<br>công bố</th>
+                                            <th style="text-align: center">Thao tác</th>
                                         </tr>
                                         </thead>
                                         <tbody id="ttts">

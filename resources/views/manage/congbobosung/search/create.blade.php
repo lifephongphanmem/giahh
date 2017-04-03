@@ -35,14 +35,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ngày nhập từ<span class="require">*</span></label>
-                                        <input type="date" id="ngaynhaptu" name="ngaynhaptu" class="form-control" autofocus value="2016-01-01">
+                                        <input type="date" id="ngaynhaptu" name="ngaynhaptu" class="form-control" autofocus value="2017-01-01">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ngày nhập đến <span class="require">*</span></label>
-                                        <input type="date" id="ngaynhapden" name="ngaynhapden" class="form-control" value="2016-12-31">
+                                        <input type="date" id="ngaynhapden" name="ngaynhapden" class="form-control" value="2017-12-31">
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -54,7 +54,6 @@
                                         {!! Form::select(
                                         'plhs',
                                         array(
-                                        ''=>'Chọn phân loại hồ sơ',
                                         'Công bố giá bổ sung' => 'Công bố giá bổ sung',
                                         ),null,
                                         array('id' => 'plhs', 'class' => 'form-control'))

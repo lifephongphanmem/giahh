@@ -107,13 +107,7 @@
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td class="active">{{$tt->dvbanhanh}}</td>
                                 <td style="text-align: center">
-                                    @if($tt->plttqd == 'LUAT')
-                                        Luật
-                                    @elseif($tt->plttqd == 'ND')
-                                        Nghị định
-                                    @elseif($tt->plttqd == 'TT')
-                                        Thông tư
-                                    @elseif($tt->plttqd == 'QD')
+                                    @if($tt->plttqd == 'QD')
                                         Quyết định
                                     @else
                                         Hướng dẫn

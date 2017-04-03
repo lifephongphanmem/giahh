@@ -68,54 +68,9 @@ class CongBoGiaController extends Controller
             $modelts->mahs = $inputs['mahs'];
             $modelts->save();
 
-            $model = CongBoGia::where('mahs',$inputs['mahs'])
-                ->get();
-
-            $result['message'] = '<div class="row" id="dsts">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
-            $result['message'] .= '<thead>';
-            $result['message'] .= '<tr>';
-            $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên vật tư VLXD</th>';
-            $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
-            $result['message'] .= '<th style="text-align: center">Nguồn gốc xuất xứ</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn vị<br> tính</th>';
-            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá<br> đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị<br> đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá<br> công bố</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị<br> công bố</th>';
-            $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
-            $result['message'] .= '</tr>';
-            $result['message'] .= '</thead>';
-            $result['message'] .= '<tbody id="ttts">';
-            if(count($model) > 0){
-                foreach($model as $key=>$tents){
-                    $result['message'] .= '<tr id="'.$tents->id.'">';
-                    $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
-                    $result['message'] .= '<td>'.$tents->thongsokt.'</td>';
-                    $result['message'] .= '<td>'.$tents->nguongoc.'</td>';
-                    $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
-                    $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
-                    $result['message'] .= '<td>'.
-                        '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
-                        '<button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('.$tents->id.')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
-
-                        .'</td>';
-                    $result['message'] .= '</tr>';
-                }
-                $result['message'] .= '</tbody>';
-                $result['message'] .= '</table>';
-                $result['message'] .= '</div>';
-                $result['message'] .= '</div>';
-                $result['status'] = 'success';
-            }
+            $model = CongBoGia::where('mahs',$inputs['mahs'])->get();
+            $result['message'] = $this->return_html($model);
+            $result['status'] = 'success';
         }
         die(json_encode($result));
     }
@@ -244,24 +199,24 @@ class CongBoGiaController extends Controller
         //dd($request);
         $inputs = $request->all();
 
-        if(isset($inputs['id'])){
+        if(isset($inputs['id'])) {
 
-            $inputs['sl'] = str_replace(',','',$inputs['sl']);
-            $inputs['sl'] = str_replace('.','',$inputs['sl']);
-            $inputs['nguyengiadenghi'] = str_replace(',','',$inputs['nguyengiadenghi']);
-            $inputs['nguyengiadenghi'] = str_replace('.','',$inputs['nguyengiadenghi']);
-            $inputs['giadenghi'] = str_replace(',','',$inputs['giadenghi']);
-            $inputs['giadenghi'] = str_replace('.','',$inputs['giadenghi']);
-            $inputs['nguyengiathamdinh'] = str_replace(',','',$inputs['nguyengiathamdinh']);
-            $inputs['nguyengiathamdinh'] = str_replace('.','',$inputs['nguyengiathamdinh']);
-            $inputs['giatritstd'] = str_replace(',','',$inputs['giatritstd']);
-            $inputs['giatritstd'] = str_replace('.','',$inputs['giatritstd']);
+            $inputs['sl'] = str_replace(',', '', $inputs['sl']);
+            $inputs['sl'] = str_replace('.', '', $inputs['sl']);
+            $inputs['nguyengiadenghi'] = str_replace(',', '', $inputs['nguyengiadenghi']);
+            $inputs['nguyengiadenghi'] = str_replace('.', '', $inputs['nguyengiadenghi']);
+            $inputs['giadenghi'] = str_replace(',', '', $inputs['giadenghi']);
+            $inputs['giadenghi'] = str_replace('.', '', $inputs['giadenghi']);
+            $inputs['nguyengiathamdinh'] = str_replace(',', '', $inputs['nguyengiathamdinh']);
+            $inputs['nguyengiathamdinh'] = str_replace('.', '', $inputs['nguyengiathamdinh']);
+            $inputs['giatritstd'] = str_replace(',', '', $inputs['giatritstd']);
+            $inputs['giatritstd'] = str_replace('.', '', $inputs['giatritstd']);
 
-            $modelupdate = CongBoGia::where('id',$inputs['id'])
+            $modelupdate = CongBoGia::where('id', $inputs['id'])
                 ->first();
             $modelupdate->tents = $inputs['tents'];
             $modelupdate->dacdiempl = $inputs['dacdiempl'];
-            $modelupdate->thongsokt  =$inputs['thongsokt'];
+            $modelupdate->thongsokt = $inputs['thongsokt'];
             $modelupdate->nguongoc = $inputs['nguongoc'];
             $modelupdate->dvt = $inputs['dvt'];
             $modelupdate->sl = $inputs['sl'];
@@ -269,67 +224,20 @@ class CongBoGiaController extends Controller
             $modelupdate->giadenghi = $inputs['giadenghi'];
             $modelupdate->nguyengiathamdinh = $inputs['nguyengiathamdinh'];
             $modelupdate->giatritstd = $inputs['giatritstd'];
-            if($inputs['giatritstd'] == 0) {
+            if ($inputs['giatritstd'] == 0) {
                 $modelupdate->giakththamdinh = $inputs['giadenghi'];
                 $modelupdate->giaththamdinh = 0;
-            }else {
+            } else {
                 $modelupdate->giakththamdinh = 0;
                 $modelupdate->giaththamdinh = $inputs['giadenghi'];
             }
             $modelupdate->gc = $inputs['gc'];
             $modelupdate->save();
 
-            $model = CongBoGia::where('mahs',$inputs['mahs'])
-                ->get();
-
-            $result['message'] = '<div class="row" id="dsts">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
-            $result['message'] .= '<thead>';
-            $result['message'] .= '<tr>';
-            $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên vật tư VLXD</th>';
-            $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
-            $result['message'] .= '<th style="text-align: center">Nguồn gốc xuất xứ</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn vị<br> tính</th>';
-            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá<br> đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị<br> đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá<br> công bố</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị<br> công bố</th>';
-            $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
-            $result['message'] .= '</tr>';
-            $result['message'] .= '</thead>';
-            $result['message'] .= '<tbody id="ttts">';
-            if(count($model) > 0){
-                foreach($model as $key=>$tents){
-                    $result['message'] .= '<tr id="'.$tents->id.'">';
-                    $result['message'] .= '<td style="text-align: center">'.($key+1).'</td>';
-                    $result['message'] .= '<td class="active">'.$tents->tents.'</td>';
-                    $result['message'] .= '<td>'.$tents->thongsokt.'</td>';
-                    $result['message'] .= '<td>'.$tents->nguongoc.'</td>';
-                    $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
-                    $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
-                    $result['message'] .= '<td>'.
-                        '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
-                        '<button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('.$tents->id.')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
-
-                        .'</td>';
-                    $result['message'] .= '</tr>';
-                }
-                $result['message'] .= '</tbody>';
-                $result['message'] .= '</table>';
-                $result['message'] .= '</div>';
-                $result['message'] .= '</div>';
-                $result['status'] = 'success';
-            }
-
+            $model = CongBoGia::where('mahs', $inputs['mahs'])->get();
+            $result['message'] = $this->return_html($model);
+            $result['status'] = 'success';
         }
-
         die(json_encode($result));
     }
 
@@ -355,55 +263,9 @@ class CongBoGiaController extends Controller
             $mahs = $modeldel->mahs;
             $modeldel->delete();
 
-            $model = CongBoGia::where('mahs',$mahs)
-                ->get();
-
-            $result['message'] = '<div class="row" id="dsts">';
-            $result['message'] .= '<div class="col-md-12">';
-            $result['message'] .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
-            $result['message'] .= '<thead>';
-            $result['message'] .= '<tr>';
-            $result['message'] .= '<th width="2%" style="text-align: center">STT</th>';
-            $result['message'] .= '<th style="text-align: center">Tên vật tư VLXD</th>';
-            $result['message'] .= '<th style="text-align: center">Thông số kỹ thuật</th>';
-            $result['message'] .= '<th style="text-align: center">Nguồn gốc xuất xứ</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn vị<br> tính</th>';
-            $result['message'] .= '<th style="text-align: center">Số lượng</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá<br> đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị<br> đề nghị</th>';
-            $result['message'] .= '<th style="text-align: center">Đơn giá<br> công bố</th>';
-            $result['message'] .= '<th style="text-align: center">Giá trị<br> công bố</th>';
-            $result['message'] .= '<th style="text-align: center" width="15%">Thao tác</th>';
-            $result['message'] .= '</tr>';
-            $result['message'] .= '</thead>';
-            $result['message'] .= '<tbody id="ttts">';
-            if(count($model) > 0){
-                foreach($model as $key=>$tents){
-                    $result['message'] .= '<tr id="'.$tents->id.'">';
-                    $result['message'] .= '<td style="text-align: center">'.($key +1).'</td>';
-                    $result['message'] .= '<td class="active"  width="15%">'.$tents->tents.'</td>';
-                    $result['message'] .= '<td>'.$tents->thongsokt.'</td>';
-                    $result['message'] .= '<td>'.$tents->nguongoc.'</td>';
-                    $result['message'] .= '<td style="text-align: center">'.$tents->dvt.'</td>';
-                    $result['message'] .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
-                    $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
-                    $result['message'] .= '<td>'.
-                        '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
-                        '<button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('.$tents->id.')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
-
-                        .'</td>';
-                    $result['message'] .= '</tr>';
-                }
-                $result['message'] .= '</tbody>';
-                $result['message'] .= '</table>';
-                $result['message'] .= '</div>';
-                $result['message'] .= '</div>';
-                $result['status'] = 'success';
-            }
-
+            $model = CongBoGia::where('mahs',$mahs)->get();
+            $result['message'] = $this->return_html($model);
+            $result['status'] = 'success';
         }
         die(json_encode($result));
     }
@@ -474,7 +336,7 @@ class CongBoGiaController extends Controller
             CongBoGiaDefault::where('mahuyen', $madv)->delete();
 
             $inputs = $request->all();
-
+            $sheet=isset($inputs['sheet'])?$inputs['sheet']:0;
             $bd = $inputs['tudong'];
             $sd = $inputs['sodong'];
             $filename = $madv . date('YmdHis');
@@ -482,11 +344,11 @@ class CongBoGiaController extends Controller
             $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
 
             $data = [];
-            Excel::load($path, function ($reader) use (&$data, $bd, $sd) {
+            Excel::load($path, function ($reader) use (&$data, $bd, $sd, $sheet) {
                 //$reader->getSheet(0): là đối tượng -> dữ nguyên các cột
                 //$sheet: là đã tự động lấy dòng đầu tiên làm cột để nhận dữ liệu
                 $obj = $reader->getExcel();
-                $sheet = $obj->getSheet(0);
+                $sheet = $obj->getSheet($sheet);
                 $Row = $sheet->getHighestRow();
                 $Row = $sd + $bd > $Row ? $Row : ($sd + $bd);
                 $Col = $sheet->getHighestColumn();
@@ -595,5 +457,52 @@ class CongBoGiaController extends Controller
 
         }else
             return view('errors.notlogin');
+    }
+    
+    function return_html($chitiet){
+        $message = '<div class="row" id="dsts">';
+        $message .= '<div class="col-md-12">';
+        $message .= '<table class="table table-striped table-bordered table-hover" id="sample_3">';
+        $message .= '<thead>';
+        $message .= '<tr>';
+        $message .= '<th width="2%" style="text-align: center">STT</th>';
+        $message .= '<th style="text-align: center">Tên vật<br>tư VLXD</th>';
+        $message .= '<th style="text-align: center">Thông số<br>kỹ thuật</th>';
+        $message .= '<th style="text-align: center">Nguồn gốc<br>xuất xứ</th>';
+        $message .= '<th style="text-align: center">Đơn vị<br>tính</th>';
+        $message .= '<th style="text-align: center">Số lượng</th>';
+        $message .= '<th style="text-align: center">Đơn giá<br>đề nghị</th>';
+        $message .= '<th style="text-align: center">Giá trị<br>đề nghị</th>';
+        $message .= '<th style="text-align: center">Đơn giá<br>công bố</th>';
+        $message .= '<th style="text-align: center">Giá trị<br>công bố</th>';
+        $message .= '<th style="text-align: center">Thao tác</th>';
+        $message .= '</tr>';
+        $message .= '</thead>';
+        $message .= '<tbody id="ttts">';
+        if(count($chitiet) > 0){
+            foreach($chitiet as $key=>$tents){
+                $message .= '<tr id="'.$tents->id.'">';
+                $message .= '<td style="text-align: center">'.($key +1).'</td>';
+                $message .= '<td class="active">'.$tents->tents.'</td>';
+                $message .= '<td>'.$tents->thongsokt.'</td>';
+                $message .= '<td>'.$tents->nguongoc.'</td>';
+                $message .= '<td style="text-align: center">'.$tents->dvt.'</td>';
+                $message .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
+                $message .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
+                $message .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
+                $message .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
+                $message .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
+                $message .= '<td>'.
+                    '<button type="button" data-target="#modal-wide-width" data-toggle="modal" class="btn btn-default btn-xs mbs" onclick="editItem('.$tents->id.');"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</button>'.
+                    '<button type="button" class="btn btn-default btn-xs mbs" onclick="deleteRow('.$tents->id.')" ><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>'
+                    .'</td>';
+                $message .= '</tr>';
+            }
+            $message .= '</tbody>';
+            $message .= '</table>';
+            $message .= '</div>';
+            $message .= '</div>';
+        }
+        return $message;
     }
 }

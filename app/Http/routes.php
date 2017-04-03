@@ -478,6 +478,9 @@ Route::post('store-congbobosung','CongBoGiaBoSungController@storeimport');
 Route::get('thongtin-congbobosung/nam={nam}&pb={pb}','HsCongBoGiaBoSungController@showindex');
 Route::get('thongtin-congbobosung/{id}/show','HsCongBoGiaBoSungController@view');
 Route::post('thongtin-congbobosung/huy','HsCongBoGiaBoSungController@huy');
+
+Route::get('timkiem-congbobosung','CongBoGiaBoSungController@search');
+Route::post('timkiem-congbobosung','CongBoGiaBoSungController@viewsearch');
 //End Công bố giá bổ sung
 
 //Tài sản nhà nước

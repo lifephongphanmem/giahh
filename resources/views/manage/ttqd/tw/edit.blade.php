@@ -56,7 +56,8 @@
                                         'LUAT'=> 'Luật',
                                         'ND' => 'Nghị định',
                                         'TT' => 'Thông tư',
-                                        'HD' => 'Hướng dẫn',
+                                        'TTLT' => 'Thông tư liên tịch',
+                                        'HD' => 'Hướng dẫn'
                                         ),null,
                                         array('id' => 'plttqd', 'class' => 'form-control'))
                                         !!}

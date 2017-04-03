@@ -53,11 +53,8 @@
                                         {!! Form::select(
                                         'plttqd',
                                         array(
-                                        'LUAT'=> 'Luật',
-                                        'ND' => 'Nghị định',
-                                        'TT' => 'Thông tư',
-                                        'QD' => 'Quyết định'
-                                        'HD' => 'Hướng dẫn',
+                                        'QD' => 'Quyết định',
+                                        'HD' => 'Hướng dẫn'
                                         ),null,
                                         array('id' => 'plttqd', 'class' => 'form-control'))
                                         !!}

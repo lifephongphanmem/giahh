@@ -110,14 +110,24 @@
                                 </div>
                                 <!--/span-->
                             </div>
+
                             <div class="row">
-                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Sheet lấy dữ liệu<span class="require">*</span></label>
+                                        {!!Form::text('sheet', '0', array('id' => 'sheet','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">File thông tin<span class="require">*</span></label>
                                         <input name="fexcel" type="file" class="required" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">File dữ liệu mẫu<span class="require">*</span></label>

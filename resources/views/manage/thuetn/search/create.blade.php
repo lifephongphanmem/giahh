@@ -58,14 +58,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời gian nhập từ<span class="require">*</span></label>
-                                        <input type="date" id="tgnhaptu" name="tgnhaptu" class="form-control" autofocus value="2016-01-01">
+                                        <input type="date" id="tgnhaptu" name="tgnhaptu" class="form-control" autofocus value="2017-01-01">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời gian nhập đến<span class="require">*</span></label>
-                                        <input type="date" id="tgnhapden" name="tgnhapden" class="form-control" value="2016-12-31">
+                                        <input type="date" id="tgnhapden" name="tgnhapden" class="form-control" value="2017-12-31">
                                     </div>
                                 </div>
                                 <!--/span-->

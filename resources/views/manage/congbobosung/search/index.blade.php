@@ -39,7 +39,7 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        <a href="{{url('timkiem-congbogia')}}" class="btn btn-default btn-sm">
+                        <a href="{{url('timkiem-congbobosung')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-mail-reply"></i> Quay lại tìm kiếm </a>
                     </div>
                 </div>
@@ -48,16 +48,16 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Thời gian<br> công bố giá</th>
-                            <th style="text-align: center">Phân loại hồ sơ</th>
-                            <th style="text-align: center">Số công bố</th>
+                            <th style="text-align: center">Thời gian<br>công bố giá</th>
+                            <th style="text-align: center">Phân loại<br>hồ sơ</th>
+                            <th style="text-align: center">Số công<br>bố</th>
                             <th style="text-align: center">Nguồn vốn</th>
                             <th style="text-align: center">Tài sản</th>
-                            <th style="text-align: center">Đơn vị <br>tính</th>
-                            <th style="text-align: center">Thông số kỹ thuật</th>
+                            <th style="text-align: center">Đơn vị<br>tính</th>
+                            <th style="text-align: center">Thông số<br>kỹ thuật</th>
                             <th style="text-align: center">Nguồn gốc</th>
                             <th style="text-align: center">Số lượng</th>
-                            <th style="text-align: center">Giá công bố</th>
+                            <th style="text-align: center">Giá công<br>bố</th>
                         </tr>
                         </thead>
                         <tbody>

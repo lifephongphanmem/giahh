@@ -35,14 +35,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thẩm định từ ngày<span class="require">*</span></label>
-                                        <input type="date" id="thoidiemtu" name="thoidiemtu" class="form-control" autofocus value="2016-01-01">
+                                        <input type="date" id="thoidiemtu" name="thoidiemtu" class="form-control" autofocus value="2017-01-01">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thẩm định đến ngày<span class="require">*</span></label>
-                                        <input type="date" id="thoidiemden" name="thoidiemden" class="form-control" value="2016-12-31">
+                                        <input type="date" id="thoidiemden" name="thoidiemden" class="form-control" value="2017-12-31">
                                     </div>
                                 </div>
                                 <!--/span-->

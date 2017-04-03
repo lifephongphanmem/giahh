@@ -64,6 +64,7 @@
                     <option value="LUAT" {{$pl == 'LUAT' ? 'selected' : ''}}>Luật</option>
                     <option value="ND" {{$pl == 'ND' ? 'selected' : ''}}>Nghị định</option>
                     <option value="TT" {{$pl == 'TT' ? 'selected' : ''}}>Thông tư</option>
+                    <option value="TTLT" {{$pl == 'TTLT' ? 'selected' : ''}}>Thông tư liên tịch</option>
                     <option value="HD" {{$pl == 'HD' ? 'selected' : ''}}>Hướng dẫn</option>
                 </select>
             </div>
@@ -112,6 +113,8 @@
                                         Nghị định
                                     @elseif($tt->plttqd == 'TT')
                                         Thông tư
+                                    @elseif($tt->plttqd == 'TTLT')
+                                        Thông tư liên tịch
                                     @else
                                         Hướng dẫn
                                     @endif
