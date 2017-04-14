@@ -229,7 +229,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Sheet lấy dữ liệu<span class="require">*</span></label>
-                                        {!!Form::text('sheet', '0', array('id' => 'sheet','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
+                                        {!!Form::text('sheet', '1', array('id' => 'sheet','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
                                     </div>
                                 </div>
 

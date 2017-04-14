@@ -337,6 +337,7 @@ class CongBoGiaBoSungController extends Controller
             $inputs = $request->all();
 
             $sheet=isset($inputs['sheet'])?$inputs['sheet']-1:0;
+            $sheet=$sheet<0?0:$sheet;
             $bd = $inputs['tudong'];
             $sd = $inputs['sodong'];
             $filename = $madv . date('YmdHis');

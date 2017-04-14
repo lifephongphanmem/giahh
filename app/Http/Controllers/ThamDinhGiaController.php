@@ -558,6 +558,7 @@ class ThamDinhGiaController extends Controller
             $bd=$inputs['tudong'];
             $sd=$inputs['sodong'];
             $sheet=isset($inputs['sheet'])?$inputs['sheet']-1:0;
+            $sheet=$sheet<0?0:$sheet;
             $filename = $madv . date('YmdHis');
             $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
             $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
