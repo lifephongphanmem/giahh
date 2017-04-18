@@ -233,6 +233,27 @@
                 </div>
             @endif
         @endif
+
+        @if(canGeneral('giadat','loaidat'))
+            @if(can('congbogia','index'))
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="dashboard-stat yellow-gold">
+                        <div class="visual">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number"></div>
+                            <div class="desc">
+                                Giá đất
+                            </div>
+                        </div>
+                        <a class="more" href="{{url('thongtin-congbogia/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}">
+                            Xem chi tiết<i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+            @endif
+        @endif
         @if(canGeneral('ttqd','ttqd'))
             @if(can('ttqd','index'))
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">

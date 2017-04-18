@@ -344,6 +344,34 @@ Route::get('timkiem-giahhdv-diaphuong','HsGiaHangHoaDP_LaoCaiController@search')
 Route::post('timkiem-giahhdv-diaphuong','HsGiaHangHoaDP_LaoCaiController@viewsearch');
 //End - kê khai giá dia phuong danh cho Lào Cai
 
+//kê khai giá đất theo loại đất
+Route::group(['prefix'=>'giadat-loai'],function(){
+    Route::get('','HsGiaDat_LoaiDatController@thoidiem');
+    Route::get('maso={thoidiem}/nam={nam}','HsGiaDat_LoaiDatController@index');
+    Route::get('/maso={masopnhom}/create','HsGiaDat_LoaiDatController@create');
+    Route::post('','HsGiaDat_LoaiDatController@store');
+    Route::get('{id}/show','HsGiaDat_LoaiDatController@show');
+    Route::get('{id}/edit','HsGiaDat_LoaiDatController@edit');
+    Route::patch('{id}','HsGiaDat_LoaiDatController@update');
+    Route::post('delete','HsGiaDat_LoaiDatController@destroy');
+    Route::post('approve','HsGiaDat_LoaiDatController@approve');
+});
+Route::group(['prefix'=>'giadat-loai-dk'],function(){
+    Route::get('maso={masopnhom}/create_dk','HsGiaDat_LoaiDatController@create_dk');
+    Route::patch('{id}','HsGiaDat_LoaiDatController@update_dk');
+    Route::post('','HsGiaDat_LoaiDatController@store_dk');
+    Route::get('{id}/edit','HsGiaDat_LoaiDatController@edit_dk');
+});
+Route::group(['prefix'=>'thongtin-giadat-loai'],function(){
+    Route::get('','HsGiaDat_LoaiDatController@showthoidiem');
+    Route::get('maso={thoidiem}/nam={nam}&pb={pb}','HsGiaDat_LoaiDatController@showindex');
+    Route::get('{id}/show','HsGiaDat_LoaiDatController@view');
+    Route::post('unapprove','HsGiaDat_LoaiDatController@unapprove');
+});
+Route::get('timkiem-giadat-loai','HsGiaDat_LoaiDatController@search');
+Route::post('timkiem-giadat-loai','HsGiaDat_LoaiDatController@viewsearch');
+//End - kê khai giá đất theo loại đất
+
     //TTQĐ
 //TW
 Route::get('thongtu-quyetdinh-tw/nam={nam}&pl={pl}','TtQdController@tw');
@@ -474,6 +502,16 @@ Route::post('hoso-congbobosung-dk','HsCongBoGiaBoSungController@store_dk');
 Route::get('hoso-congbobosung/import','CongBoGiaBoSungController@import');
 Route::resource('hoso-congbobosung/import-view','CongBoGiaBoSungController@showimport');
 Route::post('store-congbobosung','CongBoGiaBoSungController@storeimport');
+
+Route::get('congbobosungdefault/store','CongBoGiaBoSungDefaultController@store');
+Route::get('congbobosungdefault/edit','CongBoGiaBoSungDefaultController@edit');
+Route::get('congbobosungdefault/update','CongBoGiaBoSungDefaultController@update');
+Route::get('congbobosungdefault/delete','CongBoGiaBoSungDefaultController@destroy');
+
+Route::get('congbobosung/store','CongBoGiaBoSungController@store');
+Route::get('congbobosung/edit','CongBoGiaBoSungController@edit');
+Route::get('congbobosung/update','CongBoGiaBoSungController@update');
+Route::get('congbobosung/delete','CongBoGiaBoSungController@destroy');
 
 Route::get('thongtin-congbobosung/nam={nam}&pb={pb}','HsCongBoGiaBoSungController@showindex');
 Route::get('thongtin-congbobosung/{id}/show','HsCongBoGiaBoSungController@view');

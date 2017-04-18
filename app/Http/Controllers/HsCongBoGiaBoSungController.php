@@ -187,8 +187,8 @@ class HsCongBoGiaBoSungController extends Controller
                 $model->nguongoc = $ts->nguongoc;
                 $model->dvt = $ts->dvt;
                 $model->sl = $ts->sl;
-                $model->nguyengiadenghi = $ts->nguyengiadenghi;
-                $model->giadenghi = $ts->giadenghi;
+                //$model->nguyengiadenghi = $ts->nguyengiadenghi;
+                //$model->giadenghi = $ts->giadenghi;
                 $model->nguyengiathamdinh = $ts->nguyengiathamdinh;
                 $model->giatritstd = $ts->giatritstd;
                 $model->giakththamdinh = $ts->giakththamdinh;

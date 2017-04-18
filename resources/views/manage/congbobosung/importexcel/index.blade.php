@@ -99,7 +99,6 @@
                                                 <th style="text-align: center">Nguồn gốc</th>
                                                 <th style="text-align: center">Đơn vị tính</th>
                                                 <th style="text-align: center">Số lượng</th>
-                                                <th style="text-align: center">Giá trị đề nghị</th>
                                                 <th style="text-align: center">Giá trị thẩm định</th>
                                                 <th style="text-align: center" width="10%">Thao tác</th>
                                             </tr>
@@ -117,7 +116,6 @@
                                                         <td>{{$ct->nguongoc}}</td>
                                                         <td>{{$ct->dvt}}</td>
                                                         <td>{{$ct->sl}}</td>
-                                                        <td>{{$ct->giadenghi}}</td>
                                                         <td>{{$ct->giatritstd}}</td>
                                                         <td><button type="button" onclick="confirmDelete('{{$ct->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                                 Xóa</button></td>

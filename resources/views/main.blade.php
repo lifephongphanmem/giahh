@@ -584,6 +584,62 @@ License: You must have a valid license purchased only from themeforest(the above
                 </li>
                 @endif
 
+                @if(canGeneral('giadat','loaidat') || canGeneral('giadat','vitri'))
+                    <li>
+                        <a href="javascript:;">
+                            <i class="fa fa-laptop"></i>
+                            <span class="title">Giá đất</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @if(canGeneral('giadat','loaidat'))
+                                <li>
+                                    <a href="javascript:;">Giá theo phân loại<span class="arrow"></span> </a>
+                                    <ul class="sub-menu">
+                                        @if(can('loaidat','create')||can('loaidat','edit'))
+                                            <li>
+                                                <a href="{{url('giahhdv-tw')}}">Kê khai giá</a>
+                                            </li>
+                                        @endif
+                                        @if(can('loaidat','index'))
+                                            <li>
+                                                <a href="{{url('thongtin-tw')}}">Thông tin kê khai giá</a>
+                                            </li>
+                                        @endif
+                                        <li>
+                                            <a href="{{url('timkiem-giahhdv-tw')}}">Tìm kiếm thông tin kê khai giá</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            @endif
+
+                            @if(canGeneral('giadat','vitri'))
+                                <li>
+                                    <a href="javascript:;">Giá theo vị trí<span class="arrow"></span> </a>
+                                    <ul class="sub-menu">
+                                        @if(can('vitri','create')||can('vitri','edit'))
+                                            <li>
+                                                <a href="{{url('giahhdv-dp')}}">Kê khai giá</a>
+                                            </li>
+                                        @endif
+                                        @if(can('vitri','index'))
+                                            <li>
+                                                <a href="{{url('thongtin-dp')}}">Thông tin kê khai giá</a>
+                                            </li>
+                                        @endif
+                                        <li>
+                                            <a href="{{url('timkiem-giahhdv-dp')}}">Tìm kiếm thông tin kê khai giá</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            @endif
+
+                        </ul>
+                    </li>
+                @endif
+
                 @if(canGeneral('ttqd','ttqd'))
                     @if(can('ttqd','index'))
                 <li>

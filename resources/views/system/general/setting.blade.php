@@ -213,6 +213,31 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            <div class="col-md-3">
+                                <h4 style="text-align: center">Giá đất</h4>
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="table-checkbox" width="5%">
+                                            <!--input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/-->
+                                        </th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($setting->giadat->loaidat) && $setting->giadat->loaidat == 1) ? 'checked' : '' }} value="1" name="roles[giadat][loaidat]"/></td>
+                                        <td>Giá theo loại đất</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" {{ (isset($setting->giadat->vitri) && $setting->giadat->vitri == 1) ? 'checked' : '' }} value="1" name="roles[giadat][vitri]"/></td>
+                                        <td>Giá theo vị trí</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="form-actions" style="text-align: center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Cập nhật</button>

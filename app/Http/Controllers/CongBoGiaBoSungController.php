@@ -34,16 +34,9 @@ class CongBoGiaBoSungController extends Controller
         //dd($request);
         $inputs = $request->all();
 
-        $inputs['sl'] = str_replace(',','',$inputs['sl']);
-        $inputs['sl'] = str_replace('.','',$inputs['sl']);
-        $inputs['nguyengiadenghi'] = str_replace(',','',$inputs['nguyengiadenghi']);
-        $inputs['nguyengiadenghi'] = str_replace('.','',$inputs['nguyengiadenghi']);
-        $inputs['giadenghi'] = str_replace(',','',$inputs['giadenghi']);
-        $inputs['giadenghi'] = str_replace('.','',$inputs['giadenghi']);
-        $inputs['nguyengiathamdinh'] = str_replace(',','',$inputs['nguyengiathamdinh']);
-        $inputs['nguyengiathamdinh'] = str_replace('.','',$inputs['nguyengiathamdinh']);
-        $inputs['giatritstd'] = str_replace(',','',$inputs['giatritstd']);
-        $inputs['giatritstd'] = str_replace('.','',$inputs['giatritstd']);
+        $inputs['sl'] = getDbl($inputs['sl']);
+        $inputs['nguyengiathamdinh'] = getDbl($inputs['nguyengiathamdinh']);
+        $inputs['giatritstd'] = getDbl($inputs['giatritstd']);
 
         if(isset($inputs['tents']) || $inputs['tents'] != ''){
             $modelts = new CongBoGia();
@@ -53,17 +46,10 @@ class CongBoGiaBoSungController extends Controller
             $modelts->nguongoc = $inputs['nguongoc'];
             $modelts->dvt = $inputs['dvt'];
             $modelts->sl = $inputs['sl'];
-            $modelts->nguyengiadenghi = $inputs['nguyengiadenghi'];
-            $modelts->giadenghi = $inputs['giadenghi'];
             $modelts->nguyengiathamdinh = $inputs['nguyengiathamdinh'];
             $modelts->giatritstd = $inputs['giatritstd'];
-            if($inputs['giatritstd'] == 0) {
-                $modelts->giakththamdinh = $inputs['giadenghi'];
-                $modelts->giaththamdinh = 0;
-            }else {
-                $modelts->giakththamdinh = 0;
-                $modelts->giaththamdinh = $inputs['giadenghi'];
-            }
+            $modelts->giaththamdinh = 0;
+
             $modelts->gc = $inputs['gc'];
             $modelts->mahs = $inputs['mahs'];
             $modelts->save();
@@ -140,19 +126,6 @@ class CongBoGiaBoSungController extends Controller
 
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Đơn giá đề nghị<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="nguyengiadenghiedit" id="nguyengiadenghiedit" class="form-control"  data-mask="fdecimal" value="'.$model->nguyengiadenghi.'"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá trị đề nghị<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="giadenghiedit" id="giadenghiedit" class="form-control"  data-mask="fdecimal" value="'.$model->giadenghi.'"></div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-            $result['message'] .= '</div>';
-
-            $result['message'] .= '<div class="row">';
-            $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Đơn giá thẩm định<span class="require">*</span></label>';
             $result['message'] .= '<div><input type="text" name="nguyengiathamdinhedit" id="nguyengiathamdinhedit" class="form-control"  data-mask="fdecimal" value="'.$model->nguyengiathamdinh.'"></div>';
             $result['message'] .= '</div>';
@@ -200,16 +173,9 @@ class CongBoGiaBoSungController extends Controller
         $inputs = $request->all();
 
         if(isset($inputs['id'])){
-            $inputs['sl'] = str_replace(',','',$inputs['sl']);
-            $inputs['sl'] = str_replace('.','',$inputs['sl']);
-            $inputs['nguyengiadenghi'] = str_replace(',','',$inputs['nguyengiadenghi']);
-            $inputs['nguyengiadenghi'] = str_replace('.','',$inputs['nguyengiadenghi']);
-            $inputs['giadenghi'] = str_replace(',','',$inputs['giadenghi']);
-            $inputs['giadenghi'] = str_replace('.','',$inputs['giadenghi']);
-            $inputs['nguyengiathamdinh'] = str_replace(',','',$inputs['nguyengiathamdinh']);
-            $inputs['nguyengiathamdinh'] = str_replace('.','',$inputs['nguyengiathamdinh']);
-            $inputs['giatritstd'] = str_replace(',','',$inputs['giatritstd']);
-            $inputs['giatritstd'] = str_replace('.','',$inputs['giatritstd']);
+            $inputs['sl'] = getDbl($inputs['sl']);
+            $inputs['nguyengiathamdinh'] = getDbl($inputs['nguyengiathamdinh']);
+            $inputs['giatritstd'] = getDbl($inputs['giatritstd']);
 
             $modelupdate = CongBoGia::where('id',$inputs['id'])->first();
             $modelupdate->tents = $inputs['tents'];
@@ -218,17 +184,9 @@ class CongBoGiaBoSungController extends Controller
             $modelupdate->nguongoc = $inputs['nguongoc'];
             $modelupdate->dvt = $inputs['dvt'];
             $modelupdate->sl = $inputs['sl'];
-            $modelupdate->nguyengiadenghi = $inputs['nguyengiadenghi'];
-            $modelupdate->giadenghi = $inputs['giadenghi'];
             $modelupdate->nguyengiathamdinh = $inputs['nguyengiathamdinh'];
             $modelupdate->giatritstd = $inputs['giatritstd'];
-            if($inputs['giatritstd'] == 0) {
-                $modelupdate->giakththamdinh = $inputs['giadenghi'];
-                $modelupdate->giaththamdinh = 0;
-            }else {
-                $modelupdate->giakththamdinh = 0;
-                $modelupdate->giaththamdinh = $inputs['giadenghi'];
-            }
+            $modelupdate->giaththamdinh = 0;
             $modelupdate->gc = $inputs['gc'];
             $modelupdate->save();
 
@@ -383,12 +341,10 @@ class CongBoGiaBoSungController extends Controller
                 $model->nguongoc = isset($row[$inputs['nguongoc']]) ? $row[$inputs['nguongoc']] : '';
                 $model->dvt = isset($row[$inputs['dvt']]) ? $row[$inputs['dvt']] : '';
                 $model->sl = 1;
-                $model->giadenghi = isset($row[$inputs['giadenghi']]) ? $row[$inputs['giadenghi']] : 0;
                 $model->giatritstd = isset($row[$inputs['giatritstd']]) ? $row[$inputs['giatritstd']] : 0;
-                $model->nguyengiadenghi = isset($row[$inputs['nguyengiadenghi']]) ? $row[$inputs['nguyengiadenghi']] : 0;
                 $model->nguyengiathamdinh = isset($row[$inputs['nguyengiathamdinh']]) ? $row[$inputs['nguyengiathamdinh']] : 0;
                 $model->giakththamdinh = 0;
-                $model->giaththamdinh = $model->giadenghi;
+                $model->giaththamdinh = 0;
                 $model->save();
             }
 
@@ -470,8 +426,6 @@ class CongBoGiaBoSungController extends Controller
         $message .= '<th style="text-align: center">Nguồn gốc<br>xuất xứ</th>';
         $message .= '<th style="text-align: center">Đơn vị<br>tính</th>';
         $message .= '<th style="text-align: center">Số lượng</th>';
-        $message .= '<th style="text-align: center">Đơn giá<br>đề nghị</th>';
-        $message .= '<th style="text-align: center">Giá trị<br>đề nghị</th>';
         $message .= '<th style="text-align: center">Đơn giá<br>công bố</th>';
         $message .= '<th style="text-align: center">Giá trị<br>công bố</th>';
         $message .= '<th style="text-align: center">Thao tác</th>';
@@ -487,8 +441,6 @@ class CongBoGiaBoSungController extends Controller
                 $message .= '<td>'.$tents->nguongoc.'</td>';
                 $message .= '<td style="text-align: center">'.$tents->dvt.'</td>';
                 $message .= '<td style="text-align: center">'.number_format($tents->sl).'</td>';
-                $message .= '<td style="text-align: right">'.number_format($tents->nguyengiadenghi).'</td>';
-                $message .= '<td style="text-align: right">'.number_format($tents->giadenghi).'</td>';
                 $message .= '<td style="text-align: right">'.number_format($tents->nguyengiathamdinh).'</td>';
                 $message .= '<td style="text-align: right">'.number_format($tents->giatritstd).'</td>';
                 $message .= '<td>'.
