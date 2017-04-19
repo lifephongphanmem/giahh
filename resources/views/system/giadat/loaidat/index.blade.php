@@ -5,7 +5,6 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
 @stop
 
-
 @section('custom-script')
     <!-- BEGIN PAGE LEVEL PLUGINS -->
 
@@ -17,30 +16,34 @@
         jQuery(document).ready(function() {
             TableManaged.init();
         });
+        function getId(id){
+            document.getElementById("iddelete").value=id;
+        }
     </script>
 @stop
 
 @section('content')
 
     <h3 class="page-title">
-        Chọn thời điểm nhập<small>&nbsp;báo giá tính thuế tài nguyên</small>
+        Danh mục giá đất<small>&nbsp;theo phân loại</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
         <div class="col-md-12">
             <!-- BEGIN EXAMPLE TABLE PORTLET-->
             <div class="portlet box wi">
-                <!--div class="portlet-title">
+                <div class="portlet-title">
                     <div class="caption">
                     </div>
                     <div class="actions">
+                        <a href="{{url('dmloaidat/create')}}" class="btn btn-default btn-sm">
+                            <i class="fa fa-plus"></i> Thêm mới </a>
                     </div>
-                </div-->
+                </div>
                 <div class="portlet-body">
                     <div class="table-toolbar">
 
                     </div>
-
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
@@ -58,18 +61,20 @@
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$tt)
-                            <tr>
-                                <td style="text-align: center">{{$key + 1}}</td>
-                                <td>{{$tt->maloaigia}}</td>
-                                <td class="success">{{$tt->loaidat}}</td>
-                                <td>{{$tt->khuvuc}}</td>
-                                <td>{{$tt->vitri}}</td>
-                                <td>{{$tt->ghichu}}</td>
-                                <td>
-                                    <a href="{{url('giadat_phanloai/loaidat='.$tt->maloaigia.'/nam='.getGeneralConfigs()['namhethong'])}}" class="btn btn-default btn-xs mbs">
-                                        <i class="fa fa-edit"></i> Nhập báo cáo</a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td style="text-align: center">{{$key + 1}}</td>
+                            <td>{{$tt->maloaigia}}</td>
+                            <td class="success">{{$tt->loaidat}}</td>
+                            <td>{{$tt->khuvuc}}</td>
+                            <td>{{$tt->vitri}}</td>
+                            <td>{{$tt->ghichu}}</td>
+                            <td>
+                                <a href="{{url('dmloaidat/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs">
+                                    <i class="fa fa-edit"></i> Chỉnh sửa </a>
+                                <button type="button" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal" onclick="getId('{{$tt->id}}')">
+                                    <i class="fa fa-trash-o"></i>&nbsp; Xóa</button>
+                            </td>
+                        </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -82,4 +87,30 @@
     <!-- BEGIN DASHBOARD STATS -->
 
     <!-- END DASHBOARD STATS -->
+    <div class="clearfix">
+    </div>
+    <div class="modal fade" id="delete-modal-confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {!! Form::open(['url'=>'dmloaidat/delete','id' => 'frm_delete'])!!}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">Đồng ý xóa?</h4>
+                </div>
+                <input type="hidden" name="iddelete" id="iddelete">
+                <div class="modal-footer">
+                    <button type="submit" class="btn blue" onclick="ClickDelete()">Đồng ý</button>
+                    <button type="button" class="btn default" data-dismiss="modal">Hủy</button>
+                </div>
+                {!! Form::close() !!}
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <script>
+        function ClickDelete(){
+            $('#frm-demlete').submit();
+        }
+    </script>
 @stop

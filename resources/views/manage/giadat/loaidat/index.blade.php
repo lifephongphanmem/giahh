@@ -21,7 +21,8 @@
         $(function(){
             $('#nambc').change(function() {
                 var nambc = $('#nambc').val();
-                var url = '/giathuetn/nam='+nambc;
+                var maloaigia = $('#maloaigia').val();
+                var url = '/giadat_phanloai/loaidat='+maloaigia+'/nam='+nambc;
 
                 window.location.href = url;
             });
@@ -41,7 +42,8 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ giá <small> thuế tài nguyên</small>
+        Thông tin hồ sơ giá đất<small> theo phân loại đất</small>
+        <input type="hidden" name="maloaigia" id="maloaigia" value="{{$maloaigia}}">
     </h3>
 
     <!-- END PAGE HEADER-->
@@ -54,15 +56,13 @@
 
                     </div>
                     <div class="actions">
-                        @if(can('kkgtw','create'))
-                            <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
-                                Thêm mới hồ sơ chi tiết</button>
-                            <a href="{{url('giathuetn-dk/create')}}" class="btn btn-default btn-sm">
+                        @if(can('loaidat','create'))
+                            <a href="{{url('giadat_phanloai/loaidat='.$maloaigia.'/create')}}" class="btn btn-default btn-sm">
+                                <i class="fa fa-plus"></i>  Thêm mới hồ sơ chi tiết</a>
+
+                            <a href="{{url('giadat_phanloai_dk/loaidat='.$maloaigia.'/create_dk')}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-plus"></i> Thêm mới hồ sơ đính kèm</a>
                         @endif
-                            <!--a class="btn btn-default btn-sm" href="{{url('/giathuetn')}}"><i class="fa fa-mail-reply"></i> Quay lại</a-->
-                        <!--a href="" class="btn btn-default btn-sm">
-                            <i class="fa fa-print"></i> Print </a-->
                     </div>
                     <div class="row">
                         <div class="col-md-2">
@@ -85,12 +85,9 @@
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Phòng ban</th>
-                            <th style="text-align: center" width="20">Ngày nhập</th>
-                            <!--th style="text-align: center" width="15%">Thị trường</th>
-                            <th style="text-align: center">Loại giá</th-->
-                            <th style="text-align: center">Phân loại</th>
-                            <th style="text-align: center" width="10%">Trạng thái</th>
-                            <th style="text-align: center" width="30%">Thao tác</th>
+                            <th style="text-align: center">Ngày nhập</th>
+                            <th style="text-align: center">Trạng thái</th>
+                            <th style="text-align: center" width="25%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -99,9 +96,6 @@
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td class="active">{{$tt->tenpb}}</td>
                                 <td>{{getDayVn($tt->tgnhap)}}</td>
-                                <!--td>{{$tt->thitruong}}</td>
-                                <td>{{$tt->tenloaigia}}</td-->
-                                <td>{{$tt->phanloai}}</td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'Hoàn tất')
                                         <span class="label label-sm label-success">Hoàn tất</span>
@@ -114,21 +108,21 @@
                                         @if($tt->hoso == 'DINHKEM')
                                             <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
                                         @else
-                                            <a href="{{url('giathuetn/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
+                                            <a href="{{url('giadat_phanloai/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                         @endif
                                     @else
-                                        @if(can('gthuetn','edit') && $tt->mahuyen == session('admin')->mahuyen)
+                                        @if(can('loaidat','edit') && $tt->mahuyen == session('admin')->mahuyen)
                                             @if($tt->hoso == 'DINHKEM')
-                                                <a href="{{url('giathuetn-dk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                                <a href="{{url('giadat_phanloai_dk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @else
-                                                <a href="{{url('giathuetn/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                                <a href="{{url('giadat_phanloai/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @endif
                                         @endif
-                                        @if(can('gthuetn','delete') && $tt->mahuyen == session('admin')->mahuyen)
+                                        @if(can('loaidat','delete') && $tt->mahuyen == session('admin')->mahuyen)
                                             <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                 Xóa</button>
                                         @endif
-                                        @if(can('gthuetn','approve'))
+                                        @if(can('loaidat','approve'))
                                             <button type="button" onclick="confirmHoantat('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#hoantat-modal-confirm" data-toggle="modal"><i class="fa fa-check"></i>&nbsp;Hoàn tất</button>
                                         @endif
                                     @endif
@@ -155,44 +149,5 @@
     @include('includes.e.modal-delete')
     <!--Modal Hoàn tất-->
     @include('includes.e.modal-approve')
-
-    <!--Modal Create-->
-    <div id="create-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bs-modal-lg">
-        {!! Form::open(['url'=>'/giathuetn/create','id' => 'frm_create','method'=>'post'])!!}
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header modal-header-primary">
-                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                    <h4 id="modal-header-primary-label" class="modal-title">Thêm mới kê khai giá thuế tài nguyên</h4>
-                </div>
-
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label text-right">Phân loại tài nguyên</label>
-                            <div class="col-md-8">
-                                <select name="manhom" id="manhom" class="form-control">
-                                    @foreach($m_nhomthuetn as $ct)
-                                        <option value="{{$ct->manhom}}">{{$ct->tennhom}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
-                    <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="clickcreate()">Đồng ý</button>
-                </div>
-            </div>
-        </div>
-        {!! Form::close() !!}
-    </div>
-    <script>
-        function clickcreate(){
-            $('#frm_create').submit();
-        }
-    </script>
 
 @stop

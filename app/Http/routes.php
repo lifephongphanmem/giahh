@@ -61,6 +61,13 @@ Route::get('/checkthitruong','DmThiTruongController@checkthitruong');
 Route::post('dmthitruong/delete','DmThiTruongController@destroy');
 //End dnah mục loại mặt hàng
 
+//Danh mục loại đất
+Route::resource('dmloaidat','DmLoaiDatController');
+Route::get('/checkloaidat','DmLoaiDatController@checkloaidat');
+Route::post('dmloaidat/delete','DmLoaiDatController@destroy');
+//End dnah mục loại mặt hàng
+
+
     //Hàng hóa thị trường theo thông tư 55/2011
 Route::get('dmhanghoa-thitruong','DmHhTn55Controller@nhom');
 Route::get('dmhanghoa-thitruong/nhom={nhom}','DmHhTn55Controller@pnhom');
@@ -345,10 +352,10 @@ Route::post('timkiem-giahhdv-diaphuong','HsGiaHangHoaDP_LaoCaiController@viewsea
 //End - kê khai giá dia phuong danh cho Lào Cai
 
 //kê khai giá đất theo loại đất
-Route::group(['prefix'=>'giadat-loai'],function(){
+Route::group(['prefix'=>'giadat_phanloai'],function(){
     Route::get('','HsGiaDat_LoaiDatController@thoidiem');
-    Route::get('maso={thoidiem}/nam={nam}','HsGiaDat_LoaiDatController@index');
-    Route::get('/maso={masopnhom}/create','HsGiaDat_LoaiDatController@create');
+    Route::get('loaidat={maloaidat}/nam={nam}','HsGiaDat_LoaiDatController@index');
+    Route::get('loaidat={maloaidat}/create','HsGiaDat_LoaiDatController@create');
     Route::post('','HsGiaDat_LoaiDatController@store');
     Route::get('{id}/show','HsGiaDat_LoaiDatController@show');
     Route::get('{id}/edit','HsGiaDat_LoaiDatController@edit');
@@ -356,20 +363,30 @@ Route::group(['prefix'=>'giadat-loai'],function(){
     Route::post('delete','HsGiaDat_LoaiDatController@destroy');
     Route::post('approve','HsGiaDat_LoaiDatController@approve');
 });
-Route::group(['prefix'=>'giadat-loai-dk'],function(){
+Route::group(['prefix'=>'giadat_phanloai_dk'],function(){
     Route::get('maso={masopnhom}/create_dk','HsGiaDat_LoaiDatController@create_dk');
     Route::patch('{id}','HsGiaDat_LoaiDatController@update_dk');
     Route::post('','HsGiaDat_LoaiDatController@store_dk');
     Route::get('{id}/edit','HsGiaDat_LoaiDatController@edit_dk');
 });
-Route::group(['prefix'=>'thongtin-giadat-loai'],function(){
+Route::group(['prefix'=>'thongtin_giadat_phanloai'],function(){
     Route::get('','HsGiaDat_LoaiDatController@showthoidiem');
-    Route::get('maso={thoidiem}/nam={nam}&pb={pb}','HsGiaDat_LoaiDatController@showindex');
+    Route::get('loaidat={maloaidat}/nam={nam}&pb={pb}','HsGiaDat_LoaiDatController@showindex');
     Route::get('{id}/show','HsGiaDat_LoaiDatController@view');
     Route::post('unapprove','HsGiaDat_LoaiDatController@unapprove');
 });
-Route::get('timkiem-giadat-loai','HsGiaDat_LoaiDatController@search');
-Route::post('timkiem-giadat-loai','HsGiaDat_LoaiDatController@viewsearch');
+Route::get('timkiem_giadat_phanloai','HsGiaDat_LoaiDatController@search');
+Route::post('timkiem_giadat_phanloai','HsGiaDat_LoaiDatController@viewsearch');
+
+Route::get('giadatpldefault/store','GiaDat_PhanLoaiDefaultController@store');
+Route::get('giadatpldefault/edit','GiaDat_PhanLoaiDefaultController@edit');
+Route::get('giadatpldefault/update','GiaDat_PhanLoaiDefaultController@update');
+Route::get('giadatpldefault/delete','GiaDat_PhanLoaiDefaultController@destroy');
+
+Route::get('giadatpl/store','GiaDat_PhanLoaiController@store');
+Route::get('giadatpl/edit','GiaDat_PhanLoaiController@edit');
+Route::get('giadatpl/update','GiaDat_PhanLoaiController@update');
+Route::get('giadatpl/delete','GiaDat_PhanLoaiController@destroy');
 //End - kê khai giá đất theo loại đất
 
     //TTQĐ

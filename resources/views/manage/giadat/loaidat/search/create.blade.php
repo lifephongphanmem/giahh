@@ -15,7 +15,7 @@
 
 
     <h3 class="page-title">
-        Tìm kiếm thông tin giá tính thuế<small> tài nguyên</small>
+        Tìm kiếm thông tin giá đất<small> theo phân loại đất</small>
     </h3>
     <!-- END PAGE HEADER-->
 

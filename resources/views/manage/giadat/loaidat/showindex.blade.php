@@ -41,7 +41,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Thông tin hồ sơ giá tính thuế<small> tài nguyên</small>
+        Thông tin hồ sơ giá đất<small> theo phân loại đất</small>
     </h3>
 
     <div class="row">

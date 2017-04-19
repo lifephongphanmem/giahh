@@ -598,16 +598,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <ul class="sub-menu">
                                         @if(can('loaidat','create')||can('loaidat','edit'))
                                             <li>
-                                                <a href="{{url('giahhdv-tw')}}">Kê khai giá</a>
+                                                <a href="{{url('giadat_phanloai')}}">Kê khai giá</a>
                                             </li>
                                         @endif
                                         @if(can('loaidat','index'))
                                             <li>
-                                                <a href="{{url('thongtin-tw')}}">Thông tin kê khai giá</a>
+                                                <a href="{{url('thongtin_giadat_phanloai')}}">Thông tin kê khai giá</a>
                                             </li>
                                         @endif
                                         <li>
-                                            <a href="{{url('timkiem-giahhdv-tw')}}">Tìm kiếm thông tin kê khai giá</a>
+                                            <a href="{{url('timkiem_giadat_phanloai')}}">Tìm kiếm thông tin kê khai giá</a>
                                         </li>
 
                                     </ul>
@@ -620,16 +620,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <ul class="sub-menu">
                                         @if(can('vitri','create')||can('vitri','edit'))
                                             <li>
-                                                <a href="{{url('giahhdv-dp')}}">Kê khai giá</a>
+                                                <a href="{{url('giadat_vitri')}}">Kê khai giá</a>
                                             </li>
                                         @endif
                                         @if(can('vitri','index'))
                                             <li>
-                                                <a href="{{url('thongtin-dp')}}">Thông tin kê khai giá</a>
+                                                <a href="{{url('thongtin_giadat_vitri')}}">Thông tin kê khai giá</a>
                                             </li>
                                         @endif
                                         <li>
-                                            <a href="{{url('timkiem-giahhdv-dp')}}">Tìm kiếm thông tin kê khai giá</a>
+                                            <a href="{{url('timkiem_giadat_vitri')}}">Tìm kiếm thông tin kê khai giá</a>
                                         </li>
 
                                     </ul>
@@ -741,6 +741,27 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </ul>
                             </li>
                         @endif
+
+                        @if(canGeneral('giadat','loaidat') || canGeneral('giadat','vitri'))
+                            <li>
+                                <a href="javascript:;">Giá đất <span class="arrow"></span> </a>
+                                <ul class="sub-menu">
+                                    @if(canGeneral('giadat','loaidat'))
+                                        <li>
+                                            <a href="{{url('dmloaidat')}}"> Danh mục phân loại đất</a>
+                                        </li>
+                                    @endif
+
+                                    @if(canGeneral('giadat','vitri'))
+                                        <li>
+                                            <a href="{{url('dmvitridat')}}">Danh mục vị trí</a>
+                                        </li>
+                                    @endif
+
+                                </ul>
+                            </li>
+                        @endif
+
                         @if(canGeneral('gttruocba','gttruocba'))
                             <li><a href="{{url('dmloaixe-thuetruocba')}}">Danh mục thuế trước bạ</a> </li>
                         @endif

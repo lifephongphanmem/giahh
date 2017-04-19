@@ -54,7 +54,7 @@
 
                     </div>
                     <div class="actions">
-                        @if(can('kkgtw','create'))
+                        @if(can('gthuetn','create'))
                             <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
                                 Thêm mới hồ sơ chi tiết</button>
                             <a href="{{url('giathuetn-dk/create')}}" class="btn btn-default btn-sm">

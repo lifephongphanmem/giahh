@@ -57,18 +57,18 @@
                         </thead>
                         <tbody>
                         @foreach($model as $key=>$tt)
-                        <tr>
-                            <td style="text-align: center">{{$key + 1}}</td>
-                            <!--td>{{$tt->mathoidiem}}</td-->
-                            <td class="active">{{$tt->tenthoidiem}}</td>
-                            <td>{{$tt->tungay}}</td>
-                            <td>{{$tt->denngay}}</td>
-                            <td>{{$tt->nhom}}</td>
-                            <td>
-                                <a href="{{url('thongtin-giathuetn/thoidiem='.$tt->mathoidiem.'/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}" class="btn btn-default btn-xs mbs">
-                                    <i class="fa fa-edit"></i> Xem báo cáo</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td style="text-align: center">{{$key + 1}}</td>
+                                <!--td>{{$tt->mathoidiem}}</td-->
+                                <td class="active">{{$tt->tenthoidiem}}</td>
+                                <td>{{$tt->tungay}}</td>
+                                <td>{{$tt->denngay}}</td>
+                                <td>{{$tt->nhom}}</td>
+                                <td>
+                                    <a href="{{url('thongtin-giathuetn/thoidiem='.$tt->mathoidiem.'/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}" class="btn btn-default btn-xs mbs">
+                                        <i class="fa fa-edit"></i> Xem báo cáo</a>
+                                </td>
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>

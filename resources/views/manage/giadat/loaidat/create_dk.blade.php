@@ -172,7 +172,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin giá tính thuế tài nguyên<small> thêm mới</small>
+        Thông tin giá đất<small> thêm mới</small>
     </h3>
     <!-- END PAGE HEADER-->
 

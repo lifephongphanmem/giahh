@@ -13,7 +13,7 @@
 
 @section('content')
     <h3 class="page-title">
-        Thông tin giá hàng hóa, dịch vụ do địa phương quy định<small> xem chi tiết</small>
+        Thông tin giá đất<small> xem chi tiết</small>
     </h3>
     <!-- END PAGE HEADER-->
 
