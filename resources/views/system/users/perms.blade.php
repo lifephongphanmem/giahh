@@ -527,6 +527,10 @@
                                             <td><input type="checkbox" {{ (isset($permission->loaidat->delete) && $permission->loaidat->delete == 1) ? 'checked' : '' }} value="1" name="roles[loaidat][delete]"/></td>
                                             <td>Xóa</td>
                                         </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->loaidat->approve) && $permission->loaidat->approve == 1) ? 'checked' : '' }} value="1" name="roles[loaidat][approve]"/></td>
+                                            <td>Xét duyệt</td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -560,6 +564,10 @@
                                         <tr>
                                             <td><input type="checkbox" {{ (isset($permission->vitri->delete) && $permission->vitri->delete == 1) ? 'checked' : '' }} value="1" name="roles[vitri][delete]"/></td>
                                             <td>Xóa</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" {{ (isset($permission->vitri->approve) && $permission->vitri->approve == 1) ? 'checked' : '' }} value="1" name="roles[vitri][approve]"/></td>
+                                            <td>Xét duyệt</td>
                                         </tr>
                                         </tbody>
                                     </table>
