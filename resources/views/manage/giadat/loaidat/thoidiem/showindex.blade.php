@@ -23,7 +23,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Chọn thời điểm nhập<small>&nbsp;báo giá tính thuế tài nguyên</small>
+        Chọn thời điểm nhập<small>&nbsp;báo giá đất</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -40,6 +40,7 @@
                     <div class="table-toolbar">
 
                     </div>
+
                     <table class="table table-striped table-bordered table-hover" id="sample_3">
                         <thead>
                         <tr>
@@ -47,11 +48,11 @@
                                 <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes"/>
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
-                            <!--th style="text-align: center">Mã thời điểm</th-->
-                            <th style="text-align: center">Thời điểm</th>
-                            <th style="text-align: center">Từ ngày</th>
-                            <th style="text-align: center">Đến ngày</th>
-                            <th style="text-align: center">Nhóm</th>
+                            <th style="text-align: center">Mã loại đất</th>
+                            <th style="text-align: center">Phân loại đất</th>
+                            <th style="text-align: center">Khu vực</th>
+                            <th style="text-align: center">Vị trí/Tính chất</th>
+                            <th style="text-align: center">Ghi chú</th>
                             <th width="15%" style="text-align: center">Thao tác</th>
                         </tr>
                         </thead>
@@ -59,13 +60,13 @@
                         @foreach($model as $key=>$tt)
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
-                                <!--td>{{$tt->mathoidiem}}</td-->
-                                <td class="active">{{$tt->tenthoidiem}}</td>
-                                <td>{{$tt->tungay}}</td>
-                                <td>{{$tt->denngay}}</td>
-                                <td>{{$tt->nhom}}</td>
+                                <td>{{$tt->maloaigia}}</td>
+                                <td class="success">{{$tt->loaidat}}</td>
+                                <td>{{$tt->khuvuc}}</td>
+                                <td>{{$tt->vitri}}</td>
+                                <td>{{$tt->ghichu}}</td>
                                 <td>
-                                    <a href="{{url('thongtin-giathuetn/thoidiem='.$tt->mathoidiem.'/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}" class="btn btn-default btn-xs mbs">
+                                    <a href="{{url('thongtin_giadat_phanloai/loaidat='.$tt->maloaigia.'/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}" class="btn btn-default btn-xs mbs">
                                         <i class="fa fa-edit"></i> Xem báo cáo</a>
                                 </td>
                             </tr>

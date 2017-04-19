@@ -32,7 +32,7 @@
                     <div class="caption">
                     </div>
                     <div class="actions">
-                        <a href="{{url('timkiem-giathuetn')}}" class="btn btn-default btn-sm">
+                        <a href="{{url('timkiem_giadat_phanloai')}}" class="btn btn-default btn-sm">
                             <i class="fa fa-mail-reply"></i> Quay lại tìm kiếm </a>
                     </div>
                 </div>
@@ -41,14 +41,14 @@
                         <thead>
                             <tr>
                                 <th width="2%" style="text-align: center">STT</th>
-                                <th style="text-align: center">Thời gian nhập</th>
                                 <th width="10%" style="text-align: center">Phòng ban</th>
-                                <!--th width="5%" style="text-align: center">Mã tài nguyên</th-->
-                                <th style="text-align: center">Tên hàng hóa dịch vụ</th>
-                                <th style="text-align: center">Số lượng</th>
-                                <th style="text-align: center">Giá từ</th>
-                                <th style="text-align: center">Giá đến</th>
-                                <th style="text-align: center" width="10%">Nguồn tin</th>
+                                <th style="text-align: center">Thời gian nhập</th>
+                                <th style="text-align: center">Thời gian áp dụng</th>
+                                <th style="text-align: center">Khu vực</th>
+                                <th style="text-align: center">Vị trí 1</th>
+                                <th style="text-align: center">Vị trí 2</th>
+                                <th style="text-align: center">Vị trí 3</th>
+                                <th style="text-align: center">Vị trí 4</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,14 +56,14 @@
                             @foreach($model as $key=>$tt)
                                 <tr>
                                     <td style="text-align: center">{{$key+1}}</td>
-                                    <td>{{getDayVn($tt->tgnhap)}}</td>
                                     <td>{{$tt->tenpb}}</td>
-                                    <!--td>{{$tt->mahh}}</td-->
-                                    <td class="active">{{$tt->tenhh}}</td>
-                                    <td style="text-align: center">{{number_format($tt->soluong)}}</td>
-                                    <td style="text-align: right">{{number_format($tt->giatu)}}</td>
-                                    <td style="text-align: right">{{number_format($tt->giaden)}}</td>
-                                    <td>{{$tt->nguontin}}</td>
+                                    <td>{{getDayVn($tt->tgnhap)}}</td>
+                                    <td>{{getDayVn($tt->tgapdung)}}</td>
+                                    <td class="active">{{$tt->khuvuc}}</td>
+                                    <td style="text-align: center">{{number_format($tt->vitri1)}}</td>
+                                    <td style="text-align: right">{{number_format($tt->vitri2)}}</td>
+                                    <td style="text-align: right">{{number_format($tt->vitri3)}}</td>
+                                    <td style="text-align: right">{{number_format($tt->vitri4)}}</td>
                                 </tr>
                             @endforeach
                         @else

@@ -183,7 +183,7 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                        {!! Form::open(['url'=>'giathuetn-dk/store', 'id' => 'create_kekhai', 'class'=>'horizontal-form','method'=>'post','enctype'=>'multipart/form-data']) !!}
+                        {!! Form::open(['url'=>'giadat_phanloai_dk/', 'id' => 'create_kekhai', 'class'=>'horizontal-form','method'=>'post','enctype'=>'multipart/form-data']) !!}
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
@@ -194,7 +194,12 @@
                                     </div>
                                 </div>
 
-                                @include('includes.crumbs.cb_phanloaitainguyen')
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Thời điểm áp dụng</label>
+                                        <input type="date" id="tgapdung" name="tgapdung" class="form-control required">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row">
@@ -206,7 +211,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        <input type="hidden" name="maloaigia" id="maloaigia" value="{{$maloaigia}}">
 
                     <!-- END FORM-->
                 </div>
@@ -216,7 +221,7 @@
                 <div style="text-align: center;">
                     <button type="submit" class="btn green" onclick="validateForm()"><i class="fa fa-check"></i> Hoàn thành</button>
                     <button type="reset" class="btn btn-default"><i class="fa fa-refresh"></i>&nbsp;Nhập lại</button>
-                    <a href="{{url('giathuetn/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
+                    <a href="{{url('giadat_phanloai/loaidat='.$maloaigia.'/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 </div>
             </div>
             </form>

@@ -23,7 +23,7 @@
 @section('content')
 
     <h3 class="page-title">
-        Chọn thời điểm nhập<small>&nbsp;báo giá tính thuế tài nguyên</small>
+        Chọn thời điểm nhập<small>&nbsp;báo giá đất</small>
     </h3>
     <!-- END PAGE HEADER-->
     <div class="row">

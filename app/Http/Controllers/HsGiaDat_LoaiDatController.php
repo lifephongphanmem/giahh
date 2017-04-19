@@ -31,11 +31,10 @@ class HsGiaDat_LoaiDatController extends Controller
     public function showthoidiem()
     {
         if(Session::has('admin')){
-            $model = PNhomHangHoa::where('manhom','02')
-                ->get();
-            return view('manage.giahhdv.hhdp_laocai.thoidiem.showindex')
+            $model = DmLoaiDat::all();
+            return view('manage.giadat.loaidat.thoidiem.showindex')
                 ->with('model',$model)
-                ->with('pageTitle','Chọn thời điểm xem báo cáo giá hàng hóa do địa phương quy định');
+                ->with('pageTitle','Chọn phân loại đất nhập báo cáo giá đất');
         }else
             return view('errors.notlogin');
     }
@@ -63,12 +62,11 @@ class HsGiaDat_LoaiDatController extends Controller
             return view('errors.notlogin');
     }
 
-    public function showindex($masopnhom,$nam,$pb)
+    public function showindex($maloaigia,$nam,$pb)
     {
         if(Session::has('admin')){
-            $model = HsGiaHangHoa::where('masopnhom',$masopnhom)
+            $model = HsGiaDat::where('maloaigia',$maloaigia)
                 ->where('nam',$nam)
-                ->where('phanloai','DP')
                 ->where('trangthai','Hoàn tất')
                 ->get();
             if($pb != 'all') {
@@ -77,14 +75,14 @@ class HsGiaDat_LoaiDatController extends Controller
             $modelpb = TtPhongBan::all();
             $this->getDetail($model);
 
-            return view('manage.giahhdv.hhdp_laocai.showindex')
+            return view('manage.giadat.loaidat.showindex')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
-                ->with('masopnhom',$masopnhom)
+                ->with('maloaigia',$maloaigia)
                 ->with('nam',$nam)
                 ->with('pb',$pb)
-                ->with('url','/thongtin-diaphuong/')
-                ->with('pageTitle','Thông tin hồ sơ giá hàng hóa do địa phương quy định');
+                ->with('url','/thongtin_giadat_phanloai/')
+                ->with('pageTitle','Thông tin hồ sơ giá đất theo phân loại đất');
         }else
             return view('errors.notlogin');
     }
@@ -115,9 +113,8 @@ class HsGiaDat_LoaiDatController extends Controller
     public function create_dk($maloaigia)
     {
         if(Session::has('admin')){
-
             return view('manage.giadat.loaidat.create_dk')
-                ->with('$maloaigia',$maloaigia)
+                ->with('maloaigia',$maloaigia)
                 ->with('pageTitle','Thông tin giá đất thêm mới');
           }else
             return view('errors.notlogin');
@@ -166,23 +163,20 @@ class HsGiaDat_LoaiDatController extends Controller
             $filename =$mahs.'_'.$file->getClientOriginalName();
             $file->move(public_path() . '/data/uploads/attack/', $filename);
 
-            $model = new HsGiaHangHoa();
+            $model = new HsGiaDat();
             $model->tgnhap = $insert['tgnhap'];
-            $model->thitruong = $insert['thitruong'];
-            $model->maloaihh = $insert['maloaihh'];
+            $model->tgapdung = $insert['tgapdung'];
             $model->maloaigia = $insert['maloaigia'];
-            $model->hoso = 'DINHKEM';
-            $model->phanloai = 'DP';
+            $model->phanloai = 'DINHKEM';
             $model->filedk = $filename;
             $model->quy = Thang2Quy($thang);
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
             $model->mahuyen = $mahuyen;
             $model->mahs = $mahs;
-            $model->masopnhom = $insert['masopnhom'];
             $model->save();
 
-            return redirect('giahhdv-diaphuong/maso='.$insert['masopnhom'].'/nam='.date_format($date,'Y'));
+            return redirect('giadat_phanloai/loaidat='.$insert['maloaigia'].'/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -191,23 +185,13 @@ class HsGiaDat_LoaiDatController extends Controller
     public function show($id)
     {
         if(Session::has('admin')){
-            $model = HsGiaHangHoa::findOrFail($id);
-            $modeltthh = GiaHangHoa::where('mahs',$model->mahs)->get();
-            $loaigia = DmLoaiGia::where('pl','Hàng hóa, dịch vụ');
-            $loaihh = DmLoaiHh::all();
-            $thitruong= DmThiTruong::all();
-            //dd($thitruong);
-            $dmhanghoa = array_column(DmHangHoa::select('mahh','tenhh')->get()->toarray(),'tenhh','mahh');
-            foreach($modeltthh as $ct){
-                $ct->tenhh=$dmhanghoa[$ct->mahh];
-            }
-            return view('manage.giahhdv.hhdp_laocai.show')
+            $model = HsGiaDat::findOrFail($id);
+            $modeltthh = GiaDat::where('mahs',$model->mahs)->get();
+
+            return view('manage.giadat.loaidat.show')
                 ->with('model',$model)
                 ->with('modeltthh',$modeltthh)
-                ->with('loaigia',$loaigia)
-                ->with('loaihh',$loaihh)
-                ->with('thitruong',$thitruong)
-                ->with('pageTitle','Thông tin giá hàng hóa, dịch vụ chi tiết');
+                ->with('pageTitle','Thông tin giá đất chi tiết');
         }else
             return view('errors.notlogin');
     }
@@ -215,23 +199,13 @@ class HsGiaDat_LoaiDatController extends Controller
     public function view($id)
     {
         if(Session::has('admin')){
-            $model = HsGiaHangHoa::findOrFail($id);
-            $modeltthh = GiaHangHoa::where('mahs',$model->mahs)->get();
-            $loaigia = DmLoaiGia::where('pl','Hàng hóa, dịch vụ')->get();
-            $loaihh = DmLoaiHh::all();
-            $thitruong= DmThiTruong::all();
-            //dd($loaigia);
-            $dmhanghoa = array_column(DmHangHoa::select('mahh','tenhh')->get()->toarray(),'tenhh','mahh');
-            foreach($modeltthh as $ct){
-                $ct->tenhh=$dmhanghoa[$ct->mahh];
-            }
-            return view('manage.giahhdv.hhdp_laocai.view')
+            $model = HsGiaDat::findOrFail($id);
+            $modeltthh = GiaDat::where('mahs',$model->mahs)->get();
+
+            return view('manage.giadat.loaidat.view')
                 ->with('model',$model)
                 ->with('modeltthh',$modeltthh)
-                ->with('loaigia',$loaigia)
-                ->with('loaihh',$loaihh)
-                ->with('thitruong',$thitruong)
-                ->with('pageTitle','Thông tin giá hàng hóa, dịch vụ chi tiết');
+                ->with('pageTitle','Thông tin giá đất chi tiết');
         }else
             return view('errors.notlogin');
     }
@@ -255,17 +229,12 @@ class HsGiaDat_LoaiDatController extends Controller
     public function edit_dk($id)
     {
         if(Session::has('admin')){
-            $model = HsGiaHangHoa::findOrFail($id);
-            $loaigia = DmLoaiGia::where('pl','Hàng hóa, dịch vụ')->get();
-            $loaihh = DmLoaiHh::all();
-            $thitruong= DmThiTruong::all();
+            $model = HsGiaDat::findOrFail($id);
 
-            return view('manage.giahhdv.hhdp_laocai.edit_dk')
+
+            return view('manage.giadat.loaidat.edit_dk')
                 ->with('model',$model)
-                ->with('loaigia',$loaigia)
-                ->with('loaihh',$loaihh)
-                ->with('thitruong',$thitruong)
-                ->with('pageTitle','Thông tin giá hàng hóa, dịch vụ chi tiết');
+                ->with('pageTitle','Thông tin giá đất theo phân loại');
         }else
             return view('errors.notlogin');
     }
@@ -298,7 +267,7 @@ class HsGiaDat_LoaiDatController extends Controller
             $date = date_create($insert['tgnhap']);
             $thang = date_format($date,'m');
 
-            $model = HsGiaHangHoa::findOrFail($id);
+            $model = HsGiaDat::findOrFail($id);
             if(isset($request->filedk)){
                 if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk)){
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);
@@ -310,15 +279,12 @@ class HsGiaDat_LoaiDatController extends Controller
                 $model->filedk=$filename;
             }
             $model->tgnhap = $insert['tgnhap'];
-            $model->thitruong = $insert['thitruong'];
-            $model->maloaihh = $insert['maloaihh'];
-            $model->maloaigia = $insert['maloaigia'];
+            $model->tgapdung = $insert['tgapdung'];
             $model->quy=Thang2Quy($thang);
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
             $model->save();
-
-            return redirect('giahhdv-diaphuong/maso='.$model->masopnhom.'/nam='.date_format($date,'Y'));
+            return redirect('giadat_phanloai/loaidat='.$model->maloaigia.'/nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -383,17 +349,12 @@ class HsGiaDat_LoaiDatController extends Controller
 
     public function search(){
         if(Session::has('admin')){
-            $modelmaloaigia = DmLoaiGia::where('pl','Hàng hóa, dịch vụ')->get();
-            $modelmaloaihh = DmLoaiHh::all();
-            $modelthitruong = DmThiTruong::all();
+            $model_loaidat = DmLoaiDat::all();
 
-            $modelhh = DmHangHoa::where('theodoi','Có')->get();
-            return view('manage.giahhdv.hhdp_laocai.search.create')
-                ->with('modelmaloaigia',$modelmaloaigia)
-                ->with('modelmaloaihh',$modelmaloaihh)
-                ->with('modelthitruong',$modelthitruong)
-                ->with('modelhh',$modelhh)
-                ->with('pageTitle','Tìm kiếm thông tin giá hàng hóa thị trường');
+
+            return view('manage.giadat.loaidat.search.create')
+                ->with('model_loaidat',$model_loaidat)
+                ->with('pageTitle','Tìm kiếm thông tin giá đất');
         }else
             return view('errors.notlogin');
     }
@@ -401,54 +362,31 @@ class HsGiaDat_LoaiDatController extends Controller
     public function viewsearch(Request $request){
         if(Session::has('admin')){
 
-            $_sql="select hsgiahanghoa.*,
-                          giahanghoa.mahh,giahanghoa.masopnhom,giahanghoa.giatu,giahanghoa.giaden,giahanghoa.soluong,giahanghoa.nguontin
-                                        from hsgiahanghoa, giahanghoa
-                                        Where hsgiahanghoa.mahs=giahanghoa.mahs";
+            $_sql="select hsgiadat.*,
+                          giadat.khuvuc,giadat.vitri1,giadat.vitri2,giadat.vitri3,giadat.vitri4
+                                        from hsgiadat, giadat
+                                        Where hsgiadat.mahs=giadat.mahs";
             $input=$request->all();
-
+            //chưa làm đầy đủ điều kiện
             //Thời gian nhập
             //Từ
             if($input['tgnhaptu']!=null){
-                $_sql=$_sql." and hsgiahanghoa.tgnhap >='".date('Y-m-d',strtotime($input['tgnhaptu']))."'";
+                $_sql=$_sql." and hsgiadat.tgnhap >='".date('Y-m-d',strtotime($input['tgnhaptu']))."'";
             }
             //Đến
             if($input['tgnhapden']!=null){
-                $_sql=$_sql." and hsgiahanghoa.tgnhap <='".date('Y-m-d',strtotime($input['tgnhapden']))."'";
+                $_sql=$_sql." and hsgiadat.tgnhap <='".date('Y-m-d',strtotime($input['tgnhapden']))."'";
             }
-            //Loại giá(error Không biết vì sao)
-            //$_sql=$input['maloaigia']!=null? $_sql." and hsgiahhtn.maloaigia = ".$input['maloaigia']:$_sql;
-            //Loại hàng hóa(error Không biết vì sao)
-            //$_sql=$input['maloaihh']!=null? $_sql." and hsgiahhtn.maloaihh = ".$input['maloaihh']:$_sql;
-            //Tên hàng hóa
-            $_sql=$input['mahh']!=null? $_sql." and giahanghoa.mahh = '".$input['mahh']."'":$_sql;
 
-            //Thị trường nhập
-            $_sql=$input['thitruong']!=null? $_sql." and hsgiahanghoa.thitruong = '".$input['thitruong']."'":$_sql;
-            //Giá trị tài sản
-            //Từ
-            if(getDouble($input['giatritu'])>0)
-                $_sql=$_sql." and giahanghoa.giatu >= ".getDouble($input['giatritu']);
-            //Đến
-            if(getDouble($input['giatriden'])>0)
-                $_sql=$_sql." and giahanghoa.giaden <= ".getDouble($input['giatriden']);
 
             $model =  DB::select(DB::raw($_sql));
             //dd($model);
 
-            $modelpb = TtPhongBan::all();
+            $this->getDetail($model);
 
-            $dmhanghoa = array_column(DmHangHoa::select('mahh','tenhh')->get()->toarray(),'tenhh','mahh');
-            $dmpb = array_column(TtPhongBan::select('ma','ten')->get()->toarray(),'ten','ma');
-
-            foreach($model as $ct){
-                $ct->tenhh=$dmhanghoa[$ct->mahh];
-                $ct->tenpb =$dmpb[$ct->mahuyen];
-            }
-
-            return view('manage.giahhdv.hhdp_laocai.search.index')
+            return view('manage.giadat.loaidat.search.index')
                 ->with('model',$model)
-                ->with('pageTitle','Thông tin giá hàng hóa, dịch vụ');
+                ->with('pageTitle','Thông tin giá đất');
         }else
             return view('errors.notlogin');
     }

@@ -364,7 +364,7 @@ Route::group(['prefix'=>'giadat_phanloai'],function(){
     Route::post('approve','HsGiaDat_LoaiDatController@approve');
 });
 Route::group(['prefix'=>'giadat_phanloai_dk'],function(){
-    Route::get('maso={masopnhom}/create_dk','HsGiaDat_LoaiDatController@create_dk');
+    Route::get('loaidat={maloaidat}/create_dk','HsGiaDat_LoaiDatController@create_dk');
     Route::patch('{id}','HsGiaDat_LoaiDatController@update_dk');
     Route::post('','HsGiaDat_LoaiDatController@store_dk');
     Route::get('{id}/edit','HsGiaDat_LoaiDatController@edit_dk');

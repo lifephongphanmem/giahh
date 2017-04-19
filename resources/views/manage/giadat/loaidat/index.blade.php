@@ -86,6 +86,7 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center">Phòng ban</th>
                             <th style="text-align: center">Ngày nhập</th>
+                            <th style="text-align: center">Ngày áp dụng</th>
                             <th style="text-align: center">Trạng thái</th>
                             <th style="text-align: center" width="25%">Thao tác</th>
                         </tr>
@@ -96,6 +97,7 @@
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td class="active">{{$tt->tenpb}}</td>
                                 <td>{{getDayVn($tt->tgnhap)}}</td>
+                                <td>{{getDayVn($tt->tgapdung)}}</td>
                                 <td style="text-align: center">
                                     @if($tt->trangthai == 'Hoàn tất')
                                         <span class="label label-sm label-success">Hoàn tất</span>
@@ -105,14 +107,14 @@
                                 </td>
                                 <td>
                                     @if($tt->trangthai == 'Hoàn tất')
-                                        @if($tt->hoso == 'DINHKEM')
+                                        @if($tt->phanloai == 'DINHKEM')
                                             <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
                                         @else
                                             <a href="{{url('giadat_phanloai/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                         @endif
                                     @else
                                         @if(can('loaidat','edit') && $tt->mahuyen == session('admin')->mahuyen)
-                                            @if($tt->hoso == 'DINHKEM')
+                                            @if($tt->phanloai == 'DINHKEM')
                                                 <a href="{{url('giadat_phanloai_dk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @else
                                                 <a href="{{url('giadat_phanloai/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>

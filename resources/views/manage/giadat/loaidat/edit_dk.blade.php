@@ -188,7 +188,7 @@
             <div class="portlet box blue">
                 <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                        {!! Form::model($model, ['method' => 'PATCH', 'url'=>'giathuetn-dk/'. $model->id, 'class'=>'horizontal-form','id'=>'update_ttgiahhdvtn','enctype'=>'multipart/form-data']) !!}
+                        {!! Form::model($model, ['method' => 'PATCH', 'url'=>'giadat_phanloai_dk/'. $model->id, 'class'=>'horizontal-form','id'=>'update_ttgiahhdvtn','enctype'=>'multipart/form-data']) !!}
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
@@ -198,8 +198,13 @@
                                         <input type="date" id="tgnhap" name="tgnhap" class="form-control required" autofocus value="{{$model->tgnhap}}">
                                     </div>
                                 </div>
-                                <!--/span-->
-                                @include('includes.crumbs.cb_phanloaitainguyen')
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Thời điểm áp dụng</label>
+                                        <input type="date" id="tgapdung" name="tgapdung" class="form-control required" value="{{$model->tgapdung}}">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
