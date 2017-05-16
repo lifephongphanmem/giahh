@@ -24,6 +24,12 @@ class HsCongBoGia extends Model
         'nam',
         'mahuyen',
         'mahs',
-        'trangthai'
+        'trangthai',
+        'phanloai',
+        'filedk',
+        'filedk1',
+        'filedk2',
+        'filedk3',
+        'filedk4'
     ];
 }

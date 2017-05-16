@@ -14,9 +14,9 @@ class CreateDmloaixethuetbTable extends Migration
     {
         Schema::create('dmloaixethuetb', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('maloai');
-            $table->string('tenloai');
-            $table->string('trangthai');
+            $table->string('maloai')->nullable();
+            $table->string('tenloai')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }

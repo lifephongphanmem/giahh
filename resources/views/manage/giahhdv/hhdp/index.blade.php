@@ -35,6 +35,26 @@
                 window.location.href = url;
             });
         })
+        function get_attack(id){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/giahhdv-dp-dk/dinhkem',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        $('#dinh_kem').replaceWith(data.message);
+                    }
+                },
+                error: function (message) {
+                    toastr.error(message, 'Lỗi!');
+                }
+            });
+        }
     </script>
 
 
@@ -116,7 +136,8 @@
                                 <td>
                                     @if($tt->trangthai == 'Hoàn tất')
                                         @if($tt->hoso == 'DINHKEM')
-                                            <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                            <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                Tải file đính kèm</button>
                                         @else
                                             <a href="{{url('giahhdv-dp/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                         @endif
@@ -162,6 +183,7 @@
     @include('includes.e.modal-delete')
     <!--Modal Hoàn tất-->
     @include('includes.e.modal-approve')
+    @include('includes.e.modal-attackfile')
     <!--Modal Create-->
     <div id="create-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bs-modal-lg">
         {!! Form::open(['url'=>'giahhdv-dp/create','id' => 'frm_create','method'=>'post'])!!}

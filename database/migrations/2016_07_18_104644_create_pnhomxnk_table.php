@@ -14,13 +14,13 @@ class CreatePnhomxnkTable extends Migration
     {
         Schema::create('pnhomxnk', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('manhom',10);
-            $table->string('mapnhom',10);
-            $table->string('masopnhom',10);
-            $table->string('tenpnhom');
-            $table->string('anhien');
-            $table->string('sapxep');
-            $table->string('theodoi');
+            $table->string('manhom',10)->nullable();
+            $table->string('mapnhom',10)->nullable();
+            $table->string('masopnhom',10)->nullable();
+            $table->string('tenpnhom')->nullable();
+            $table->string('anhien')->nullable();
+            $table->string('sapxep')->nullable();
+            $table->string('theodoi')->nullable();
             $table->timestamps();
         });
     }

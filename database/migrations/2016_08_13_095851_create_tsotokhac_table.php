@@ -14,12 +14,12 @@ class CreateTsotokhacTable extends Migration
     {
         Schema::create('tsotokhac', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mahuyen');
-            $table->date('ngaynhap');
-            $table->string('nam');
-            $table->string('thang');
-            $table->string('quy');
-            $table->string('mahs');
+            $table->string('mahuyen')->nullable();
+            $table->date('ngaynhap')->nullable();
+            $table->string('nam')->nullable();
+            $table->string('thang')->nullable();
+            $table->string('quy')->nullable();
+            $table->string('mahs')->nullable();
             $table->timestamps();
         });
     }

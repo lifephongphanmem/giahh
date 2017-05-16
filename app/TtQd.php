@@ -19,6 +19,10 @@ class TtQd extends Model
         'ngayad',
         'tieude',
         'ghichu',
-        'tailieu'
+        'tailieu',
+        'tailieu1',
+        'tailieu2',
+        'tailieu3',
+        'tailieu4'
     ];
 }

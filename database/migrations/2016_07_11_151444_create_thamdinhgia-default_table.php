@@ -14,20 +14,20 @@ class CreateThamdinhgiaDefaultTable extends Migration
     {
         Schema::create('thamdinhgia_default', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('tents');
-            $table->text('dacdiempl');
-            $table->text('thongsokt');
-            $table->string('nguongoc');
-            $table->string('dvt');
-            $table->string('sl');
-            $table->string('nguyengiadenghi');
-            $table->string('giadenghi');
-            $table->string('nguyengiathamdinh');
-            $table->string('giatritstd');
-            $table->string('giaththamdinh');
-            $table->string('giakththamdinh');
-            $table->string('gc');
-            $table->string('mahuyen');
+            $table->text('tents')->nullable();
+            $table->text('dacdiempl')->nullable();
+            $table->text('thongsokt')->nullable();
+            $table->string('nguongoc')->nullable();
+            $table->string('dvt')->nullable();
+            $table->string('sl')->nullable();
+            $table->string('nguyengiadenghi')->nullable();
+            $table->string('giadenghi')->nullable();
+            $table->string('nguyengiathamdinh')->nullable();
+            $table->string('giatritstd')->nullable();
+            $table->string('giaththamdinh')->nullable();
+            $table->string('giakththamdinh')->nullable();
+            $table->string('gc')->nullable();
+            $table->string('mahuyen')->nullable();
             $table->timestamps();
         });
     }

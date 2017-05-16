@@ -20,6 +20,12 @@ class HsThueTn extends Model
         'thang',
         'quy',
         'mahuyen',
-        'trangthai'
+        'trangthai',
+        'hoso',
+        'filedk',
+        'filedk1',
+        'filedk2',
+        'filedk3',
+        'filedk4'
     ];
 }

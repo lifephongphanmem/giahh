@@ -14,17 +14,17 @@ class CreateDmthuetnTable extends Migration
     {
         Schema::create('dmthuetn', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('masopnhom');
-            $table->string('mahh');
-            $table->string('masp');
-            $table->string('tenhh');
-            $table->string('dacdiemkt');
-            $table->string('dvt');
-            $table->string('gc');
-            $table->string('thoidiem');
-            $table->string('sapxep');
-            $table->string('theodoi');
-            $table->string('thuoctn');//xem tài nguyên thuộc tài nguyên nào trong bảng do danh mục củ chuối
+            $table->string('masopnhom')->nullable();
+            $table->string('mahh')->nullable();
+            $table->string('masp')->nullable();
+            $table->string('tenhh')->nullable();
+            $table->string('dacdiemkt')->nullable();
+            $table->string('dvt')->nullable();
+            $table->string('gc')->nullable();
+            $table->string('thoidiem')->nullable();
+            $table->string('sapxep')->nullable();
+            $table->string('theodoi')->nullable();
+            $table->string('thuoctn')->nullable();//xem tài nguyên thuộc tài nguyên nào trong bảng do danh mục củ chuối
             $table->timestamps();
         });
     }

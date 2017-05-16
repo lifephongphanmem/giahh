@@ -14,9 +14,9 @@ class CreateNhomtnTable extends Migration
     {
         Schema::create('nhomtn', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('manhom',10);
-            $table->string('tennhom');
-            $table->string('theodoi');
+            $table->string('manhom',10)->nullable();
+            $table->string('tennhom')->nullable();
+            $table->string('theodoi')->nullable();
             $table->timestamps();
         });
     }

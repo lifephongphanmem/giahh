@@ -14,19 +14,19 @@ class CreateGiahhxnkdefaultTable extends Migration
     {
         Schema::create('giahhxnkdefault', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mahh');
-            $table->string('masoloai');
-            $table->string('maloaihh');
-            $table->string('maloaigia');
-            $table->string('thitruong');
-            $table->string('thoigian');
-            $table->string('mathoidiem');
-            $table->string('giatu');
-            $table->string('giaden');
-            $table->string('soluong');
-            $table->string('nguontin');
-            $table->string('gc');
-            $table->string('mahuyen');
+            $table->string('mahh')->nullable();
+            $table->string('masoloai')->nullable();
+            $table->string('maloaihh')->nullable();
+            $table->string('maloaigia')->nullable();
+            $table->string('thitruong')->nullable();
+            $table->string('thoigian')->nullable();
+            $table->string('mathoidiem')->nullable();
+            $table->string('giatu')->nullable();
+            $table->string('giaden')->nullable();
+            $table->string('soluong')->nullable();
+            $table->string('nguontin')->nullable();
+            $table->string('gc')->nullable();
+            $table->string('mahuyen')->nullable();
             $table->timestamps();
         });
     }

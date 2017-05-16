@@ -14,7 +14,7 @@ class CreateDmloaidatTable extends Migration
     {
         Schema::create('dmloaidat', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('maloaigia');
+            $table->string('maloaigia')->nullable();
             $table->string('loaidat')->nullable();
             $table->text('khuvuc')->nullable();
             $table->text('vitri')->nullable();

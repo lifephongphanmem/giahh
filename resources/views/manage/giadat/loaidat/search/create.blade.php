@@ -71,14 +71,23 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Phân loại đất</label>
-                                        <input type="text" id="loaidat" name="loaidat" class="form-control">
+                                        <select class="form-control select2me" id="loaidat" name="loaidat">
+                                            @foreach($model_pl as $pl)
+                                                <option value="{{$pl->loaidat}}">{{$pl->loaidat}}</option>
+                                            @endforeach
+                                        </select>
+
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Khu vực áp dụng</label>
-                                        <input type="text" id="khuvuc" name="khuvuc" class="form-control">
+                                        <select class="form-control select2me" name="khuvuc" id="khuvuc">
+                                            @foreach($model_kv as $pl)
+                                                <option value="{{$pl->khuvuc}}">{{$pl->khuvuc}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -87,7 +96,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Vị trí/Tính chất đất</label>
-                                        <input type="text" id="loaidat" name="loaidat" class="form-control">
+                                        <select class="form-control select2me" name="vitri" id="vitri">
+                                            @foreach($model_vt as $pl)
+                                                <option value="{{$pl->vitri}}">{{$pl->vitri}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 

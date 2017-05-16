@@ -38,9 +38,27 @@
         function confirmDelete(id) {
             document.getElementById("iddelete").value=id;
         }
+        function get_attack(id){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/giahhdv-diaphuong-dk/dinhkem',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        $('#dinh_kem').replaceWith(data.message);
+                    }
+                },
+                error: function (message) {
+                    toastr.error(message, 'Lỗi!');
+                }
+            });
+        }
     </script>
-
-
 @stop
 
 @section('content')
@@ -120,7 +138,8 @@
                                 </td-->
                                 <td>
                                     @if($tt->hoso == 'DINHKEM')
-                                        <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                        <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                            Tải file đính kèm</button>
                                     @else
                                         <a href="{{url('thongtin-diaphuong/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                     @endif
@@ -149,4 +168,5 @@
     </div>
     <!--Modal Huỷ hoàn tất-->
     @include('includes.e.modal-unapprove')
+    @include('includes.e.modal-attackfile')
 @stop

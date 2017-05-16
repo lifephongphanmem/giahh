@@ -21,6 +21,13 @@ class HsGiaHangHoa extends Model
         'quy',
         'mahuyen',
         'trangthai',
-        'masopnhom'
+        'masopnhom',
+        'hoso',
+        'masopnhom',
+        'filedk',
+        'filedk1',
+        'filedk2',
+        'filedk3',
+        'filedk4'
     ];
 }

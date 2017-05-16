@@ -17,6 +17,12 @@ class GiaThueTb extends Model
         'quy',
         'nam',
         'trangthai',
-        'mahs'
+        'mahs',
+        'hoso',
+        'filedk',
+        'filedk1',
+        'filedk2',
+        'filedk3',
+        'filedk4'
     ];
 }

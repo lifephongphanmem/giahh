@@ -37,6 +37,26 @@
         function confirmDelete(id) {
             document.getElementById("iddelete").value=id;
         }
+        function get_attack(id){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/thongtu-quyetdinh-tw/dinhkem',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        $('#dinh_kem').replaceWith(data.message);
+                    }
+                },
+                error: function (message) {
+                    toastr.error(message, 'Lỗi!');
+                }
+            });
+        }
     </script>
 @stop
 
@@ -61,11 +81,9 @@
             <div class="form-group">
                 <select class="form-control" name="plvb" id="plvb">
                     <option value="all" {{$pl == 'all' ? 'selected' : ''}}>--Loại văn bản--</option>
-                    <option value="LUAT" {{$pl == 'LUAT' ? 'selected' : ''}}>Luật</option>
-                    <option value="ND" {{$pl == 'ND' ? 'selected' : ''}}>Nghị định</option>
-                    <option value="TT" {{$pl == 'TT' ? 'selected' : ''}}>Thông tư</option>
-                    <option value="QD" {{$pl == 'QD' ? 'selected' : ''}}>Quyết định</option>
-                    <option value="HD" {{$pl == 'HD' ? 'selected' : ''}}>Hướng dẫn</option>
+                    @foreach($model_loaivb as $vb)
+                        <option value="{{$vb->plttqd}}">{{$vb->tenloaivanban}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -93,12 +111,12 @@
                         <thead>
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
-                            <th style="text-align: center">Đơn vị ban hành</th>
-                            <th style="text-align: center" width="10">Loại văn bản</th>
+                            <th style="text-align: center">Đơn vị</br>ban hành</th>
+                            <th style="text-align: center" width="10">Loại văn</br>bản</th>
                             <th style="text-align: center" width="15%">Ngày ban hành/<br>Ngày áp dụng</th>
                             <th style="text-align: center">Tiêu đề</th>
-                            <th style="text-align: center">Ghi chú</th>
-                            <th style="text-align: center" width="20%">Thao tác</th>
+                            <th style="text-align: center">Nội dung</th>
+                            <th style="text-align: center" width="10%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -106,26 +124,19 @@
                             <tr>
                                 <td style="text-align: center">{{$key + 1}}</td>
                                 <td class="active">{{$tt->dvbanhanh}}</td>
-                                <td style="text-align: center">
-                                    @if($tt->plttqd == 'QD')
-                                        Quyết định
-                                    @else
-                                        Hướng dẫn
-                                    @endif
-                                </td>
+                                <td style="text-align: center">{{$tt->tenloaivanban}}</td>
                                 <td style="text-align: center">{{getDayVn($tt->ngaybh)}} || {{getDayVn($tt->ngayad)}}</td>
-                                <td class="success">{{$tt->tieude}}</td>
-                                <td>{{$tt->ghichu}}</td>
+                                <td class="success">{{$tt->khvb}}</td>
+                                <td>{{$tt->tieude}}</td>
                                 <td>
                                     @if(can('ttqd','edit'))
-                                    <a href="{{url('thongtu-quyetdinh-tinh/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                        <a href="{{url('thongtu-quyetdinh-tinh/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                     @endif
-                                    @if($tt->tailieu)
-                                    <a href="{{url('/data/uploads/ttqd/'.$tt->tailieu)}}"><span class="btn btn-default btn-xs mbs"><i class="fa fa-download"></i> Tải tệp</span></a>
-                                    @endif
+                                    <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                        <i class="fa fa-download"></i> Tải tệp</button>
                                     @if(can('ttqd','delete'))
-                                    <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
-                                        Xóa</button>
+                                        <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                            Xóa</button>
                                     @endif
                                 </td>
                             </tr>
@@ -144,6 +155,7 @@
     <!-- END DASHBOARD STATS -->
     <div class="clearfix">
     </div>
+    @include('includes.e.modal-attackfile')
     <!--Modal Delete-->
     <div id="delete-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
         {!! Form::open(['url'=>'thongtu-quyetdinh-tinh/delete','id' => 'frm_delete'])!!}

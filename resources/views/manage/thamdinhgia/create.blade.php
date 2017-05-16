@@ -403,7 +403,7 @@
                                         <tr>
                                             <th width="2%" style="text-align: center">STT</th>
                                             <th style="text-align: center">Tên tài sản</th>
-                                            <!--th style="text-align: center">Đặc điểm kinh tế- kỹ thuật</th-->
+                                            <th style="text-align: center">Thông số</br>kỹ thuật</th>
                                             <!--th style="text-align: center">Nguồn gốc</th-->
                                             <th style="text-align: center">Đơn vị</br>tính</th>
                                             <th style="text-align: center">Số lượng</th>

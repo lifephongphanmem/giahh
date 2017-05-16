@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 
 class HsGiaHangHoaDPController extends Controller
@@ -208,18 +209,49 @@ class HsGiaHangHoaDPController extends Controller
             $mahs = getdate()[0];
             $mahuyen = session('admin')->mahuyen;
 
-            $file=$request->file('filedk');
-            $filename =$mahs.'_'.$file->getClientOriginalName();
-            $file->move(public_path() . '/data/uploads/attack/', $filename);
-
             $model = new HsGiaHangHoa();
+
+            $file=$request->file('filedk');
+            if(isset($file)){
+                $filename = $mahs.'_1_'.str_replace('.','',$file->getClientOriginalName());
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk = $filename;
+            }
+
+            $file1=$request->file('filedk1');
+            if(isset($file1)){
+                $filename = $mahs.'_2_'.str_replace('.','',$file1->getClientOriginalName());
+                $file1->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk1 = $filename;
+            }
+
+            $file2=$request->file('filedk2');
+            if(isset($file2)){
+                $filename = $mahs.'_3_'.str_replace('.','',$file2->getClientOriginalName());
+                $file2->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk2 = $filename;
+            }
+
+            $file3=$request->file('filedk3');
+            if(isset($file3)){
+                $filename = $mahs.'_4_'.str_replace('.','',$file3->getClientOriginalName());
+                $file3->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk3 = $filename;
+            }
+
+            $file4=$request->file('filedk4');
+            if(isset($file4)){
+                $filename = $mahs.'_5_'.str_replace('.','',$file4->getClientOriginalName());
+                $file4->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk4 = $filename;
+            }
+
             $model->tgnhap = $insert['tgnhap'];
             $model->thitruong = $insert['thitruong'];
             $model->maloaihh = $insert['maloaihh'];
             $model->maloaigia = $insert['maloaigia'];
             $model->hoso = 'DINHKEM';
             $model->phanloai = 'DP';
-            $model->filedk = $filename;
             $model->quy = Thang2Quy($thang);
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
@@ -377,11 +409,51 @@ class HsGiaHangHoaDPController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);
                 }
                 $file=$request->file('filedk');
-
-                $filename =$insert['mahs'].'_'.$file->getClientOriginalName();
+                $filename = $insert['mahs'].'_1_'.str_replace('.','',$file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->filedk=$filename;
             }
+
+            if(isset($request->filedk1)){
+                if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk1)){
+                    File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk1);
+                }
+                $file=$request->file('filedk1');
+                $filename = $insert['mahs'].'_2_'.str_replace('.','',$file->getClientOriginalName());
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk1=$filename;
+            }
+
+            if(isset($request->filedk2)){
+                if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk2)){
+                    File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk2);
+                }
+                $file=$request->file('filedk2');
+                $filename = $insert['mahs'].'_3_'.str_replace('.','',$file->getClientOriginalName());
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk2=$filename;
+            }
+
+            if(isset($request->filedk3)){
+                if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk3)){
+                    File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk3);
+                }
+                $file=$request->file('filedk3');
+                $filename = $insert['mahs'].'_4_'.str_replace('.','',$file->getClientOriginalName());
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk3=$filename;
+            }
+
+            if(isset($request->filedk4)){
+                if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk4)){
+                    File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk4);
+                }
+                $file=$request->file('filedk4');
+                $filename = $insert['mahs'].'_5_'.str_replace('.','',$file->getClientOriginalName());
+                $file->move(public_path() . '/data/uploads/attack/', $filename);
+                $model->filedk4=$filename;
+            }
+
             $model->tgnhap = $insert['tgnhap'];
             $model->thitruong = $insert['thitruong'];
             $model->maloaihh = $insert['maloaihh'];

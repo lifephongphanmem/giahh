@@ -198,16 +198,44 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">File đính kèm</label>
-                                        <input name="filedk" id="filedk" type="file" class="required">
+                                        <label class="control-label">File đính kèm 1</label>
+                                        <input name="filedk" id="filedk" type="file">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 2</label>
+                                        <input name="filedk1" id="filedk1" type="file">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 3</label>
+                                        <input name="filedk2" id="filedk2" type="file">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 4</label>
+                                        <input name="filedk3" id="filedk3" type="file">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 5</label>
+                                        <input name="filedk4" id="filedk4" type="file">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     <!-- END FORM-->
                 </div>
             </div>

@@ -61,13 +61,40 @@
                                 <!--/span-->
                             </div>
                             <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 1</label>
+                                        <input name="tailieu" id="tailieu" type="file">
+                                    </div>
+                                </div>
 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 2</label>
+                                        <input name="tailieu1" id="tailieu1" type="file">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Văn bản đính kèm<span class="require">*</span></label>
-                                        <input class="passvalid" type="file" name="img">
+                                        <label class="control-label">File đính kèm 3</label>
+                                        <input name="tailieu2" id="tailieu2" type="file">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 4</label>
+                                        <input name="tailieu3" id="tailieu3" type="file">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 5</label>
+                                        <input name="tailieu4" id="tailieu4" type="file">
                                     </div>
                                 </div>
                             </div>

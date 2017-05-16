@@ -14,12 +14,12 @@ class CreateDmthoidiemTable extends Migration
     {
         Schema::create('dmthoidiem', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mathoidiem');
-            $table->string('tenthoidiem');
-            $table->string('tungay');
-            $table->string('denngay');
-            $table->string('nhom');
-            $table->string('plbc');
+            $table->string('mathoidiem')->nullable();
+            $table->string('tenthoidiem')->nullable();
+            $table->string('tungay')->nullable();
+            $table->string('denngay')->nullable();
+            $table->string('nhom')->nullable();
+            $table->string('plbc')->nullable();
             $table->timestamps();
         });
     }

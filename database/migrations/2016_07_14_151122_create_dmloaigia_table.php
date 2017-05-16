@@ -14,11 +14,11 @@ class CreateDmloaigiaTable extends Migration
     {
         Schema::create('dmloaigia', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('maloaigia');
-            $table->string('tenloaigia');
-            $table->string('sapxep');
-            $table->string('gc');
-            $table->string('pl');
+            $table->string('maloaigia')->nullable();
+            $table->string('tenloaigia')->nullable();
+            $table->string('sapxep')->nullable();
+            $table->string('gc')->nullable();
+            $table->string('pl')->nullable();
             $table->timestamps();
         });
     }

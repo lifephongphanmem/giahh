@@ -14,17 +14,21 @@ class CreateTtqdTable extends Migration
     {
         Schema::create('ttqd', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('khvb');
-            $table->string('mattqd');
-            $table->string('plttqd');
-            $table->string('nambh');
-            $table->string('level');
-            $table->string('dvbanhanh');
-            $table->date('ngaybh');
-            $table->date('ngayad');
-            $table->string('tieude');
-            $table->string('ghichu');
-            $table->string('tailieu');
+            $table->string('khvb')->nullable();
+            $table->string('mattqd')->nullable();
+            $table->string('plttqd')->nullable();
+            $table->string('nambh')->nullable();
+            $table->string('level')->nullable();
+            $table->string('dvbanhanh')->nullable();
+            $table->date('ngaybh')->nullable();
+            $table->date('ngayad')->nullable();
+            $table->string('tieude')->nullable();
+            $table->string('ghichu')->nullable();
+            $table->string('tailieu')->nullable();
+            $table->string('tailieu1')->nullable();
+            $table->string('tailieu2')->nullable();
+            $table->string('tailieu3')->nullable();
+            $table->string('tailieu4')->nullable();
             $table->timestamps();
         });
     }

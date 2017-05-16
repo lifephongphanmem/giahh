@@ -14,20 +14,20 @@ class CreateThuetndefaultTable extends Migration
     {
         Schema::create('thuetndefault', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mahh');
-            $table->string('masopnhom');
-            $table->string('maloaihh');
-            $table->string('maloaigia');
-            $table->string('thitruong');
-            $table->string('thoigian');
-            $table->string('mathoidiem');
-            $table->string('giatu');
-            $table->string('giaden');
-            $table->string('soluong');
-            $table->string('nguontin');
-            $table->string('gc');
-            $table->string('mahs');
-            $table->string('mahuyen');
+            $table->string('mahh')->nullable();
+            $table->string('masopnhom')->nullable();
+            $table->string('maloaihh')->nullable();
+            $table->string('maloaigia')->nullable();
+            $table->string('thitruong')->nullable();
+            $table->string('thoigian')->nullable();
+            $table->string('mathoidiem')->nullable();
+            $table->string('giatu')->nullable();
+            $table->string('giaden')->nullable();
+            $table->string('soluong')->nullable();
+            $table->string('nguontin')->nullable();
+            $table->string('gc')->nullable();
+            $table->string('mahs')->nullable();
+            $table->string('mahuyen')->nullable();
             $table->timestamps();
         });
     }

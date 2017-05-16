@@ -32,6 +32,26 @@
         function confirmHoantat(id) {
             document.getElementById("idhoantat").value=id;
         }
+        function get_attack(id){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/hoso-congbobosung-dk/dinhkem',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        $('#dinh_kem').replaceWith(data.message);
+                    }
+                },
+                error: function (message) {
+                    toastr.error(message, 'Lỗi!');
+                }
+            });
+        }
     </script>
 @stop
 
@@ -110,14 +130,16 @@
                                 <td>
                                     @if($tt->trangthai == 'Hoàn tất')
                                         @if($tt->phanloai == 'DINHKEM')
-                                            <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                            <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                Tải file đính kèm</button>
                                         @else
                                             <a href="{{url('hoso-congbogia/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                         @endif
                                     @else
                                         @if(can('congbogia','edit'))
                                             @if($tt->phanloai == 'DINHKEM')
-                                                <a href="{{url('hoso-congbogia-dk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                                <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                                    Tải file đính kèm</button>
                                             @else
                                                 <a href="{{url('hoso-congbogia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @endif
@@ -188,7 +210,7 @@
 
                 </div>
                 <div class="modal-body">
-                    <h5<i style="color: #0000FF">Hồ sơ đã hoàn tất sẽ không được phép chỉnh sửa và hủy hoàn tất hồ sơ nữa!Bạn cần liên hệ cơ quan chủ quản để chỉnh sửa hồ sơ nếu cần!</i></h5>
+                    <h5><i style="color: #0000FF">Hồ sơ đã hoàn tất sẽ không được phép chỉnh sửa và hủy hoàn tất hồ sơ nữa!Bạn cần liên hệ cơ quan chủ quản để chỉnh sửa hồ sơ nếu cần!</i></h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
@@ -203,5 +225,5 @@
             $('#frm_hoantat').submit();
         }
     </script>
-
+    @include('includes.e.modal-attackfile')
 @stop

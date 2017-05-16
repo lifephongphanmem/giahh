@@ -128,15 +128,57 @@
                                 <input type="date" id="thoihan" name="thoihan" class="form-control required" value="{{$model->thoihan}}">
                             </div>
                         </div>
-
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">File đính kèm</label>
-                                <p><a href="{{url('/data/uploads/attack/'.$model->filedk)}}" target="_blank">{{$model->filedk}}</a></p>
+                                <label class="control-label">File đính kèm 1</label>
+                                @if(isset($model->filedk))
+                                    <p><a href="{{url('/data/uploads/attack/'.$model->filedk)}}" target="_blank">{{$model->filedk}}</a></p>
+                                @endif
                                 <input name="filedk" id="filedk" type="file">
                             </div>
                         </div>
-                        <!--/span-->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">File đính kèm 2</label>
+                                @if(isset($model->filedk1))
+                                    <p><a href="{{url('/data/uploads/attack/'.$model->filedk1)}}" target="_blank">{{$model->filedk1}}</a></p>
+                                @endif
+                                <input name="filedk1" id="filedk1" type="file">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">File đính kèm 3</label>
+                                @if(isset($model->filedk2))
+                                    <p><a href="{{url('/data/uploads/attack/'.$model->filedk2)}}" target="_blank">{{$model->filedk2}}</a></p>
+                                @endif
+                                <input name="filedk2" id="filedk2" type="file">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">File đính kèm 4</label>
+                                @if(isset($model->filedk3))
+                                    <p><a href="{{url('/data/uploads/attack/'.$model->filedk3)}}" target="_blank">{{$model->filedk3}}</a></p>
+                                @endif
+                                <input name="filedk3" id="filedk3" type="file">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">File đính kèm 5</label>
+                                @if(isset($model->filedk4))
+                                    <p><a href="{{url('/data/uploads/attack/'.$model->filedk4)}}" target="_blank">{{$model->filedk4}}</a></p>
+                                @endif
+                                <input name="filedk4" id="filedk4" type="file">
+                            </div>
+                        </div>
                     </div>
                     {!! Form::close() !!}
                 </div>

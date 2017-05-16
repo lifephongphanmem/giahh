@@ -17,6 +17,12 @@ class HsGiaHhXnk extends Model
         'nam',
         'thang',
         'quy',
-        'mahuyen'
+        'mahuyen',
+        'phanloai',
+        'filedk',
+        'filedk1',
+        'filedk2',
+        'filedk3',
+        'filedk4'
     ];
 }

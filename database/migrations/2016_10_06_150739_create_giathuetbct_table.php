@@ -14,15 +14,15 @@ class CreateGiathuetbctTable extends Migration
     {
         Schema::create('giathuetbct', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('maloai');
-            $table->string('maso');
-            $table->string('tenhieu');
-            $table->string('thongsokt');
-            $table->string('dungtich');
-            $table->string('nuocsx');
-            $table->string('giaht');
-            $table->string('giamoi');
-            $table->string('mahs');
+            $table->string('maloai')->nullable();
+            $table->string('maso')->nullable();
+            $table->string('tenhieu')->nullable();
+            $table->string('thongsokt')->nullable();
+            $table->string('dungtich')->nullable();
+            $table->string('nuocsx')->nullable();
+            $table->string('giaht')->nullable();
+            $table->string('giamoi')->nullable();
+            $table->string('mahs')->nullable();
             $table->timestamps();
         });
     }

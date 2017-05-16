@@ -14,9 +14,9 @@ class CreateDmloaihhTable extends Migration
     {
         Schema::create('dmloaihh', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('maloaihh');
-            $table->string('tenloaihh');
-            $table->string('gc');
+            $table->string('maloaihh')->nullable();
+            $table->string('tenloaihh')->nullable();
+            $table->string('gc')->nullable();
             $table->timestamps();
         });
     }

@@ -14,21 +14,21 @@ class CreateCongbogiaTable extends Migration
     {
         Schema::create('congbogia', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mats');
-            $table->text('tents');
-            $table->text('dacdiempl');
-            $table->text('thongsokt');
-            $table->string('nguongoc');
-            $table->string('dvt');
-            $table->string('sl');
-            $table->string('nguyengiadenghi');
-            $table->string('giadenghi');
-            $table->string('nguyengiathamdinh');
-            $table->string('giatritstd');
-            $table->string('giaththamdinh');
-            $table->string('giakththamdinh');
-            $table->string('gc');
-            $table->string('mahs');
+            $table->string('mats')->nullable();
+            $table->text('tents')->nullable();
+            $table->text('dacdiempl')->nullable();
+            $table->text('thongsokt')->nullable();
+            $table->string('nguongoc')->nullable();
+            $table->string('dvt')->nullable();
+            $table->string('sl')->nullable();
+            $table->string('nguyengiadenghi')->nullable();
+            $table->string('giadenghi')->nullable();
+            $table->string('nguyengiathamdinh')->nullable();
+            $table->string('giatritstd')->nullable();
+            $table->string('giaththamdinh')->nullable();
+            $table->string('giakththamdinh')->nullable();
+            $table->string('gc')->nullable();
+            $table->string('mahs')->nullable();
             $table->timestamps();
         });
     }

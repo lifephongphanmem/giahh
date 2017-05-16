@@ -16,6 +16,10 @@ class ThanhKiemTra extends Model
         'thoidiem',
         'noidung',
         'tailieu',
+        'tailieu1',
+        'tailieu2',
+        'tailieu3',
+        'tailieu4',
         'ip1',
         'ip2'
     ];

@@ -14,21 +14,25 @@ class CreateHsgiahanghoaTable extends Migration
     {
         Schema::create('hsgiahanghoa', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mahs');
-            $table->string('mathoidiem');
-            $table->string('thitruong');
-            $table->date('tgnhap');
-            $table->string('maloaigia');
-            $table->string('maloaihh');
-            $table->string('phanloai');
-            $table->string('nam');
-            $table->string('thang');
-            $table->string('quy');
-            $table->string('mahuyen');
-            $table->string('trangthai');
-            $table->string('filedk');
-            $table->string('hoso',20);
-            $table->string('masopnhom',10);
+            $table->string('mahs')->nullable();
+            $table->string('mathoidiem')->nullable();
+            $table->string('thitruong')->nullable();
+            $table->date('tgnhap')->nullable();
+            $table->string('maloaigia')->nullable();
+            $table->string('maloaihh')->nullable();
+            $table->string('phanloai')->nullable();
+            $table->string('nam')->nullable();
+            $table->string('thang')->nullable();
+            $table->string('quy')->nullable();
+            $table->string('mahuyen')->nullable();
+            $table->string('trangthai')->nullable();
+            $table->string('filedk')->nullable();
+            $table->string('hoso',20)->nullable();
+            $table->string('masopnhom',10)->nullable();
+            $table->string('filedk1')->nullable();
+            $table->string('filedk2')->nullable();
+            $table->string('filedk3')->nullable();
+            $table->string('filedk4')->nullable();
             $table->timestamps();
         });
     }

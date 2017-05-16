@@ -158,7 +158,7 @@
                                 </table>
                             </div>
                             @endif
-                            @if(canGeneral('hhdv','kkgtw'))
+                            @if(canGeneral('hhdv','kkgtw')||canGeneral('hhdv','kkgtwlc'))
                                 <div class="col-md-3">
                                     <h4 style="text-align: center;color: #0000ff  ">Kê khai giá trung ương</h4>
                                     <table class="table table-striped table-bordered table-hover">
@@ -196,7 +196,7 @@
                                     </table>
                                 </div>
                             @endif
-                            @if(canGeneral('hhdv','kkgdp'))
+                            @if(canGeneral('hhdv','kkgdp')||canGeneral('hhdv','kkgdplc'))
                                 <div class="col-md-3">
                                     <h4 style="text-align: center;color: #0000ff  ">Kê khai giá địa phương</h4>
                                     <table class="table table-striped table-bordered table-hover">

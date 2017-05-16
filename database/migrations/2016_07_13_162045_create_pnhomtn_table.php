@@ -14,12 +14,12 @@ class CreatePnhomtnTable extends Migration
     {
         Schema::create('pnhomtn', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('manhom',10);
-            $table->string('mapnhom',10);
-            $table->string('masopnhom',10);
-            $table->text('tenpnhom');
-            $table->string('theodoi');
-            $table->string('sapxep');
+            $table->string('manhom',10)->nullable();
+            $table->string('mapnhom',10)->nullable();
+            $table->string('masopnhom',10)->nullable();
+            $table->text('tenpnhom')->nullable();
+            $table->string('theodoi')->nullable();
+            $table->string('sapxep')->nullable();
             $table->timestamps();
         });
     }

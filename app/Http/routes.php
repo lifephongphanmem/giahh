@@ -67,6 +67,11 @@ Route::get('/checkloaidat','DmLoaiDatController@checkloaidat');
 Route::post('dmloaidat/delete','DmLoaiDatController@destroy');
 //End dnah mục loại mặt hàng
 
+//Danh mục loại giá
+Route::resource('dmloaivanban','DmLoaiVanBanController');
+Route::get('/checkmaloaivanban','DmLoaiVanBanController@checkmaloaivanban');
+Route::post('dmloaivanban/delete','DmLoaiVanBanController@destroy');
+//End danh mục loại giá
 
     //Hàng hóa thị trường theo thông tư 55/2011
 Route::get('dmhanghoa-thitruong','DmHhTn55Controller@nhom');
@@ -156,6 +161,7 @@ Route::post('giahhdv-thitruong-dk','HsGiaHhTtController@store_dk');
 Route::get('giahhdv-thitruong/thoidiem={thoidiem}/create_dk','HsGiaHhTtController@create_dk');
 Route::get('giahhdv-thitruong-dk/{id}/edit','HsGiaHhTtController@edit_dk');
 Route::patch('giahhdv-thitruong-dk/{id}','HsGiaHhTtController@update_dk');
+Route::get('giahhdv-thitruong-dk/dinhkem','GiaHhTtController@get_attackfile');
 
 Route::get('thongtin-giathitruong','HsGiaHhTtController@showthoidiem');
 Route::get('thongtin-giathitruong/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHhTtController@showindex');
@@ -248,6 +254,7 @@ Route::get('giahhdv-tw/thoidiem={thoidiem}/create_dk','HsGiaHangHoaTWController@
 Route::patch('giahhdv-tw-dk/{id}','HsGiaHangHoaTWController@update_dk');
 Route::post('giahhdv-tw-dk','HsGiaHangHoaTWController@store_dk');
 Route::get('giahhdv-tw-dk/{id}/edit','HsGiaHangHoaTWController@edit_dk');
+Route::get('giahhdv-tw-dk/dinhkem','GiaHangHoaController@get_attackfile');
 
 Route::get('thongtin-tw','HsGiaHangHoaTWController@showthoidiem');
 Route::get('thongtin-tw/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHangHoaTWController@showindex');
@@ -284,6 +291,7 @@ Route::get('giahhdv-dp/thoidiem={thoidiem}/create_dk','HsGiaHangHoaDPController@
 Route::patch('giahhdv-dp-dk/{id}','HsGiaHangHoaDPController@update_dk');
 Route::post('giahhdv-dp-dk','HsGiaHangHoaDPController@store_dk');
 Route::get('giahhdv-dp-dk/{id}/edit','HsGiaHangHoaDPController@edit_dk');
+Route::get('giahhdv-dp-dk/dinhkem','GiaHangHoaController@get_attackfile');
 
 Route::get('thongtin-dp','HsGiaHangHoaDPController@showthoidiem');
 Route::get('thongtin-dp/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHangHoaDPController@showindex');
@@ -312,6 +320,7 @@ Route::group(['prefix'=>'giahhdv-trunguong-dk'],function(){
     Route::patch('{id}','HsGiaHangHoaTW_LaoCaiController@update_dk');
     Route::post('','HsGiaHangHoaTW_LaoCaiController@store_dk');
     Route::get('{id}/edit','HsGiaHangHoaTW_LaoCaiController@edit_dk');
+    Route::get('/dinhkem','GiaHangHoaController@get_attackfile');
 });
 Route::group(['prefix'=>'thongtin-trunguong'],function(){
     Route::get('','HsGiaHangHoaTW_LaoCaiController@showthoidiem');
@@ -340,6 +349,7 @@ Route::group(['prefix'=>'giahhdv-diaphuong-dk'],function(){
     Route::patch('{id}','HsGiaHangHoaDP_LaoCaiController@update_dk');
     Route::post('','HsGiaHangHoaDP_LaoCaiController@store_dk');
     Route::get('{id}/edit','HsGiaHangHoaDP_LaoCaiController@edit_dk');
+    Route::get('/dinhkem','GiaHangHoaController@get_attackfile');
 });
 Route::group(['prefix'=>'thongtin-diaphuong'],function(){
     Route::get('','HsGiaHangHoaDP_LaoCaiController@showthoidiem');
@@ -368,6 +378,7 @@ Route::group(['prefix'=>'giadat_phanloai_dk'],function(){
     Route::patch('{id}','HsGiaDat_LoaiDatController@update_dk');
     Route::post('','HsGiaDat_LoaiDatController@store_dk');
     Route::get('{id}/edit','HsGiaDat_LoaiDatController@edit_dk');
+    Route::get('/dinhkem','GiaDat_PhanLoaiController@get_attackfile');
 });
 Route::group(['prefix'=>'thongtin_giadat_phanloai'],function(){
     Route::get('','HsGiaDat_LoaiDatController@showthoidiem');
@@ -398,6 +409,7 @@ Route::post('thongtu-quyetdinh-tw','TtQdController@twstore');
 Route::get('thongtu-quyetdinh-tw/{id}/edit','TtQdController@twedit');
 Route::patch('thongtu-quyetdinh-tw/{id}','TtQdController@twupdate');
 Route::post('thongtu-quyetdinh-tw/delete','TtQdController@twdelete');
+Route::get('thongtu-quyetdinh-tw/dinhkem','TtQdController@get_attackfile');
     //Tỉnh
 Route::get('thongtu-quyetdinh-tinh/nam={nam}&pl={pl}','TtQdController@tinh');
 Route::get('thongtu-quyetdinh-tinh/create','TtQdController@tinhcreate');
@@ -413,6 +425,7 @@ Route::post('thanhkiemtra-vegia','TtQdController@thanhkiemtrastore');
 Route::get('thanhkiemtra-vegia/{id}/edit','TtQdController@thanhkiemtraedit');
 Route::patch('thanhkiemtra-vegia/{id}','TtQdController@thanhkiemtraupdate');
 Route::post('thanhkiemtra-vegia/delete','TtQdController@thanhkiemtradelete');
+Route::get('thanhkiemtra-vegia/dinhkem','TtQdController@get_attackfile_thanhtra');
 //End TTQĐ
 
 //Thẩm định giá
@@ -429,6 +442,7 @@ Route::get('hoso-thamdinhgia-dk/create','HsThamDinhGiaController@create_dk');
 Route::get('hoso-thamdinhgia-dk/{id}/edit','HsThamDinhGiaController@edit_dk');
 Route::patch('hoso-thamdinhgia-dk/{id}','HsThamDinhGiaController@update_dk');
 Route::post('hoso-thamdinhgia-dk','HsThamDinhGiaController@store_dk');
+Route::get('hoso-thamdinhgia-dk/dinhkem','ThamDinhGiaController@get_attackfile');
 
 Route::get('hoso-thamdinhgia/{mahs}/history','HsThamDinhGiaController@history');
 
@@ -473,6 +487,7 @@ Route::get('hoso-congbogia-dk/create','HsCongBoGiaController@create_dk');
 Route::get('hoso-congbogia-dk/{id}/edit','HsCongBoGiaController@edit_dk');
 Route::patch('hoso-congbogia-dk/{id}','HsCongBoGiaController@update_dk');
 Route::post('hoso-congbogia-dk','HsCongBoGiaController@store_dk');
+Route::get('hoso-congbogia-dk/dinhkem','CongBoGiaController@get_attackfile');
 
 
 Route::get('thongtin-congbogia/nam={nam}&pb={pb}','HsCongBoGiaController@showindex');
@@ -515,6 +530,7 @@ Route::get('hoso-congbobosung-dk/create','HsCongBoGiaBoSungController@create_dk'
 Route::get('hoso-congbobosung-dk/{id}/edit','HsCongBoGiaBoSungController@edit_dk');
 Route::patch('hoso-congbobosung-dk/{id}','HsCongBoGiaBoSungController@update_dk');
 Route::post('hoso-congbobosung-dk','HsCongBoGiaBoSungController@store_dk');
+Route::get('hoso-congbobosung-dk/dinhkem','CongBoGiaBoSungController@get_attackfile');
 
 Route::get('hoso-congbobosung/import','CongBoGiaBoSungController@import');
 Route::resource('hoso-congbobosung/import-view','CongBoGiaBoSungController@showimport');
@@ -609,6 +625,7 @@ Route::get('gia-thuetruocba-dk/create','GiaThueTbController@create_dk');
 Route::get('gia-thuetruocba-dk/{id}/edit','GiaThueTbController@edit_dk');
 Route::patch('gia-thuetruocba-dk/{id}','GiaThueTbController@update_dk');
 Route::post('gia-thuetruocba-dk/store','GiaThueTbController@store_dk');
+Route::get('gia-thuetruocba-dk/dinhkem','GiaThueTbController@get_attackfile');
 //End Thuế trước bạ
 
 //1.Giá thuế tài nguyên
@@ -650,6 +667,7 @@ Route::get('giathuetn-dk/create','HsThueTnController@create_dk');
 Route::get('giathuetn-dk/{id}/edit','HsThueTnController@edit_dk');
 Route::patch('giathuetn-dk/{id}','HsThueTnController@update_dk');
 Route::post('giathuetn-dk/store','HsThueTnController@store_dk');
+Route::get('giathuetn-dk/dinhkem','ThueTnController@get_attackfile');
 //End 1.Giá thuế tài nguyên
 
 // </editor-fold>

@@ -449,8 +449,7 @@
                                 <tr>
                                     <th width="2%" style="text-align: center">STT</th>
                                     <th style="text-align: center">Tên tài sản</th>
-                                    <!--th style="text-align: center">Đặc điểm kinh tế- kỹ thuật</th-->
-                                    <!--th style="text-align: center">Nguồn gốc</th-->
+                                    <th style="text-align: center">Thông số</br>kỹ thuật</th>
                                     <th style="text-align: center">Đơn vị</br>tính</th>
                                     <th style="text-align: center">Số lượng</th>
                                     <th style="text-align: center">Đơn giá</br>đề nghị</th>
@@ -466,6 +465,7 @@
                                     <tr>
                                         <td style="text-align: center">{{$key +1}}</td>
                                         <td class="active">{{$tt->tents}}</td>
+                                        <td style="text-align: center">{{$tt->thongsokt}}</td>
                                         <td style="text-align: center">{{$tt->dvt}}</td>
                                         <td style="text-align: center">{{number_format($tt->sl)}}</td>
                                         <td style="text-align: right">{{number_format($tt->nguyengiadenghi)}}</td>

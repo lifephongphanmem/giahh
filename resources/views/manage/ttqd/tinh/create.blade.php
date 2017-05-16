@@ -51,8 +51,9 @@
                                     <div class="form-group">
                                         <label class="control-label">Loại văn bản<span class="require">*</span></label>
                                         <select class="form-control" name="plttqd" id="plttqd">
-                                            <option value="QD">Quyết định</option>
-                                            <option value="HD">Hướng dẫn</option>
+                                            @foreach($model_loaivb as $vb)
+                                                <option value="{{$vb->plttqd}}">{{$vb->tenloaivanban}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -93,8 +94,38 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Tài liệu<span class="require">*</span></label>
-                                        <input class="passvalid" type="file" name="img">
+                                        <label class="control-label">File đính kèm 1</label>
+                                        <input name="tailieu" id="tailieu" type="file">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 2</label>
+                                        <input name="tailieu1" id="tailieu1" type="file">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 3</label>
+                                        <input name="tailieu2" id="tailieu2" type="file">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 4</label>
+                                        <input name="tailieu3" id="tailieu3" type="file">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 5</label>
+                                        <input name="tailieu4" id="tailieu4" type="file">
                                     </div>
                                 </div>
                             </div>

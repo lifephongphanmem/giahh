@@ -14,13 +14,13 @@ class CreateThamdinhgiahTable extends Migration
     {
         Schema::create('thamdinhgiah', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mahs');
-            $table->string('dataold');
-            $table->string('datanew');
-            $table->string('thaydoi');
-            $table->string('thaotac');
-            $table->string('name');
-            $table->string('username');
+            $table->string('mahs')->nullable();
+            $table->string('dataold')->nullable();
+            $table->string('datanew')->nullable();
+            $table->string('thaydoi')->nullable();
+            $table->string('thaotac')->nullable();
+            $table->string('name')->nullable();
+            $table->string('username')->nullable();
             $table->timestamps();
         });
     }

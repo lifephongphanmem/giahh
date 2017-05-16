@@ -305,7 +305,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <li>
                                     <a href="{{url('timkiem-giahhdv-thitruong')}}">Tìm kiếm thông tin giá HH thị trường</a>
                                 </li>
-
                             </ul>
                         </li>
                         @endif
@@ -387,7 +386,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!--Giao diện kê khai giá hàng hoá Trung ương danh cho Lào Cai-->
                         @if(canGeneral('hhdv','kkgtwlc'))
                             <li>
-                                <a href="javascript:;">Kê khai giá TW<span class="arrow"></span> </a>
+                                <a href="javascript:;">Kê khai giá hàng hóa, dịch vụ do TW quy định<span class="arrow"></span> </a>
                                 <ul class="sub-menu">
                                     @if(can('kkgtw','create')||can('kkgtw','edit'))
                                         <li>
@@ -408,7 +407,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         @endif
                         @if(canGeneral('hhdv','kkgdplc'))
                             <li>
-                                <a href="javascript:;">Kê khai giá địa phương<span class="arrow"></span> </a>
+                                <a href="javascript:;">Kê khai giá hàng hóa, dịch vụ do ĐP quy định<span class="arrow"></span> </a>
                                 <ul class="sub-menu">
                                     @if(can('kkgdp','create')||can('kkgdp','edit'))
                                         <li>
@@ -767,6 +766,9 @@ License: You must have a valid license purchased only from themeforest(the above
                         @endif
                         @if(canGeneral('gthuetn','gthuetn'))
                             <li><a href="{{url('dmthuetn')}}">Danh mục thuế tài nguyên</a> </li>
+                        @endif
+                        @if(canGeneral('ttqd','ttqd'))
+                            <li><a href="{{url('dmloaivanban')}}">Danh mục loại văn bản</a> </li>
                         @endif
                         <li><a href="{{url('dmtd/pl=all')}}">Thời điểm kê khai</a></li>
                         <li><a href="{{url('phong-ban')}}">Thông tin phòng ban</a></li>

@@ -31,6 +31,26 @@
         function confirmDelete(id) {
             document.getElementById("iddelete").value=id;
         }
+        function get_attack(id){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/thanhkiemtra-vegia/dinhkem',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        $('#dinh_kem').replaceWith(data.message);
+                    }
+                },
+                error: function (message) {
+                    toastr.error(message, 'Lỗi!');
+                }
+            });
+        }
     </script>
 @stop
 
@@ -77,10 +97,10 @@
                         <tr>
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center" width="5%">Thời điểm</th>
-                            <th style="text-align: center" width="20%">Đoàn kiểm tra</th>
+                            <th style="text-align: center">Đoàn kiểm tra</th>
+                            <th style="text-align: center">Tiêu đề</th>
                             <th style="text-align: center" width="40%">Nội dung</th>
-                            <!--th style="text-align: center">File đính kèm</th-->
-                            <th style="text-align: center" width="25%">Thao tác</th>
+                            <th style="text-align: center" width="10%">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -88,13 +108,15 @@
                                 <tr>
                                     <td style="text-align: center">{{$key+1}}</td>
                                     <td style="text-align: center">{{getDayVn($tt->thoidiem)}}</td>
-                                    <td class="active">{{$tt->doankt}}</td>
+                                    <td>{{$tt->doankt}}</td>
+                                    <td class="active">{{$tt->khvb}}</td>
                                     <td>{{$tt->noidung}}</td>
                                     <td>
                                         <a href="{{url('thanhkiemtra-vegia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
-                                        @if($tt->tailieu !='')
-                                            <a href="{{url('/data/uploads/thanhkiemtra/'.$tt->tailieu)}}" target="_blank"><span class="btn btn-default btn-xs mbs"><i class="fa fa-download"></i> Tải tệp</span></a>
-                                        @endif
+
+                                        <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                            <i class="fa fa-download"></i> Tải tệp</button>
+
                                         <button type="button" onclick="confirmDelete('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                             Xóa</button>
                                     </td>
@@ -113,6 +135,7 @@
     <!-- END DASHBOARD STATS -->
     <div class="clearfix">
     </div>
+    @include('includes.e.modal-attackfile')
     <script>
         function view(tt){
             window.open("/data/uploads/thanhkiemtra/"+ tt);

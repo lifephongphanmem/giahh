@@ -14,10 +14,10 @@ class CreateNhomthuetnTable extends Migration
     {
         Schema::create('nhomthuetn', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('manhom',10);
-            $table->string('tennhom');
-            $table->string('sapxep');
-            $table->string('theodoi');
+            $table->string('manhom',10)->nullable();
+            $table->string('tennhom')->nullable();
+            $table->string('sapxep')->nullable();
+            $table->string('theodoi')->nullable();
             $table->timestamps();
         });
     }

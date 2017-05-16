@@ -37,9 +37,27 @@
         function confirmHuy(id) {
             document.getElementById("idhuy").value=id;
         }
+        function get_attack(id){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '/gia-thuetruocba-dk/dinhkem',
+                type: 'GET',
+                data: {
+                    _token: CSRF_TOKEN,
+                    id: id
+                },
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.status == 'success') {
+                        $('#dinh_kem').replaceWith(data.message);
+                    }
+                },
+                error: function (message) {
+                    toastr.error(message, 'Lỗi!');
+                }
+            });
+        }
     </script>
-
-
 @stop
 
 @section('content')
@@ -104,7 +122,8 @@
                                 <td style="text-align: center">{{$tt->tenloai}}</td>
                                 <td>
                                     @if($tt->hoso == 'DINHKEM')
-                                        <a href="{{url('/data/uploads/attack/'.$tt->filedk)}}" class="btn btn-default btn-xs mbs" target="_blank">Tải file đính kèm</a>
+                                        <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
+                                            Tải file đính kèm</button>
                                     @else
                                         <a href="{{url('thongtin-gia-thuetruocba/'.$tt->id.'/show')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-eye"></i>&nbsp;Chi tiết</a>
                                     @endif
@@ -128,6 +147,7 @@
     <!-- END DASHBOARD STATS -->
     <div class="clearfix">
     </div>
+    @include('includes.e.modal-attackfile')
     <!--Modal Hủy-->
     <div id="huy-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
         {!! Form::open(['url'=>'thongtin-gia-thuetruocba/huy','id' => 'frm_huy'])!!}
@@ -141,7 +161,7 @@
 
                 </div>
                 <div class="modal-body">
-                    <h5<i style="color: #0000FF">Hồ sơ bị hủy hoàn thành sẽ chuyển lại cho phòng chuyên môn để chỉnh sửa lại thông tin! Hồ sơ sẽ không hiển thị trên màn hình thông tin nữa</i></h5>
+                    <h5><i style="color: #0000FF">Hồ sơ bị hủy hoàn thành sẽ chuyển lại cho phòng chuyên môn để chỉnh sửa lại thông tin! Hồ sơ sẽ không hiển thị trên màn hình thông tin nữa</i></h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>

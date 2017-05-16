@@ -14,14 +14,14 @@ class CreateXethuetbTable extends Migration
     {
         Schema::create('xethuetb', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('maloai');
-            $table->string('maso');
-            $table->string('tenhieu');
-            $table->string('thongsokt');
-            $table->string('dungtich');
-            $table->string('nuocsx');
-            $table->string('gia');
-            $table->string('ghichu');
+            $table->string('maloai')->nullable();
+            $table->string('maso')->nullable();
+            $table->string('tenhieu')->nullable();
+            $table->string('thongsokt')->nullable();
+            $table->string('dungtich')->nullable();
+            $table->string('nuocsx')->nullable();
+            $table->string('gia')->nullable();
+            $table->string('ghichu')->nullable();
             $table->timestamps();
         });
     }

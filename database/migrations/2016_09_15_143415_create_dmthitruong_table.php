@@ -14,8 +14,8 @@ class CreateDmthitruongTable extends Migration
     {
         Schema::create('dmthitruong', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('thitruong');
-            $table->string('ghichu');
+            $table->string('thitruong')->nullable();
+            $table->string('ghichu')->nullable();
             $table->timestamps();
         });
     }

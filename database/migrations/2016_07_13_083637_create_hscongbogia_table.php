@@ -14,24 +14,28 @@ class CreateHscongbogiaTable extends Migration
     {
         Schema::create('hscongbogia', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sohs');
-            $table->string('plhs');
-            $table->string('sovbdn');
-            $table->string('sotbkl');
-            $table->string('vontx');
-            $table->string('vondt');
-            $table->string('nguonvon');
-            $table->date('ngaynhap');
-            $table->string('donvidn');
-            $table->string('diadiemcongbo');
-            $table->string('thang');
-            $table->string('quy');
-            $table->string('nam');
-            $table->string('mahuyen');
-            $table->string('mahs');
-            $table->string('trangthai');
-            $table->string('phanloai',20);
-            $table->string('filedk');
+            $table->string('sohs')->nullable();
+            $table->string('plhs')->nullable();
+            $table->string('sovbdn')->nullable();
+            $table->string('sotbkl')->nullable();
+            $table->string('vontx')->nullable();
+            $table->string('vondt')->nullable();
+            $table->string('nguonvon')->nullable();
+            $table->date('ngaynhap')->nullable();
+            $table->string('donvidn')->nullable();
+            $table->string('diadiemcongbo')->nullable();
+            $table->string('thang')->nullable();
+            $table->string('quy')->nullable();
+            $table->string('nam')->nullable();
+            $table->string('mahuyen')->nullable();
+            $table->string('mahs')->nullable();
+            $table->string('trangthai')->nullable();
+            $table->string('phanloai',20)->nullable();
+            $table->string('filedk')->nullable();
+            $table->string('filedk1')->nullable();
+            $table->string('filedk2')->nullable();
+            $table->string('filedk3')->nullable();
+            $table->string('filedk4')->nullable();
             $table->timestamps();
         });
     }

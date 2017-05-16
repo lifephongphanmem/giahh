@@ -19,6 +19,10 @@ class HsGiaDat extends Model
         'mahuyen',
         'trangthai',
         'phanloai',
-        'filedk'
+        'filedk',
+        'filedk1',
+        'filedk2',
+        'filedk3',
+        'filedk4'
         ];
 }

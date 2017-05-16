@@ -24,6 +24,14 @@ class HsThamDinhGia extends Model
         'mahuyen',
         'mahs',
         'thuevat',
-        'songaykq'
+        'songaykq',
+        'phanloai',
+        'thuevat',
+        'songaykq',
+        'filedk',
+        'filedk1',
+        'filedk2',
+        'filedk3',
+        'filedk4'
     ];
 }

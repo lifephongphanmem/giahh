@@ -14,18 +14,18 @@ class CreateDmhhxnkTable extends Migration
     {
         Schema::create('dmhhxnk', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('masoloai');
-            $table->string('mahh');
-            $table->string('masp');
-            $table->string('tenhh');
-            $table->string('dacdiemkt');
-            $table->string('dvt');
-            $table->string('nsx');
-            $table->string('gc');
-            $table->string('thoidiem');
-            $table->string('anhien');
-            $table->string('sapxep');
-            $table->string('theodoi');
+            $table->string('masoloai')->nullable();
+            $table->string('mahh')->nullable();
+            $table->string('masp')->nullable();
+            $table->string('tenhh')->nullable();
+            $table->string('dacdiemkt')->nullable();
+            $table->string('dvt')->nullable();
+            $table->string('nsx')->nullable();
+            $table->string('gc')->nullable();
+            $table->string('thoidiem')->nullable();
+            $table->string('anhien')->nullable();
+            $table->string('sapxep')->nullable();
+            $table->string('theodoi')->nullable();
             $table->timestamps();
         });
     }

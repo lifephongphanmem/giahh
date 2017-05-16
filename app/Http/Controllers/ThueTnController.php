@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DMThueTN;
+use App\HsThueTn;
 use App\ThueTn;
 use Illuminate\Http\Request;
 
@@ -348,6 +349,64 @@ class ThueTnController extends Controller
             //$result['message'] .= '</div>';
             $result['status'] = 'success';
         }
+        die(json_encode($result));
+    }
+
+    public function get_attackfile(Request $request)
+    {
+        $result = array(
+            'status' => 'fail',
+            'message' => 'error',
+        );
+        if (!Session::has('admin')) {
+            $result = array(
+                'status' => 'fail',
+                'message' => 'permission denied',
+            );
+            die(json_encode($result));
+        }
+        $inputs = $request->all();
+
+        $model = HsThueTn::find($inputs['id']);
+
+        $result['message'] ='<div class="modal-body" id = "dinh_kem" >';
+        $result['message'] .='<div class="row" ><div class="col-md-6" ><div class="form-group" >';
+        $result['message'] .='<label class="control-label" > File đính kèm 1 </label >';
+        if (isset($model->filedk)) {
+            $result['message'] .='<p ><a target = "_blank" href = "'.url('/data/uploads/attack/'.$model->filedk).'">'.$model->filedk.'</a ></p >';
+        }
+        $result['message'] .='</div ></div ></div >';
+
+        $result['message'] .='<div class="row" ><div class="col-md-6" ><div class="form-group" >';
+        $result['message'] .='<label class="control-label" > File đính kèm 2 </label >';
+        if (isset($model->filedk1)) {
+            $result['message'] .='<p ><a target = "_blank" href = "'.url('/data/uploads/attack/'.$model->filedk1).'">'.$model->filedk1.'</a ></p >';
+        }
+        $result['message'] .='</div ></div ></div >';
+
+        $result['message'] .='<div class="row" ><div class="col-md-6" ><div class="form-group" >';
+        $result['message'] .='<label class="control-label" > File đính kèm 3 </label >';
+        if (isset($model->filedk2)) {
+            $result['message'] .='<p ><a target = "_blank" href = "'.url('/data/uploads/attack/'.$model->filedk2).'">'.$model->filedk2.'</a ></p >';
+        }
+        $result['message'] .='</div ></div ></div >';
+
+        $result['message'] .='<div class="row" ><div class="col-md-6" ><div class="form-group" >';
+        $result['message'] .='<label class="control-label" > File đính kèm 4 </label >';
+        if (isset($model->filedk3)) {
+            $result['message'] .='<p ><a target = "_blank" href = "'.url('/data/uploads/attack/'.$model->filedk3).'">'.$model->filedk3.'</a ></p >';
+        }
+        $result['message'] .='</div ></div ></div >';
+
+        $result['message'] .='<div class="row" ><div class="col-md-6" ><div class="form-group" >';
+        $result['message'] .='<label class="control-label" > File đính kèm 5 </label >';
+        if (isset($model->filedk4)) {
+            $result['message'] .='<p ><a target = "_blank" href = "'.url('/data/uploads/attack/'.$model->filedk4).'">'.$model->filedk4.'</a ></p >';
+        }
+        $result['message'] .='</div ></div ></div >';
+
+        $result['status'] = 'success';
+
         die(json_encode($result));
     }
 }

@@ -90,18 +90,27 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="control-label">Nguồn vốn</label>
-                                {!! Form::select(
-                                'nguonvon',
-                                array(
-                                'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
-                                'Thường xuyên' => 'Nguồn vốn thường xuyên',
-                                'Đầu tư' => 'Nguồn vốn đầu tư',
-                                ),null,
-                                array('id' => 'nguonvon', 'class' => 'form-control','readonly'))
-                                !!}
+                                <label class="control-label">Nguồn vốn<span class="require">*</span></label>
+                                <select class="form-control" name="nguonvon" id="nguonvon">
+                                    <option value="Cả hai" {{$model->nguonvon=='Cả hai'?'selected':''}}>Cả hai (Nguồn vốn thường xuyên và Nguồn vốn đầu tư)</option>
+                                    <option value="Thường xuyên" {{$model->nguonvon=='Thường xuyên'?'selected':''}}>Nguồn vốn thường xuyên</option>
+                                    <option value="Đầu tư" {{$model->nguonvon=='Cả hai'?'selected':''}}>Nguồn vốn đầu tư</option>
+                                </select>
                             </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Thuế VAT</label>
+                                <select class="form-control" name="thuevat" id="thuevat">
+                                    <option value="Giá bao gồm thuế VAT" {{$model->thuevat=='Giá bao gồm thuế VAT'?'selected':''}}>Giá bao gồm thuế VAT</option>
+                                    <option value="Giá chưa bao gồm thuế VAT" {{$model->thuevat=='Giá chưa bao gồm thuế VAT'?'selected':''}}>Giá chưa bao gồm thuế VAT</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
                         <!--/span-->
                         <div class="col-md-6">
                             <div class="form-group has-error">
@@ -110,8 +119,6 @@
                             </div>
                         </div>
                         <!--/span-->
-                    </div>
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Thời hạn sử dụng kết quả thẩm định</label>

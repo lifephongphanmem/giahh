@@ -61,18 +61,53 @@
                                 <!--/span-->
                             </div>
                             <div class="row">
-                                @if($model->tailieu)
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Tài liệu hiện tại</label>
-                                        <a href="{{url('/data/uploads/thanhkiemtra/'.$model->tailieu)}}">{{$model->tailieu}}</a>
+                                        <label class="control-label">File đính kèm 1</label>
+                                        @if(isset($model->tailieu))
+                                            <p><a href="{{url('/data/uploads/attack/'.$model->tailieu)}}" target="_blank">{{$model->tailieu}}</a></p>
+                                        @endif
+                                        <input name="tailieu" id="tailieu" type="file">
                                     </div>
                                 </div>
-                                @endif
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="control-label">Tài liệu<span class="require">*</span></label>
-                                        <input class="passvalid" type="file" name="img" id="img">
+                                        <label class="control-label">File đính kèm 2</label>
+                                        @if(isset($model->tailieu1))
+                                            <p><a href="{{url('/data/uploads/attack/'.$model->tailieu1)}}" target="_blank">{{$model->tailieu1}}</a></p>
+                                        @endif
+                                        <input name="tailieu1" id="tailieu1" type="file">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 3</label>
+                                        @if(isset($model->tailieu2))
+                                            <p><a href="{{url('/data/uploads/attack/'.$model->tailieu2)}}" target="_blank">{{$model->tailieu2}}</a></p>
+                                        @endif
+                                        <input name="tailieu2" id="tailieu2" type="file">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 4</label>
+                                        @if(isset($model->tailieu3))
+                                            <p><a href="{{url('/data/uploads/attack/'.$model->tailieu3)}}" target="_blank">{{$model->tailieu3}}</a></p>
+                                        @endif
+                                        <input name="tailieu3" id="tailieu3" type="file">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">File đính kèm 5</label>
+                                        @if(isset($model->tailieu4))
+                                            <p><a href="{{url('/data/uploads/attack/'.$model->tailieu4)}}" target="_blank">{{$model->tailieu4}}</a></p>
+                                        @endif
+                                        <input name="tailieu4" id="tailieu4" type="file">
                                     </div>
                                 </div>
                             </div>

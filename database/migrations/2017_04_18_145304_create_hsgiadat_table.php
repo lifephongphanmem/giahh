@@ -25,6 +25,10 @@ class CreateHsgiadatTable extends Migration
             $table->string('trangthai')->nullable();
             $table->string('phanloai')->nullable();
             $table->string('filedk')->nullable();
+            $table->string('filedk1')->nullable();
+            $table->string('filedk2')->nullable();
+            $table->string('filedk3')->nullable();
+            $table->string('filedk4')->nullable();
             $table->timestamps();
         });
     }

@@ -14,17 +14,17 @@ class CreateHsgiahhtnTable extends Migration
     {
         Schema::create('hsgiahhtn', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('mahs');
-            $table->string('mathoidiem');
-            $table->string('thitruong');
-            $table->date('tgnhap');
-            $table->string('maloaigia');
-            $table->string('maloaihh');
-            $table->string('nam');
-            $table->string('thang');
-            $table->string('quy');
-            $table->string('mahuyen');
-            $table->string('trangthai');
+            $table->string('mahs')->nullable();
+            $table->string('mathoidiem')->nullable();
+            $table->string('thitruong')->nullable();
+            $table->date('tgnhap')->nullable();
+            $table->string('maloaigia')->nullable();
+            $table->string('maloaihh')->nullable();
+            $table->string('nam')->nullable();
+            $table->string('thang')->nullable();
+            $table->string('quy')->nullable();
+            $table->string('mahuyen')->nullable();
+            $table->string('trangthai')->nullable();
             $table->timestamps();
         });
     }
