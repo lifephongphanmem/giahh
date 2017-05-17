@@ -344,8 +344,8 @@ class CongBoGiaBoSungController extends Controller
                 $model->nguongoc = isset($row[$inputs['nguongoc']]) ? $row[$inputs['nguongoc']] : '';
                 $model->dvt = isset($row[$inputs['dvt']]) ? $row[$inputs['dvt']] : '';
                 $model->sl = 1;
-                $model->giatritstd = isset($row[$inputs['giatritstd']]) ? $row[$inputs['giatritstd']] : 0;
-                $model->nguyengiathamdinh = isset($row[$inputs['nguyengiathamdinh']]) ? $row[$inputs['nguyengiathamdinh']] : 0;
+                $model->giatritstd = isset($row[$inputs['giatritstd']]) ? round($row[$inputs['giatritstd']]) : 0;
+                $model->nguyengiathamdinh = isset($row[$inputs['nguyengiathamdinh']]) ? round($row[$inputs['nguyengiathamdinh']]) : 0;
                 $model->giakththamdinh = 0;
                 $model->giaththamdinh = 0;
                 $model->save();
