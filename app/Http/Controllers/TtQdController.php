@@ -77,35 +77,35 @@ class TtQdController extends Controller
             
             $file=$request->file('tailieu');
             if(isset($file)){
-                $filename = $mattqd.'_1_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_1_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu = $filename;
             }
 
             $file1=$request->file('tailieu1');
             if(isset($file1)){
-                $filename = $mattqd.'_2_'.str_replace('.','',$file1->getClientOriginalName());
+                $filename = $mattqd.'_2_'.chuanhoatruong($file1->getClientOriginalName());
                 $file1->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu1 = $filename;
             }
 
             $file2=$request->file('tailieu2');
             if(isset($file2)){
-                $filename = $mattqd.'_3_'.str_replace('.','',$file2->getClientOriginalName());
+                $filename = $mattqd.'_3_'.chuanhoatruong($file2->getClientOriginalName());
                 $file2->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu2 = $filename;
             }
 
             $file3=$request->file('tailieu3');
             if(isset($file3)){
-                $filename = $mattqd.'_4_'.str_replace('.','',$file3->getClientOriginalName());
+                $filename = $mattqd.'_4_'.chuanhoatruong($file3->getClientOriginalName());
                 $file3->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu3 = $filename;
             }
 
             $file4=$request->file('tailieu4');
             if(isset($file4)){
-                $filename = $mattqd.'_5_'.str_replace('.','',$file4->getClientOriginalName());
+                $filename = $mattqd.'_5_'.chuanhoatruong($file4->getClientOriginalName());
                 $file4->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu4 = $filename;
             }
@@ -170,7 +170,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu);
                 }
                 $file=$request->file('tailieu');
-                $filename = $mattqd.'_1_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_1_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu=$filename;
             }
@@ -180,7 +180,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu1);
                 }
                 $file=$request->file('tailieu1');
-                $filename = $mattqd.'_2_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_2_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu1=$filename;
             }
@@ -190,7 +190,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu2);
                 }
                 $file=$request->file('tailieu2');
-                $filename = $mattqd.'_3_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_3_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu2=$filename;
             }
@@ -200,7 +200,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu3);
                 }
                 $file=$request->file('tailieu3');
-                $filename = $mattqd.'_4_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_4_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu3=$filename;
             }
@@ -210,7 +210,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu4);
                 }
                 $file=$request->file('tailieu4');
-                $filename = $mattqd.'_5_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_5_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu4=$filename;
             }
@@ -284,35 +284,35 @@ class TtQdController extends Controller
             
             $file=$request->file('tailieu');
             if(isset($file)){
-                $filename = $mattqd.'_1_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_1_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu = $filename;
             }
 
             $file1=$request->file('tailieu1');
             if(isset($file1)){
-                $filename = $mattqd.'_2_'.str_replace('.','',$file1->getClientOriginalName());
+                $filename = $mattqd.'_2_'.chuanhoatruong($file1->getClientOriginalName());
                 $file1->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu1 = $filename;
             }
 
             $file2=$request->file('tailieu2');
             if(isset($file2)){
-                $filename = $mattqd.'_3_'.str_replace('.','',$file2->getClientOriginalName());
+                $filename = $mattqd.'_3_'.chuanhoatruong($file2->getClientOriginalName());
                 $file2->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu2 = $filename;
             }
 
             $file3=$request->file('tailieu3');
             if(isset($file3)){
-                $filename = $mattqd.'_4_'.str_replace('.','',$file3->getClientOriginalName());
+                $filename = $mattqd.'_4_'.chuanhoatruong($file3->getClientOriginalName());
                 $file3->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu3 = $filename;
             }
 
             $file4=$request->file('tailieu4');
             if(isset($file4)){
-                $filename = $mattqd.'_5_'.str_replace('.','',$file4->getClientOriginalName());
+                $filename = $mattqd.'_5_'.chuanhoatruong($file4->getClientOriginalName());
                 $file4->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu4 = $filename;
             }
@@ -377,7 +377,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu);
                 }
                 $file=$request->file('tailieu');
-                $filename = $mattqd.'_1_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_1_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu=$filename;
             }
@@ -387,7 +387,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu1);
                 }
                 $file=$request->file('tailieu1');
-                $filename = $mattqd.'_2_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_2_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu1=$filename;
             }
@@ -397,7 +397,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu2);
                 }
                 $file=$request->file('tailieu2');
-                $filename = $mattqd.'_3_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_3_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu2=$filename;
             }
@@ -407,7 +407,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu3);
                 }
                 $file=$request->file('tailieu3');
-                $filename = $mattqd.'_4_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_4_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu3=$filename;
             }
@@ -417,7 +417,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu4);
                 }
                 $file=$request->file('tailieu4');
-                $filename = $mattqd.'_5_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $mattqd.'_5_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu4=$filename;
             }
@@ -490,35 +490,35 @@ class TtQdController extends Controller
             $model->nam = $nam;
             $file=$request->file('tailieu');
             if(isset($file)){
-                $filename = $matkt.'_1_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $matkt.'_1_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu = $filename;
             }
 
             $file1=$request->file('tailieu1');
             if(isset($file1)){
-                $filename = $matkt.'_2_'.str_replace('.','',$file1->getClientOriginalName());
+                $filename = $matkt.'_2_'.chuanhoatruong($file1->getClientOriginalName());
                 $file1->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu1 = $filename;
             }
 
             $file2=$request->file('tailieu2');
             if(isset($file2)){
-                $filename = $matkt.'_3_'.str_replace('.','',$file2->getClientOriginalName());
+                $filename = $matkt.'_3_'.chuanhoatruong($file2->getClientOriginalName());
                 $file2->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu2 = $filename;
             }
 
             $file3=$request->file('tailieu3');
             if(isset($file3)){
-                $filename = $matkt.'_4_'.str_replace('.','',$file3->getClientOriginalName());
+                $filename = $matkt.'_4_'.chuanhoatruong($file3->getClientOriginalName());
                 $file3->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu3 = $filename;
             }
 
             $file4=$request->file('tailieu4');
             if(isset($file4)){
-                $filename = $matkt.'_5_'.str_replace('.','',$file4->getClientOriginalName());
+                $filename = $matkt.'_5_'.chuanhoatruong($file4->getClientOriginalName());
                 $file4->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu4 = $filename;
             }
@@ -573,7 +573,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu);
                 }
                 $file=$request->file('tailieu');
-                $filename = $model->matkt.'_1_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $model->matkt.'_1_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu=$filename;
             }
@@ -583,7 +583,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu1);
                 }
                 $file=$request->file('tailieu1');
-                $filename = $model->matkt.'_2_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $model->matkt.'_2_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu1=$filename;
             }
@@ -593,7 +593,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu2);
                 }
                 $file=$request->file('tailieu2');
-                $filename = $model->matkt.'_3_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $model->matkt.'_3_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu2=$filename;
             }
@@ -603,7 +603,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu3);
                 }
                 $file=$request->file('tailieu3');
-                $filename = $model->matkt.'_4_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $model->matkt.'_4_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu3=$filename;
             }
@@ -613,7 +613,7 @@ class TtQdController extends Controller
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->tailieu4);
                 }
                 $file=$request->file('tailieu4');
-                $filename = $model->matkt.'_5_'.str_replace('.','',$file->getClientOriginalName());
+                $filename = $model->matkt.'_5_'.chuanhoatruong($file->getClientOriginalName());
                 $file->move(public_path() . '/data/uploads/attack/', $filename);
                 $model->tailieu4=$filename;
             }
