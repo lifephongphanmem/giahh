@@ -48,10 +48,10 @@
                             </th-->
                             <th width="2%" style="text-align: center">STT</th>
                             <!--th style="text-align: center">Mã thời điểm</th-->
-                            <th style="text-align: center">Thời điểm</th>
-                            <th style="text-align: center">Từ ngày</th>
+                            <th style="text-align: center">Nhóm báo cáo</th>
+                            <!--th style="text-align: center">Từ ngày</th>
                             <th style="text-align: center">Đến ngày</th>
-                            <th style="text-align: center">Nhóm</th>
+                            <th style="text-align: center">Nhóm</th-->
                             <th width="15%" style="text-align: center">Thao tác</th>
                         </tr>
                         </thead>
@@ -61,9 +61,9 @@
                             <td style="text-align: center">{{$key + 1}}</td>
                             <!--td>{{$tt->mathoidiem}}</td-->
                             <td class="active">{{$tt->tenthoidiem}}</td>
-                            <td>{{$tt->tungay}}</td>
+                            <!--td>{{$tt->tungay}}</td>
                             <td>{{$tt->denngay}}</td>
-                            <td>{{$tt->nhom}}</td>
+                            <td>{{$tt->nhom}}</td-->
                             <td>
                                 <a href="{{url('thongtin-giathitruong/thoidiem='.$tt->mathoidiem.'/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}" class="btn btn-default btn-xs mbs">
                                     <i class="fa fa-edit"></i> Xem báo cáo</a>
