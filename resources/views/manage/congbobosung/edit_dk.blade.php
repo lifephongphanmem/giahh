@@ -3,6 +3,7 @@
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
+    <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
 @stop
 
 
@@ -10,6 +11,7 @@
     <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
+    @include('includes.crumbs.script_inputdate')
 @stop
 
 @section('content')
@@ -53,7 +55,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời điểm công bố<span class="require">*</span></label>
-                                        <input type="date" id="ngaynhap" name="ngaynhap" class="form-control required" value="{{$model->ngaynhap}}">
+                                        {!!Form::text('ngaynhap',date('d/m/Y',  strtotime($model->ngaynhap)), array('id' => 'ngaynhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->

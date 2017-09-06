@@ -159,7 +159,7 @@ class HsGiaHhTtController extends Controller
             $mahs = getdate()[0];
 
             $model = new HsGiaHhTt();
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
             $model->phanloai = 'CHITIET';
             //$model->maloaihh = $insert['maloaihh'];
@@ -232,7 +232,7 @@ class HsGiaHhTtController extends Controller
                 $model->filedk4 = $filename;
             }
 
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
             $model->phanloai = 'DINHKEM';
             $model->quy = Thang2Quy($thang);
@@ -379,7 +379,7 @@ class HsGiaHhTtController extends Controller
             $thang = date_format($date,'m');
 
             $model = HsGiaHhTt::findOrFail($id);
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
             //$model->maloaihh = $insert['maloaihh'];
             //$model->maloaigia = $insert['maloaigia'];
@@ -460,7 +460,7 @@ class HsGiaHhTtController extends Controller
                 $model->filedk4=$filename;
             }
 
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
             $model->quy=Thang2Quy($thang);
             $model->thang = date_format($date,'m');

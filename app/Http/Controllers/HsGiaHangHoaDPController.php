@@ -177,7 +177,7 @@ class HsGiaHangHoaDPController extends Controller
             $mahuyen = session('admin')->mahuyen;
 
             $model = new HsGiaHangHoa();
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
             $model->maloaihh = $insert['maloaihh'];
             $model->maloaigia = $insert['maloaigia'];
@@ -246,7 +246,7 @@ class HsGiaHangHoaDPController extends Controller
                 $model->filedk4 = $filename;
             }
 
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
             $model->maloaihh = $insert['maloaihh'];
             $model->maloaigia = $insert['maloaigia'];
@@ -373,7 +373,7 @@ class HsGiaHangHoaDPController extends Controller
             $thang = date_format($date,'m');
 
             $model = HsGiaHangHoa::findOrFail($id);
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
             $model->maloaihh = $insert['maloaihh'];
             $model->maloaigia = $insert['maloaigia'];
@@ -454,7 +454,7 @@ class HsGiaHangHoaDPController extends Controller
                 $model->filedk4=$filename;
             }
 
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
             $model->maloaihh = $insert['maloaihh'];
             $model->maloaigia = $insert['maloaigia'];

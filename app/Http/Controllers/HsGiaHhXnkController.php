@@ -94,7 +94,7 @@ class HsGiaHhXnkController extends Controller
             $mahs = getdate()[0];
 
             $model = new HsGiaHhXnk();
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->maloaigia = $insert['maloaigia'];
 
             if($thang == 1 || $thang == 2 || $thang == 3)
@@ -203,7 +203,7 @@ class HsGiaHhXnkController extends Controller
             $thang = date_format($date,'m');
 
             $model = HsGiaHhXnk::findOrFail($id);
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->maloaigia = $insert['maloaigia'];
 
             if($thang == 1 || $thang == 2 || $thang == 3)

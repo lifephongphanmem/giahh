@@ -50,7 +50,7 @@ class ThamDinhGiaController extends Controller
             $modelts = new ThamDinhGia();
             $modelts->tents = $inputs['tents'];
             $modelts->dacdiempl = $inputs['dacdiempl'];
-            $modelts->thongsokt  =$inputs['thongsokt'];
+            $modelts->thongsokt  = $inputs['thongsokt'];
             $modelts->nguongoc = $inputs['nguongoc'];
             $modelts->dvt = $inputs['dvt'];
             $modelts->sl = $inputs['sl'];

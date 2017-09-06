@@ -3,6 +3,7 @@
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
+    <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
 @stop
 
 
@@ -19,6 +20,7 @@
         });
 
     </script>
+    @include('includes.crumbs.script_inputdate')
     <script>
         function editItem(id) {
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -217,7 +219,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group has-error">
                                         <label class="control-label">Thời điểm thẩm định<span class="require">*</span></label>
-                                        <input type="date" id="thoidiem" name="thoidiem" class="form-control required">
+                                        {!!Form::text('thoidiem',null, array('id' => 'thoidiem','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -301,7 +303,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
-                                        <input type="date" id="thoihan" name="thoihan" class="form-control required">
+                                        {!!Form::text('thoihan',null, array('id' => 'thoihan','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -440,7 +442,6 @@
     </div>
     <script type="text/javascript">
         function validateForm(){
-
             var validator = $("#create_tthstd").validate({
                 rules: {
                     ten :"required"
@@ -542,8 +543,10 @@
         function addngay(){
             var thoidiem = $('#thoidiem').val();
             var songay = $('#songaykq').val();
+
             if(thoidiem!='' && songay!=''){
                 var date = new Date(thoidiem);
+
                 date.setDate(date.getDate()+parseInt(songay));
                 var dd = date.getDate();
                 var mm = date.getMonth() + 1;
@@ -554,7 +557,7 @@
                 if(mm<10) {
                     mm='0'+mm
                 }
-                $('#thoihan').val(y+ '-'+mm + '-' + dd  );
+                $('#thoihan').val(dd+'-'+mm+'-'+y);
             }
         }
     </script>

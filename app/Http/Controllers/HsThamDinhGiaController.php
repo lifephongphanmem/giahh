@@ -103,7 +103,7 @@ class HsThamDinhGiaController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {dd($request);
         if(Session::has('admin')){
             $insert = $request->all();
             $date = date_create($insert['thoidiem']);
@@ -112,11 +112,11 @@ class HsThamDinhGiaController extends Controller
 
             $model = new HsThamDinhGia();
             $model->diadiem = $insert['diadiem'];
-            $model->thoidiem = $insert['thoidiem'];
+            $model->thoidiem = getDateToDb($insert['thoidiem']);
             $model->ppthamdinh = $insert['ppthamdinh'];
             $model->mucdich = $insert['mucdich'];
             $model->dvyeucau = $insert['dvyeucau'];
-            $model->thoihan = $insert['thoihan'];
+            $model->thoihan = getDateToDb($insert['thoihan']);
             $model->sotbkl = $insert['sotbkl'];
             $model->hosotdgia = $insert['hosotdgia'];
             $model->thang = date_format($date,'m');
@@ -198,11 +198,11 @@ class HsThamDinhGiaController extends Controller
             }
 
             $model->diadiem = $insert['diadiem'];
-            $model->thoidiem = $insert['thoidiem'];
+            $model->thoidiem = getDateToDb($insert['thoidiem']);
             $model->ppthamdinh = $insert['ppthamdinh'];
             $model->mucdich = $insert['mucdich'];
             $model->dvyeucau = $insert['dvyeucau'];
-            $model->thoihan = $insert['thoihan'];
+            $model->thoihan =getDateToDb($insert['thoihan']);
             $model->sotbkl = $insert['sotbkl'];
             $model->hosotdgia = $insert['hosotdgia'];
             $model->thang = date_format($date,'m');
@@ -320,11 +320,11 @@ class HsThamDinhGiaController extends Controller
 
 
             $model->diadiem = $update['diadiem'];
-            $model->thoidiem = $update['thoidiem'];
+            $model->thoidiem = getDateToDb($update['thoidiem']);
             $model->ppthamdinh = $update['ppthamdinh'];
             $model->mucdich = $update['mucdich'];
             $model->dvyeucau = $update['dvyeucau'];
-            $model->thoihan = $update['thoihan'];
+            $model->thoihan = getDateToDb($update['thoihan']);
             $model->sotbkl = $update['sotbkl'];
             $model->hosotdgia = $update['hosotdgia'];
             $model->thang = date_format($date,'m');
@@ -415,11 +415,11 @@ class HsThamDinhGiaController extends Controller
             $arraynew = array_intersect_key($update,$arrayold);
 
             $model->diadiem = $update['diadiem'];
-            $model->thoidiem = $update['thoidiem'];
+            $model->thoidiem = getDateToDb($update['thoidiem']);
             $model->ppthamdinh = $update['ppthamdinh'];
             $model->mucdich = $update['mucdich'];
             $model->dvyeucau = $update['dvyeucau'];
-            $model->thoihan = $update['thoihan'];
+            $model->thoihan = getDateToDb($update['thoihan']);
             $model->sotbkl = $update['sotbkl'];
             $model->hosotdgia = $update['hosotdgia'];
             $model->thang = date_format($date,'m');

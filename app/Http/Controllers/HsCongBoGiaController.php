@@ -131,7 +131,7 @@ class HsCongBoGiaController extends Controller
             $model->sohs = $insert['sohs'];
             $model->plhs = $insert['plhs'];
             $model->sotbkl = $insert['sotbkl'];
-            $model->ngaynhap = $insert['ngaynhap'];
+            $model->ngaynhap = getDateToDb($insert['ngaynhap']);
             $model->sovbdn = $insert['sovbdn'];
             $model->nguonvon = $insert['nguonvon'];
             $model->diadiemcongbo = $insert['diadiemcongbo'];
@@ -211,7 +211,7 @@ class HsCongBoGiaController extends Controller
             $model->plhs = $insert['plhs'];
             $model->phanloai = 'DINHKEM';
             $model->sotbkl = $insert['sotbkl'];
-            $model->ngaynhap = $insert['ngaynhap'];
+            $model->ngaynhap = getDateToDb($insert['ngaynhap']);
             $model->sovbdn = $insert['sovbdn'];
             $model->nguonvon = $insert['nguonvon'];
             $model->diadiemcongbo = $insert['diadiemcongbo'];
@@ -309,7 +309,7 @@ class HsCongBoGiaController extends Controller
             $model->sohs = $update['sohs'];
             $model->plhs = $update['plhs'];
             $model->sotbkl = $update['sotbkl'];
-            $model->ngaynhap = $update['ngaynhap'];
+            $model->ngaynhap = getDateToDb($update['ngaynhap']);
             $model->sovbdn = $update['sovbdn'];
             $model->nguonvon = $update['nguonvon'];
             $model->diadiemcongbo = $update['diadiemcongbo'];
@@ -395,7 +395,7 @@ class HsCongBoGiaController extends Controller
             $model->sohs = $update['sohs'];
             $model->plhs = $update['plhs'];
             $model->sotbkl = $update['sotbkl'];
-            $model->ngaynhap = $update['ngaynhap'];
+            $model->ngaynhap = getDateToDb($update['ngaynhap']);
             $model->sovbdn = $update['sovbdn'];
             $model->nguonvon = $update['nguonvon'];
             $model->diadiemcongbo = $update['diadiemcongbo'];

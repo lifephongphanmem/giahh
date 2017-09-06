@@ -3,6 +3,7 @@
 @section('custom-style')
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css')}}"/>
+    <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
 @stop
 
 
@@ -17,6 +18,7 @@
             TableManaged.init();
         });
 
+        @include('includes.crumbs.script_inputdate')
     </script>
     <script>
         function editItem(id) {
@@ -190,14 +192,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời gian nhập</label>
-                                        <input type="date" id="tgnhap" name="tgnhap" class="form-control required" autofocus>
+                                        {!!Form::text('tgnhap',null, array('id' => 'tgnhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời điểm áp dụng</label>
-                                        <input type="date" id="tgapdung" name="tgapdung" class="form-control required">
+                                        {!!Form::text('tgapdung',null, array('id' => 'tgapdung','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                             </div>

@@ -471,4 +471,12 @@ function Thang2Quy($thang){
     else
         return 4;
 }
+
+function getDateToDb($value){
+    if($value==''){return null;}
+    $str =  strtotime(str_replace('/', '-', $value));
+    $kq = date('Y-m-d', $str);
+    return $kq;
+}
+
 ?>

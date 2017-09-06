@@ -155,7 +155,7 @@ class HsThueTnController extends Controller
             $mahuyen = session('admin')->mahuyen;
 
             $model = new HsThueTn();
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->phanloai = $insert['phanloai'];
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
@@ -224,7 +224,7 @@ class HsThueTnController extends Controller
                 $model->filedk4 = $filename;
             }
 
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->hoso = 'DINHKEM';
             $model->thang = date_format($date,'m');
             $model->quy = Thang2Quy($thang);
@@ -320,7 +320,7 @@ class HsThueTnController extends Controller
             $thang = date_format($date,'m');
 
             $model = HsThueTn::findOrFail($id);
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
             elseif($thang == 4 || $thang == 5 || $thang == 6)
@@ -347,7 +347,7 @@ class HsThueTnController extends Controller
             $thang = date_format($date,'m');
 
             $model = HsThueTn::findOrFail($id);
-            $model->tgnhap = $update['tgnhap'];
+            $model->tgnhap = getDateToDb($update['tgnhap']);
             if(isset($request->filedk)){
                 if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk)){
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);

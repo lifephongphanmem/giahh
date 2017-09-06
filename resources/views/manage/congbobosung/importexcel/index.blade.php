@@ -1,14 +1,14 @@
 @extends('main')
 
 @section('custom-style')
-
+    <link type="text/css" rel="stylesheet" href="{{ url('vendors/bootstrap-datepicker/css/datepicker.css') }}">
 @stop
 
 
 @section('custom-script')
     <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
     <!--cript src="{{url('assets/admin/pages/scripts/form-validation.js')}}"></script-->
-
+    @include('includes.crumbs.script_inputdate')
 @stop
 
 @section('content')
@@ -55,7 +55,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Ngày nhập<span class="require">*</span></label>
-                                        <input type="date" id="ngaynhap" name="ngaynhap" class="form-control required">
+                                        <input type="text" id="ngaynhap" name="ngaynhap" data-inputmask="'alias': 'date'" class="form-control required">
                                     </div>
                                 </div>
                                 <!--/span-->

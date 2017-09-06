@@ -107,7 +107,7 @@ class HsGiaHhTnController extends Controller
             $mahs = getdate()[0];
 
             $model = new HsGiaHhTn();
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
             $model->maloaihh = $insert['maloaihh'];
             $model->maloaigia = $insert['maloaigia'];
@@ -229,7 +229,7 @@ class HsGiaHhTnController extends Controller
             $thang = date_format($date,'m');
 
             $model = HsGiaHhTn::findOrFail($id);
-            $model->tgnhap = $insert['tgnhap'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
             $model->maloaihh = $insert['maloaihh'];
             $model->maloaigia = $insert['maloaigia'];

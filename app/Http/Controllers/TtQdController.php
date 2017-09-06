@@ -67,8 +67,8 @@ class TtQdController extends Controller
             $model->khvb = $insert['khvb'];
             $model->dvbanhanh = $insert['dvbanhanh'];
             $model->plttqd = $insert['plttqd'];
-            $model->ngaybh = $insert['ngaybh'];
-            $model->ngayad = $insert['ngayad'];
+            $model->ngaybh = getDateToDb($insert['ngaybh']);
+            $model->ngayad = getDateToDb($insert['ngayad']);
             $model->tieude = $insert['tieude'];
             $model->ghichu = $insert['ghichu'];
             $model->mattqd = $mattqd;
@@ -157,8 +157,8 @@ class TtQdController extends Controller
             $model->khvb = $update['khvb'];
             $model->dvbanhanh = $update['dvbanhanh'];
             $model->plttqd = $update['plttqd'];
-            $model->ngaybh = $update['ngaybh'];
-            $model->ngayad = $update['ngayad'];
+            $model->ngaybh = getDateToDb($update['ngaybh']);
+            $model->ngayad = getDateToDb($update['ngayad']);
             $model->tieude = $update['tieude'];
             $model->ghichu = $update['ghichu'];
             //$model->mattqd = $mattqd;
@@ -274,8 +274,8 @@ class TtQdController extends Controller
             $model->khvb = $insert['khvb'];
             $model->dvbanhanh = $insert['dvbanhanh'];
             $model->plttqd = $insert['plttqd'];
-            $model->ngaybh = $insert['ngaybh'];
-            $model->ngayad = $insert['ngayad'];
+            $model->ngaybh = getDateToDb($insert['ngaybh']);
+            $model->ngayad = getDateToDb($insert['ngayad']);
             $model->tieude = $insert['tieude'];
             $model->ghichu = $insert['ghichu'];
             $model->mattqd = $mattqd;
@@ -364,8 +364,8 @@ class TtQdController extends Controller
             $model->khvb = $update['khvb'];
             $model->dvbanhanh = $update['dvbanhanh'];
             $model->plttqd = $update['plttqd'];
-            $model->ngaybh = $update['ngaybh'];
-            $model->ngayad = $update['ngayad'];
+            $model->ngaybh = getDateToDb($update['ngaybh']);
+            $model->ngayad = getDateToDb($update['ngayad']);
             $model->tieude = $update['tieude'];
             $model->ghichu = $update['ghichu'];
             //$model->mattqd = $mattqd;
@@ -484,7 +484,7 @@ class TtQdController extends Controller
             $model = new ThanhKiemTra();
             $model->khvb = $insert['khvb'];
             $model->doankt = $insert['doankt'];
-            $model->thoidiem = $insert['thoidiem'];
+            $model->thoidiem =getDateToDb($insert['thoidiem']);
             $model->noidung = $insert['noidung'];
             $model->matkt = $matkt;
             $model->nam = $nam;
@@ -565,7 +565,7 @@ class TtQdController extends Controller
 
             $model->khvb = $update['khvb'];
             $model->doankt = $update['doankt'];
-            $model->thoidiem = $update['thoidiem'];
+            $model->thoidiem = getDateToDb($update['thoidiem']);
             $model->noidung = $update['noidung'];
 
             if(isset($request->tailieu)){

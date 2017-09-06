@@ -108,7 +108,7 @@ class HsCongBoGiaBoSungController extends Controller
             $model->sohs = $insert['sohs'];
             $model->plhs = $insert['plhs'];
             //$model->sotbkl = $insert['sotbkl'];
-            $model->ngaynhap = $insert['ngaynhap'];
+            $model->ngaynhap = getDateToDb($insert['ngaynhap']);
             //$model->sovbdn = $insert['sovbdn'];
             $model->nguonvon = $insert['nguonvon'];
             $model->diadiemcongbo = $insert['diadiemcongbo'];
@@ -193,7 +193,7 @@ class HsCongBoGiaBoSungController extends Controller
             $model->plhs = $insert['plhs'];
             $model->phanloai = 'DINHKEM';
             //$model->sotbkl = $insert['sotbkl'];
-            $model->ngaynhap = $insert['ngaynhap'];
+            $model->ngaynhap =getDateToDb($insert['ngaynhap']);
             //$model->sovbdn = $insert['sovbdn'];
             $model->nguonvon = $insert['nguonvon'];
             $model->diadiemcongbo = $insert['diadiemcongbo'];
@@ -286,12 +286,12 @@ class HsCongBoGiaBoSungController extends Controller
             $update = $request->all();
             $date = date_create($update['ngaynhap']);
             $thang = date_format($date,'m');
-
+    //dd(getDateToDb($update['ngaynhap']));
             $model = HsCongBoGia::findOrFail($id);
             $model->sohs = $update['sohs'];
             $model->plhs = $update['plhs'];
             //$model->sotbkl = $update['sotbkl'];
-            $model->ngaynhap = $update['ngaynhap'];
+            $model->ngaynhap = getDateToDb($update['ngaynhap']);
             //$model->sovbdn = $update['sovbdn'];
             $model->nguonvon = $update['nguonvon'];
             $model->diadiemcongbo = $update['diadiemcongbo'];
@@ -377,7 +377,7 @@ class HsCongBoGiaBoSungController extends Controller
             $model->sohs = $update['sohs'];
             $model->plhs = $update['plhs'];
             //$model->sotbkl = $update['sotbkl'];
-            $model->ngaynhap = $update['ngaynhap'];
+            $model->ngaynhap = getDateToDb($update['ngaynhap']);
             //$model->sovbdn = $update['sovbdn'];
             $model->nguonvon = $update['nguonvon'];
             $model->diadiemcongbo = $update['diadiemcongbo'];

@@ -131,8 +131,8 @@ class HsGiaDat_LoaiDatController extends Controller
             $mahuyen = session('admin')->mahuyen;
 
             $model = new HsGiaDat();
-            $model->tgnhap = $insert['tgnhap'];
-            $model->tgapdung = $insert['tgapdung'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
+            $model->tgapdung = getDateToDb($insert['tgapdung']);
             $model->phanloai = 'CHITIET';
             $model->quy = Thang2Quy($thang);
             $model->thang = date_format($date,'m');
@@ -197,8 +197,8 @@ class HsGiaDat_LoaiDatController extends Controller
                 $model->filedk4 = $filename;
             }
 
-            $model->tgnhap = $insert['tgnhap'];
-            $model->tgapdung = $insert['tgapdung'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
+            $model->tgapdung = getDateToDb($insert['tgapdung']);
             $model->maloaigia = $insert['maloaigia'];
             $model->phanloai = 'DINHKEM';
             $model->quy = Thang2Quy($thang);
@@ -279,8 +279,8 @@ class HsGiaDat_LoaiDatController extends Controller
             $thang = date_format($date,'m');
 
             $model = HsGiaDat::findOrFail($id);
-            $model->tgnhap = $insert['tgnhap'];
-            $model->tgapdung = $insert['tgapdung'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
+            $model->tgapdung = getDateToDb($insert['tgapdung']);
             $model->quy=Thang2Quy($thang);
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
@@ -350,8 +350,8 @@ class HsGiaDat_LoaiDatController extends Controller
                 $model->filedk4=$filename;
             }
 
-            $model->tgnhap = $insert['tgnhap'];
-            $model->tgapdung = $insert['tgapdung'];
+            $model->tgnhap = getDateToDb($insert['tgnhap']);
+            $model->tgapdung = getDateToDb($insert['tgapdung']);
             $model->quy=Thang2Quy($thang);
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
