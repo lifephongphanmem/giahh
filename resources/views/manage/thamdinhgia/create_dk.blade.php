@@ -119,7 +119,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
-                                        {!!Form::text('thoihan',null, array('id' => 'thoihan','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                                        {!!Form::text('thoihan',null, array('id' => 'thoihan','class' => 'form-control required'))!!}
                                     </div>
                                 </div>
                             </div>
@@ -200,21 +200,9 @@
         function addngay(){
             var thoidiem = $('#thoidiem').val();
             var songay = $('#songaykq').val();
-            if(thoidiem!='' && songay!=''){
-                var date = new Date(thoidiem);
-                date.setDate(date.getDate()+parseInt(songay));
-                var dd = date.getDate();
-                var mm = date.getMonth() + 1;
-                var y = date.getFullYear();
-                if(dd<10) {
-                    dd='0'+dd
-                }
-                if(mm<10) {
-                    mm='0'+mm
-                }
-                $('#thoihan').val(dd + '-' + mm + '-' + y);
-            }
+            $('#thoihan').val(add_date(thoidiem,songay));
         }
     </script>
+    @include('includes.script.set_date_thoihanthamdinh')
     @include('includes.script.create-header-scripts')
 @stop

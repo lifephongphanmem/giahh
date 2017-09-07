@@ -154,7 +154,7 @@ class HsGiaHhTtController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
             $mahs = getdate()[0];
 
@@ -192,7 +192,7 @@ class HsGiaHhTtController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
             $mahs = getdate()[0];
 
@@ -375,7 +375,7 @@ class HsGiaHhTtController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
 
             $model = HsGiaHhTt::findOrFail($id);
@@ -407,7 +407,7 @@ class HsGiaHhTtController extends Controller
         if(Session::has('admin')){
             $insert = $request->all();
             $model = HsGiaHhTt::findOrFail($id);
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
 
             if(isset($request->filedk)){

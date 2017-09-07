@@ -103,10 +103,10 @@ class HsThamDinhGiaController extends Controller
     }
 
     public function store(Request $request)
-    {dd($request);
+    {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['thoidiem']);
+            $date = date_create(getDateToDb($insert['thoidiem']));
             $thang = date_format($date,'m');
             $mahs = getdate()[0];
 
@@ -157,7 +157,7 @@ class HsThamDinhGiaController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['thoidiem']);
+            $date = date_create(getDateToDb($insert['thoidiem']));
             $thang = date_format($date,'m');
             $mahs = getdate()[0];
 
@@ -309,7 +309,7 @@ class HsThamDinhGiaController extends Controller
         if(Session::has('admin')){
             $update = $request->all();
 
-            $date = date_create($update['thoidiem']);
+            $date = date_create(getDateToDb($update['thoidiem']));
             $thang = date_format($date,'m');
 
             $model = HsThamDinhGia::findOrFail($id);
@@ -355,7 +355,7 @@ class HsThamDinhGiaController extends Controller
         if(Session::has('admin')){
             $update = $request->all();
 
-            $date = date_create($update['thoidiem']);
+            $date = date_create(getDateToDb($update['thoidiem']));
             $thang = date_format($date,'m');
 
             $model = HsThamDinhGia::findOrFail($id);

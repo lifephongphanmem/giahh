@@ -203,230 +203,138 @@
             <!-- BEGIN VALIDATION STATES-->
             <div class="portlet box blue">
                 <div class="portlet-body form">
-                    <meta name="csrf_token" content="{{ csrf_token() }}" />
                     <!-- BEGIN FORM-->
-                        {!! Form::open(['url'=>'hoso-thamdinhgia', 'id' => 'create_tthstd', 'class'=>'horizontal-form']) !!}
-                        <div class="form-body">
-                            <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Số hồ sơ thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="hosotdgia" name="hosotdgia" class="form-control required" autofocus>
-                                    </div>
+                    {!! Form::open(['url'=>'hoso-thamdinhgia', 'id' => 'create_tthstd', 'class'=>'horizontal-form']) !!}
+                    <div class="form-body">
+                        <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Số hồ sơ thẩm định<span class="require">*</span></label>
+                                    <input type="text" id="hosotdgia" name="hosotdgia" class="form-control required" autofocus>
                                 </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Thời điểm thẩm định<span class="require">*</span></label>
-                                        {!!Form::text('thoidiem',null, array('id' => 'thoidiem','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
-                                    </div>
-                                </div>
-                                <!--/span-->
                             </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group has-error">
+                                    <label class="control-label">Thời điểm thẩm định<span class="require">*</span></label>
+                                    {!!Form::text('thoidiem',null, array('id' => 'thoidiem','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
 
-                            <!--/row-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Địa điểm thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="diadiem" name="diadiem" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Phương pháp thẩm định thẩm định</label>
-                                        <input type="text" id="ppthamdinh" name="ppthamdinh" class="form-control">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Mục đích thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="mucdich" name="mucdich" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Đơn vị yêu cầu thẩm định<span class="require">*</span></label>
-                                        <input type="text" id="dvyeucau" name="dvyeucau" class="form-control required">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Nguồn vốn<span class="require">*</span></label>
-                                        <select class="form-control" name="nguonvon" id="nguonvon">
-                                            <option value="Cả hai">Cả hai (Nguồn vốn thường xuyên và Nguồn vốn đầu tư)</option>
-                                            <option value="Thường xuyên">Nguồn vốn thường xuyên</option>
-                                            <option value="Đầu tư">Nguồn vốn đầu tư</option>
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Thuế VAT</label>
-                                        <select class="form-control" name="thuevat" id="thuevat">
-                                            <option value="Giá bao gồm thuế VAT">Giá bao gồm thuế VAT</option>
-                                            <option value="Giá chưa bao gồm thuế VAT">Giá chưa bao gồm thuế VAT</option>
-                                        </select>
-                                    </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Địa điểm thẩm định<span class="require">*</span></label>
+                                    <input type="text" id="diadiem" name="diadiem" class="form-control required">
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group has-error">
+                                    <label class="control-label">Phương pháp thẩm định thẩm định</label>
+                                    <input type="text" id="ppthamdinh" name="ppthamdinh" class="form-control">
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Mục đích thẩm định<span class="require">*</span></label>
+                                    <input type="text" id="mucdich" name="mucdich" class="form-control required">
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Số thông báo kết luận<span class="require">*</span></label>
-                                        <input type="text" id="sotbkl" name="sotbkl" class="form-control required">
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="form-group has-error">
+                                    <label class="control-label">Đơn vị yêu cầu thẩm định<span class="require">*</span></label>
+                                    <input type="text" id="dvyeucau" name="dvyeucau" class="form-control required">
                                 </div>
-                                <!--/span-->
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Số ngày sử dụng kết quả thẩm định</label>
-                                        <input data-mask="fdecimal" id="songaykq" name="songaykq" class="form-control" value="0">
-                                    </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Nguồn vốn<span class="require">*</span></label>
+                                    <select class="form-control" name="nguonvon" id="nguonvon">
+                                        <option value="Cả hai">Cả hai (Nguồn vốn thường xuyên và Nguồn vốn đầu tư)</option>
+                                        <option value="Thường xuyên">Nguồn vốn thường xuyên</option>
+                                        <option value="Đầu tư">Nguồn vốn đầu tư</option>
+                                    </select>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
-                                        {!!Form::text('thoihan',null, array('id' => 'thoihan','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-
-                            <!--/row-->
-                            <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Tên tài sản<span class="require">*</span></label>
-                                        <input type="text" id="tents" name="tents" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Đặc điểm pháp lý</label>
-                                        <input type="text" id="dacdiempl" name="dacdiempl" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Thông số kỹ thuật</label>
-                                        <input type="text" name="thongsokt" id="thongsokt" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Nguồn gốc</label>
-                                        <input type="text" name="nguongoc" id="nguongoc" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Đơn vị tính<span class="require">*</span></label>
-                                        <input type="text" name="dvt" id="dvt" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Số lượng<span class="require">*</span></label>
-                                        <input type="text" name="sl" id="sl" class="form-control" data-mask="fdecimal" value="1">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Đơn giá đề nghị<span class="require">*</span></label>
-                                        <input type="text" name="nguyengiadenghi" id="nguyengiadenghi" class="form-control" data-mask="fdecimal" value="0">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Giá trị đề nghị<span class="require">*</span></label>
-                                        <input type="text" name="giadenghi" id="giadenghi" class="form-control" data-mask="fdecimal" value="0">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Đơn giá thẩm định<span class="require">*</span></label>
-                                        <input type="text" name="nguyengiathamdinh" id="nguyengiathamdinh" class="form-control" data-mask="fdecimal" value="0">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Giá trị tài sản thẩm định<span class="require">*</span></label>
-                                        <input type="text" name="giatritstd" id="giatritstd" class="form-control" data-mask="fdecimal" value="0" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Ghi chú</label>
-                                        <textarea id="gc" class="form-control" name="gc" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <button type="button" id="capnhatts" name="capnhatts" class="btn btn-primary">Thêm mới</button>
-                                        &nbsp;
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row" id="dsts">
-                                <div class="col-md-12">
-                                    <table class="table table-striped table-bordered table-hover" id="sample_3">
-                                        <thead>
-                                        <tr>
-                                            <th width="2%" style="text-align: center">STT</th>
-                                            <th style="text-align: center">Tên tài sản</th>
-                                            <th style="text-align: center">Thông số</br>kỹ thuật</th>
-                                            <!--th style="text-align: center">Nguồn gốc</th-->
-                                            <th style="text-align: center">Đơn vị</br>tính</th>
-                                            <th style="text-align: center">Số lượng</th>
-                                            <th style="text-align: center">Đơn giá</br>đề nghị</th>
-                                            <th style="text-align: center">Giá trị</br>đề nghị</th>
-                                            <th style="text-align: center">Đơn giá</br>thẩm định</th>
-                                            <th style="text-align: center">Giá trị</br>thẩm định</th>
-                                            <th style="text-align: center">Ghi chú</th>
-                                            <th style="text-align: center">Thao tác</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody id="ttts">
-
-                                        </tbody>
-                                    </table>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Thuế VAT</label>
+                                    <select class="form-control" name="thuevat" id="thuevat">
+                                        <option value="Giá bao gồm thuế VAT">Giá bao gồm thuế VAT</option>
+                                        <option value="Giá chưa bao gồm thuế VAT">Giá chưa bao gồm thuế VAT</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="row">
 
-                    <!-- END FORM-->
+                            <div class="col-md-6">
+                                <div class="form-group has-error">
+                                    <label class="control-label">Số thông báo kết luận<span class="require">*</span></label>
+                                    <input type="text" id="sotbkl" name="sotbkl" class="form-control required">
+                                </div>
+                            </div>
+                            <!--/span-->
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Số ngày sử dụng kết quả thẩm định</label>
+                                    <input data-mask="fdecimal" id="songaykq" name="songaykq" class="form-control" value="0">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Thời hạn sử dụng kết quả thẩm định</label>
+                                    {!!Form::text('thoihan',null, array('id' => 'thoihan','class' => 'form-control'))!!}
+                                </div>
+                            </div>
+
+                            <!--/span-->
+                        </div>
+
+                        <div class="row" id="dsts">
+                            <div class="col-md-12">
+                                <table class="table table-striped table-bordered table-hover" id="sample_3">
+                                    <thead>
+                                    <tr>
+                                        <th width="2%" style="text-align: center">STT</th>
+                                        <th style="text-align: center">Tên tài sản</th>
+                                        <th style="text-align: center">Thông số</br>kỹ thuật</th>
+                                        <!--th style="text-align: center">Nguồn gốc</th-->
+                                        <th style="text-align: center">Đơn vị</br>tính</th>
+                                        <th style="text-align: center">Số lượng</th>
+                                        <th style="text-align: center">Đơn giá</br>đề nghị</th>
+                                        <th style="text-align: center">Giá trị</br>đề nghị</th>
+                                        <th style="text-align: center">Đơn giá</br>thẩm định</th>
+                                        <th style="text-align: center">Giá trị</br>thẩm định</th>
+                                        <th style="text-align: center">Ghi chú</th>
+                                        <th style="text-align: center">Thao tác</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="ttts">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -436,6 +344,7 @@
                     <a href="{{url('hoso-thamdinhgia/nam='.date('Y'))}}" class="btn btn-danger"><i class="fa fa-reply"></i>&nbsp;Quay lại</a>
                 </div>
             </div>
+            <!-- END FORM-->
             </form>
             <!-- END VALIDATION STATES-->
         </div>
@@ -543,24 +452,10 @@
         function addngay(){
             var thoidiem = $('#thoidiem').val();
             var songay = $('#songaykq').val();
-
-            if(thoidiem!='' && songay!=''){
-                var date = new Date(thoidiem);
-
-                date.setDate(date.getDate()+parseInt(songay));
-                var dd = date.getDate();
-                var mm = date.getMonth() + 1;
-                var y = date.getFullYear();
-                if(dd<10) {
-                    dd='0'+dd
-                }
-                if(mm<10) {
-                    mm='0'+mm
-                }
-                $('#thoihan').val(dd+'-'+mm+'-'+y);
-            }
+            $('#thoihan').val(add_date(thoidiem,songay));
         }
     </script>
+    @include('includes.script.set_date_thoihanthamdinh')
     <script>
         jQuery(document).ready(function($) {
             $('button[name="capnhatts"]').click(function(){

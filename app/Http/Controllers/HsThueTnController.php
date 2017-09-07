@@ -149,7 +149,7 @@ class HsThueTnController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
             $mahs = getdate()[0];
             $mahuyen = session('admin')->mahuyen;
@@ -184,7 +184,7 @@ class HsThueTnController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
             $mahs = getdate()[0];
 
@@ -316,7 +316,7 @@ class HsThueTnController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
 
             $model = HsThueTn::findOrFail($id);
@@ -343,7 +343,7 @@ class HsThueTnController extends Controller
     {
         if(Session::has('admin')){
             $update = $request->all();
-            $date = date_create($update['tgnhap']);
+            $date = date_create(getDateToDb($update['tgnhap']));
             $thang = date_format($date,'m');
 
             $model = HsThueTn::findOrFail($id);

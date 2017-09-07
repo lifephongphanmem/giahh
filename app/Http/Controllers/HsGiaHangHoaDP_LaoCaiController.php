@@ -166,7 +166,7 @@ class HsGiaHangHoaDP_LaoCaiController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
             $mahs = getdate()[0];
             $mahuyen = session('admin')->mahuyen;
@@ -199,7 +199,7 @@ class HsGiaHangHoaDP_LaoCaiController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
             $mahs = getdate()[0];
             $mahuyen = session('admin')->mahuyen;
@@ -363,7 +363,7 @@ class HsGiaHangHoaDP_LaoCaiController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
 
             $model = HsGiaHangHoa::findOrFail($id);
@@ -386,7 +386,7 @@ class HsGiaHangHoaDP_LaoCaiController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
-            $date = date_create($insert['tgnhap']);
+            $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
 
             $model = HsGiaHangHoa::findOrFail($id);
