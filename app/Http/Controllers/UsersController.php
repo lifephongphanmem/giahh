@@ -111,7 +111,6 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         if (Session::has('admin')) {
-
             $update = $request->all();
             $model = Users::findOrFail($id);
             $model->name = $update['name'];
@@ -120,7 +119,8 @@ class UsersController extends Controller
             $model->status = $update['status'];
             $model->mahuyen = $update['mahuyen'];
             //$model->level = $update['level'];
-
+            if ($update['newpass'] != '')
+                $model->password = md5($update['newpass']);
             $model->save();
 
             if($model->level == 'T'|| $model->level== 'H')
