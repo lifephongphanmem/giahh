@@ -140,9 +140,8 @@
                                             @if($tt->phanloai == 'DINHKEM')
                                                 <button type="button" onclick="get_attack('{{$tt->id}}')" class="btn btn-default btn-xs mbs" data-target="#dinhkem-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;
                                                     Tải file đính kèm</button>
-                                            @else
-                                                <a href="{{url('hoso-congbogia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @endif
+                                                <a href="{{url('hoso-congbogia/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                         @endif
 
                                         @if(can('congbogia','delete'))
