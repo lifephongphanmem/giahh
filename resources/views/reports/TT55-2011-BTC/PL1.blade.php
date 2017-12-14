@@ -71,17 +71,23 @@
         <th>8</th>
 
     </tr>
-    @foreach($model as $key=>$tt)
-    <tr>
-        <td>{{$tt->mahh}}</td>
-        <td style="text-align: left">{{$tt->tenhh}}</td>
-        <td>{{$tt->dvt}}</td>
-        <td style="text-align: right">{{number_format($tt->giahhkytrc)}}</td>
-        <td style="text-align: right">{{number_format($tt->giahh)}}</td>
-        <td style="text-align: right">{{number_format($tt->tanggiam)}}</td>
-        <td style="text-align: center">{{$tt->phantram}}</td>
-        <td></td>
-    </tr>
+    @foreach($model_pb as $donvi)
+        <tr>
+            <td colspan="8" style="text-align: left; font-weight: bold;">{{$donvi->ten}}</td>
+        </tr>
+        <?php $model_chitiet = $model->where('mahuyen',$donvi->ma)?>
+        @foreach($model_chitiet as $key=>$tt)
+        <tr>
+            <td>{{$tt->mahh}}</td>
+            <td style="text-align: left">{{$tt->tenhh}}</td>
+            <td>{{$tt->dvt}}</td>
+            <td style="text-align: right">{{number_format($tt->giahhkytrc)}}</td>
+            <td style="text-align: right">{{number_format($tt->giahh)}}</td>
+            <td style="text-align: right">{{number_format($tt->tanggiam)}}</td>
+            <td style="text-align: center">{{$tt->phantram}}</td>
+            <td></td>
+        </tr>
+        @endforeach
     @endforeach
 </table>
 </body>

@@ -340,35 +340,37 @@ class ThamDinhGiaController extends Controller
     public function viewsearch(Request $request){
         if (Session::has('admin')) {
 
-            $_sql="select hsthamdinhgia.thoidiem, hsthamdinhgia.diadiem,hsthamdinhgia.sotbkl,hsthamdinhgia.dvyeucau,thamdinhgia.tents,
-                          thamdinhgia.dvt,thamdinhgia.sl,thamdinhgia.giatritstd,thamdinhgia.thongsokt,thamdinhgia.nguongoc
-                                        from hsthamdinhgia, thamdinhgia
-                                        Where hsthamdinhgia.mahs=thamdinhgia.mahs";
+            $_sql='select hsthamdinhgia.thoidiem, hsthamdinhgia.diadiem, hsthamdinhgia.sotbkl, hsthamdinhgia.dvyeucau, thamdinhgia.tents,'
+                          .' thamdinhgia.dvt, thamdinhgia.sl, thamdinhgia.giatritstd, thamdinhgia.thongsokt, thamdinhgia.nguongoc'
+                                        .' from hsthamdinhgia, thamdinhgia Where hsthamdinhgia.mahs=thamdinhgia.mahs';
+
             $input=$request->all();
+
+            $_sql .= $input['tents']!= null? " and thamdinhgia.tents Like '%".$input['tents']."%'":'';
 
             //Thời gian nhập
             //Từ
             if($input['thoidiemtu']!=null){
-                $_sql=$_sql." and hsthamdinhgia.thoidiem >='".date('Y-m-d',strtotime($input['thoidiemtu']))."'";
+                $_sql .= " and hsthamdinhgia.thoidiem >='".date('Y-m-d',strtotime($input['thoidiemtu']))."'";
             }
             //Đến
             if($input['thoidiemden']!=null){
-                $_sql=$_sql." and hsthamdinhgia.thoidiem <='".date('Y-m-d',strtotime($input['thoidiemden']))."'";
+                $_sql .= " and hsthamdinhgia.thoidiem <='".date('Y-m-d',strtotime($input['thoidiemden']))."'";
             }
 
-            $_sql = $input['donvi']!= 'all' ? $_sql. "and hsthamdinhgia.mahuyen = '".$input['donvi']."'":$_sql;
+            $_sql .= $input['donvi']!= 'all' ? "and hsthamdinhgia.mahuyen = '".$input['donvi']."'":'';
             //Nguồn vốn
-            $_sql=$input['nguonvon']!=null? $_sql." and hsthamdinhgia.nguonvon = '".$input['nguonvon']."'":$_sql;
+            //$_sql .= $input['nguonvon']!=null? " and hsthamdinhgia.nguonvon = '".$input['nguonvon']."'":'';
 
             //Tên tài sản
-            $_sql=$input['tents']!=null? $_sql." and thamdinhgia.tents Like '".$input['tents']."%'":$_sql;
+
 
             //Phương pháp thẩm định
             //$_sql=$input['ppthamdinh']!=null? $_sql." and hsthamdinhgia.ppthamdinh Like '".$input['ppthamdinh']."%'":$_sql;
             //Địa điểm thẩm định
             //$_sql=$input['diadiem']!=null? $_sql." and hsthamdinhgia.diadiem Like '".$input['diadiem']."%'":$_sql;
             //Số thông báo
-            $_sql=$input['sotbkl']!=null? $_sql." and hsthamdinhgia.sotbkl Like '".$input['sotbkl']."%'":$_sql;
+            $_sql .= $input['sotbkl']!=null ? " and hsthamdinhgia.sotbkl Like '".$input['sotbkl']."%'":'';
             //Giá trị tài sản
             //Từ
             //if(getDouble($input['giatritu'])>0)
@@ -376,6 +378,7 @@ class ThamDinhGiaController extends Controller
             //Đến
             //if(getDouble($input['giatriden'])>0)
                 //$_sql=$_sql." and thamdinhgia.giatritstd <= ".getDouble($input['giatriden']);
+
 
             $model =  DB::select(DB::raw($_sql));
             //dd($model);

@@ -10,6 +10,7 @@ use App\GiaHhTt;
 use App\GiaHhXnk;
 use App\HsGiaHhTt;
 use App\HsGiaHhXnk;
+use App\TtPhongBan;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -35,12 +36,15 @@ class TT552011BtcController extends Controller
     public function PL1(Request $request){
         if (Session::has('admin')) {
             $inputs=$request->all();
+            $model_pb = TtPhongBan::all();
             $model=$this->getDataPL1($inputs);
+            //dd($model->toarray());
             $thongtin=array('thitruong'=>$inputs['thitruong'],
                 'nam'=>$inputs['nam']);
             return view('reports.TT55-2011-BTC.PL1')
                 ->with('thongtin',$thongtin)
                 ->with('model',$model)
+                ->with('model_pb',$model_pb)
                 ->with('pageTitle','Phụ lục 1');
         }else
             return view('errors.notlogin');
@@ -77,7 +81,7 @@ class TT552011BtcController extends Controller
         }
         //Danh sách hàng hóa trong kỳ báo cáo
         $model=GiaHhTt::join('HsGiaHhTt', 'HsGiaHhTt.mahs', '=', 'GiaHhTt.mahs')
-            ->select('GiaHhTt.mahh','GiaHhTt.giatu','GiaHhTt.giaden','GiaHhTt.gc','GiaHhTt.masopnhom')
+            ->select('HsGiaHhTt.mahuyen','GiaHhTt.mahh','GiaHhTt.giatu','GiaHhTt.giaden','GiaHhTt.gc','GiaHhTt.masopnhom')
             ->where('HsGiaHhTt.thitruong',$inputs['thitruong'])
             ->where('HsGiaHhTt.mathoidiem',$inputs['kynay'])
             ->get();

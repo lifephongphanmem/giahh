@@ -99,13 +99,13 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label"><b>Từ ngày</b></label>
                         <div class="col-md-6 ">
-                            <input type="date" id="ngaytu" name="ngaytu" class="form-control" value="2016-01-01">
+                            <input type="date" id="ngaytu" name="ngaytu" class="form-control" value="2017-01-01">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 control-label"><b>Đến ngày</b></label>
                         <div class="col-md-6 ">
-                            <input type="date" id="ngayden" name="ngayden" class="form-control" value="2016-12-31">
+                            <input type="date" id="ngayden" name="ngayden" class="form-control" value="2017-12-31">
                         </div>
                     </div>
                 </div>
