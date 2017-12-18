@@ -43,8 +43,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời điểm thẩm định<span class="require">*</span></label>
-                                        <!--input type="date" id="thoidiem" name="thoidiem" class="form-control required" value="{{$model->thoidiem}}"-->
-                                        {!!Form::text('thoidiem',date('d/m/Y',  strtotime($model->thoidiem)), array('id' => 'thoidiem','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
+                                        <input type="date" id="thoidiem" name="thoidiem" class="form-control required" value="{{$model->thoidiem}}">
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -114,8 +113,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
-                                        {!!Form::text('thoihan',date('d/m/Y',  strtotime($model->thoihan)), array('id' => 'thoihan','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
-
+                                        <input type="date" id="thoihan" name="thoihan" class="form-control required" value="{{$model->thoihan}}">
                                     </div>
                                 </div>
                             </div>
