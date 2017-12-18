@@ -114,7 +114,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Thời hạn sử dụng kết quả thẩm định<span class="require">*</span></label>
-
+                                        <input type="date" id="thoihan" name="thoihan" class="form-control required">
                                     </div>
                                 </div>
                             </div>
