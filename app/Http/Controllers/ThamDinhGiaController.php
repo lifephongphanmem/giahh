@@ -403,33 +403,55 @@ class ThamDinhGiaController extends Controller
             $madv=session('admin')->mahuyen;
             ThamDinhGiaDefault::where('mahuyen', $madv)->delete();
             $inputs=$request->all();
+            $ar_sheet = explode(',',$inputs['sheet_dl']);
+            if(count($ar_sheet) == 0){
+                $ar_sheet[] = '0';
+            }else{
+                for($i=0;$i<count($ar_sheet);$i++){
+                    $ar_sheet[$i] = $ar_sheet[$i] - 1;
+                }
+            }
 
             $bd=$inputs['tudong'];
             $sd=$inputs['sodong'];
+            /*
             $sheet=isset($inputs['sheet'])?$inputs['sheet']-1:0;
             $sheet=$sheet<0?0:$sheet;
+            */
             $filename = $madv . date('YmdHis');
             $request->file('fexcel')->move(public_path() . '/data/uploads/excels/', $filename . '.xls');
             $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
 
             $data = [];
-            Excel::load($path, function($reader) use (&$data,$bd,$sd,$sheet) {
+            //dd ($ar_sheet);
+            Excel::load($path, function($reader) use (&$data,$bd,$sd,$ar_sheet) {
                 //$reader->getSheet(0): là đối tượng -> dữ nguyên các cột
                 //$sheet: là đã tự động lấy dòng đầu tiên làm cột để nhận dữ liệu
                 $obj = $reader->getExcel();
-                $sheet = $obj->getSheet($sheet);
-                //$sheet = $obj->getSheet(0);
-                $Row = $sheet->getHighestRow();
-                $Row = $sd+$bd > $Row ? $Row : ($sd+$bd);
-                $Col = $sheet->getHighestColumn();
+                $sheetCount = $obj->getSheetCount();
 
-                for ($r = $bd; $r <= $Row; $r++)
-                {
-                    $rowData = $sheet->rangeToArray('A' . $r . ':' . $Col . $r, NULL, TRUE, FALSE);
-                    $data[] = $rowData[0];
+                foreach($ar_sheet as $sheetNumber){
+                    //if($sheetNumber == 1){dd($sheetNumber);}
+                    //dd($sheetNumber);
+                    if($sheetNumber < $sheetCount - 1){
+
+                        $sheet = $obj->getSheet($sheetNumber);
+
+                         //$sheet = $obj->getSheet(0);
+                         $Row = $sheet->getHighestRow();
+                         $Row = $sd+$bd > $Row ? $Row : ($sd+$bd);
+                         $Col = $sheet->getHighestColumn();
+
+                         for ($r = $bd; $r <= $Row; $r++)
+                         {
+                             $rowData = $sheet->rangeToArray('A' . $r . ':' . $Col . $r, NULL, TRUE, FALSE);
+                             $data[] = $rowData[0];
+                         }
+                    }
                 }
             });
 
+            //dd($data);
             foreach($inputs as $key=>$val) {
                 $ma=ord($val);
                 if($ma>=65 && $ma<=90){
@@ -500,6 +522,7 @@ class ThamDinhGiaController extends Controller
     {
         if(Session::has('admin')) {
             $insert = $request->all();
+            //dd($insert);
             $date = date_create($insert['thoidiem']);
             $thang = date_format($date,'m');
             $mahs = getdate()[0];

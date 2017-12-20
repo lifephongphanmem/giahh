@@ -1,12 +1,15 @@
 @extends('main')
 
 @section('custom-style')
-
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{url('assets/global/plugins/select2/select2.css')}}"/>
 @stop
 
 
 @section('custom-script')
     <script type="text/javascript" src="{{url('assets/global/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
     <!--cript src="{{url('assets/admin/pages/scripts/form-validation.js')}}"></script-->
 
 @stop
@@ -228,11 +231,25 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label class="control-label">Sheet lấy dữ liệu</label>
+                                        <select class="form-control required" id="sheet" name="sheet" multiple="multiple">
+                                            <option value="1" selected>1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="sheet_dl" name="sheet_dl" value="1,2,3,4,5" />
+                                </div>
+                                <!--
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label class="control-label">Sheet lấy dữ liệu<span class="require">*</span></label>
                                         {!!Form::text('sheet', '1', array('id' => 'sheet','class' => 'form-control required','data-mask'=>'fdecimal'))!!}
                                     </div>
                                 </div>
-
+                                -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">File thông tin<span class="require">*</span></label>
@@ -263,6 +280,13 @@
         </div>
     </div>
     <script type="text/javascript">
+        $(function() {
+            //Multi select box
+            $("#sheet").select2();
+            $("#sheet").change(function(){
+                $("#sheet_dl").val( $("#sheet").val());
+            });
+        });
         function validateForm(){
             var validator = $("#import_thamdinhgia").validate({
                 rules: {
