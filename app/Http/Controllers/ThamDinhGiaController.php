@@ -433,7 +433,7 @@ class ThamDinhGiaController extends Controller
                 foreach($ar_sheet as $sheetNumber){
                     //if($sheetNumber == 1){dd($sheetNumber);}
                     //dd($sheetNumber);
-                    if($sheetNumber < $sheetCount - 1){
+                    if($sheetNumber <= $sheetCount - 1){
 
                         $sheet = $obj->getSheet($sheetNumber);
 
