@@ -98,7 +98,7 @@
                             <th width="2%" style="text-align: center">STT</th>
                             <th style="text-align: center" width="5%">Thời điểm</th>
                             <th style="text-align: center">Đoàn kiểm tra</th>
-                            <th style="text-align: center">Tiêu đề</th>
+                            <th style="text-align: center">Số hiệu văn bản</th>
                             <th style="text-align: center" width="40%">Nội dung</th>
                             <th style="text-align: center" width="10%">Thao tác</th>
                         </tr>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHsgiadatctTable extends Migration
+class CreateGiadatTable extends Migration
 {
     /**
      * Run the migrations.

@@ -3,7 +3,6 @@
 Route::get('/', 'HomeController@index');
 Route::get('setting','HomeController@setting');
 Route::post('setting','HomeController@upsetting');
-
 // <editor-fold defaultstate="collapsed" desc="--system--">
 //user
 Route::get('/login','UsersController@login');
@@ -73,6 +72,9 @@ Route::get('/checkmaloaivanban','DmLoaiVanBanController@checkmaloaivanban');
 Route::post('dmloaivanban/delete','DmLoaiVanBanController@destroy');
 //End danh mục loại giá
 
+//
+Route::resource('dmqdgiadat','dmqd_giadatController');
+//
     //Hàng hóa thị trường theo thông tư 55/2011
 Route::get('dmhanghoa-thitruong','DmHhTn55Controller@nhom');
 Route::get('dmhanghoa-thitruong/nhom={nhom}','DmHhTn55Controller@pnhom');
@@ -400,14 +402,68 @@ Route::get('giadatpl/update','GiaDat_PhanLoaiController@update');
 Route::get('giadatpl/delete','GiaDat_PhanLoaiController@destroy');
 //End - kê khai giá đất theo loại đất
 
+// <editor-fold defaultstate="collapsed" desc="--Kê khai giá đất theo vị trí địa lý--">
+Route::group(['prefix'=>'giadat'],function(){
+    Route::group(['prefix'=>'vitri'],function(){
+        Route::get('danh_muc/ma_so={macapdo}','dmvitridatController@index_danhmuc');
+        Route::post('delete','dmvitridatController@destroy');
+        Route::get('add_diaban','dmvitridatController@add_diaban');
+        Route::get('add_node','dmvitridatController@add_node');
+        Route::get('get_node','dmvitridatController@get_node');
+        Route::get('update_node','dmvitridatController@update_node');
+    });
+
+    //Route::resource('thuedat','giathuedatController');
+    Route::group(['prefix'=>'thuedat'],function(){
+        Route::get('danh_sach','giathuedatController@index');
+        Route::get('thong_tin','giathuedatController@showindex');
+        Route::get('create','giathuedatController@create');
+        Route::post('store','giathuedatController@store');
+        Route::get('{id}/edit','giathuedatController@edit');
+        Route::patch('{id}','giathuedatController@update');
+        Route::post('delete','giathuedatController@destroy');
+        Route::post('approve','giathuedatController@approve');
+        Route::post('unapprove','giathuedatController@unapprove');
+        Route::get('{id}/show','giathuedatController@show');
+    });
+    Route::group(['prefix'=>'daugia'],function(){
+        Route::get('danh_sach','giadaugiadatController@index');
+        Route::get('thong_tin','giadaugiadatController@showindex');
+        Route::get('create','giadaugiadatController@create');
+        Route::post('store','giadaugiadatController@store');
+        Route::get('{id}/edit','giadaugiadatController@edit');
+        Route::patch('{id}','giadaugiadatController@update');
+        Route::post('delete','giadaugiadatController@destroy');
+        Route::post('approve','giadaugiadatController@approve');
+        Route::post('unapprove','giadaugiadatController@unapprove');
+        Route::get('{id}/show','giadaugiadatController@show');
+    });
+
+    Route::get('getvitri','dmvitridatController@getvitri');
+
+    Route::get('loaidat={maloaidat}/nam={nam}','HsGiaDat_LoaiDatController@index');
+    Route::get('loaidat={maloaidat}/create','HsGiaDat_LoaiDatController@create');
+    Route::post('','HsGiaDat_LoaiDatController@store');
+    Route::get('{id}/show','HsGiaDat_LoaiDatController@show');
+    Route::get('{id}/edit','HsGiaDat_LoaiDatController@edit');
+    Route::patch('{id}','HsGiaDat_LoaiDatController@update');
+    Route::post('delete','HsGiaDat_LoaiDatController@destroy');
+    Route::post('approve','HsGiaDat_LoaiDatController@approve');
+});
+//End - kê khai giá đất theo vị trí địa lý
+// </editor-fold>
+
     //TTQĐ
 //TW
+//Route::resource('thongtu-quyetdinh-tw','TtQdController');
+
 Route::get('thongtu-quyetdinh-tw/nam={nam}&pl={pl}','TtQdController@tw');
 Route::get('thongtu-quyetdinh-tw/create','TtQdController@twcreate');
-Route::get('checkkhvb','TtQdController@checkkhvb');
 Route::post('thongtu-quyetdinh-tw','TtQdController@twstore');
 Route::get('thongtu-quyetdinh-tw/{id}/edit','TtQdController@twedit');
 Route::patch('thongtu-quyetdinh-tw/{id}','TtQdController@twupdate');
+
+Route::get('checkkhvb','TtQdController@checkkhvb');
 Route::post('thongtu-quyetdinh-tw/delete','TtQdController@twdelete');
 Route::get('thongtu-quyetdinh-tw/dinhkem','TtQdController@get_attackfile');
     //Tỉnh

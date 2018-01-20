@@ -479,4 +479,25 @@ function getDateToDb($value){
     return $kq;
 }
 
+function dinhdangso ($number , $decimals = 0, $unit = '1' , $dec_point = ',' , $thousands_sep = '.' ) {
+    if(!is_numeric($number) || $number == 0){return '';}
+    $r = $unit;
+
+    switch ($unit) {
+        case 2:{
+            $decimals = 3;
+            $r = 1000;
+            break;
+        }
+        case 3:{
+            $decimals = 5;
+            $r = 1000000;
+            break;
+        }
+    }
+
+    $number = round($number / $r , $decimals);
+    return number_format($number, $decimals ,$dec_point, $thousands_sep);
+}
+
 ?>

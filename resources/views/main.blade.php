@@ -617,20 +617,30 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <li>
                                     <a href="javascript:;">Giá theo vị trí<span class="arrow"></span> </a>
                                     <ul class="sub-menu">
-                                        @if(can('vitri','create')||can('vitri','edit'))
+
+                                    @if(can('vitri','create')||can('vitri','edit'))
                                             <li>
-                                                <a href="{{url('giadat_vitri')}}">Kê khai giá</a>
+                                                <a href="{{url('giadat/vitri/danh_muc/ma_so=ALL')}}">Vị trí đất</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{url('giadat/thuedat/danh_sach?nam='.date('Y'))}}">Giá đất cho thuê</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{url('giadat/daugia/danh_sach?nam='.date('Y'))}}">Giá đất đấu giá</a>
                                             </li>
                                         @endif
                                         @if(can('vitri','index'))
                                             <li>
-                                                <a href="{{url('thongtin_giadat_vitri')}}">Thông tin kê khai giá</a>
+                                                <a href="{{url('giadat/vitri/thong_tin/ma_so=ALL')}}">Thông tin vị trí đất</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{url('giadat/thuedat/thong_tin?nam='.date('Y').'&donvi=ALL')}}">Thông tin giá đất cho thuê</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{url('giadat/daugia/thong_tin?nam='.date('Y').'&donvi=ALL')}}">Thông tin giá đất đấu giá</a>
                                             </li>
                                         @endif
-                                        <li>
-                                            <a href="{{url('timkiem_giadat_vitri')}}">Tìm kiếm thông tin kê khai giá</a>
-                                        </li>
-
                                     </ul>
                                 </li>
                             @endif
@@ -651,7 +661,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         <li>
                             <a href="{{url('thongtu-quyetdinh-tw/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">Văn bản QLNN về giá TW</a>
                         </li>
-
                         <li>
                             <a href="{{url('thongtu-quyetdinh-tinh/nam='.getGeneralConfigs()['namhethong'].'&pl=all')}}">Văn bản QLNN về giá địa phương</a>
                         </li>
@@ -753,7 +762,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                     @if(canGeneral('giadat','vitri'))
                                         <li>
-                                            <a href="{{url('dmvitridat')}}">Danh mục vị trí</a>
+                                            <a href="{{url('dmqdgiadat')}}">Danh mục quyết định quy định giá</a>
                                         </li>
                                     @endif
 

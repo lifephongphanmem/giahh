@@ -114,7 +114,7 @@
                             <th style="text-align: center">Đơn vị</br>ban hành</th>
                             <th style="text-align: center" width="10">Loại văn</br>bản</th>
                             <th style="text-align: center" width="15%">Ngày ban hành/<br>Ngày áp dụng</th>
-                            <th style="text-align: center">Tiêu đề</th>
+                            <th style="text-align: center">Số hiệu văn bản</th>
                             <th style="text-align: center">Nội dung</th>
                             <th style="text-align: center" width="10%">Thao tác</th>
                         </tr>
