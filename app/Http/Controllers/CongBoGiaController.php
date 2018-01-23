@@ -345,10 +345,15 @@ class CongBoGiaController extends Controller
             $path = public_path() . '/data/uploads/excels/' . $filename . '.xls';
 
             $data = [];
+            //File::Delete($path);
+            //dd($path);
             Excel::load($path, function ($reader) use (&$data, $bd, $sd, $sheet) {
                 //$reader->getSheet(0): là đối tượng -> dữ nguyên các cột
                 //$sheet: là đã tự động lấy dòng đầu tiên làm cột để nhận dữ liệu
+
+
                 $obj = $reader->getExcel();
+
                 $sheet = $obj->getSheet($sheet);
                 $Row = $sheet->getHighestRow();
                 $Row = $sd + $bd > $Row ? $Row : ($sd + $bd);

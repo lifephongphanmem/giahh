@@ -308,7 +308,103 @@
 
                             <!--/span-->
                         </div>
+                        <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Tên tài sản<span class="require">*</span></label>
+                                    <input type="text" id="tents" name="tents" class="form-control">
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group has-error">
+                                    <label class="control-label">Đặc điểm pháp lý</label>
+                                    <input type="text" id="dacdiempl" name="dacdiempl" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Thông số kỹ thuật</label>
+                                    <input type="text" name="thongsokt" id="thongsokt" class="form-control">
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group has-error">
+                                    <label class="control-label">Nguồn gốc</label>
+                                    <input type="text" name="nguongoc" id="nguongoc" class="form-control">
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Đơn vị tính</label>
+                                    <input type="text" name="dvt" id="dvt" class="form-control">
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group has-error">
+                                    <label class="control-label">Số lượng<span class="require">*</span></label>
+                                    <input type="text" name="sl" id="sl" class="form-control" data-mask="fdecimal" value="1">
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group has-error">
+                                    <label class="control-label">Đơn giá đề nghị<span class="require">*</span></label>
+                                    <input type="text" name="nguyengiadenghi" id="nguyengiadenghi" class="form-control" data-mask="fdecimal" value="0">
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Giá trị đề nghị<span class="require">*</span></label>
+                                    <input type="text" name="giadenghi" id="giadenghi" class="form-control" data-mask="fdecimal" value="0">
+                                </div>
+                            </div>
+                            <!--/span-->
 
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group  has-error">
+                                    <label class="control-label">Đơn giá thẩm định<span class="require">*</span></label>
+                                    <input type="text" name="nguyengiathamdinh" id="nguyengiathamdinh" class="form-control" data-mask="fdecimal" value="0">
+                                </div>
+                            </div>
+                            <!--/span-->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Giá trị tài sản thẩm định<span class="require">*</span></label>
+                                    <input type="text" name="giatritstd" id="giatritstd" class="form-control" data-mask="fdecimal" value="0">
+                                </div>
+                            </div>
+                            <!--/span-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Ghi chú</label>
+                                    <textarea id="gc" class="form-control" name="gc" cols="30" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <button type="button" id="capnhatts" name="capnhatts" class="btn btn-primary">Bổ xung</button>
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </div>
                         <div class="row" id="dsts">
                             <div class="col-md-12">
                                 <table class="table table-striped table-bordered table-hover" id="sample_3">
