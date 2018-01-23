@@ -559,7 +559,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </ul>
                 </li>
 
-                <li>
+                <!--li>
                     <a href="javascript:;">
                         <i class="fa fa-laptop"></i>
                         <span class="title">Công bố giá bổ sung</span>
@@ -580,7 +580,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <a href="{{url('timkiem-congbobosung')}}">Tìm kiếm thông tin công bố giá bổ sung</a>
                         </li>
                     </ul>
-                </li>
+                </li-->
                 @endif
 
                 @if(canGeneral('giadat','loaidat') || canGeneral('giadat','vitri'))
