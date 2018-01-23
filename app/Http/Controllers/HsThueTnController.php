@@ -123,8 +123,11 @@ class HsThueTnController extends Controller
             foreach($model as $ct){
                 $ct->tenhh=$dmhanghoa[$ct->mahh];
             }
+            $m_nhomthuetn = NhomThueTN::get();
             return view('manage.thuetn.create')
                 ->with('model',$model)
+                ->with('m_nhomthuetn',$m_nhomthuetn)
+                ->with('manhom',$inputs['manhom'])
                 ->with('pageTitle','Thông tin giá tính thuế tài nguyên thêm mới');
         }else
             return view('errors.notlogin');

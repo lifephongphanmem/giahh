@@ -196,7 +196,16 @@
                                     </div>
                                 </div>
                                 <!--/span-->
-                                @include('includes.crumbs.cb_phanloaitainguyen')
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Phân loại</label>
+                                        <select name="phanloai" id="phanloai" class="form-control">
+                                            @foreach($m_nhomthuetn as $ct)
+                                                <option value="{{$ct->manhom}}" {{$manhom==$ct->manhom?'selected':''}}>{{$ct->tennhom}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
                             <!--/row-->

@@ -34,22 +34,14 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-4 control-label"><b>Thời điểm báo cáo</b></label>
-                        <div class="col-md-6 ">
-                            <select name="mathoidiem" id="mathoidiem" class="form-control">
-                                @foreach($thoidiem as $ct)
-                                    <option value="{{$ct->mathoidiem}}">{{$ct->tenthoidiem}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <label class="col-md-4 control-label"><b>Phân loại báo cáo</b></label>
                         <div class="col-md-6 ">
-                            <select name="phanloai" id="phanloai" class="form-control">
-                                <option value="TW">Tài nguyên TW quy định</option>
-                                <option value="DP">Tài nguyên địa phương quy định</option>
+                            <select name="manhom" id="manhom" class="form-control">
+                                @foreach($m_nhomthuetn as $ct)
+                                    <option value="{{$ct->manhom}}">{{$ct->tennhom}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -58,7 +50,7 @@
             <div class="modal-footer">
                 <button type="button" data-dismiss="modal" class="btn btn-default">Hủy thao tác</button>
                 <button type="submit" data-dismiss="modal" class="btn btn-success" onclick="ClickBC('/reports/thuetn/bcgiathuetn')">Đồng ý</button>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBCExcel('/reports/thuetn/bcgiathuetnexcel')">Xuất Excel</button>
+                <!--button type="submit" data-dismiss="modal" class="btn btn-primary" onclick="ClickBCExcel('/reports/thuetn/bcgiathuetnexcel')">Xuất Excel</button-->
             </div>
             {!! Form::close() !!}
         </div>

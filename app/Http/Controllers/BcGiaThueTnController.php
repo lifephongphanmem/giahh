@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DmThoiDiem;
 use App\DMThueTN;
 use App\HsThueTn;
+use App\NhomThueTN;
 use App\PNhomThueTN;
 use App\ThueTn;
 use App\TtPhongBan;
@@ -19,9 +20,10 @@ class BcGiaThueTnController extends Controller
     public function index()
     {
         if(Session::has('admin')){
-            $thoidiem = DmThoiDiem::where('plbc','Thuế tài nguyên')->get();
+            $m_nhomthuetn = NhomThueTN::get();
+            //$thoidiem = DmThoiDiem::where('plbc','Thuế tài nguyên')->get();
             return view('reports.thuetn.index')
-                ->with('thoidiem',$thoidiem)
+                ->with('m_nhomthuetn',$m_nhomthuetn)
                 ->with('pageTitle','Báo cáo giá tính thuế tài nguyên');
         }else
             return view('errors.notlogin');
@@ -29,44 +31,39 @@ class BcGiaThueTnController extends Controller
 
     public function bcgiathuetn(Request $request){
         $inputs=$request->all();
-        $thongtin=array('thoidiem'=>$inputs['mathoidiem'],
-            'nam'=>$inputs['nam']);
-        list($data_p1,$data_p2)=$this->getdata($inputs);
-        //dd($data_p1);
-        switch($inputs['phanloai']){
-            case 'TW':{
-                $nhomtn=PNhomThueTN::where('manhom','01')->orderby('sapxep')->get();
-                return view('reports.thuetn.GiaThueTnTW')
-                    ->with('data_p1',$data_p1)
-                    ->with('data_p2',$data_p2)
-                    ->with('nhomtn',$nhomtn)
-                    ->with('thongtin',$thongtin)
-                    ->with('pageTitle','Báo cáo giá thuế tài nguyên do TW quy định');
-                break;
-            }
-            case 'DP':{
-                $nhomtn=PNhomThueTN::where('manhom','02')->orderby('sapxep')->get();
-                return view('reports.thuetn.GiaThueTnTW')
-                    ->with('data_p1',$data_p1->sortBy('masopnhom')->sortBy('sapxep'))
-                    ->with('data_p2',$data_p2)
-                    ->with('nhomtn',$nhomtn)
-                    ->with('thongtin',$thongtin)
-                    ->with('pageTitle','Báo cáo giá thuế tài nguyên do địa phương quy định');
-                break;
-            }
-            case 'TH':{
-                break;
-            }
-            default:{
-                break;
+        //$thongtin=array('thoidiem'=>$inputs['mathoidiem'],
+        //    'nam'=>$inputs['nam']);
+        $manhom = $inputs['manhom'];
+        $mahuyen = session('admin')->mahuyen;
+        $thongtin=array('nam'=>$inputs['nam'],'manhom'=>$inputs['manhom']);
+        $model_hs = HsThueTn::where('phanloai',$manhom)->where('mahuyen',$mahuyen)->where('nam',$inputs['nam'])->first();
+        $model = ThueTn::where('mahs',$model_hs->mahs)->get();
+        $nhomtn = NhomThueTN::where('manhom',$manhom)->get();
+        $model_dm = DMThueTN::get();
+        foreach($model as $ct){
+            $ct->manhom = '';
+            $ct->tenhh = '';
+            $danhmuc = $model_dm->where('mahh',$ct->mahh);
+            //dd($danhmuc);
+            if(count($danhmuc)>0){
+                $ct->manhom = $danhmuc->first()->manhom;
+                $ct->tenhh = $danhmuc->first()->tenhh;
             }
         }
+        //$nhomtn = PNhomThueTN::get();
+        //dd($model);
+        return view('reports.thuetn.GiaThueTnTW')
+            ->with('model',$model)
+            ->with('nhomtn',$nhomtn)
+            ->with('thongtin',$thongtin)
+            ->with('pageTitle','Báo cáo giá thuế tài nguyên do TW quy định');
     }
 
     function getdata($inputs){
-        $model = HsThueTn::where('mathoidiem',$inputs['mathoidiem'])
-            ->where('phanloai',$inputs['phanloai'])
-            ->first();
+        $manhom = $inputs['manhom'];
+        $mahuyen = session('admin')->mahuyen;
+        $model = HsThueTn::where('phanloai',$manhom)->where('mahuyen',$mahuyen)->first();
+        dd($model);
         $data_p1=array();
         $data_p2=array();
         if(count($model)>0){

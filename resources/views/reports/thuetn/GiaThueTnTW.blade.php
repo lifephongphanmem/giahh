@@ -60,43 +60,23 @@
         <!--Nhóm tài nguyên-->
         <tr style="font-weight: bold">
             <td>{{ConverToRoman($key+1)}}</td>
-            <td style="text-align: left">{{$tt->tenpnhom}}</td>
+            <td style="text-align: left">{{$tt->tennhom}}</td>
             <td></td>
             <td></td>
         </tr>
         <!--Tài nguyên-->
         <?php $i=1; ?>
         <!--phần 1-->
-        @foreach($data_p1 as $k=>$ct)
-            @if($tt->masopnhom == $ct->masopnhom)
+        @foreach($model as $k=>$ct)
+            @if($tt->manhom == $ct->manhom)
                 <tr>
                     <td>{{$i++}}</td>
                     <td style="text-align: left">{{$ct->tenhh}}</td>
                     <td>{{$ct->dvt}}</td>
-                    <td style="text-align: right">{{number_format($ct->giatu).' - '.number_format($ct->giaden)}}</td>
+                    <td style="text-align: right">{{number_format($ct->giatn)}}</td>
                 </tr>
                 <!--phần chi tiết tạm thời làm 2 vòng foreach => nên nghiên cứu làm hàm đệ quy để cho danh mục có nhiều nhánh-->
-                <?php $j=1; ?>
-                @foreach($data_p2 as $k2=>$ct2)<!--lần 1-->
-                    @if($ct2->thuoctn===$ct->mahh)
-                        <tr>
-                            <td>{{($i-1).'.'.($j++)}}</td>
-                            <td style="text-align: left">{{$ct2->tenhh}}</td>
-                            <td>{{$ct2->dvt}}</td>
-                            <td style="text-align: right">{{number_format($ct2->giatu).' - '.number_format($ct2->giaden)}}</td>
-                        </tr>
-                        @foreach($data_p2 as $k3=>$ct3)<!--lần 2-->
-                            @if($ct3->thuoctn===$ct2->mahh)
-                                <tr>
-                                    <td>-</td>
-                                    <td style="text-align: left">{{$ct3->tenhh}}</td>
-                                    <td>{{$ct3->dvt}}</td>
-                                    <td style="text-align: right">{{number_format($ct3->giatu).' - '.number_format($ct3->giaden)}}</td>
-                                </tr>
-                            @endif
-                        @endforeach
-                    @endif
-                @endforeach
+
             @endif
         @endforeach
     @endforeach
