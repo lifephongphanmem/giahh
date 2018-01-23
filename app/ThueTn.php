@@ -18,6 +18,7 @@ class ThueTn extends Model
         'mathoidiem',
         'giatu',
         'giaden',
+        'giatn',
         'soluong',
         'nguontin',
         'mahs',

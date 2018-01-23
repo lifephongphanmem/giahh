@@ -39,8 +39,8 @@ class ThueTnController extends Controller
             die(json_encode($result));
         }
 
-        $inputs['soluong'] = str_replace(',','',$inputs['soluong']);
-        $inputs['soluong'] = str_replace('.','',$inputs['soluong']);
+        $inputs['giatn'] = str_replace(',','',$inputs['giatn']);
+        $inputs['giatn'] = str_replace('.','',$inputs['giatn']);
         $inputs['giatu'] = str_replace(',','',$inputs['giatu']);
         $inputs['giatu'] = str_replace('.','',$inputs['giatu']);
         $inputs['giaden'] = str_replace(',','',$inputs['giaden']);
@@ -52,7 +52,7 @@ class ThueTnController extends Controller
             $modelts->mahh = $mahh;
             $modelts->giatu  =$inputs['giatu'];
             $modelts->giaden = $inputs['giaden'];
-            $modelts->soluong = $inputs['soluong'];
+            $modelts->giatn = $inputs['giatn'];
             $modelts->nguontin = $inputs['nguontin'];
             $modelts->gc = $inputs['gc'];
             $modelts->mahs = $inputs['mahs'];
@@ -74,7 +74,7 @@ class ThueTnController extends Controller
             $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center" width="10%">Giá từ</th>';
             $result['message'] .= '<th style="text-align: center" width="10%">Giá đến</th>';
-            $result['message'] .= '<th style="text-align: center" width="5%">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá thuế</th>';
             $result['message'] .= '<th style="text-align: center">Nguồn tin</th>';
             $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
             $result['message'] .= '<th style="text-align: center" width="12%">Thao tác</th>';
@@ -90,7 +90,7 @@ class ThueTnController extends Controller
                     $result['message'] .= '<td class="active">' . $tents->tenhh . '</td>';
                     $result['message'] .= '<td style="text-align: right">' . number_format($tents->giatu) . '</td>';
                     $result['message'] .= '<td style="text-align: right">' . number_format($tents->giaden) . '</td>';
-                    $result['message'] .= '<td style="text-align: center">' . number_format($tents->soluong) . '</td>';
+                    $result['message'] .= '<td style="text-align: center">' . number_format($tents->giatn) . '</td>';
                     $result['message'] .= '<td>' . $tents->nguontin . '</td>';
                     $result['message'] .= '<td>' . $tents->gc . '</td>';
                     $result['message'] .= '<td>' .
@@ -148,20 +148,20 @@ class ThueTnController extends Controller
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá từ<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="giatuedit" id="giatuedit" class="form-control"  data-mask="fdecimal" value="'.$model->giatu.'"></div>';
+            $result['message'] .= '<div><input type="text" name="giatuedit" readonly id="giatuedit" class="form-control"  data-mask="fdecimal" value="'.$model->giatu.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '<div class="col-md-6">';
             $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá đến<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="giadenedit" id="giadenedit" class="form-control" data-mask="fdecimal" value="'.$model->giaden.'"></div>';
+            $result['message'] .= '<div><input type="text" name="giadenedit" readonly id="giadenedit" class="form-control" data-mask="fdecimal" value="'.$model->giaden.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
 
             $result['message'] .= '<div class="row">';
             $result['message'] .= '<div class="col-md-6">';
-            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Số lượng<span class="require">*</span></label>';
-            $result['message'] .= '<div><input type="text" name="soluongedit" id="soluongedit" class="form-control"  data-mask="fdecimal" value="'.$model->soluong.'"></div>';
+            $result['message'] .= '<div class="form-group"><label for="selGender" class="control-label">Giá thuế tài nguyên<span class="require">*</span></label>';
+            $result['message'] .= '<div><input type="text" name="giatnedit" id="giatnedit" class="form-control"  data-mask="fdecimal" value="'.$model->soluong.'"></div>';
             $result['message'] .= '</div>';
             $result['message'] .= '</div>';
             $result['message'] .= '<div class="col-md-6">';
@@ -206,8 +206,8 @@ class ThueTnController extends Controller
 
         if (isset($inputs['id'])) {
 
-            $inputs['soluong'] = str_replace(',', '', $inputs['soluong']);
-            $inputs['soluong'] = str_replace('.', '', $inputs['soluong']);
+            $inputs['giatn'] = str_replace(',', '', $inputs['giatn']);
+            $inputs['giatn'] = str_replace('.', '', $inputs['giatn']);
             $inputs['giatu'] = str_replace(',', '', $inputs['giatu']);
             $inputs['giatu'] = str_replace('.', '', $inputs['giatu']);
             $inputs['giaden'] = str_replace(',', '', $inputs['giaden']);
@@ -218,7 +218,7 @@ class ThueTnController extends Controller
             $modelupdate->mahh = $inputs['mahh'];
             $modelupdate->giatu = $inputs['giatu'];
             $modelupdate->giaden = $inputs['giaden'];
-            $modelupdate->soluong = $inputs['soluong'];
+            $modelupdate->giatn = $inputs['giatn'];
             $modelupdate->nguontin = $inputs['nguontin'];
             $modelupdate->gc = $inputs['gc'];
             $modelupdate->save();
@@ -240,7 +240,7 @@ class ThueTnController extends Controller
             $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center" width="10%">Giá từ</th>';
             $result['message'] .= '<th style="text-align: center" width="10%">Giá đến</th>';
-            $result['message'] .= '<th style="text-align: center" width="5%">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá thuế</th>';
             $result['message'] .= '<th style="text-align: center">Nguồn tin</th>';
             $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
             $result['message'] .= '<th style="text-align: center" width="12%">Thao tác</th>';
@@ -256,7 +256,7 @@ class ThueTnController extends Controller
                     $result['message'] .= '<td class="active">' . $tents->tenhh . '</td>';
                     $result['message'] .= '<td style="text-align: right">' . number_format($tents->giatu) . '</td>';
                     $result['message'] .= '<td style="text-align: right">' . number_format($tents->giaden) . '</td>';
-                    $result['message'] .= '<td style="text-align: center">' . number_format($tents->soluong) . '</td>';
+                    $result['message'] .= '<td style="text-align: center">' . number_format($tents->giatn) . '</td>';
                     $result['message'] .= '<td>' . $tents->nguontin . '</td>';
                     $result['message'] .= '<td>' . $tents->gc . '</td>';
                     $result['message'] .= '<td>' .
@@ -313,7 +313,7 @@ class ThueTnController extends Controller
             $result['message'] .= '<th style="text-align: center">Tên hàng hóa dịch vụ</th>';
             $result['message'] .= '<th style="text-align: center" width="10%">Giá từ</th>';
             $result['message'] .= '<th style="text-align: center" width="10%">Giá đến</th>';
-            $result['message'] .= '<th style="text-align: center" width="5%">Số lượng</th>';
+            $result['message'] .= '<th style="text-align: center" width="10%">Giá thuế</th>';
             $result['message'] .= '<th style="text-align: center">Nguồn tin</th>';
             $result['message'] .= '<th style="text-align: center">Ghi chú</th>';
             $result['message'] .= '<th style="text-align: center" width="12%">Thao tác</th>';
@@ -329,7 +329,7 @@ class ThueTnController extends Controller
                     $result['message'] .= '<td class="active">'.$tents->tenhh.'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giatu).'</td>';
                     $result['message'] .= '<td style="text-align: right">'.number_format($tents->giaden).'</td>';
-                    $result['message'] .= '<td style="text-align: center">'.number_format($tents->soluong).'</td>';
+                    $result['message'] .= '<td style="text-align: center">'.number_format($tents->giatn).'</td>';
                     $result['message'] .= '<td>'.$tents->nguontin.'</td>';
                     $result['message'] .= '<td>'.$tents->gc.'</td>';
                     $result['message'] .= '<td>'.

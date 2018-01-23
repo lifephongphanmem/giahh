@@ -23,6 +23,7 @@ class CreateThuetndefaultTable extends Migration
             $table->string('mathoidiem')->nullable();
             $table->string('giatu')->nullable();
             $table->string('giaden')->nullable();
+            $table->string('giatn')->nullable();
             $table->string('soluong')->nullable();
             $table->string('nguontin')->nullable();
             $table->string('gc')->nullable();

@@ -15,11 +15,17 @@ class CreateDmthuetnTable extends Migration
         Schema::create('dmthuetn', function (Blueprint $table) {
             $table->increments('id');
             $table->string('masopnhom')->nullable();
+            $table->string('manhom')->nullable();
             $table->string('mahh')->nullable();
+            $table->string('magoc')->nullable();//mã số vị trí quản lý (mã cha)
+            $table->string('macapdo')->nullable();
+            $table->string('capdo')->nullable();//
             $table->string('masp')->nullable();
             $table->string('tenhh')->nullable();
             $table->string('dacdiemkt')->nullable();
             $table->string('dvt')->nullable();
+            $table->double('giatu')->default(0);
+            $table->double('giaden')->default(0);
             $table->string('gc')->nullable();
             $table->string('thoidiem')->nullable();
             $table->string('sapxep')->nullable();

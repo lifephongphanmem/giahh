@@ -57,7 +57,7 @@
                     mahh: $('input[name="mahhedit"]').val(),
                     giatu: $('input[name="giatuedit"]').val(),
                     giaden: $('input[name="giadenedit"]').val(),
-                    soluong: $('input[name ="soluongedit"]').val(),
+                    giatn: $('input[name ="giatnedit"]').val(),
                     nguontin: $('input[name="nguontinedit"]').val(),
                     gc: $('textarea[name="gcedit"]').val(),
                     mahs: $('#mahs').val()
@@ -217,78 +217,7 @@
 
                             <!--/row-->
                             <h4 class="form-section" style="color: #0000ff">Thông tin chi tiết hồ sơ</h4>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Nhóm hàng hóa- dịch vụ<span class="require">*</span></label>
-                                        <select class="form-control" id="mapnhom" name="mapnhom">
-                                            <option value="">--Chọn nhóm hàng hóa- dịch vụ--</option>
-                                            @foreach($nhomhh as $nhom)
-                                                <option value="{{$nhom->masopnhom}}">{{$nhom->tenpnhom}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Tên hàng hóa-dịch vụ<span class="require">*</span></label>
-                                        <div id="tthh">
-                                            <select class="form-control select2me" name="mahh" id="mahh">
-                                                <option value="">--Chọn hàng hóa- dịch vụ--</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Giá từ<span class="require">*</span></label>
-                                        <input type="text" name="giatu" id="giatu" class="form-control" data-mask="fdecimal" value="0">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                                <div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Giá đến<span class="require">*</span></label>
-                                        <input type="text" name="giaden" id="giaden" class="form-control" data-mask="fdecimal" value="0">
-                                    </div>
-                                </div>
-                                <!--/span-->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Số lượng</label>
-                                        <input type="text" name="soluong" id="soluong" class="form-control" data-mask="fdecimal" value="1">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Nguồn tin</label>
-                                        <input type="text" name="nguontin" id="nguontin" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label">Ghi chú</label>
-                                        <textarea id="gc" class="form-control" name="gc" cols="30" rows="3"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <button type="button" id="capnhatts" name="capnhatts" class="btn btn-primary">Cập nhật</button>
-                                        &nbsp;
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row" id="dsts">
                                 <div class="col-md-12">
                                         <table class="table table-striped table-bordered table-hover" id="sample_3">
@@ -299,7 +228,7 @@
                                                 <th style="text-align: center">Tên hàng hóa dịch vụ</th>
                                                 <th style="text-align: center" width="10%">Giá từ</th>
                                                 <th style="text-align: center" width="10%">Giá đến</th>
-                                                <th style="text-align: center" width="5%">Số lượng</th>
+                                                <th style="text-align: center" width="10%">Giá thuế</th>
                                                 <th style="text-align: center">Nguồn tin</th>
                                                 <th style="text-align: center">Ghi chú</th>
                                                 <th style="text-align: center" width="15%">Thao tác</th>
@@ -314,7 +243,7 @@
                                                     <td class="active">{{$tt->tenhh}}</td>
                                                     <td style="text-align: right">{{number_format($tt->giatu)}}</td>
                                                     <td style="text-align: right">{{number_format($tt->giaden)}}</td>
-                                                    <td style="text-align: center">{{number_format($tt->soluong)}}</td>
+                                                    <td style="text-align: center">{{number_format($tt->giatn)}}</td>
                                                     <td>{{$tt->nguontin}}</td>
                                                     <td>{{$tt->gc}}</td>
                                                     <td>

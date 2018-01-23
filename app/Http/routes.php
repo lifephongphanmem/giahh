@@ -142,6 +142,11 @@ Route::post('dmthuetn','DmThueTnController@store');
 Route::get('dmthuetn/{id}/edit','DmThueTnController@edit');
 Route::patch('dmthuetn/{id}','DmThueTnController@update');
 Route::post('dmthuetn/delete','DmThueTnController@destroy');
+
+//Route::get('dmthuetn/add_diaban','DmThueTnController@add_diaban');
+Route::get('dmthuetn/add_node','DmThueTnController@add_node');
+Route::get('dmthuetn/get_node','DmThueTnController@get_node');
+Route::get('dmthuetn/update_node','DmThueTnController@update_node');
     //End danh mục tính thuế tài nguyên
 
 // </editor-fold>

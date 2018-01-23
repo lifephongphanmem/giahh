@@ -13,6 +13,7 @@ use App\TtPhongBan;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Database\Eloquent\Collection;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -107,30 +108,23 @@ class HsThueTnController extends Controller
     {
         if(Session::has('admin')){
             $inputs=$request->all();
-            $manhom=$inputs['manhom'];
-            $mahuyen=session('admin')->mahuyen;
-            ThueTnDefault::where('mahuyen',$mahuyen)->delete();
-
-            //$loaigia = DmLoaiGia::where('pl','Thuế tài nguyên')->get();
-            //$loaihh = DmLoaiHh::all();
-
-            //$thitruong= DmThiTruong::all();
-            $nhomhh = PNhomThueTN::select('masopnhom','tenpnhom')->where('theodoi','Có')->where('manhom',$manhom)->get();
-            $nhom = PNhomThueTN::select('masopnhom')->where('theodoi','Có')->where('manhom',$manhom)->get()->toarray();
-            //$nhom=array_values($nhom);
-            $hanghoa = DMThueTN::select('masopnhom','mahh',DB::raw($mahuyen." as 'mahuyen'"),DB::raw("1 as 'soluong'"),DB::raw("0 as 'giatu'"),DB::raw("0 as 'giaden'"))->wherein('masopnhom',$nhom)->where('theodoi','Có')->get()->toarray();
-            //dd($hanghoa);
-            ThueTnDefault::insert($hanghoa);
-
+            ThueTnDefault::where('mahuyen',session('admin')->mahuyen)->delete();
+            $model_danhmuc = DMThueTN::where('manhom',$inputs['manhom'])->get();
+            foreach($model_danhmuc as $ct){
+                $kiemtra = $model_danhmuc->where('magoc',$ct->mahh);
+                if(count($kiemtra)==0){
+                    $ct->mahuyen = session('admin')->mahuyen;
+                    $ct->soluong = 1;
+                    ThueTnDefault::create($ct->toarray());
+                }
+            }
+            $model=ThueTnDefault::where('mahuyen',session('admin')->mahuyen)->get();
             $dmhanghoa = array_column(DMThueTN::select('mahh','tenhh')->get()->toarray(),'tenhh','mahh');
-            $model=ThueTnDefault::where('mahuyen',$mahuyen)->get();
             foreach($model as $ct){
                 $ct->tenhh=$dmhanghoa[$ct->mahh];
             }
-            //dd($dmhanghoa);
             return view('manage.thuetn.create')
                 ->with('model',$model)
-                ->with('nhomhh',$nhomhh)
                 ->with('pageTitle','Thông tin giá tính thuế tài nguyên thêm mới');
         }else
             return view('errors.notlogin');
