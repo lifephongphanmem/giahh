@@ -3,7 +3,7 @@
 <script type="text/javascript" src="{{ url('vendors/jquery-steps/js/jquery.steps.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('vendors/jquery-bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
 <script type="text/javascript" src="{{ url('js/form-wizard.js') }}"></script>
-<script type="text/javascript" src="{{ url('js/jquery.inputmask.bundle.min.js') }}"></script>
+
 <script>
     $(function(){
         // Input Mask

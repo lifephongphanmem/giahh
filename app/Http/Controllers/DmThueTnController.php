@@ -29,7 +29,15 @@ class DmThueTnController extends Controller
         if (Session::has('admin')) {
             $model_nhom = NhomThueTN::all();
             $model = DMThueTN::where('manhom',$nhom)->get();
-            //dd($model);
+
+            foreach($model as $ct){
+                $ct->b_xoa = true; //mặc định đc xóa
+                //kiểm tra nếu mã số dc sử dụng thì ko dc xóa
+                if($model->where('magoc',$ct->mahh)->count() > 0){
+                    $ct->b_xoa = false;
+                }
+            }
+            //dd($model->toarray());
             return view('system.thuetn.index')
                 ->with('model_nhom',$model_nhom)
                 ->with('nhom',$nhom)

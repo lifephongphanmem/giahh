@@ -154,7 +154,11 @@
                                 <td>{{dinhdangso($cap2->giatu)}}</td>
                                 <td>{{dinhdangso($cap2->giaden)}}</td>
                                 <td>
-
+                                    <button type="button" onclick="confirmNode('{{$cap2->mahh}}')" class="btn btn-default btn-xs mbs" data-target="#modal-node-them" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;Thêm</button>
+                                    <button type="button" onclick="getNode('{{$cap2->mahh}}')" class="btn btn-default btn-xs mbs" data-target="#modal-edit-node" data-toggle="modal"><i class="fa fa-edit"></i>&nbsp;Sửa</button>
+                                    @if($cap2->b_xoa)
+                                        <button type="button" onclick="confirmDelete('{{$cap2->id}}')" class="btn btn-default btn-xs mbs" data-target="#delete-modal-confirm" data-toggle="modal"><i class="fa fa-trash-o"></i>&nbsp;Xóa</button>
+                                    @endif
                                 </td>
                             </tr>
                             <?php $model_cap3 = $model->where('magoc',$cap2->mahh); ?>
@@ -162,6 +166,7 @@
                                 <tr data-tt-id="{{$cap3->mahh}}" data-tt-parent-id="{{$cap3->magoc}}">
                                     <td>{{$cap3->mahh}}</td>
                                     <td>{{$cap3->tenhh}}</td>
+
                                     <td>{{dinhdangso($cap3->giatu)}}</td>
                                     <td>{{dinhdangso($cap3->giaden)}}</td>
                                     <td>
@@ -175,8 +180,9 @@
                                 <?php $model_cap4 = $model->where('magoc',$cap3->mahh); ?>
                                 @foreach($model_cap4 as $cap4)
                                     <tr data-tt-id="{{$cap4->mahh}}" data-tt-parent-id="{{$cap4->magoc}}">
-                                        <td>{{$cap4->mahh}}</td>
+                                        <td style="text-align: right">{{$cap4->mahh}}</td>
                                         <td>{{$cap4->tenhh}}</td>
+
                                         <td>{{dinhdangso($cap4->giatu)}}</td>
                                         <td>{{dinhdangso($cap4->giaden)}}</td>
                                         <td>
@@ -190,8 +196,9 @@
                                     <?php $model_cap5 = $model->where('magoc',$cap4->mahh); ?>
                                     @foreach($model_cap5 as $cap5)
                                         <tr data-tt-id="{{$cap5->mahh}}" data-tt-parent-id="{{$cap5->magoc}}">
-                                            <td>{{$cap5->mahh}}</td>
+                                            <td style="text-align: right">{{$cap5->mahh}}</td>
                                             <td>{{$cap5->tenhh}}</td>
+
                                             <td>{{dinhdangso($cap5->giatu)}}</td>
                                             <td>{{dinhdangso($cap5->giaden)}}</td>
                                             <td>
@@ -205,8 +212,9 @@
                                         <?php $model_cap6 = $model->where('magoc',$cap5->mahh); ?>
                                         @foreach($model_cap6 as $cap6)
                                             <tr data-tt-id="{{$cap6->mahh}}" data-tt-parent-id="{{$cap6->magoc}}">
-                                                <td>{{$cap6->mahh}}</td>
+                                                <td style="text-align: right">{{$cap6->mahh}}</td>
                                                 <td>{{$cap6->tenhh}}</td>
+
                                                 <td>{{dinhdangso($cap6->giatu)}}</td>
                                                 <td>{{dinhdangso($cap6->giaden)}}</td>
                                                 <td>
@@ -220,8 +228,9 @@
                                             <?php $model_cap7 = $model->where('magoc',$cap6->mahh); ?>
                                             @foreach($model_cap7 as $cap7)
                                                 <tr data-tt-id="{{$cap7->mahh}}" data-tt-parent-id="{{$cap7->magoc}}">
-                                                    <td>{{$cap7->mahh}}</td>
+                                                    <td style="text-align: right">{{$cap7->mahh}}</td>
                                                     <td>{{$cap7->tenhh}}</td>
+
                                                     <td>{{dinhdangso($cap7->giatu)}}</td>
                                                     <td>{{dinhdangso($cap7->giaden)}}</td>
                                                     <td>
@@ -353,7 +362,7 @@
                 success: function (data) {
                     if (data.status == 'success') {
                         $('#edit_node').replaceWith(data.message);
-                        //InputMask();
+                        InputMask();
 
                     }
                 },
@@ -442,7 +451,5 @@
 
     </script>
     @include('includes.e.modal-delete')
-
-
-
+    @include('includes.script.create-header-scripts')
 @stop

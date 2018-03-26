@@ -9,14 +9,13 @@
 
 
 @section('custom-script')
-    <!-- BEGIN PAGE LEVEL PLUGINS -->
-
     <script type="text/javascript" src="{{url('assets/global/plugins/select2/select2.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{url('assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js')}}"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="{{url('assets/admin/pages/scripts/table-managed.js')}}"></script>
     <script src="{{ url('js/jquery.treetable.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ url('js/jquery.inputmask.bundle.min.js') }}"></script>
 
     <script src="{{url('minhtran/jquery.inputmask.bundle.min.js')}}"></script>
     <script>
@@ -35,10 +34,7 @@
         })
     </script>
 
-    @include('includes.crumbs.script_inputdate')
-
     <script>
-        // <editor-fold defaultstate="collapsed" desc="--InPutMask--">
         function InputMask() {
             //$(function(){
             // Input Mask
@@ -109,7 +105,6 @@
             }
             //});
         }
-        // </editor-fold>
     </script>
 @stop
 
@@ -403,8 +398,7 @@
                 success: function (data) {
                     if (data.status == 'success') {
                         $('#edit_node').replaceWith(data.message);
-                        //InputMask();
-
+                        InputMask();
                     }
                 },
                 error: function (message) {
@@ -489,7 +483,5 @@
 
     </script>
     @include('includes.e.modal-delete')
-
-
-
+    @include('includes.script.create-header-scripts')
 @stop

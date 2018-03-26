@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\dmdatlayvao;
 use App\dmqd_giadat;
 use App\dmvitridat;
 use App\giadaugiadat;
@@ -336,5 +337,142 @@ class dmvitridatController extends Controller
             return redirect('/giadat/vitri/danh_muc/ma_so=ALL');
         }else
             return view('errors.notlogin');
+    }
+
+    public function dmdat()
+    {
+        /*
+
+
+        //-----------------------
+        */
+
+        $model = dmdatlayvao::all()->toArray();
+        //dd($model);
+        for($i=1;$i<count($model)-1;$i++) {
+            //kiểm tra nút trc
+            //(1)=> cấp = nhau => mã cấp = +1; mã gốc = nhau; mã số = ma gốc . ma cấp độ
+            //(2)=> = -1 => mã cấp = 1, ma gốc = mã cấp; mã số = ma gốc . ma cấp độ
+            //(3)=> quay ngược lại tìm cấp độ = nhau và làm nhu (2)
+            if ($model[$i - 1]['capdo'] == $model[$i]['capdo']) {//(1)
+                $model[$i]['magoc'] = $model[$i - 1]['magoc'];
+                $model[$i]['macapdo'] = $model[$i - 1]['macapdo'] + 1;
+                //$model[$i]['maso'] = $model[$i]['magoc'] . '.' . $model[$i]['macapdo'];
+            } elseif (($model[$i - 1]['capdo'] + 1) == $model[$i]['capdo']) {//(2)
+                $model[$i]['magoc'] = $model[$i - 1]['maso'];
+                $model[$i]['macapdo'] = 1;
+
+            } else {
+                for ($j=$i-2;$j;$j--) {
+                    //dd($i . '-' . $j);
+                    if ($model[$j]['capdo'] == $model[$i]['capdo']) {
+                        //dd($i . '-' . $j);
+                        $model[$i]['magoc'] = $model[$j]['magoc'];
+                        $model[$i]['macapdo'] = $model[$j]['macapdo'] + 1;
+                        break;
+                    }
+                }
+            }
+            $model[$i]['maso'] = $model[$i]['magoc'] . '.' . $model[$i]['macapdo'];
+            $model[$i]['giadat'] = getDbl($model[$i]['giadat']);
+            dmdatlayvao::find($model[$i]['id'])->update($model[$i]);
+        }
+        $model_danhmuc = dmdatlayvao::all();
+        $model_thuedat = giathuedat::all();
+        $model_daugia = giadaugiadat::all();
+
+        $model = dmdatlayvao::where('maso','like','8%')->get();
+        $model_diaban = $model_danhmuc->where('capdo','1');
+        $model_quyetdinh = dmqd_giadat::all();
+        foreach($model as $ct){
+            $ct->b_xoa = true; //mặc định đc xóa
+            //kiểm tra nếu mã số dc sử dụng thì ko dc xóa
+            if($model_danhmuc->where('magoc',$ct->maso)->count() > 0
+                ||$model_thuedat->where('maso',$ct->maso)->count() > 0
+                ||$model_daugia->where('maso',$ct->maso)->count() > 0){
+                $ct->b_xoa = false;
+            }
+        }
+        return view('manage.giadat.vitri.danhmuc.index')
+            ->with('model',$model)
+            ->with('model_diaban',$model_diaban)
+            ->with('model_quyetdinh',$model_quyetdinh)
+            ->with('macapdo','1')
+            ->with('url','/giadat/vitri/')
+            ->with('pageTitle','Danh mục vị trí đất');
+
+
+        //dd($model);
+
+        /*
+        if (Session::has('admin')) {
+            $model_danhmuc = dmvitridat::all();
+            $model_thuedat = giathuedat::all();
+            $model_daugia = giadaugiadat::all();
+
+            $model = dmvitridat::where('maso','like',$macapdo.'%')->get();
+            $model_diaban = $model_danhmuc->where('capdo','1');
+            $model_quyetdinh = dmqd_giadat::all();
+            foreach($model as $ct){
+                $ct->b_xoa = true; //mặc định đc xóa
+                //kiểm tra nếu mã số dc sử dụng thì ko dc xóa
+                if($model_danhmuc->where('magoc',$ct->maso)->count() > 0
+                    ||$model_thuedat->where('maso',$ct->maso)->count() > 0
+                    ||$model_daugia->where('maso',$ct->maso)->count() > 0){
+                    $ct->b_xoa = false;
+                }
+            }
+            return view('manage.giadat.vitri.danhmuc.index')
+                ->with('model',$model)
+                ->with('model_diaban',$model_diaban)
+                ->with('model_quyetdinh',$model_quyetdinh)
+                ->with('macapdo',$macapdo)
+                ->with('url','/giadat/vitri/')
+                ->with('pageTitle','Danh mục vị trí đất');
+
+        }else
+            return view('errors.notlogin');
+        */
+    }
+
+    public function capnhatdat()
+    {
+        /*
+
+
+        //-----------------------
+        */
+
+        $model = dmdatlayvao::select('maso','magoc','macapdo','capdo','vitri','giadat')->get()->toArray();
+        //dd($model);
+        for($i=0;$i<count($model)-1;$i++) {
+            dmvitridat::create($model[$i]);
+        }
+        $model_danhmuc = dmvitridat::all();
+        $model_thuedat = giathuedat::all();
+        $model_daugia = giadaugiadat::all();
+
+        $model = dmvitridat::where('maso','like','1%')->get();
+        $model_diaban = $model_danhmuc->where('capdo','1');
+        $model_quyetdinh = dmqd_giadat::all();
+        foreach($model as $ct){
+            $ct->b_xoa = true; //mặc định đc xóa
+            //kiểm tra nếu mã số dc sử dụng thì ko dc xóa
+            if($model_danhmuc->where('magoc',$ct->maso)->count() > 0
+                ||$model_thuedat->where('maso',$ct->maso)->count() > 0
+                ||$model_daugia->where('maso',$ct->maso)->count() > 0){
+                $ct->b_xoa = false;
+            }
+        }
+        return view('manage.giadat.vitri.danhmuc.index')
+            ->with('model',$model)
+            ->with('model_diaban',$model_diaban)
+            ->with('model_quyetdinh',$model_quyetdinh)
+            ->with('macapdo','1')
+            ->with('url','/giadat/vitri/')
+            ->with('pageTitle','Danh mục vị trí đất');
+
+
+
     }
 }

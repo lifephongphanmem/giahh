@@ -3,6 +3,9 @@
 Route::get('/', 'HomeController@index');
 Route::get('setting','HomeController@setting');
 Route::post('setting','HomeController@upsetting');
+
+Route::get('/dmdat', 'dmvitridatController@dmdat');//hàm lấy vị trí đất từ danh mục
+Route::get('/capnhatdat', 'dmvitridatController@capnhatdat');//hàm lấy vị trí đất từ danh mục
 // <editor-fold defaultstate="collapsed" desc="--system--">
 //user
 Route::get('/login','UsersController@login');
