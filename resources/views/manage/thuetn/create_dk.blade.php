@@ -189,14 +189,48 @@
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Thời gian nhập</label>
                                         {!!Form::text('tgnhap',null, array('id' => 'tgnhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
                                     </div>
                                 </div>
 
-                                @include('includes.crumbs.cb_phanloaitainguyen')
+                                <div class="col-md-4">
+                                    <div class="form-group has-error">
+                                        <label class="control-label">Phân loại</label>
+                                        @if(isset($model->phanloai))
+                                            <select class="form-control required" name="phanloai" id="phanloai">
+                                                <option value="TW" {{$model->phanloai=='TW'?'selected':''}}>Tài nguyên TW quy định</option>
+                                                <option value="DP" {{$model->phanloai=='DP'?'selected':''}}>Tài nguyên địa phương quy định</option>
+                                            </select>
+                                        @else
+                                            <select class="form-control required" name="phanloai" id="phanloai">
+                                                <option value="TW">Tài nguyên TW quy định</option>
+                                                <option value="DP">Tài nguyên địa phương quy định</option>
+                                            </select>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Số quyết định</label>
+                                        {!!Form::text('maloaigia',null, array('id' => 'maloaigia','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <!--/span-->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Nội dung chi tiết</label>
+                                        {!!Form::textarea('thitruong',null, array('id' => 'thitruong','class' => 'form-control', 'rows'=>'3'))!!}
+                                    </div>
+
+                                </div>
                             </div>
 
                             <div class="row">

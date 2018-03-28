@@ -11,9 +11,9 @@ class HsThueTn extends Model
         'id',
         'mahs',
         'mathoidiem',
-        'thitruong',
+        'thitruong', //thay nội dung chi tiết
         'tgnhap',
-        'maloaigia',
+        'maloaigia', //thay số quyết định
         'maloaihh',
         'phanloai',
         'nam',
@@ -26,6 +26,8 @@ class HsThueTn extends Model
         'filedk1',
         'filedk2',
         'filedk3',
-        'filedk4'
+        'filedk4',
+        'soqd',
+        'noidung'
     ];
 }

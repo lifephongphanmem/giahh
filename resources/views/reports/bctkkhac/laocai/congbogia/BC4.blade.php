@@ -45,7 +45,7 @@
             <b>BÁO CÁO TỔNG HỢP CÔNG BỐ GIÁ VẬT LiỆU VÀ CÔNG BỐ GIÁ BỔ XUNG</b>
             <br>
             Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}<br>
-            Nguồn vốn: {{($dk['nguonvon']=='Cả hai') ? 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)' : $dk['nguonvon']}}
+            Nguồn vốn: {{$dk['nguonvon']}}
             @if(session('admin')->level == 'T')
                 @if($donvi != 'all')
                     <br>Đơn vị: {{$donvi->ten}}

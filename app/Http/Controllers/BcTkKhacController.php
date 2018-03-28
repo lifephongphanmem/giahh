@@ -35,7 +35,7 @@ class BcTkKhacController extends Controller
             if(isset($input['donvi'])){
                 if($input['donvi'] == 'all'){
                     $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
-                        ->where('nguonvon', $input['nguonvon'])
+                        //->where('nguonvon', $input['nguonvon'])
                         ->where('trangthai', 'Hoàn tất')
                         ->get();
                     $donvi = 'all';
@@ -44,7 +44,7 @@ class BcTkKhacController extends Controller
                     $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
                         ->where('mahuyen', $input['donvi'])
                         ->where('trangthai', 'Hoàn tất')
-                        ->where('nguonvon', $input['nguonvon'])
+                        //->where('nguonvon', $input['nguonvon'])
                         ->get();
                     $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
                 }
@@ -52,13 +52,16 @@ class BcTkKhacController extends Controller
                 $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
                     ->where('mahuyen', session('admin')->mahuyen)
                     ->where('trangthai', 'Hoàn tất')
-                    ->where('nguonvon', $input['nguonvon'])
+                    //->where('nguonvon', $input['nguonvon'])
                     ->get();
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
             }
 
+            if($input['nguonvon'] != 'ALL'){
+                $model = $model->where('nguonvon', $input['nguonvon']);
+            }
 
-            //dd($model);
+            //dd($input['nguonvon'] );
             $arraythang='';
             foreach($model as $hs){
                 $arraythang = $arraythang.$hs->thang.',';
@@ -86,7 +89,13 @@ class BcTkKhacController extends Controller
             $arraynam = array_column($arraymodel,'nam');
             $arraynam = array_unique($arraynam);
 
-
+            $a_nv = array(
+                'ALL' => 'Tất cả các nguồn',
+                'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                'Đầu tư' => 'Nguồn vốn đầu tư',
+            );
+            $input['nguonvon'] = $a_nv[$input['nguonvon']];
             return view('reports.bctkkhac.laocai.thamdinhgia.BC1')
                 ->with('model',$model)
                 ->with('arraythang',$arraythang)
@@ -107,19 +116,20 @@ class BcTkKhacController extends Controller
             if(isset($input['donvi'])){
                 if($input['donvi'] == 'all'){
                     $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
-                        ->where('nguonvon',$input['nguonvon'])
+                        //->where('nguonvon',$input['nguonvon'])
                         ->where('trangthai', 'Hoàn tất')
                         ->groupBy('thang')
                         ->get();
-                    $donvi = 'all';
+
 
                 }else{
                     $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                         ->where('mahuyen',$input['donvi'])
                         ->where('trangthai', 'Hoàn tất')
-                        ->where('nguonvon',$input['nguonvon'])
+                        //->where('nguonvon',$input['nguonvon'])
                         ->groupBy('thang')
                         ->get();
+
                     $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
                 }
 
@@ -127,12 +137,15 @@ class BcTkKhacController extends Controller
                 $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                     ->where('mahuyen',session('admin')->mahuyen)
                     ->where('trangthai', 'Hoàn tất')
-                    ->where('nguonvon',$input['nguonvon'])
+                   // ->where('nguonvon',$input['nguonvon'])
                     ->groupBy('thang')
                     ->get();
+
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
             }
-
+            if($input['nguonvon'] != 'ALL'){
+                $model = $model->where('nguonvon', $input['nguonvon']);
+            }
 
 
 
@@ -140,14 +153,14 @@ class BcTkKhacController extends Controller
                 if(isset($input['donvi'])) {
                     if ($input['donvi'] == 'all') {
                         $idhss = HsThamDinhGia::where('thang', $thangs->thang)
-                            ->where('nguonvon', $input['nguonvon'])
+                            //->where('nguonvon', $input['nguonvon'])
                             ->whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
                             ->where('trangthai', 'Hoàn tất')
                             ->get();
                     } else {
                         $idhss = HsThamDinhGia::where('thang', $thangs->thang)
                             ->where('mahuyen', $input['donvi'])
-                            ->where('nguonvon', $input['nguonvon'])
+                            //->where('nguonvon', $input['nguonvon'])
                             ->whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
                             ->where('trangthai', 'Hoàn tất')
                             ->get();
@@ -155,10 +168,14 @@ class BcTkKhacController extends Controller
                 }else{
                     $idhss = HsThamDinhGia::where('thang', $thangs->thang)
                         ->where('mahuyen',session('admin')->mahuyen)
-                        ->where('nguonvon', $input['nguonvon'])
+                        //->where('nguonvon', $input['nguonvon'])
                         ->whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
                         ->where('trangthai', 'Hoàn tất')
                         ->get();
+                }
+
+                if($input['nguonvon'] != 'ALL'){
+                    $idhss = $idhss->where('nguonvon', $input['nguonvon']);
                 }
 
                 $tshs = count($idhss);
@@ -193,6 +210,14 @@ class BcTkKhacController extends Controller
             $arraynam = array_column($arraymodel,'nam');
             $arraynam = array_unique($arraynam);
 
+            $a_nv = array(
+                'ALL' => 'Tất cả các nguồn',
+                'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                'Đầu tư' => 'Nguồn vốn đầu tư',
+            );
+            $input['nguonvon'] = $a_nv[$input['nguonvon']];
+
             return view('reports.bctkkhac.laocai.thamdinhgia.BC2')
                 ->with('model',$model)
                 ->with('arrayquy',$arrayquy)
@@ -211,14 +236,12 @@ class BcTkKhacController extends Controller
 
             if(isset($input['donvi'])){
                 if($input['donvi'] == 'all'){
-                    $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                        ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                    $model = HsCongBoGia::whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
                         ->where('trangthai', 'Hoàn tất')
                         ->get();
                     $donvi = 'all';
                 }else{
-                    $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                        ->where('mahuyen',$input['donvi'])
+                    $model = HsCongBoGia::where('mahuyen',$input['donvi'])
                         ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
                         ->where('trangthai', 'Hoàn tất')
                         ->get();
@@ -226,14 +249,16 @@ class BcTkKhacController extends Controller
                 }
 
             }else{
-                $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                    ->where('mahuyen',session('admin')->mahuyen)
+                $model = HsCongBoGia::where('mahuyen',session('admin')->mahuyen)
                     ->where('trangthai', 'Hoàn tất')
                     ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
                     ->get();
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
             }
 
+            if($input['nguonvon'] != 'ALL'){
+                $model = $model->where('nguonvon', $input['nguonvon']);
+            }
 
             foreach($model as $hs){
 
@@ -257,6 +282,14 @@ class BcTkKhacController extends Controller
             $arraynam = array_column($arraymodel,'nam');
             $arraynam = array_unique($arraynam);
 
+            $a_nv = array(
+                'ALL' => 'Tất cả các nguồn',
+                'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                'Đầu tư' => 'Nguồn vốn đầu tư',
+            );
+            $input['nguonvon'] = $a_nv[$input['nguonvon']];
+
             return view('reports.bctkkhac.laocai.congbogia.BC3')
                 ->with('model',$model)
                 ->with('donvi',$donvi)
@@ -276,16 +309,14 @@ class BcTkKhacController extends Controller
 
             if(isset($input['donvi'])){
                 if($input['donvi'] == 'all'){
-                    $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                        ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
+                    $model = HsCongBoGia::whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
                         ->where('trangthai', 'Hoàn tất')
                         ->groupBy('thang')
                         ->get();
                     $donvi = 'all';
                 }else{
 
-                    $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                        ->where('mahuyen',$input['donvi'])
+                    $model = HsCongBoGia::where('mahuyen',$input['donvi'])
                         ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
                         ->where('trangthai', 'Hoàn tất')
                         ->groupBy('thang')
@@ -294,8 +325,7 @@ class BcTkKhacController extends Controller
                 }
 
             }else{
-                $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                    ->where('mahuyen',session('admin')->mahuyen)
+                $model = HsCongBoGia::where('mahuyen',session('admin')->mahuyen)
                     ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
                     ->where('trangthai', 'Hoàn tất')
                     ->groupBy('thang')
@@ -303,19 +333,22 @@ class BcTkKhacController extends Controller
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
             }
 
+            if($input['nguonvon'] != 'ALL'){
+                $model = $model->where('nguonvon', $input['nguonvon']);
+            }
 
             foreach($model as $thangs){
                 if(isset($input['donvi'])) {
                     if ($input['donvi'] == 'all') {
                         $idhss = HsCongBoGia::where('thang', $thangs->thang)
-                            ->where('nguonvon', $input['nguonvon'])
+                            //->where('nguonvon', $input['nguonvon'])
                             ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
                             ->where('trangthai', 'Hoàn tất')
                             ->get();
                     } else {
                         $idhss = HsCongBoGia::where('thang', $thangs->thang)
                             ->where('mahuyen', $input['donvi'])
-                            ->where('nguonvon', $input['nguonvon'])
+                            //->where('nguonvon', $input['nguonvon'])
                             ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
                             ->where('trangthai', 'Hoàn tất')
                             ->get();
@@ -323,10 +356,14 @@ class BcTkKhacController extends Controller
                 }else{
                     $idhss = HsCongBoGia::where('thang', $thangs->thang)
                         ->where('mahuyen',session('admin')->mahuyen)
-                        ->where('nguonvon', $input['nguonvon'])
+                        //->where('nguonvon', $input['nguonvon'])
                         ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
                         ->where('trangthai', 'Hoàn tất')
                         ->get();
+                }
+
+                if($input['nguonvon'] != 'ALL'){
+                    $idhss = $idhss->where('nguonvon', $input['nguonvon']);
                 }
 
                 $tshs = count($idhss);
@@ -362,6 +399,14 @@ class BcTkKhacController extends Controller
             $arraynam = array_column($arraymodel,'nam');
             $arraynam = array_unique($arraynam);
 
+            $a_nv = array(
+                'ALL' => 'Tất cả các nguồn',
+                'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                'Đầu tư' => 'Nguồn vốn đầu tư',
+            );
+            $input['nguonvon'] = $a_nv[$input['nguonvon']];
+
             return view('reports.bctkkhac.laocai.congbogia.BC4')
                 ->with('model',$model)
                 ->with('donvi',$donvi)
@@ -382,7 +427,7 @@ class BcTkKhacController extends Controller
             if(isset($input['donvi'])){
                 if($input['donvi'] == 'all'){
                     $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
-                        ->where('nguonvon', $input['nguonvon'])
+                        //->where('nguonvon', $input['nguonvon'])
                         ->where('trangthai', 'Hoàn tất')
                         ->get();
                     $donvi = 'all';
@@ -391,7 +436,7 @@ class BcTkKhacController extends Controller
                     $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
                         ->where('mahuyen', $input['donvi'])
                         ->where('trangthai', 'Hoàn tất')
-                        ->where('nguonvon', $input['nguonvon'])
+                        //->where('nguonvon', $input['nguonvon'])
                         ->get();
                     $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
                 }
@@ -399,11 +444,14 @@ class BcTkKhacController extends Controller
                 $model = HsThamDinhGia::whereBetween('thoidiem', array($input['ngaytu'], $input['ngayden']))
                     ->where('mahuyen', session('admin')->mahuyen)
                     ->where('trangthai', 'Hoàn tất')
-                    ->where('nguonvon', $input['nguonvon'])
+                    //->where('nguonvon', $input['nguonvon'])
                     ->get();
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
             }
 
+            if($input['nguonvon'] != 'ALL'){
+                $model = $model->where('nguonvon', $input['nguonvon']);
+            }
 
             //dd($model);
             $arraythang='';
@@ -424,6 +472,13 @@ class BcTkKhacController extends Controller
             }
             //$modelthang = $model->groupBy('thang')->get();
             //dd(is_array($arraythang));
+            $a_nv = array(
+                'ALL' => 'Tất cả các nguồn',
+                'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                'Đầu tư' => 'Nguồn vốn đầu tư',
+            );
+            $input['nguonvon'] = $a_nv[$input['nguonvon']];
 
             $arraymodel = $model->toarray();
             $arraythang = array_column($arraymodel,'thang');
@@ -457,7 +512,7 @@ class BcTkKhacController extends Controller
             if(isset($input['donvi'])){
                 if($input['donvi'] == 'all'){
                     $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
-                        ->where('nguonvon',$input['nguonvon'])
+                        //->where('nguonvon',$input['nguonvon'])
                         ->where('trangthai', 'Hoàn tất')
                         ->groupBy('thang')
                         ->get();
@@ -466,7 +521,7 @@ class BcTkKhacController extends Controller
                     $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                         ->where('mahuyen',$input['donvi'])
                         ->where('trangthai', 'Hoàn tất')
-                        ->where('nguonvon',$input['nguonvon'])
+                        //->where('nguonvon',$input['nguonvon'])
                         ->groupBy('thang')
                         ->get();
                     $donvi = TtPhongBan::where('ma',$input['donvi'])->first();
@@ -476,12 +531,15 @@ class BcTkKhacController extends Controller
                 $model = HsThamDinhGia::whereBetween('thoidiem',array($input['ngaytu'],$input['ngayden']))
                     ->where('mahuyen',session('admin')->mahuyen)
                     ->where('trangthai', 'Hoàn tất')
-                    ->where('nguonvon',$input['nguonvon'])
+                    //->where('nguonvon',$input['nguonvon'])
                     ->groupBy('thang')
                     ->get();
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
             }
 
+            if($input['nguonvon'] != 'ALL'){
+                $model = $model->where('nguonvon', $input['nguonvon']);
+            }
 
             foreach($model as $thangs){
                 $idhss = HsThamDinhGia::where('thang',$thangs->thang)
@@ -518,6 +576,13 @@ class BcTkKhacController extends Controller
             $arrayquy = array_unique($arrayquy);
             $arraynam = array_column($arraymodel,'nam');
             $arraynam = array_unique($arraynam);
+            $a_nv = array(
+                'ALL' => 'Tất cả các nguồn',
+                'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                'Đầu tư' => 'Nguồn vốn đầu tư',
+            );
+            $input['nguonvon'] = $a_nv[$input['nguonvon']];
 
             Excel::create('Bao cao 02', function($excel) use($model, $arrayquy,$arraynam,$donvi,$input){
                 $excel->sheet('Ket qua tham dinh gia', function($sheet) use($model, $arrayquy,$arraynam,$donvi,$input){
@@ -540,14 +605,12 @@ class BcTkKhacController extends Controller
 
             if(isset($input['donvi'])){
                 if($input['donvi'] == 'all'){
-                    $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                        ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
+                    $model = HsCongBoGia::whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
                         ->where('trangthai', 'Hoàn tất')
                         ->get();
                     $donvi = 'all';
                 }else{
-                    $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                        ->where('mahuyen',$input['donvi'])
+                    $model = HsCongBoGia::where('mahuyen',$input['donvi'])
                         ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
                         ->where('trangthai', 'Hoàn tất')
                         ->get();
@@ -555,14 +618,16 @@ class BcTkKhacController extends Controller
                 }
 
             }else{
-                $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                    ->where('mahuyen',session('admin')->mahuyen)
+                $model = HsCongBoGia::where('mahuyen',session('admin')->mahuyen)
                     ->whereBetween('ngaynhap', array($input['ngaytu'], $input['ngayden']))
                     ->where('trangthai', 'Hoàn tất')
                     ->get();
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
             }
 
+            if($input['nguonvon'] != 'ALL'){
+                $model = $model->where('nguonvon', $input['nguonvon']);
+            }
 
             foreach($model as $hs){
 
@@ -585,6 +650,13 @@ class BcTkKhacController extends Controller
             $arrayquy = array_unique($arrayquy);
             $arraynam = array_column($arraymodel,'nam');
             $arraynam = array_unique($arraynam);
+            $a_nv = array(
+                'ALL' => 'Tất cả các nguồn',
+                'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                'Đầu tư' => 'Nguồn vốn đầu tư',
+            );
+            $input['nguonvon'] = $a_nv[$input['nguonvon']];
 
             Excel::create('Bao cao 03', function($excel) use($model,$arraythang,$arrayquy,$arraynam,$input,$donvi){
                 $excel->sheet('Cong bo gia', function($sheet) use($model,$arraythang,$arrayquy,$arraynam,$input,$donvi){
@@ -608,16 +680,14 @@ class BcTkKhacController extends Controller
 
             if(isset($input['donvi'])){
                 if($input['donvi'] == 'all'){
-                    $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                        ->where('trangthai', 'Hoàn tất')
+                    $model = HsCongBoGia::where('trangthai', 'Hoàn tất')
                         ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
                         ->groupBy('thang')
                         ->get();
                     $donvi = 'all';
                 }else{
 
-                    $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                        ->where('trangthai', 'Hoàn tất')
+                    $model = HsCongBoGia::where('trangthai', 'Hoàn tất')
                         ->where('mahuyen',$input['donvi'])
                         ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
                         ->groupBy('thang')
@@ -626,8 +696,7 @@ class BcTkKhacController extends Controller
                 }
 
             }else{
-                $model = HsCongBoGia::where('nguonvon',$input['nguonvon'])
-                    ->where('trangthai', 'Hoàn tất')
+                $model = HsCongBoGia::where('trangthai', 'Hoàn tất')
                     ->where('mahuyen',session('admin')->mahuyen)
                     ->whereBetween('ngaynhap',array($input['ngaytu'],$input['ngayden']))
                     ->groupBy('thang')
@@ -635,6 +704,9 @@ class BcTkKhacController extends Controller
                 $donvi = TtPhongBan::where('ma',session('admin')->mahuyen)->first();
             }
 
+            if($input['nguonvon'] != 'ALL'){
+                $model = $model->where('nguonvon', $input['nguonvon']);
+            }
 
             foreach($model as $thangs){
                 $idhss = HsCongBoGia::where('thang',$thangs->thang)
@@ -672,6 +744,13 @@ class BcTkKhacController extends Controller
             $arrayquy = array_unique($arrayquy);
             $arraynam = array_column($arraymodel,'nam');
             $arraynam = array_unique($arraynam);
+            $a_nv = array(
+                'ALL' => 'Tất cả các nguồn',
+                'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
+                'Thường xuyên' => 'Nguồn vốn thường xuyên',
+                'Đầu tư' => 'Nguồn vốn đầu tư',
+            );
+            $input['nguonvon'] = $a_nv[$input['nguonvon']];
 
             Excel::create('Bao cao 04', function($excel) use($model,$arraythang,$arrayquy,$arraynam,$input,$donvi){
                 $excel->sheet('Bao cao tong hop', function($sheet) use($model,$arraythang,$arrayquy,$arraynam,$input,$donvi){

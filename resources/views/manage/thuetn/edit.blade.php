@@ -194,7 +194,7 @@
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Thời gian nhập<span class="require">*</span></label>
                                         {!!Form::text('tgnhap',date('d/m/Y',  strtotime($model->tgnhap)), array('id' => 'tgnhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
@@ -202,16 +202,12 @@
                                 </div>
                                 <!--/span-->
                                 @include('includes.crumbs.cb_phanloaitainguyen')
-                                <!--div class="col-md-6">
-                                    <div class="form-group has-error">
-                                        <label class="control-label">Phân loại</label>
-                                        <select class="form-control required" name="phanloai" id="phanloai">
-                                            <option value="TW" {{$model->phanloai=='TW'?'selected':''}}>Tài nguyên TW quy định</option>
-                                            <option value="DP" {{$model->phanloai=='DP'?'selected':''}}>Tài nguyên địa phương quy định</option>
-                                        </select>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Số quyết định<span class="require">*</span></label>
+                                        {!!Form::text('maloaihh',null, array('id' => 'maloaihh','class' => 'form-control required'))!!}
                                     </div>
-                                </div-->
-                                <!--/span-->
+                                </div>
                             </div>
                             <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}" />
 

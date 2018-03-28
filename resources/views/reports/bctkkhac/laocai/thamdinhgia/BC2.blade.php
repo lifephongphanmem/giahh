@@ -42,7 +42,7 @@
             <br><br>
             Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}
             <br>
-            Nguồn vốn: {{($dk['nguonvon']=='Cả hai') ? 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)' : $dk['nguonvon']}}
+            Nguồn vốn: {{$dk['nguonvon']}}
 
         </td>
     </tr>

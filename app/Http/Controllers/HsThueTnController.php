@@ -154,6 +154,8 @@ class HsThueTnController extends Controller
             $model = new HsThueTn();
             $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->phanloai = $insert['phanloai'];
+            $model->maloaigia = $insert['maloaigia'];
+            $model->thitruong = $insert['thitruong'];
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
             elseif($thang == 4 || $thang == 5 || $thang == 6)
@@ -166,6 +168,7 @@ class HsThueTnController extends Controller
             $model->nam = date_format($date,'Y');
             $model->mahuyen = $mahuyen;
             $model->mahs = $mahs;
+
             if($model->save()){
                 $hanghoa = ThueTnDefault::select('masopnhom','mahh','giatu','giaden','soluong','nguontin',DB::raw($mahs." as mahs"))->where('mahuyen',$mahuyen)->get()->toarray();
                 ThueTn::insert($hanghoa);
@@ -222,6 +225,8 @@ class HsThueTnController extends Controller
             }
 
             $model->tgnhap = getDateToDb($insert['tgnhap']);
+            $model->maloaigia = $insert['maloaigia'];
+            $model->thitruong = $insert['thitruong'];
             $model->hoso = 'DINHKEM';
             $model->thang = date_format($date,'m');
             $model->quy = Thang2Quy($thang);
@@ -318,6 +323,8 @@ class HsThueTnController extends Controller
 
             $model = HsThueTn::findOrFail($id);
             $model->tgnhap = getDateToDb($insert['tgnhap']);
+            $model->maloaigia = $insert['maloaigia'];
+            $model->thitruong = $insert['thitruong'];
             if($thang == 1 || $thang == 2 || $thang == 3)
                 $model->quy = 1;
             elseif($thang == 4 || $thang == 5 || $thang == 6)
@@ -345,6 +352,8 @@ class HsThueTnController extends Controller
 
             $model = HsThueTn::findOrFail($id);
             $model->tgnhap = getDateToDb($update['tgnhap']);
+            $model->maloaigia = $insert['maloaigia'];
+            $model->thitruong = $insert['thitruong'];
             if(isset($request->filedk)){
                 if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk)){
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);

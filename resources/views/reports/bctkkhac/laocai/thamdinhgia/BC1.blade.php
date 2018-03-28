@@ -41,7 +41,7 @@
             <b>BÁO CÁO CHI TIẾT KẾT QUẢ THẨM ĐỊNH GIÁ</b><br>
             <br>
             Từ ngày: {{getDayVn($dk['ngaytu'])}} - Đến ngày {{getDayVn($dk['ngayden'])}}<br>
-            Nguồn vốn: {{($dk['nguonvon']=='Cả hai') ? 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)' : $dk['nguonvon']}}
+            Nguồn vốn: {{$dk['nguonvon']}}
             @if(session('admin')->level == 'T')
                 @if($donvi != 'all')
                     <br>Đơn vị: {{$donvi->ten}}
@@ -96,10 +96,11 @@
                             <td colspan="7" style="text-align: left"><b> Tháng {{$thang}}</b></td>
                         </tr>
                     @endif
+                    <?php $i=1;?>
                     @foreach($model as $key=>$ts)
                         @if($thang == $ts->thang && $nam == $ts->nam && $quy == $ts->quy)
                             <tr>
-                                <th>{{$key+1}}</th>
+                                <th>{{$i++}}</th>
                                 <th style="text-align: left">{{$ts->hosotdgia}}</th>
                                 <th style="text-align: right">{{number_format($ts->sumgiadenghi)}}</th>
                                 <th style="text-align: right">{{number_format($ts->sumththamdinh)}}</th>
@@ -117,6 +118,6 @@
         <tr>
             <th colspan="8">Không có hồ sơ thẩm định</th>
         </tr>
-@endif
+    @endif
 </body>
 </html>

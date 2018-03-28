@@ -63,6 +63,7 @@
                             {!! Form::select(
                             'nguonvon',
                             array(
+                            'ALL' => '-- Tất cả các nguồn --',
                             'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
                             'Thường xuyên' => 'Nguồn vốn thường xuyên',
                             'Đầu tư' => 'Nguồn vốn đầu tư',
@@ -142,6 +143,7 @@
                             {!! Form::select(
                             'nguonvon',
                             array(
+                            'ALL' => '-- Tất cả các nguồn --',
                             'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
                             'Thường xuyên' => 'Nguồn vốn thường xuyên',
                             'Đầu tư' => 'Nguồn vốn đầu tư',
@@ -207,6 +209,7 @@
                             {!! Form::select(
                             'nguonvon',
                             array(
+                            'ALL' => '-- Tất cả các nguồn --',
                             'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
                             'Thường xuyên' => 'Nguồn vốn thường xuyên',
                             'Đầu tư' => 'Nguồn vốn đầu tư',
@@ -273,6 +276,7 @@
                             {!! Form::select(
                             'nguonvon',
                             array(
+                            'ALL' => '-- Tất cả các nguồn --',
                             'Cả hai' => 'Cả hai (Nguồn vốn thường xuyên và nguồn vốn đầu tư)',
                             'Thường xuyên' => 'Nguồn vốn thường xuyên',
                             'Đầu tư' => 'Nguồn vốn đầu tư',

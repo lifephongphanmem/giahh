@@ -5,7 +5,7 @@
  * Date: 10/20/2016
  * Time: 8:51 AM
  */?>
-<div class="col-md-6">
+<div class="col-md-4">
     <div class="form-group has-error">
         <label class="control-label">Phân loại</label>
         @if(isset($model->phanloai))
