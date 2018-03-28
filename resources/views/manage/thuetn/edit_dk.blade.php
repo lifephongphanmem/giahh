@@ -194,7 +194,7 @@
                         <div class="form-body">
                             <h4 class="form-section" style="color: #0000ff">Thông tin hồ sơ</h4>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Thời gian nhập<span class="require">*</span></label>
                                         {!!Form::text('tgnhap',date('d/m/Y',  strtotime($model->tgnhap)), array('id' => 'tgnhap','data-inputmask'=>"'alias': 'date'",'class' => 'form-control required'))!!}
@@ -202,6 +202,24 @@
                                 </div>
                                 <!--/span-->
                                 @include('includes.crumbs.cb_phanloaitainguyen')
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Số quyết định</label>
+                                        {!!Form::text('maloaigia',null, array('id' => 'maloaigia','class' => 'form-control required'))!!}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <!--/span-->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Nội dung chi tiết</label>
+                                        {!!Form::textarea('thitruong',null, array('id' => 'thitruong','class' => 'form-control', 'rows'=>'3'))!!}
+                                    </div>
+
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">

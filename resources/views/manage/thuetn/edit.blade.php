@@ -209,6 +209,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+
+                                <!--/span-->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Nội dung chi tiết</label>
+                                        {!!Form::textarea('thitruong',null, array('id' => 'thitruong','class' => 'form-control', 'rows'=>'3'))!!}
+                                    </div>
+
+                                </div>
+                            </div>
                             <input type="hidden" name="mahs" id="mahs" value="{{$model->mahs}}" />
 
                             <!--/row-->

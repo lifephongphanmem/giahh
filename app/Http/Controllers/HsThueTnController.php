@@ -352,8 +352,8 @@ class HsThueTnController extends Controller
 
             $model = HsThueTn::findOrFail($id);
             $model->tgnhap = getDateToDb($update['tgnhap']);
-            $model->maloaigia = $insert['maloaigia'];
-            $model->thitruong = $insert['thitruong'];
+            $model->maloaigia = $update['maloaigia'];
+            $model->thitruong = $update['thitruong'];
             if(isset($request->filedk)){
                 if(file_exists(public_path() . '/data/uploads/attack/'.$model->filedk)){
                     File::Delete(public_path() . '/data/uploads/attack/'.$model->filedk);
