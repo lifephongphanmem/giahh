@@ -462,6 +462,7 @@ class HsGiaHhTtController extends Controller
 
             $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
+            $model->noidung = $insert['noidung'];
             $model->quy=Thang2Quy($thang);
             $model->thang = date_format($date,'m');
             $model->nam = date_format($date,'Y');
