@@ -159,12 +159,14 @@ Route::get('dmthuetn/update_node','DmThueTnController@update_node');
 
     //Giá hàng hóa thị trường
 Route::get('giahhdv-thitruong','HsGiaHhTtController@thoidiem');
-Route::get('giahhdv-thitruong/thoidiem={thoidiem}/nam={nam}','HsGiaHhTtController@index');
-Route::get('giahhdv-thitruong/thoidiem={thoidiem}/create','HsGiaHhTtController@create');
-Route::post('giahhdv-thitruong','HsGiaHhTtController@store');
+Route::get('giahhdv-thitruong/index','HsGiaHhTtController@index');
+Route::post('giahhdv-thitruong/create','HsGiaHhTtController@create');
+Route::post('giahhdv-thitruong/store','HsGiaHhTtController@store');
+Route::get('giahhdv-thitruong/edit','HsGiaHhTtController@edit');
+Route::patch('giahhdv-thitruong/update','HsGiaHhTtController@update');
 Route::get('giahhdv-thitruong/{id}/show','HsGiaHhTtController@show');
-Route::get('giahhdv-thitruong/{id}/edit','HsGiaHhTtController@edit');
-Route::patch('giahhdv-thitruong/{id}','HsGiaHhTtController@update');
+
+
 Route::post('giahhdv-thitruong/delete','HsGiaHhTtController@destroy');
 Route::post('giahhdv-thitruong/approve','HsGiaHhTtController@approve');
 Route::post('giahhdv-thitruong-dk','HsGiaHhTtController@store_dk');
@@ -174,7 +176,7 @@ Route::patch('giahhdv-thitruong-dk/{id}','HsGiaHhTtController@update_dk');
 Route::get('giahhdv-thitruong-dk/dinhkem','GiaHhTtController@get_attackfile');
 
 Route::get('thongtin-giathitruong','HsGiaHhTtController@showthoidiem');
-Route::get('thongtin-giathitruong/thoidiem={thoidiem}/nam={nam}&pb={pb}','HsGiaHhTtController@showindex');
+Route::get('thongtin-giathitruong/index','HsGiaHhTtController@showindex');
 Route::get('thongtin-giathitruong/{id}/show','HsGiaHhTtController@view');
 Route::post('thongtin-giathitruong/unapprove','HsGiaHhTtController@unapprove');
 

@@ -65,7 +65,7 @@
                             <td>{{$tt->denngay}}</td>
                             <td>{{$tt->nhom}}</td-->
                             <td>
-                                <a href="{{url('thongtin-giathitruong/thoidiem='.$tt->mathoidiem.'/nam='.getGeneralConfigs()['namhethong'].'&pb=all')}}" class="btn btn-default btn-xs mbs">
+                                <a href="{{url('thongtin-giathitruong/index?thoidiem='.$tt->mathoidiem.'&nam='.date('Y').'&pb=all')}}" class="btn btn-default btn-xs mbs">
                                     <i class="fa fa-edit"></i> Xem báo cáo</a>
                             </td>
                         </tr>

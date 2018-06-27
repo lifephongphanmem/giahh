@@ -28,7 +28,7 @@ class GiaHhTtController extends Controller
         }
         //dd($request);
         $inputs = $request->all();
-        $m_kt=GiaHhTt::where('mahh',$inputs['mahh'])->where('mahuyen',session('admin')->mahuyen)->get();
+        $m_kt=GiaHhTt::where('mahh',$inputs['mahh'])->where('mahs',$inputs['mahs'])->get();
         if(count($m_kt)>0){
             $result = array(
                 'status' => 'fail',

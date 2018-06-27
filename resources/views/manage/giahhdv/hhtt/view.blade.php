@@ -94,7 +94,7 @@
             <!-- END VALIDATION STATES-->
             <div class="row">
                 <div class="col-md-12" style="text-align: center">
-                <a href="{{url('thongtin-giathitruong/thoidiem='.$model->mathoidiem.'/nam='.$model->nam.'&pb=all')}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
+                <a href="{{url('thongtin-giathitruong/index?thoidiem='.$model->mathoidiem.'&nam='.$model->nam.'&pb=all')}}" class="btn green"><i class="fa fa-mail-reply"></i>&nbsp;Quay lại</a>
                 </div>
             </div>
             </form>

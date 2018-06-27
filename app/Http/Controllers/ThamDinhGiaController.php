@@ -337,55 +337,41 @@ class ThamDinhGiaController extends Controller
             return view('errors.notlogin');
     }
 
-    public function viewsearch(Request $request){
+    public function viewsearch(Request $request)
+    {
         if (Session::has('admin')) {
+            $_sql = 'select hs.thoidiem, hs.thoihan, hs.diadiem, hs.sotbkl, hs.dvyeucau,'
+                . ' ct.tents, ct.dvt, ct.sl, ct.giatritstd, ct.thongsokt, ct.nguongoc, ct.nguyengiadenghi, ct.giadenghi, ct.nguyengiathamdinh, ct.giaththamdinh'
+                . ' from hsthamdinhgia as hs, thamdinhgia as ct Where hs.mahs = ct.mahs';
+            /* Nếu gọi ->get() ở (1) thì $model tự động chuyển về mảng khi join bảng => (2) ko chạy dc
+            $model = ThamDinhGia::join('hsthamdinhgia', 'hsthamdinhgia.mahs', '=', 'thamdinhgia.mahs')
+                ->select('mats', 'tents', 'sl') (1);
 
-            $_sql='select hsthamdinhgia.thoidiem, hsthamdinhgia.diadiem, hsthamdinhgia.sotbkl, hsthamdinhgia.dvyeucau, thamdinhgia.tents,'
-                          .' thamdinhgia.dvt, thamdinhgia.sl, thamdinhgia.giatritstd, thamdinhgia.thongsokt, thamdinhgia.nguongoc'
-                                        .' from hsthamdinhgia, thamdinhgia Where hsthamdinhgia.mahs=thamdinhgia.mahs';
+            $model = $model->where('sl', '>', '810')->get(); (2)
+            dd($model->toarray());
+            */
+            $input = $request->all();
 
-            $input=$request->all();
+            $a_ToanTu = getToanTuTimKiem();
+            //dd($a_ToanTu[$input['toantu_giathamdinh']]);
+            //dd($input);
+            $_sql .= $input['tents'] != '' ? " and ct.tents Like '%" . $input['tents'] . "%'" : '';
+            $_sql .= $input['thoidiemtu'] != '' ? " and hs.thoidiem >='" . date('Y-m-d', strtotime($input['thoidiemtu'])) . "'" : '';
+            $_sql .= $input['thoidiemden'] != '' ? " and hs.thoidiem <='" . date('Y-m-d', strtotime($input['thoidiemden'])) . "'" : '';
+            $_sql .= $input['donvi'] != 'all' ? " and hs.mahuyen = '" . $input['donvi'] . "'" : '';
+            $_sql .= $input['sotbkl'] != '' ? " and hs.sotbkl Like '" . $input['sotbkl'] . "%'" : '';
+            $_sql .= $input['nguonvon'] != '' ? " and hs.nguonvon = '" . $input['nguonvon'] . "'" : '';
+            $_sql .= ' and ct.nguyengiadenghi ' . $a_ToanTu[$input['toantu_dongiadenghi']] . getDbl($input['dongiadenghi']);
+            $_sql .= ' and ct.giadenghi ' . $a_ToanTu[$input['toantu_giadenghi']] . getDbl($input['giadenghi']);
+            $_sql .= ' and ct.nguyengiathamdinh ' . $a_ToanTu[$input['toantu_dongiathamdinh']] . getDbl($input['dongiathamdinh']);
+            $_sql .= ' and ct.giaththamdinh ' . $a_ToanTu[$input['toantu_giathamdinh']] . getDbl($input['giathamdinh']);
 
-            $_sql .= $input['tents']!= null? " and thamdinhgia.tents Like '%".$input['tents']."%'":'';
+            $model = DB::select(DB::raw($_sql));
 
-            //Thời gian nhập
-            //Từ
-            if($input['thoidiemtu']!=null){
-                $_sql .= " and hsthamdinhgia.thoidiem >='".date('Y-m-d',strtotime($input['thoidiemtu']))."'";
-            }
-            //Đến
-            if($input['thoidiemden']!=null){
-                $_sql .= " and hsthamdinhgia.thoidiem <='".date('Y-m-d',strtotime($input['thoidiemden']))."'";
-            }
-
-            $_sql .= $input['donvi']!= 'all' ? "and hsthamdinhgia.mahuyen = '".$input['donvi']."'":'';
-            //Nguồn vốn
-            //$_sql .= $input['nguonvon']!=null? " and hsthamdinhgia.nguonvon = '".$input['nguonvon']."'":'';
-
-            //Tên tài sản
-
-
-            //Phương pháp thẩm định
-            //$_sql=$input['ppthamdinh']!=null? $_sql." and hsthamdinhgia.ppthamdinh Like '".$input['ppthamdinh']."%'":$_sql;
-            //Địa điểm thẩm định
-            //$_sql=$input['diadiem']!=null? $_sql." and hsthamdinhgia.diadiem Like '".$input['diadiem']."%'":$_sql;
-            //Số thông báo
-            $_sql .= $input['sotbkl']!=null ? " and hsthamdinhgia.sotbkl Like '".$input['sotbkl']."%'":'';
-            //Giá trị tài sản
-            //Từ
-            //if(getDouble($input['giatritu'])>0)
-                //$_sql=$_sql." and thamdinhgia.giatritstd >= ".getDouble($input['giatritu']);
-            //Đến
-            //if(getDouble($input['giatriden'])>0)
-                //$_sql=$_sql." and thamdinhgia.giatritstd <= ".getDouble($input['giatriden']);
-
-
-            $model =  DB::select(DB::raw($_sql));
-            //dd($model);
             return view('manage.thamdinhgia.search.index')
-                ->with('model',$model)
-                ->with('pageTitle','Thông tin tài sản thẩm định giá');
-        }else
+                ->with('model', $model)
+                ->with('pageTitle', 'Thông tin tài sản thẩm định giá');
+        } else
             return view('errors.notlogin');
     }
 

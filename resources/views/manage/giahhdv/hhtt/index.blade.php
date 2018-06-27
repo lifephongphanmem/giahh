@@ -21,17 +21,16 @@
         $(function(){
             $('#nambc').change(function() {
                 var nambc = $('#nambc').val();
-                var thoidiem = $('#thoidiem').val();
-                var url = '/giahhdv-thitruong/thoidiem='+thoidiem+'/nam='+nambc;
-
+                //var thoidiem = $('#thoidiem').val();
+                var url = '/giahhdv-thitruong/index?thoidiem='+'{{$inputs['thoidiem']}}'+'&nam='+nambc;
                 window.location.href = url;
             });
             $('#ttpb').change(function() {
                 var nambc = $('#nambc').val();
                 var ttpb = $('#ttpb').val();
-                var thoidiem = $('#thoidiem').val();
-                var url = '/giahhdv-thitruong/thoidiem='+thoidiem+'/nam='+nambc;
-
+                //var thoidiem = $('#thoidiem').val();
+                //var url = '/giahhdv-thitruong/thoidiem='+thoidiem+'/nam='+nambc;
+                var url = '/giahhdv-thitruong/index?thoidiem='+'{{$inputs['thoidiem']}}'+'&nam='+nambc;
                 window.location.href = url;
             });
         })
@@ -63,8 +62,6 @@
     <h3 class="page-title">
         Thông tin hồ sơ<small>&nbsp;giá hàng hóa thị trường</small>
     </h3>
-    <input type="hidden" name="thoidiem" id="thoidiem" value="{{$thoidiem}}">
-
 
     <!-- END PAGE HEADER-->
     <div class="row">
@@ -77,9 +74,10 @@
                     </div>
                     <div class="actions">
                         @if(can('hhthitruong','create'))
-                        <a href="{{url($url.'thoidiem='.$thoidiem.'/create')}}" class="btn btn-default btn-sm">
-                            <i class="fa fa-plus"></i> Thêm mới hồ sơ chi tiết </a>
-                            <a href="{{url($url.'thoidiem='.$thoidiem.'/create_dk')}}" class="btn btn-default btn-sm">
+                            <button type="button" class="btn btn-default btn-sm" data-target="#create-modal-confirm" data-toggle="modal"><i class="fa fa-plus"></i>&nbsp;
+                                Thêm mới hồ sơ chi tiết</button>
+
+                            <a href="{{url($url.'thoidiem='.$inputs['thoidiem'].'/create_dk')}}" class="btn btn-default btn-sm">
                                 <i class="fa fa-plus"></i> Thêm mới hồ sơ đính kèm </a>
                         @endif
                         <a class="btn btn-default btn-sm" href="{{url('/giahhdv-thitruong')}}"><i class="fa fa-mail-reply"></i>  Quay lại</a>
@@ -93,7 +91,7 @@
                                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                     @if ($nam_stop = intval(date('Y'))) @endif
                                     @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                     @endfor
                                 </select>
                             </div>
@@ -144,7 +142,7 @@
                                             @if($tt->phanloai == 'DINHKEM')
                                                 <a href="{{url('giahhdv-thitruong-dk/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @else
-                                                <a href="{{url('giahhdv-thitruong/'.$tt->id.'/edit')}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
+                                                <a href="{{url('giahhdv-thitruong/edit?mahs='.$tt->mahs)}}" class="btn btn-default btn-xs mbs"><i class="fa fa-edit"></i>&nbsp;Chỉnh sửa</a>
                                             @endif
                                         @endif
                                         @if(can('hhthitruong','delete') && $tt->mahuyen == session('admin')->mahuyen)
@@ -181,4 +179,77 @@
     <!--Modal Hoàn tất-->
     @include('includes.e.modal-approve')
     @include('includes.e.modal-attackfile')
+    <!-- Chọn danh mục hàng hóa -->
+    <div id="create-modal-confirm" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bs-modal-lg">
+        {!! Form::open(['url'=>$url.'create','id' => 'frm_create','method'=>'post'])!!}
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
+                    <h4 id="modal-header-primary-label" class="modal-title">Thêm mới kê khai giá hàng hóa, dịch vụ</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <label class="control-label text-right">Nhóm hàng hóa, dịch vụ</label>
+                                    <select name="manhomhh" id="manhomhh" class="form-control" multiple="multiple">
+                                        @foreach($model_nhomhh as $ct)
+                                            <option value="{{$ct->manhom}}">{{$ct->tennhom}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                            <input type="hidden" id="thoidiem" name="thoidiem" value="{{$inputs['thoidiem']}}" />
+                            <input type="hidden" id="manhom" name="manhom" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-default"> Hủy thao tác</button>
+                    <button type="submit" data-dismiss="modal" class="btn btn-primary"> Đồng ý</button>
+
+                </div>
+            </div>
+        </div>
+        {!! Form::close() !!}
+    </div>
+    <script>
+        $(function(){
+            //Multi select box
+            $("#manhomhh").select2();
+            $("#manhomhh").change(function(){
+                $("#manhom").val( $("#manhomhh").val());
+            });
+            $('#frm_create :submit').click(function(){
+                var str = '';
+                var ok = true;
+
+                if(!$('#manhomhh').val()){
+                    str += '  - Mã nhóm hàng hóa \n';
+                    $('#manhomhh').parent().addClass('has-error');
+                    ok = false;
+                }
+                /*
+                 if(!$('#ngaysinh').val()){
+                 str += '  - Ngày sinh \n';
+                 $('#ngaysinh').parent().addClass('state-error');
+                 ok = false;
+                 }
+                 */
+                //Kết quả
+                if ( ok == false){
+                    alert('Các trường: \n' + str + 'Không được để trống');
+                    $("#frm_create").submit(function (e) {
+                        e.preventDefault();
+                    });
+                }
+                else{
+                    $("#frm_create").unbind('submit').submit();
+                }
+            });
+        });
+    </script>
 @stop

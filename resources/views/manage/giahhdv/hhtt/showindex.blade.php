@@ -22,7 +22,7 @@
             $('#nambc').change(function() {
                 var nambc = $('#nambc').val();
                 var thoidiem = $('#thoidiem').val();
-                var url = '/thongtin-giathitruong/thoidiem='+thoidiem+'/nam='+nambc+'&pb=all';
+                var url = '/thongtin-giathitruong/index?thoidiem='+thoidiem+'&nam='+nambc+'&pb=all';
 
                 window.location.href = url;
             });
@@ -30,7 +30,7 @@
                 var nambc = $('#nambc').val();
                 var ttpb = $('#ttpb').val();
                 var thoidiem = $('#thoidiem').val();
-                var url = '/thongtin-giathitruong/thoidiem='+thoidiem+'/nam='+nambc+'&pb='+ttpb;
+                var url = '/thongtin-giathitruong/index?thoidiem='+thoidiem+'&nam='+nambc+'&pb='+ttpb;
 
                 window.location.href = url;
             });
@@ -63,7 +63,7 @@
     <h3 class="page-title">
         Thông tin hồ sơ<small>&nbsp;giá hàng hóa thị trường</small>
     </h3>
-    <input type="hidden" name="thoidiem" id="thoidiem" value="{{$thoidiem}}">
+    <input type="hidden" name="thoidiem" id="thoidiem" value="{{$inputs['thoidiem']}}">
 
 
     <!-- END PAGE HEADER-->
@@ -85,7 +85,7 @@
                                     @if ($nam_start = intval(date('Y')) - 5 ) @endif
                                     @if ($nam_stop = intval(date('Y'))) @endif
                                     @for($i = $nam_start; $i <= $nam_stop; $i++)
-                                        <option value="{{$i}}" {{$i == $nam ? 'selected' : ''}}>Năm {{$i}}</option>
+                                        <option value="{{$i}}" {{$i == $inputs['nam'] ? 'selected' : ''}}>Năm {{$i}}</option>
                                     @endfor
                                 </select>
                             </div>
@@ -95,7 +95,7 @@
                                 <select class="form-control select2me" id="ttpb" name="ttpb">
                                     <option value="all">--Tất cả phòng ban--</option>
                                     @foreach($modelpb as $ttpb)
-                                        <option value="{{$ttpb->ma}}" {{($pb == $ttpb->ma) ? 'selected' : ''}}>{{$ttpb->ten}}</option>
+                                        <option value="{{$ttpb->ma}}" {{($inputs['pb'] == $ttpb->ma) ? 'selected' : ''}}>{{$ttpb->ten}}</option>
                                     @endforeach
                                 </select>
                             </div>

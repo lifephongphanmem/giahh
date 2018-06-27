@@ -27,6 +27,7 @@ class HsGiaHhTtController extends Controller
         if(Session::has('admin')){
             $model = DmThoiDiem::where('plbc','Hàng hóa thị trường')
                 ->get();
+
             return view('manage.giahhdv.hhtt.thoidiem.index')
                 ->with('model',$model)
                 ->with('pageTitle','Chọn thời điểm nhập báo cáo giá hàng hóa thị trường');
@@ -45,39 +46,43 @@ class HsGiaHhTtController extends Controller
             return view('errors.notlogin');
     }
 
-    public function index($thoidiem,$nam)
+    public function index(Request $request)
     {
         if(Session::has('admin')){
-
-            $model = HsGiaHhTt::where('mathoidiem',$thoidiem)
-                ->where('nam',$nam)
+            //dd($request);
+            $inputs = $request->all();
+            $model = HsGiaHhTt::where('mathoidiem',$inputs['thoidiem'])
+                ->where('nam',$inputs['nam'])
                 ->where('mahuyen',session('admin')->mahuyen)
                 ->get();
             $modelpb = TtPhongBan::all();
-
+            $nhomhh = NhomTn55::where('theodoi','Có')->get();
             foreach($model as $tt){
                 $this->getTtPhongBan($modelpb,$tt);
             }
 
             return view('manage.giahhdv.hhtt.index')
                 ->with('model',$model)
+                ->with('model_nhomhh',$nhomhh)
                 ->with('modelpb',$modelpb)
-                ->with('thoidiem',$thoidiem)
-                ->with('nam',$nam)
+                ->with('modelpb',$modelpb)
+                ->with('inputs',$inputs)
+                //->with('nam',$nam)
                 ->with('url','/giahhdv-thitruong/')
                 ->with('pageTitle','Thông tin hồ sơ giá hàng hóa thị trường');
         }else
             return view('errors.notlogin');
     }
-    public function showindex($thoidiem,$nam,$pb)
+    public function showindex(Request $request)
     {
         if(Session::has('admin')){
-            $model = HsGiaHhTt::where('mathoidiem',$thoidiem)
-                ->where('nam',$nam)
+            $inputs = $request->all();
+            $model = HsGiaHhTt::where('mathoidiem',$inputs['thoidiem'])
+                ->where('nam',$inputs['nam'])
                 ->where('trangthai','Hoàn tất')
                 ->get();
-            if($pb != 'all'){
-                $model = $model->where('mahuyen',$pb);
+            if($inputs['pb'] != 'all'){
+                $model = $model->where('mahuyen',$inputs['pb']);
             }
 
             $modelpb = TtPhongBan::all();
@@ -89,9 +94,9 @@ class HsGiaHhTtController extends Controller
             return view('manage.giahhdv.hhtt.showindex')
                 ->with('model',$model)
                 ->with('modelpb',$modelpb)
-                ->with('thoidiem',$thoidiem)
-                ->with('nam',$nam)
-                ->with('pb',$pb)
+                ->with('inputs',$inputs)
+                //->with('nam',$nam)
+                //->with('pb',$pb)
                 ->with('url','/thongtin-giathitruong/')
                 ->with('pageTitle','Thông tin hồ sơ giá hàng hóa thị trường');
         }else
@@ -105,34 +110,34 @@ class HsGiaHhTtController extends Controller
         }
     }
 
-    public function create($thoidiem)
+    public function create(Request $request)
     {
         if(Session::has('admin')){
-            $mahuyen=session('admin')->mahuyen;
-            GiaHhTtDefault::where('mahuyen',$mahuyen)->delete();
-
-            $loaigia = DmLoaiGia::where('pl','Hàng hóa thị trường')->get();
-            $loaihh = DmLoaiHh::all();
-
-            $thitruong= DmThiTruong::all();
-            $nhomhh = NhomTn55::where('theodoi','Có')->get();
-            $hanghoa = DmHhTn55::select('masopnhom','mahh',DB::raw($mahuyen." as 'mahuyen'"),DB::raw("1 as 'soluong'"),DB::raw("0 as 'giatu'"),DB::raw("0 as 'giaden'"))->wherein('masopnhom',['01','02'])->get()->toarray();
-            GiaHhTtDefault::insert($hanghoa);
-
-            $dmhanghoa = DmHhTn55::all();
-            $model=GiaHhTtDefault::where('mahuyen',$mahuyen)->get();
-            foreach($model as $ct){
-                $this->gettenhh($dmhanghoa,$ct);
-            }
-
-            return view('manage.giahhdv.hhtt.create')
-                ->with('model',$model)
-                ->with('mathoidiem',$thoidiem)
-                ->with('loaigia',$loaigia)
-                ->with('loaihh',$loaihh)
-                ->with('nhomhh',$nhomhh)
-                ->with('thitruong',$thitruong)
-                ->with('pageTitle','Thông tin giá hàng hóa thị trường thêm mới');
+            $inputs = $request->all();
+            //Bước 1: tạo hồ sơ giá
+            $date = getdate();
+            $thang = $date['mon'];
+            $mahs = $date[0];
+            $model = new HsGiaHhTt();
+            $model->tgnhap = date('Y-m-d');
+            $model->thitruong = DmThiTruong::first()->thitruong;
+            $model->phanloai = 'CHITIET';
+            $model->trangthai = 'Đang làm';
+            $model->quy = Thang2Quy($thang);
+            $model->thang = $thang;
+            $model->nam = $date['year'];
+            $model->mahuyen = session('admin')->mahuyen;
+            $model->mahs = $mahs;
+            $model->mathoidiem = $inputs['thoidiem'];
+            $model->save();
+            //Bước 2: lưu chi tiết danh sách hàng hóa, dịch vụ
+            $a_nhomhh = explode(',',$inputs['manhom']);
+            $hanghoa = DmHhTn55::select('masopnhom','mahh', DB::raw($mahs.' as mahs'))
+                ->wherein('masopnhom',$a_nhomhh)
+                ->get()->toarray();
+            GiaHhTt::insert($hanghoa);
+            $request['mahs']=$mahs;
+            return $this->edit($request);
         }else
             return view('errors.notlogin');
     }
@@ -154,6 +159,7 @@ class HsGiaHhTtController extends Controller
     {
         if(Session::has('admin')){
             $insert = $request->all();
+
             $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
             $mahs = getdate()[0];
@@ -182,7 +188,7 @@ class HsGiaHhTtController extends Controller
                 $this->createts($mahs);
             }
 
-            return redirect('giahhdv-thitruong/thoidiem='.$insert['mathoidiem'].'/nam='.date_format($date,'Y'));
+            return redirect('giahhdv-thitruong/index?thoidiem='.$insert['mathoidiem'].'&nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -243,7 +249,7 @@ class HsGiaHhTtController extends Controller
             $model->mathoidiem = $insert['mathoidiem'];
             $model->save();
 
-            return redirect('giahhdv-thitruong/thoidiem='.$insert['mathoidiem'].'/nam='.date_format($date,'Y'));
+            return redirect('giahhdv-thitruong/index?thoidiem='.$insert['mathoidiem'].'&nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -317,30 +323,24 @@ class HsGiaHhTtController extends Controller
             return view('errors.notlogin');
     }
 
-    public function edit($id)
+    public function edit(Request $request)
     {
         if(Session::has('admin')){
-            $model = HsGiaHhTt::findOrFail($id);
-            $modeltthh = GiaHhTt::where('mahs',$model->mahs)
-                ->get();
-
+            $inputs = $request->all();
+            $model = HsGiaHhTt::where('mahs', $inputs['mahs'])->first();
+            $modeltthh = GiaHhTt::where('mahs',$model->mahs)->get();
             $modeldm = DmHhTn55::all();
 
             foreach($modeltthh as $tthh){
                 $this->gettenhh($modeldm,$tthh);
             }
 
-            //dd($modeltthh);
-            //$loaigia = DmLoaiGia::where('pl','Hàng hóa thị trường')->get();
-            //$loaihh = DmLoaiHh::all();
             $thitruong= DmThiTruong::all();
             $nhomhh = NhomTn55::where('theodoi','Có')->get();
             //dd($modeltthh);
             return view('manage.giahhdv.hhtt.edit')
                 ->with('model',$model)
                 ->with('modeltthh',$modeltthh)
-                //->with('loaigia',$loaigia)
-                //->with('loaihh',$loaihh)
                 ->with('nhomhh',$nhomhh)
                 ->with('thitruong',$thitruong)
                 ->with('pageTitle','Thông tin giá hàng hóa thị trường chi tiết');
@@ -371,16 +371,16 @@ class HsGiaHhTtController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         if(Session::has('admin')){
             $insert = $request->all();
             $date = date_create(getDateToDb($insert['tgnhap']));
             $thang = date_format($date,'m');
-
-            $model = HsGiaHhTt::findOrFail($id);
+            $model = HsGiaHhTt::where('mahs',$insert['mahs'])->first();
             $model->tgnhap = getDateToDb($insert['tgnhap']);
             $model->thitruong = $insert['thitruong'];
+            $model->noidung = $insert['noidung'];
             //$model->maloaihh = $insert['maloaihh'];
             //$model->maloaigia = $insert['maloaigia'];
 
@@ -396,7 +396,7 @@ class HsGiaHhTtController extends Controller
             $model->nam = date_format($date,'Y');
             $model->save();
 
-            return redirect('giahhdv-thitruong/thoidiem='.$model->mathoidiem.'/nam='.date_format($date,'Y'));
+            return redirect('giahhdv-thitruong/index?thoidiem='.$model->mathoidiem.'&nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -467,7 +467,7 @@ class HsGiaHhTtController extends Controller
             $model->nam = date_format($date,'Y');
             $model->save();
 
-            return redirect('giahhdv-thitruong/thoidiem='.$model->mathoidiem.'/nam='.date_format($date,'Y'));
+            return redirect('giahhdv-thitruong/index?thoidiem='.$model->mathoidiem.'&nam='.date_format($date,'Y'));
 
         }else
             return view('errors.notlogin');
@@ -483,7 +483,7 @@ class HsGiaHhTtController extends Controller
             if($model->delete())
                 GiaHhTt::where('mahs',$model->mahs)->delete();
 
-            return redirect('giahhdv-thitruong/thoidiem='.$model->mathoidiem.'/nam='.$model->nam);
+            return redirect('giahhdv-thitruong/index?thoidiem='.$model->mathoidiem.'&nam='.$model->nam);
 
         }else
             return view('errors.notlogin');
@@ -505,7 +505,7 @@ class HsGiaHhTtController extends Controller
                 $modelh->save();
             }
             */
-            return redirect('giahhdv-thitruong/thoidiem='.$model->mathoidiem.'/nam='.$model->nam);
+            return redirect('giahhdv-thitruong/index?thoidiem='.$model->mathoidiem.'&nam='.$model->nam);
         }else
             return view('errors.notlogin');
     }
@@ -526,7 +526,7 @@ class HsGiaHhTtController extends Controller
                 $modelh->save();
             }
             */
-            return redirect('thongtin-giathitruong/thoidiem='.$model->mathoidiem.'/nam='.$model->nam.'&pb=all');
+            return redirect('thongtin-giathitruong/index?thoidiem='.$model->mathoidiem.'&nam='.$model->nam.'&pb=all');
         }else
             return view('errors.notlogin');
     }
